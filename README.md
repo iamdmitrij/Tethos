@@ -1,8 +1,8 @@
 # Tethos
 
 ![Build](https://github.com/iamdmitrij/Tethos/actions/workflows/nuget.yml/badge.svg?branch=main)
-[![Version](https://img.shields.io/nuget/vpre/Tethos.svg)](https://www.nuget.org/packages/Tethos)
-[![Downloads](https://img.shields.io/nuget/dt/Tethos.svg)](https://www.nuget.org/packages/Tethos)
+[![Version](https://img.shields.io/nuget/vpre/Tethos.Moq.svg)](https://www.nuget.org/packages/Tethos.Moq)
+[![Downloads](https://img.shields.io/nuget/dt/Tethos.Moq.svg)](https://www.nuget.org/packages/Tethos.Moq)
 
 `Tethos` is automated auto-mocking system which utilizes `Castle.Windsor` as backbone for working with mocked dependencies used during unit testing. It is test framework agnostic.
 
