@@ -1,6 +1,6 @@
 # Tethos
 
-![Build](https://github.com/iamdmitrij/Tethos/actions/workflows/dotnet.yml/badge.svg?branch=main)
+![Build](https://github.com/iamdmitrij/Tethos/actions/workflows/nuget.yml/badge.svg?branch=main)
 [![Version](https://img.shields.io/nuget/vpre/Tethos.svg)](https://www.nuget.org/packages/Tethos)
 [![Downloads](https://img.shields.io/nuget/dt/Tethos.svg)](https://www.nuget.org/packages/Tethos)
 
