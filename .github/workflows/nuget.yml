@@ -23,7 +23,7 @@ jobs:
         run: dotnet build --no-restore
       - name: Test
         run: dotnet test --no-build --verbosity normal
-      # - name: Push Tethos NuGet
-      #   run: dotnet nuget push src/Tethos/bin/Debug/Tethos.*.nupkg --source ${{ secrets.NUGET_FEED }} --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
-      # - name: Push Tethos.Moq NuGet
-      #   run: dotnet nuget push src/Tethos.Moq/bin/Debug/Tethos.Moq.*.nupkg --source ${{ secrets.NUGET_FEED }} --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
+      - name: Push Tethos NuGet
+        run: dotnet nuget push src/Tethos/bin/Debug/Tethos.*.nupkg --source ${{ secrets.NUGET_FEED }} --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
+      - name: Push Tethos.Moq NuGet
+        run: dotnet nuget push src/Tethos.Moq/bin/Debug/Tethos.Moq.*.nupkg --source ${{ secrets.NUGET_FEED }} --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
