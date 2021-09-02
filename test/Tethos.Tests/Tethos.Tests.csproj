@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<IsTestProject>true</IsTestProject>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<NoWarn>1701;1702;NU1702</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoFixture.Xunit2" Version="4.17.0" />
+		<PackageReference Include="FluentAssertions" Version="6.1.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+		<PackageReference Include="Moq" Version="4.16.1" />
+		<PackageReference Include="xunit" Version="2.4.1" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\Tethos\Tethos.csproj" />
+		<ProjectReference Include="..\Fakes\Fake.Core21\Fake.Core21.csproj" />
+		<ProjectReference Include="..\Fakes\Fake.Core22\Fake.Core22.csproj" />
+		<ProjectReference Include="..\Fakes\Fake.Core30\Fake.Core30.csproj" />
+		<ProjectReference Include="..\Fakes\Fake.Core31\Fake.Core31.csproj" />
+		<ProjectReference Include="..\Fakes\Fake.Framework461\Fake.Framework461.csproj" />
+		<ProjectReference Include="..\Fakes\Fake.Framework472\Fake.Framework472.csproj" />
+		<ProjectReference Include="..\Fakes\Fake.Net50\Fake.Net50.csproj" />
+		<ProjectReference Include="..\Fakes\Fake.Standard20\Fake.Standard20.csproj" />
+		<ProjectReference Include="..\Fakes\Fake.Standard21\Fake.Standard21.csproj" />
+		<ProjectReference Include="..\Tethos.Tests.Common\Tethos.Tests.Common.csproj" />
+	</ItemGroup>
+
+</Project>
