@@ -5,9 +5,9 @@ namespace Tethos.xUnit.Demo
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
+        public static void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IAutoMoqContainer>(_ => AutoMoqContainerFactory.Create());
+            services.AddScoped(_ => AutoMoqContainerFactory.Create());
         }
     }
 }

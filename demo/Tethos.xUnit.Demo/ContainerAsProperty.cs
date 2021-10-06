@@ -35,7 +35,13 @@ namespace Tethos.xUnit.Demo
 
         public void Dispose()
         {
-            Container.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            Container?.Dispose();
         }
     }
 }
