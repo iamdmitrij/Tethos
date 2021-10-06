@@ -109,11 +109,14 @@ namespace Tethos.Tests
         [InlineData("Castle.Core.dll", "Castle.Windsor.dll")]
         public void LoadAssemblies_ShouldLoad(params string[] assemblies)
         {
+            // Arrange
+            var expected = assemblies.Length;
+
             // Act
             var actual = assemblies.LoadAssemblies();
 
             // Assert
-            actual.Should().HaveCount(assemblies.Count());
+            actual.Should().HaveCount(expected);
         }
 
         [Theory]
