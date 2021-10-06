@@ -5,7 +5,9 @@ namespace Tethos.xUnit.Demo
 {
     public class Startup
     {
-        public static void ConfigureServices(IServiceCollection services)
+#pragma warning disable CA1822 // Mark members as static
+        public void ConfigureServices(IServiceCollection services)
+#pragma warning restore CA1822 // Mark members as static
         {
             services.AddScoped(_ => AutoMoqContainerFactory.Create());
         }
