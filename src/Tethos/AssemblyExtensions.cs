@@ -12,11 +12,6 @@ namespace Tethos
     public static class AssemblyExtensions
     {
         /// <summary>
-        /// Character separators used in assembly name pattern matching.
-        /// </summary>
-        private static char[] PatternSeparators { get; } = new[] { '.', ',' };
-
-        /// <summary>
         /// A collection of allowed file extensions for container assemblies.
         /// </summary>
         internal static HashSet<string> FileExtensions { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
@@ -31,8 +26,9 @@ namespace Tethos
         /// <returns>Pattern search criteria.</returns>
         public static string GetPattern(this Assembly rootAssembly)
         {
+            var patternSeparators = new[] { '.', ',' };
             var name = rootAssembly.FullName;
-            var index = name.IndexOfAny(PatternSeparators);
+            var index = name.IndexOfAny(patternSeparators);
 
             if (index < 0)
             {
