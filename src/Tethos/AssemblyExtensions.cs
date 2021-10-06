@@ -57,21 +57,18 @@ namespace Tethos
                 .LoadAssemblies();
         }
 
-        internal static Assembly[] LoadAssemblies(this IEnumerable<string> assemblies)
-        {
-            return assemblies.Select(Path.GetFileName)
+        internal static Assembly[] LoadAssemblies(this IEnumerable<string> assemblies) =>
+            assemblies.Select(Path.GetFileName)
                 .Select(TryToLoadAssembly)
                 .OfType<Assembly>()
                 .ToArray();
-        }
+        
 
-        internal static IEnumerable<string> FilterAssemblies(this IEnumerable<string> assemblies, string searchPattern)
-        {
-            return assemblies
+        internal static IEnumerable<string> FilterAssemblies(this IEnumerable<string> assemblies, string searchPattern) =>
+            assemblies
                 .Where(filePath => FileExtensions.Contains(Path.GetExtension(filePath)))
                 .Where(fileName => Path.GetFileName(fileName).Contains(searchPattern))
                 .Where(filePath => !Path.GetDirectoryName(filePath).EndsWith("ref"));
-        }
 
         /// <summary>
         /// Silently loads assembly by its name.
