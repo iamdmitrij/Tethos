@@ -25,7 +25,7 @@ namespace Tethos
         /// <summary>
         /// <see cref="Castle.Windsor"/> container dependency.
         /// </summary>
-        public T Container { get; set; }
+        public T Container { get; internal set; }
 
         /// <summary>
         /// Default constructor.
