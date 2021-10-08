@@ -42,11 +42,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fake.Net50", "test\Fakes\Fa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{D99B762A-D2FA-4094-8E91-65E096FB9145}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tethos.MSTest.Demo", "demo\Tethos.MSTest.Demo\Tethos.MSTest.Demo.csproj", "{EA8E9935-F768-4B48-A0D0-B7CB869EA78B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.MSTest.Demo", "demo\Tethos.MSTest.Demo\Tethos.MSTest.Demo.csproj", "{EA8E9935-F768-4B48-A0D0-B7CB869EA78B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.NUnit.Demo", "demo\Tethos.NUnit.Demo\Tethos.NUnit.Demo.csproj", "{0987FB4C-433D-4AAA-84DC-D5F611BEB482}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.xUnit.Demo", "demo\Tethos.xUnit.Demo\Tethos.xUnit.Demo.csproj", "{1C895052-607E-4484-9B1A-0723888E0AFD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{8DDA643A-1839-4470-A593-5EE9507FB294}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{A4A25CC2-61ED-47F0-B91C-9CB93D90D3CC}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
+		.github\workflows\nuget.yml = .github\workflows\nuget.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -143,6 +151,7 @@ Global
 		{EA8E9935-F768-4B48-A0D0-B7CB869EA78B} = {D99B762A-D2FA-4094-8E91-65E096FB9145}
 		{0987FB4C-433D-4AAA-84DC-D5F611BEB482} = {D99B762A-D2FA-4094-8E91-65E096FB9145}
 		{1C895052-607E-4484-9B1A-0723888E0AFD} = {D99B762A-D2FA-4094-8E91-65E096FB9145}
+		{A4A25CC2-61ED-47F0-B91C-9CB93D90D3CC} = {8DDA643A-1839-4470-A593-5EE9507FB294}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF888DCC-71E7-4562-AA35-5B93FD8DD252}
