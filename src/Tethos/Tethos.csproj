@@ -6,7 +6,7 @@
 		<IsPackable>true</IsPackable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>iamdmitrij</Authors>
-		<Version>1.0.2</Version>
+		<Version>1.0.3</Version>
 		<Description>Library which allows to seemlesly mock dependencies for unit tests.</Description>
 		<PackageLicense>https://github.com/iamdmitrij/Tethos/blob/master/LICENSE</PackageLicense>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -16,8 +16,9 @@
 		<Copyright>Copyright © 2021</Copyright>
 		<PackageIcon>tethos_logo.png</PackageIcon>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	</PropertyGroup>
 
