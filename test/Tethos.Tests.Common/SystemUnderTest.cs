@@ -9,9 +9,6 @@
             Mockable = mockable;
         }
 
-        public int Do()
-        {
-            return Mockable.Do();
-        }
+        public int Do() => Mockable.Do();
     }
 }
