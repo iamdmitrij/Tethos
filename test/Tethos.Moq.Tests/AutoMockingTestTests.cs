@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Tethos.Moq.Tests
 {
-    public class BaseUnitTestTests : AutoMockingTest
+    public class AutoMockingTestTests : AutoMockingTest
     {
         [Fact]
         public void Container_ShouldHaveMockInstalled()

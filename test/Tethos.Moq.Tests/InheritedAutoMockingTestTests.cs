@@ -4,13 +4,13 @@ using Tethos.Moq.Tests.SUT;
 
 namespace Tethos.Moq.Tests
 {
-    public class BaseTestDisposeTests : AutoMockingTest
+    public class InheritedAutoMockingTestTests : AutoMockingTest
     {
         [Fact]
-        public void InheritsBaseUnitTest_Dispose_ShouldDisposeWindsorContainer()
+        public void InheritedAutoMockingTestTests_Dispose_ShouldDisposeWindsorContainer()
         {
             // Arrange
-            var sut = new InheritsBaseUnitTest();
+            var sut = new InheritedAutoMockingTest();
             
             // Act
             sut.Dispose();

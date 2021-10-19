@@ -2,11 +2,11 @@
 
 namespace Tethos.Moq.Tests.SUT
 {
-    internal class InheritsBaseUnitTest : AutoMockingTest
+    internal class InheritedAutoMockingTest : AutoMockingTest
     {
         public Mock<AutoMoqContainer> ContainerMock { get; set; }
 
-        public InheritsBaseUnitTest()
+        public InheritedAutoMockingTest()
         {
             ContainerMock = new Mock<AutoMoqContainer>();
             Container = ContainerMock.Object;
