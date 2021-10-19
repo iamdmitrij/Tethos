@@ -4,7 +4,7 @@ using Xunit;
 
 namespace Tethos.Tests
 {
-    public class BaseTestTests : BaseAutoMockingTest<AutoMockingContainer>
+    public class BaseAutoMockingTestTests : BaseAutoMockingTest<AutoMockingContainer>
     {
         [Fact]
         public void Test_SimplyDependency_ShouldMatchValue()
