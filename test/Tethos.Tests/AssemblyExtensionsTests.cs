@@ -1,4 +1,4 @@
-﻿using AutoFixture;
+﻿using AutoFixture.Xunit2;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
@@ -92,11 +92,10 @@ namespace Tethos.Tests
             actual.Should().Be(expected);
         }
 
-        [Fact]
-        public void GetPattern_WithSystemAssembly_ShouldThrowArgumentException()
+        [Theory, AutoData]
+        public void GetPattern_WithSystemAssembly_ShouldThrowArgumentException(FakeAssembly assembly)
         {
             // Arrange
-            var assembly = new Fixture().Create<FakeAssembly>(); // TODO: Move this part to a class
             Action action = () => assembly.GetPattern();
 
             // Act & Assert

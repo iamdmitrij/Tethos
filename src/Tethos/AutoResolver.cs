@@ -1,7 +1,6 @@
 ﻿using Castle.Core;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
-using Castle.MicroKernel.Registration;
 using System;
 
 namespace Tethos
