@@ -16,7 +16,9 @@ namespace Tethos.Tests
     public class AutoResolverTests
     {
         [Theory]
+        [InlineAutoData(typeof(IList), true)]
         [InlineAutoData(typeof(IEnumerable), true)]
+        [InlineAutoData(typeof(Array), false)]
         [InlineAutoData(typeof(Enumerable), false)]
         [InlineAutoData(typeof(Type), false)]
         [InlineAutoData(typeof(AutoResolver), false)]
@@ -25,7 +27,7 @@ namespace Tethos.Tests
         [InlineAutoData(typeof(Task<>), false)]
         [InlineAutoData(typeof(Task<int>), false)]
         [InlineAutoData(typeof(int), false)]
-        public void CanResolve_Interface_ShouldReturnTrue(
+        public void CanResolve_Interface_ShouldMatch(
             Type type,
             bool expected,
             Mock<IKernel> kernel,
