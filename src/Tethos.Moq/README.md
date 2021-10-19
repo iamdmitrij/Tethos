@@ -1,1 +1,0 @@
-# Tethos auto-mocking container
