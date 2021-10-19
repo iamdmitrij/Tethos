@@ -53,7 +53,7 @@ namespace Tethos.Moq.Tests
         }
 
         [Theory, AutoData]
-        public void CleanAutomockingContainer_ShouldInjectConcreteClass(Guid uniqueKey)
+        public void Clean_ShouldRevertBackToOriginalBehavior(Guid uniqueKey)
         {
             // Arrange
             var sut = Container.Resolve<SystemUnderTest>();
