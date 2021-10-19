@@ -13,26 +13,26 @@ namespace Tethos.Moq.Tests
         {
             // Arrange
             var sut = new AutoMoqResolver(new Mock<IKernel>().Object);
+            var expected = typeof(Mock<>).GetType();
 
             // Act
             var actual = sut.DiamondType;
 
             // Assert
-            actual.GetType();
-            actual.Should().BeOfType(typeof(Mock<>).GetType());
+            actual.Should().BeOfType(expected);
         }
 
         [Theory, AutoData]
-        public void MapToTarget_ShouldReturnMock(Mock<object> mock)
+        public void MapToTarget_ShouldReturnMock(Mock<object> expected)
         {
             // Arrange
             var sut = new AutoMoqResolver(new Mock<IKernel>().Object);
 
             // Act
-            var actual = sut.MapToTarget(mock);
+            var actual = sut.MapToTarget(expected);
 
             // Assert
-            actual.Should().Equals(mock);
+            actual.Should().Equals(expected);
         }
     }
 }

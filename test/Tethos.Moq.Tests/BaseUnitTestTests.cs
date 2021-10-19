@@ -15,17 +15,23 @@ namespace Tethos.Moq.Tests
         public void Container_ShouldHaveMockInstalled()
         {
             // Arrange
-            var expectedType = typeof(Mock<object>);
+            var expected = typeof(Mock<object>);
+
+            // Act
+            var actual = Container.Resolve(expected);
 
             // Assert
-            Container.Resolve(expectedType).Should().NotBeNull();
+            actual.Should().NotBeNull().And.BeOfType(expected);
         }
 
         [Fact]
         public void Container_ShouldHaveAutoResolverInstalled()
         {
+            // Act
+            var actual = Container.Resolve<ISubDependencyResolver>();
+
             // Assert
-            Container.Resolve<ISubDependencyResolver>().Should().BeOfType<AutoMoqResolver>();
+            actual.Should().BeOfType<AutoMoqResolver>();
         }
 
 
@@ -47,13 +53,13 @@ namespace Tethos.Moq.Tests
         }
 
         [Theory, AutoData]
-        public void CleanAutomockingContainer_ShouldInjectConcreteClass(Guid containerKey)
+        public void CleanAutomockingContainer_ShouldInjectConcreteClass(Guid uniqueKey)
         {
             // Arrange
             var sut = Container.Resolve<SystemUnderTest>();
 
             Container.Register(Component.For<SystemUnderTest>()
-                .Named(containerKey.ToString())
+                .Named(uniqueKey.ToString())
                 .IsDefault()
                 .DependsOn(Dependency.OnValue<IMockable>(new Mockable()))
             );
