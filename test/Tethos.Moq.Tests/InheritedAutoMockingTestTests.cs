@@ -1,17 +1,15 @@
 ﻿using Moq;
 using Xunit;
 using Tethos.Moq.Tests.SUT;
+using AutoFixture.Xunit2;
 
 namespace Tethos.Moq.Tests
 {
     public class InheritedAutoMockingTestTests : AutoMockingTest
     {
-        [Fact]
-        public void InheritedAutoMockingTestTests_Dispose_ShouldDisposeWindsorContainer()
+        [Theory, AutoData]
+        public void Dispose_ShouldDisposeMock(InheritedAutoMockingTest sut)
         {
-            // Arrange
-            var sut = new InheritedAutoMockingTest();
-            
             // Act
             sut.Dispose();
 
