@@ -9,22 +9,20 @@ namespace Tethos.NSubstitute.Tests
 {
     public class AutoMoqResolverTests
     {
-        //[Fact]
-        //public void DiamondType_ShouldResolveToMoqType()
-        //{
-        //    // Arrange
-        //    // TODO: Use AutoNSubstitute NuGet to inject?
-        //    var kernel = Substitute.For<IKernel>();
+        [Fact]
+        public void DiamondType_ShouldBeNull()
+        {
+            // Arrange
+            // TODO: Use AutoNSubstitute NuGet to inject?
+            var kernel = Substitute.For<IKernel>();
+            var sut = new AutoNSubstituteResolver(kernel);
 
-        //    var sut = new AutoNSubstituteResolver(kernel);
-        //    var expected = typeof(Mock<>).GetType();
+            // Act
+            var actual = sut.DiamondType;
 
-        //    // Act
-        //    var actual = sut.DiamondType;
-
-        //    // Assert
-        //    actual.Should().BeOfType(expected);
-        //}
+            // Assert
+            actual.Should().BeNull();
+        }
 
         [Theory, AutoData]
         public void MapToTarget_ShouldReturnMock(Type targetType)
