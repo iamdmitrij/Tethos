@@ -6,7 +6,7 @@ using FakeItEasy;
 namespace Tethos.FakeItEasy
 {
     /// <summary>
-    /// TODO: Need to have better wording on this.
+    /// <see cref="Tethos"/> auto-mocking system using <see cref="FakeItEasy"/> to inject mocks.
     /// </summary>
     public class AutoMockingTest : BaseAutoMockingTest<AutoFakeItEasyContainer>
     {
