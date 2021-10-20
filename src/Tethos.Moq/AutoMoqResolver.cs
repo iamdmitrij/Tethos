@@ -20,6 +20,7 @@ namespace Tethos.Moq
         /// <inheritdoc />
         public override object MapToTarget(object targetObject, Type targetType)
         {
+            // TODO: Move creation of Moq mock instance to here instead of base lib
             return ((Mock)targetObject).Object;
         }
     }
