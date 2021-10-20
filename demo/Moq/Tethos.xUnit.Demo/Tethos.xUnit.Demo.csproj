@@ -20,6 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\test\Tethos.Tests.Common\Tethos.Tests.Common.csproj" />
+    <ProjectReference Include="..\..\..\test\Tethos.Tests.Common\Tethos.Tests.Common.csproj" />
   </ItemGroup>
 </Project>
