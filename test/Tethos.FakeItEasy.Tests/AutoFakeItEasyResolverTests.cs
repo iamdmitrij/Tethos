@@ -1,20 +1,19 @@
-﻿using AutoFixture.Xunit2;
-using Castle.MicroKernel;
-using FakeItEasy;
+﻿using Castle.MicroKernel;
 using FluentAssertions;
 using System;
+using Tethos.NSubstitute.Tests;
 using Xunit;
 
 namespace Tethos.FakeItEasy.Tests
 {
     public class AutoFakeItEasyResolverTests
     {
-        [Theory, AutoData]
-        public void DiamondType_ShouldBeNull(Fake<IKernel> kernel)
+        [Theory, AutoFakeItEasyData]
+        public void DiamondType_ShouldBeNull(IKernel kernel)
         {
             // Arrange
             // TODO: Use FakeItEasy NuGet to inject?
-            var sut = new AutoFakeItEasyResolver(kernel.FakedObject);
+            var sut = new AutoFakeItEasyResolver(kernel);
 
             // Act
             var actual = sut.DiamondType;
@@ -23,11 +22,11 @@ namespace Tethos.FakeItEasy.Tests
             actual.Should().BeNull();
         }
 
-        [Theory, AutoData]
-        public void MapToTarget_ShouldReturnMock(Fake<object> expected, Fake<IKernel> kernel, Type targetType)
+        [Theory, AutoFakeItEasyData]
+        public void MapToTarget_ShouldReturnMock(object expected, IKernel kernel, Type targetType)
         {
             // Arrange
-            var sut = new AutoFakeItEasyResolver(kernel.FakedObject);
+            var sut = new AutoFakeItEasyResolver(kernel);
 
             // Act
             var actual = sut.MapToTarget(expected, targetType);
