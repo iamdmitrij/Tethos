@@ -1,27 +1,30 @@
 ﻿using Castle.MicroKernel;
+using Castle.MicroKernel.Registration;
+using NSubstitute;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Tethos.NSubstitute
 {
     /// <summary>
-    /// <see cref="AutoResolver"/> tailored for <see cref="Moq"/> mocking systems.
+    /// <see cref="AutoResolver"/> tailored for <see cref="NSubstitute"/> mocking systems.
     /// </summary>
     public class AutoNSubstituteResolver : AutoResolver
     {
         /// <inheritdoc />
-        public AutoNSubstituteResolver(IKernel kernel): base(kernel)
+        public AutoNSubstituteResolver(IKernel kernel) : base(kernel)
         {
         }
 
         /// <inheritdoc />
-        public override Type DiamondType { get => typeof(NSubstitute<>); }
-
-        /// <inheritdoc />
-        public override object MapToTarget(object targetObject)
+        public override object MapToTarget(object targetObject, Type targetType)
         {
-            return ((NSubstitute)targetObject);
+            var obj = Substitute.For(new Type[] { targetType }, new object[] { });
+            Kernel.Register(Component.For(targetType)
+                .Instance(obj)
+                .OverridesExistingRegistration()
+            );
+
+            return targetObject;
         }
     }
 }

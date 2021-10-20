@@ -24,9 +24,11 @@
 
 	<ItemGroup>
 		<InternalsVisibleTo Include="Tethos.FakeItEasy" />
+		<InternalsVisibleTo Include="Tethos.NSubstitute" />
 		<InternalsVisibleTo Include="Tethos.Tests" />
 		<InternalsVisibleTo Include="Tethos.Moq.Tests" />
 		<InternalsVisibleTo Include="Tethos.FakeItEasy.Tests" />
+		<InternalsVisibleTo Include="Tethos.NSubstitute.Tests" />
 	</ItemGroup>
 
 	<ItemGroup>

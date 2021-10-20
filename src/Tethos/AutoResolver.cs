@@ -53,6 +53,11 @@ namespace Tethos
         )
         {
             var targetType = dependency.TargetType;
+
+            if (DiamondType == null)
+            {
+                return MapToTarget(Kernel.Resolve(targetType), targetType);
+            }
             var mockType = DiamondType.MakeGenericType(targetType);
 
             return MapToTarget(Kernel.Resolve(mockType), targetType);
