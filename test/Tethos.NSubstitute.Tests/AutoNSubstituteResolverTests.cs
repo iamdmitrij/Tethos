@@ -11,7 +11,6 @@ namespace Tethos.NSubstitute.Tests
         public void DiamondType_ShouldBeNull(IKernel kernel)
         {
             // Arrange
-            // TODO: Use AutoNSubstitute NuGet to inject?
             var sut = new AutoNSubstituteResolver(kernel);
 
             // Act
