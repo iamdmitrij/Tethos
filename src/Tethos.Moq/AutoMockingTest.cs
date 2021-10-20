@@ -6,7 +6,7 @@ using Moq;
 namespace Tethos.Moq
 {
     /// <summary>
-    /// TODO: Need to have better wording on this.
+    /// A base for test which supports auto-mocking.
     /// </summary>
     public class AutoMockingTest : BaseAutoMockingTest<AutoMoqContainer>
     {
