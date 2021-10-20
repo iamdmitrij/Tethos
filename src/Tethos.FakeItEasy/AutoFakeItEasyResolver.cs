@@ -1,6 +1,7 @@
 ﻿using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using FakeItEasy;
+using FakeItEasy.Sdk;
 using System;
 using System.Linq;
 
@@ -17,17 +18,9 @@ namespace Tethos.FakeItEasy
         }
 
         /// <inheritdoc />
-        public override Type DiamondType { get => typeof(Fake<>); }
-
-        /// <inheritdoc />
         public override object MapToTarget(object targetObject, Type targetType)
         {
-            var type = targetObject.GetType();
-
-            var fakedObject = type
-                .GetProperties()
-                .FirstOrDefault(x => x.Name == "FakedObject")
-                .GetValue(targetObject, null);
+            var fakedObject = Create.Fake(targetType);
 
             Kernel.Register(Component.For(targetType)
                 .Instance(fakedObject)

@@ -10,17 +10,17 @@ namespace Tethos.FakeItEasy.Tests
     public class AutoFakeItEasyResolverTests
     {
         [Theory, AutoData]
-        public void DiamondType_ShouldResolveToMoqType(Fake<IKernel> kernel)
+        public void DiamondType_ShouldBeNull(Fake<IKernel> kernel)
         {
             // Arrange
+            // TODO: Use FakeItEasy NuGet to inject?
             var sut = new AutoFakeItEasyResolver(kernel.FakedObject);
-            var expected = typeof(Fake<>).GetType();
 
             // Act
             var actual = sut.DiamondType;
 
             // Assert
-            actual.Should().BeOfType(expected);
+            actual.Should().BeNull();
         }
 
         [Theory, AutoData]
