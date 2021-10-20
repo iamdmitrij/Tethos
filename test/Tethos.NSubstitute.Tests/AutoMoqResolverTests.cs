@@ -1,20 +1,18 @@
-﻿using AutoFixture.Xunit2;
-using Castle.MicroKernel;
+﻿using Castle.MicroKernel;
 using FluentAssertions;
-using NSubstitute;
 using System;
 using Xunit;
 
 namespace Tethos.NSubstitute.Tests
 {
+
     public class AutoMoqResolverTests
     {
-        [Fact]
-        public void DiamondType_ShouldBeNull()
+        [Theory, AutoNSubstituteData]
+        public void DiamondType_ShouldBeNull(IKernel kernel)
         {
             // Arrange
             // TODO: Use AutoNSubstitute NuGet to inject?
-            var kernel = Substitute.For<IKernel>();
             var sut = new AutoNSubstituteResolver(kernel);
 
             // Act
@@ -24,13 +22,14 @@ namespace Tethos.NSubstitute.Tests
             actual.Should().BeNull();
         }
 
-        [Theory, AutoData]
-        public void MapToTarget_ShouldReturnMock(Type targetType)
+        [Theory, AutoNSubstituteData]
+        public void MapToTarget_ShouldReturnMock(
+            object expected,
+            IKernel kernel,
+            Type targetType
+        )
         {
             // Arrange
-            // TODO: Use AutoNSubstitute NuGet to inject?
-            var expected = Substitute.For<object>();
-            var kernel = Substitute.For<IKernel>();
             var sut = new AutoNSubstituteResolver(kernel);
 
             // Act
