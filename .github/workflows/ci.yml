@@ -1,9 +1,8 @@
-name: nuget
+﻿name: ci
 
-on: 
+on:
   push:
-    tags:
-    - 'v*'
+    branches: [main]
 
 jobs:
   build:
@@ -22,5 +21,3 @@ jobs:
         run: dotnet build --no-restore
       - name: Test
         run: dotnet test --no-build --verbosity normal
-      - name: Push to NuGet
-        run: dotnet nuget push **/Tethos.*.nupkg --source ${{ secrets.NUGET_FEED }} --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
