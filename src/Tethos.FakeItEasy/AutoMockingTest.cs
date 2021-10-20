@@ -1,25 +1,25 @@
 ﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Moq;
+using FakeItEasy;
 
-namespace Tethos.Moq
+namespace Tethos.FakeItEasy
 {
     /// <summary>
-    /// A base for test which supports auto-mocking.
+    /// TODO: Need to have better wording on this.
     /// </summary>
-    public class AutoMockingTest : BaseAutoMockingTest<AutoMoqContainer>
+    public class AutoMockingTest : BaseAutoMockingTest<AutoFakeItEasyContainer>
     {
         /// <inheritdoc />
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            AutoResolver = new AutoMoqResolver(container.Kernel);
+            AutoResolver = new AutoFakeItEasyResolver(container.Kernel);
 
             container.Kernel.Resolver.AddSubResolver(
                 AutoResolver
             );
 
-            container.Register(Component.For(typeof(Mock<>)));
+            container.Register(Component.For(typeof(Fake<>)));
 
             base.Install(container, store);
         }

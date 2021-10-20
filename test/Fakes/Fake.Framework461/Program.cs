@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FakeAssemblyCore21
+namespace FakeAssemblyFramework461
 {
     class Program
     {

@@ -1,16 +1,16 @@
-﻿using Moq;
+﻿using FakeItEasy;
 using System;
-using Tethos.Moq;
+using Tethos.FakeItEasy;
 using Tethos.Tests.Common;
 using Xunit;
 
 namespace Tethos.xUnit.Demo
 {
-    public class ContainerInjected: IDisposable
+    public class ContainerInjected : IDisposable
     {
-        public IAutoMoqContainer Container { get; }
+        public IAutoFakeItEasyContainer Container { get; }
 
-        public ContainerInjected(IAutoMoqContainer container)
+        public ContainerInjected(IAutoFakeItEasyContainer container)
         {
             Container = container;
         }
@@ -21,10 +21,9 @@ namespace Tethos.xUnit.Demo
             // Arrange
             var expected = 42;
             var sut = Container.Resolve<SystemUnderTest>();
+            var mock = Container.Resolve<IMockable>();
 
-            Container.Resolve<Mock<IMockable>>()
-                .Setup(x => x.Do())
-                .Returns(expected);
+            A.CallTo(() => mock.Do()).Returns(expected);
 
             // Act
             var actual = sut.Do();

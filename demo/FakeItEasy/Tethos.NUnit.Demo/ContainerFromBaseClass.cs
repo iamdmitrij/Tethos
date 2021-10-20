@@ -1,11 +1,11 @@
-using Moq;
+using FakeItEasy;
 using NUnit.Framework;
-using Tethos.Moq;
+using Tethos.FakeItEasy;
 using Tethos.Tests.Common;
 
 namespace Tethos.NUnit.Demo
 {
-    public class ContainerFromBaseClass: AutoMockingTest
+    public class ContainerFromBaseClass : AutoMockingTest
     {
         [Test]
         public void Do_WithMock_ShouldReturn42()
@@ -13,10 +13,9 @@ namespace Tethos.NUnit.Demo
             // Arrange
             var expected = 42;
             var sut = Container.Resolve<SystemUnderTest>();
+            var mock = Container.Resolve<IMockable>();
 
-            Container.Resolve<Mock<IMockable>>()
-                .Setup(x => x.Do())
-                .Returns(expected);
+            A.CallTo(() => mock.Do()).Returns(expected);
 
             // Act
             var actual = sut.Do();

@@ -1,23 +1,29 @@
+using FakeItEasy;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using Tethos.Moq;
+using Tethos.FakeItEasy;
 using Tethos.Tests.Common;
 
 namespace Tethos.MSTest.Demo
 {
     [TestClass]
-    public class ContainerFromBaseClass: AutoMockingTest
+    public class ContainerAsProperty
     {
+        public IAutoFakeItEasyContainer Container { get; }
+
+        public ContainerAsProperty()
+        {
+            Container = AutoFakeItEasyContainerFactory.Create();
+        }
+
         [TestMethod]
         public void Do_WithMock_ShouldReturn42()
         {
             // Arrange
             var expected = 42;
             var sut = Container.Resolve<SystemUnderTest>();
+            var mock = Container.Resolve<IMockable>();
 
-            Container.Resolve<Mock<IMockable>>()
-                .Setup(x => x.Do())
-                .Returns(expected);
+            A.CallTo(() => mock.Do()).Returns(expected);
 
             // Act
             var actual = sut.Do();

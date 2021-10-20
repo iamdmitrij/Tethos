@@ -12,10 +12,10 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Tethos.Moq" Version="1.0.3" />
+		<PackageReference Include="Tethos.FakeItEasy" Version="1.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\test\Tethos.Tests.Common\Tethos.Tests.Common.csproj" />
+		<ProjectReference Include="..\..\..\test\Tethos.Tests.Common\Tethos.Tests.Common.csproj" />
 	</ItemGroup>
 </Project>
