@@ -19,8 +19,6 @@ namespace Tethos.FakeItEasy
                 AutoResolver
             );
 
-            container.Register(Component.For(typeof(Fake<>)));
-
             base.Install(container, store);
         }
     }

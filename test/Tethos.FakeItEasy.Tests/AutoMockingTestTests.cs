@@ -12,19 +12,6 @@ namespace Tethos.FakeItEasy.Tests
     public class AutoMockingTestTests : AutoMockingTest
     {
         [Fact]
-        public void Container_ShouldHaveMockInstalled()
-        {
-            // Arrange
-            var expected = typeof(Fake<object>);
-
-            // Act
-            var actual = Container.Resolve(expected);
-
-            // Assert
-            actual.Should().NotBeNull().And.BeOfType(expected);
-        }
-
-        [Fact]
         public void Container_ShouldHaveAutoResolverInstalled()
         {
             // Act
@@ -33,7 +20,6 @@ namespace Tethos.FakeItEasy.Tests
             // Assert
             actual.Should().BeOfType<AutoFakeItEasyResolver>();
         }
-
 
         [Theory, AutoData]
         public void Test_SimpleDependency_ShouldMatchValue(int expected)
