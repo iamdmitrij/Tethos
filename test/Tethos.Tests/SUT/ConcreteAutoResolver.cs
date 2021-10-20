@@ -12,6 +12,6 @@ namespace Tethos.Tests.SUT
 
         public override Type DiamondType => typeof(Mock<>);
 
-        public override object MapToTarget(object targetObject) => (Mock)targetObject;
+        public override object MapToTarget(object targetObject, Type targetType) => (Mock)targetObject;
     }
 }

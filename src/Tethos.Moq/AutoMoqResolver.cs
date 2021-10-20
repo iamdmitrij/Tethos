@@ -18,7 +18,7 @@ namespace Tethos.Moq
         public override Type DiamondType { get => typeof(Mock<>); }
 
         /// <inheritdoc />
-        public override object MapToTarget(object targetObject)
+        public override object MapToTarget(object targetObject, Type targetType)
         {
             return ((Mock)targetObject).Object;
         }

@@ -1,20 +1,20 @@
 ﻿using AutoFixture.Xunit2;
 using Castle.MicroKernel;
+using FakeItEasy;
 using FluentAssertions;
-using Moq;
 using System;
 using Xunit;
 
-namespace Tethos.Moq.Tests
+namespace Tethos.FakeItEasy.Tests
 {
-    public class AutoMoqResolverTests
+    public class AutoFakeItEasyResolverTests
     {
         [Theory, AutoData]
-        public void DiamondType_ShouldResolveToMoqType(Mock<IKernel> kernel)
+        public void DiamondType_ShouldResolveToMoqType(Fake<IKernel> kernel)
         {
             // Arrange
-            var sut = new AutoMoqResolver(kernel.Object);
-            var expected = typeof(Mock<>).GetType();
+            var sut = new AutoFakeItEasyResolver(kernel.FakedObject);
+            var expected = typeof(Fake<>).GetType();
 
             // Act
             var actual = sut.DiamondType;
@@ -24,10 +24,10 @@ namespace Tethos.Moq.Tests
         }
 
         [Theory, AutoData]
-        public void MapToTarget_ShouldReturnMock(Mock<object> expected, Mock<IKernel> kernel, Type targetType)
+        public void MapToTarget_ShouldReturnMock(Fake<object> expected, Fake<IKernel> kernel, Type targetType)
         {
             // Arrange
-            var sut = new AutoMoqResolver(kernel.Object);
+            var sut = new AutoFakeItEasyResolver(kernel.FakedObject);
 
             // Act
             var actual = sut.MapToTarget(expected, targetType);
