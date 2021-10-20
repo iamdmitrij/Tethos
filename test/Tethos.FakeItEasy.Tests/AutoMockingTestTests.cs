@@ -1,13 +1,13 @@
 ﻿using AutoFixture.Xunit2;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
+using FakeItEasy;
 using FluentAssertions;
-using Moq;
 using System;
 using Tethos.Tests.Common;
 using Xunit;
 
-namespace Tethos.Moq.Tests
+namespace Tethos.FakeItEasy.Tests
 {
     public class AutoMockingTestTests : AutoMockingTest
     {
@@ -15,7 +15,7 @@ namespace Tethos.Moq.Tests
         public void Container_ShouldHaveMockInstalled()
         {
             // Arrange
-            var expected = typeof(Mock<object>);
+            var expected = typeof(Fake<object>);
 
             // Act
             var actual = Container.Resolve(expected);
@@ -31,7 +31,7 @@ namespace Tethos.Moq.Tests
             var actual = Container.Resolve<ISubDependencyResolver>();
 
             // Assert
-            actual.Should().BeOfType<AutoMoqResolver>();
+            actual.Should().BeOfType<AutoFakeItEasyResolver>();
         }
 
 
@@ -40,10 +40,8 @@ namespace Tethos.Moq.Tests
         {
             // Arrange
             var sut = Container.Resolve<SystemUnderTest>();
-
-            Container.Resolve<Mock<IMockable>>()
-                .Setup(x => x.Do())
-                .Returns(expected);
+            var mock = Container.Resolve<IMockable>();
+            A.CallTo(() => mock.Do()).Returns(expected);
 
             // Act
             var actual = sut.Do();

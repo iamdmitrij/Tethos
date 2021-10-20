@@ -62,20 +62,16 @@ namespace Tethos
         /// Disposes <see cref="IWindsorContainer"/> current instance.
         /// </summary>
         /// <param name="disposing"></param>
-        protected virtual void Dispose(bool disposing)
-        {
-            Container?.Dispose();
-        }
+        protected virtual void Dispose(bool disposing) => Container?.Dispose();
 
         /// <summary>
         /// Releases automocking resolver from <see cref="WindsorContainer"/>.
         /// Restoring container to normal function without auto-mocking.
         /// </summary>
-        public void Clean()
-        {
+        public void Clean() =>
             Container
                 .Kernel
                 .Resolver.RemoveSubResolver(AutoResolver);
-        }
+
     }
 }

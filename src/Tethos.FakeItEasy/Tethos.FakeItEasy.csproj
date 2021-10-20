@@ -7,11 +7,11 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>iamdmitrij</Authors>
 		<Version>1.1.0</Version>
-		<Description>Library which allows to seemlesly mock dependencies for unit tests.</Description>
+		<Description>Library which allows to seemlesly mock FakeItEasy dependencies for more simpler unit tests.</Description>
 		<PackageLicense>https://github.com/iamdmitrij/Tethos/blob/main/LICENSE</PackageLicense>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageProjectUrl>https://github.com/iamdmitrij/Tethos</PackageProjectUrl>
-		<PackageTags>auto-mocking container test core</PackageTags>
+		<PackageTags>auto-mocking container test FakeItEasy</PackageTags>
 		<PackageIconUrl></PackageIconUrl>
 		<Copyright>Copyright © 2021</Copyright>
 		<PackageIcon>tethos_logo.png</PackageIcon>
@@ -23,18 +23,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="Tethos.FakeItEasy" />
-		<InternalsVisibleTo Include="Tethos.Tests" />
-		<InternalsVisibleTo Include="Tethos.Moq.Tests" />
 		<InternalsVisibleTo Include="Tethos.FakeItEasy.Tests" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Castle.Windsor" Version="5.1.1" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="FakeItEasy" Version="7.2.0" />
 		<PackageReference Include="SauceControl.InheritDoc" Version="1.3.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -50,6 +47,10 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Tethos\Tethos.csproj" />
 	</ItemGroup>
 
 </Project>
