@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Tethos.xUnit.Demo
 {
-    public class ContainerInjected: IDisposable
+    public class ContainerInjected : IDisposable
     {
         public IAutoFakeItEasyContainer Container { get; }
 

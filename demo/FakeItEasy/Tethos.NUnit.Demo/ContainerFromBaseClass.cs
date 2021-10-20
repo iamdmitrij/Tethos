@@ -5,7 +5,7 @@ using Tethos.Tests.Common;
 
 namespace Tethos.NUnit.Demo
 {
-    public class ContainerFromBaseClass: AutoMockingTest
+    public class ContainerFromBaseClass : AutoMockingTest
     {
         [Test]
         public void Do_WithMock_ShouldReturn42()

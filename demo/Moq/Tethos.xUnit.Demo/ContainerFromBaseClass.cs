@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Tethos.xUnit.Demo
 {
-    public class ContainerFromBaseClass: AutoMockingTest
+    public class ContainerFromBaseClass : AutoMockingTest
     {
         [Fact]
         public void Do_WithMock_ShouldReturn42()
