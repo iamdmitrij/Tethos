@@ -18,13 +18,14 @@ namespace Tethos.NSubstitute
         /// <inheritdoc />
         public override object MapToTarget(object targetObject, Type targetType)
         {
-            var obj = Substitute.For(new Type[] { targetType }, new object[] { });
+            var mock = Substitute.For(new Type[] { targetType }, new object[] { });
+
             Kernel.Register(Component.For(targetType)
-                .Instance(obj)
+                .Instance(mock)
                 .OverridesExistingRegistration()
             );
 
-            return targetObject;
+            return mock;
         }
     }
 }
