@@ -5,7 +5,6 @@ using Xunit;
 
 namespace Tethos.NSubstitute.Tests
 {
-
     public class AutoMoqResolverTests
     {
         [Theory, AutoNSubstituteData]
