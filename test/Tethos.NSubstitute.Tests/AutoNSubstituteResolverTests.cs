@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Tethos.NSubstitute.Tests
 {
-    public class AutoMoqResolverTests
+    public class AutoNSubstituteResolverTests
     {
         [Theory, AutoNSubstituteData]
         public void DiamondType_ShouldBeNull(IKernel kernel)
