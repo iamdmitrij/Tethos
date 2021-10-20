@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="Tethos.FakeItEasy" Version="1.1.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="Xunit.DependencyInjection" Version="7.7.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
@@ -19,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Tethos.FakeItEasy\Tethos.FakeItEasy.csproj" />
     <ProjectReference Include="..\..\..\test\Tethos.Tests.Common\Tethos.Tests.Common.csproj" />
   </ItemGroup>
 </Project>
