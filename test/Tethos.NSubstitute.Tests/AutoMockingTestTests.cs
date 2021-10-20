@@ -11,19 +11,6 @@ namespace Tethos.NSubstitute.Tests
 {
     public class AutoMockingTestTests : AutoMockingTest
     {
-        //[Fact]
-        //public void Container_ShouldHaveMockInstalled()
-        //{
-        //    // Arrange
-        //    var expected = typeof(Mock<object>);
-
-        //    // Act
-        //    var actual = Container.Resolve(expected);
-
-        //    // Assert
-        //    actual.Should().NotBeNull().And.BeOfType(expected);
-        //}
-
         [Fact]
         public void Container_ShouldHaveAutoResolverInstalled()
         {
