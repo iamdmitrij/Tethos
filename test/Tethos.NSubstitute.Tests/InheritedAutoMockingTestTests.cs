@@ -1,6 +1,7 @@
 ﻿using Xunit;
 using AutoFixture.Xunit2;
 using Tethos.NSubstitute.Tests.SUT;
+using NSubstitute;
 
 namespace Tethos.NSubstitute.Tests
 {
@@ -13,7 +14,7 @@ namespace Tethos.NSubstitute.Tests
             sut.Dispose();
 
             // Assert
-            //sut.ContainerMock.Verify(x => x.Dispose(), Times.Once);
+            sut.Container.Received().Dispose();
         }
     }
 }
