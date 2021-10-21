@@ -4,7 +4,7 @@
 [![Version](https://img.shields.io/nuget/vpre/Tethos.Moq.svg)](https://www.nuget.org/packages/Tethos.Moq)
 [![Downloads](https://img.shields.io/nuget/dt/Tethos.Moq.svg)](https://www.nuget.org/packages/Tethos.Moq)
 
-`Tethos` is automated auto-mocking system which utilizes `Castle.Windsor` as backbone for working with mocked dependencies used during unit testing. It is test framework agnostic.
+`Tethos` is automated auto-mocking system which utilizes `Castle.Windsor` as backbone for working with mocked dependencies used during unit testing. It is test framework agnostic. `Tethos` supports all popular mocking libraries - `Moq`, `NSubstitute` and `FakeItEasy`.
 
 ### Why?
 
@@ -35,29 +35,30 @@ in order to resolve dependencies for `SystemUnderTest` we will need to write fol
 public void Test()
 {
     var sut = new SystemUnderTest(
-        new MockA(new UnknownA(new UnknownB(), new UnknownC()))
-        new MockB(new UnknownC())
-        new MockC(new UnknownD())
-        new MockD(new UnknownD())
+        new Mock<MockA>(new Mock<UnknownA>(new Mock<UnknownB>(), new Mock<UnknownC>()))
+        new Mock<MockB>(new Mock<UnknownC>())
+        new Mock<MockC>(new Mock<UnknownD>())
+        new Mock<MockD>(new Mock<UnknownD>())
     );
 
     ...
 }
 ```
 
-with `Tethos.Moq` you will just need to:
+with `Tethos` all you need to do is:
 
 ```c#
 [Fact]
 public void Test()
 {
     var sut = Container.Resolve<SystemUnderTest>();
-
+    var mockA = Container.Resolve<Mock<MockA>>().Setup(...);
+    var mockB = Container.Resolve<Mock<MockB>>().Setup(...);
     ...
 }
 ```
 
-This saves time to manually injecting mocked dependencies leaving you more time to focus on test themselves.
+This saves time to manually injecting mocked dependencies leaving you more time to focus on test themselves. Tests like this also become easily maintainable. Furthermore, `Tethos` will make sure to scan you test project references to load proper assemblies into the container.
 
 ### Resolving mocks
 
@@ -158,6 +159,49 @@ var sut = Container.Resolve<SystemUnderTest>(
 );
 ```
 
-### Tethos.Moq
+### Mocking implementations
 
-Tethos uses Moq to auto-mock incoming dependencies.
+#### Tethos.Moq
+
+[![Version](https://img.shields.io/nuget/vpre/Tethos.Moq.svg)](https://www.nuget.org/packages/Tethos.Moq)
+[![Downloads](https://img.shields.io/nuget/dt/Tethos.Moq.svg)](https://www.nuget.org/packages/Tethos.Moq)
+
+Tethos uses [Moq](https://www.moqthis.com/moq4/) to auto-mock incoming dependencies. Mocks can resolved using `Mock<>` wrapper type.
+
+```c#
+[Fact]
+public void Test()
+{
+    var mock = Container.Resolve<Mock<IMockable>>().Setup(...);
+}
+```
+
+#### Tethos.NSubstitute
+
+[![Version](https://img.shields.io/nuget/vpre/Tethos.NSubstitute.svg)](https://www.nuget.org/packages/Tethos.NSubstitute)
+[![Downloads](https://img.shields.io/nuget/dt/Tethos.NSubstitute.svg)](https://www.nuget.org/packages/Tethos.NSubstitute)
+
+Tethos uses [NSubstitute](https://nsubstitute.github.io/) to auto-mock incoming dependencies. Since `NSubstitute` alter object direct, mock can resolve using direct types.
+
+```c#
+[Fact]
+public void Test()
+{
+    var mock = Container.Resolve<IMockable>(); // <-- This will be mocked
+}
+```
+
+#### Tethos.FakeItEasy
+
+[![Version](https://img.shields.io/nuget/vpre/Tethos.FakeItEasy.svg)](https://www.nuget.org/packages/Tethos.FakeItEasy)
+[![Downloads](https://img.shields.io/nuget/dt/Tethos.FakeItEasy.svg)](https://www.nuget.org/packages/Tethos.FakeItEasy)
+
+Tethos uses [FakeItEasy](https://fakeiteasy.github.io/) to auto-mock incoming dependencies. `FakeItEasy` also doesn't wrap mocked object, same here:
+
+```c#
+[Fact]
+public void Test()
+{
+    var mock = Container.Resolve<IMockable>(); // <-- This will be mocked
+}
+```
