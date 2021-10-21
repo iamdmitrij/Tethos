@@ -6,7 +6,7 @@ namespace Tethos.NSubstitute.Tests
 {
     internal class AutoFakeItEasyData : AutoDataAttribute
     {
-        internal AutoFakeItEasyData() : base(
+        public AutoFakeItEasyData() : base(
             () => new Fixture().Customize(new AutoFakeItEasyCustomization())
         )
         {

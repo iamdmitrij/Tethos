@@ -6,7 +6,7 @@ namespace Tethos.NSubstitute.Tests
 {
     internal class AutoMoqData : AutoDataAttribute
     {
-        internal AutoMoqData() : base(
+        public AutoMoqData() : base(
             () => new Fixture().Customize(new AutoMoqCustomization())
         )
         {
