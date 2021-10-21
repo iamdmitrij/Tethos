@@ -9,7 +9,7 @@ namespace Tethos.FakeItEasy.Tests
     public class AutoFakeItEasyResolverTests
     {
         [Theory, AutoFakeItEasyData]
-        public void MapToTarget_ShouldReturnMock(IMockable mockable, IKernel kernel)
+        public void MapToTarget_ShouldMatchMockedType(IMockable mockable, IKernel kernel)
         {
             // Arrange
             var sut = new AutoFakeItEasyResolver(kernel);

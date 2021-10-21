@@ -21,15 +21,13 @@ namespace Tethos.NSubstitute.Tests
             actual.Should().BeOfType<AutoNSubstituteResolver>();
         }
 
-
         [Theory, AutoData]
         public void Test_SimpleDependency_ShouldMatchValue(int expected)
         {
             // Arrange
             var sut = Container.Resolve<SystemUnderTest>();
-
-            var mock = Container.Resolve<IMockable>();
-            mock.Do()
+            Container.Resolve<IMockable>()
+                .Do()
                 .Returns(expected);
 
             // Act
@@ -39,15 +37,15 @@ namespace Tethos.NSubstitute.Tests
             actual.Should().Be(expected);
         }
 
-        [Fact]
-        public void Clean_ShouldRevertBackToOriginalBehavior()
+        [Theory, AutoData]
+        public void Clean_ShouldRevertBackToOriginalBehavior(Mockable mockable)
         {
             // Arrange
             var sut = Container.Resolve<SystemUnderTest>();
 
             Container.Register(Component.For<SystemUnderTest>()
                 .OverridesExistingRegistration()
-                .DependsOn(Dependency.OnValue<IMockable>(new Mockable()))
+                .DependsOn(Dependency.OnValue<IMockable>(mockable))
             );
 
             // Act

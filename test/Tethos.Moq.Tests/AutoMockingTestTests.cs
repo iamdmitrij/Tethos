@@ -21,7 +21,7 @@ namespace Tethos.Moq.Tests
             var actual = Container.Resolve(expected);
 
             // Assert
-            actual.Should().NotBeNull().And.BeOfType(expected);
+            actual.Should().BeOfType(expected);
         }
 
         [Fact]
@@ -33,7 +33,6 @@ namespace Tethos.Moq.Tests
             // Assert
             actual.Should().BeOfType<AutoMoqResolver>();
         }
-
 
         [Theory, AutoData]
         public void Test_SimpleDependency_ShouldMatchValue(int expected)
@@ -52,15 +51,15 @@ namespace Tethos.Moq.Tests
             actual.Should().Be(expected);
         }
 
-        [Fact]
-        public void Clean_ShouldRevertBackToOriginalBehavior()
+        [Theory, AutoData]
+        public void Clean_ShouldRevertBackToOriginalBehavior(Mockable mockable)
         {
             // Arrange
             var sut = Container.Resolve<SystemUnderTest>();
 
             Container.Register(Component.For<SystemUnderTest>()
                 .OverridesExistingRegistration()
-                .DependsOn(Dependency.OnValue<IMockable>(new Mockable()))
+                .DependsOn(Dependency.OnValue<IMockable>(mockable))
             );
 
             // Act

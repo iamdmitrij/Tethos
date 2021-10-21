@@ -50,7 +50,6 @@ namespace Tethos.Tests
             actual.Should().Be(expected);
         }
 
-
         [Theory, AutoData]
         public void Resolve_Object_ShouldMatch(
             Mock<IKernel> kernel,

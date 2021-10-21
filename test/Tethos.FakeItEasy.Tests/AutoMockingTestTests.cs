@@ -36,15 +36,15 @@ namespace Tethos.FakeItEasy.Tests
             actual.Should().Be(expected);
         }
 
-        [Fact]
-        public void Clean_ShouldRevertBackToOriginalBehavior()
+        [Theory, AutoData]
+        public void Clean_ShouldRevertBackToOriginalBehavior(Mockable mockable)
         {
             // Arrange
             var sut = Container.Resolve<SystemUnderTest>();
 
             Container.Register(Component.For<SystemUnderTest>()
                 .OverridesExistingRegistration()
-                .DependsOn(Dependency.OnValue<IMockable>(new Mockable()))
+                .DependsOn(Dependency.OnValue<IMockable>(mockable))
             );
 
             // Act
