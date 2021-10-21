@@ -8,7 +8,7 @@ namespace Tethos
         internal static ComponentRegistration<T> OverridesExistingRegistration<T>(
             this ComponentRegistration<T> componentRegistration
         ) where T : class
-            => componentRegistration.Named(Guid.NewGuid().ToString()).IsDefault();
+            => componentRegistration?.Named($"{Guid.NewGuid()}").IsDefault();
 
     }
 }
