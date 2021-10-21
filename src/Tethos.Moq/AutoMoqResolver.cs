@@ -15,12 +15,11 @@ namespace Tethos.Moq
         }
 
         /// <inheritdoc />
-        public override Type DiamondType { get => typeof(Mock<>); }
-
-        /// <inheritdoc />
-        public override object MapToTarget(object targetObject, Type targetType)
+        public override object MapToTarget(Type targetType)
         {
-            // TODO: Move creation of Moq mock instance to here instead of base lib
+            var mockType = typeof(Mock<>).MakeGenericType(targetType);
+            var targetObject = Kernel.Resolve(mockType);
+
             return ((Mock)targetObject).Object;
         }
     }

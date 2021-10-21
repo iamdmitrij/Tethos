@@ -16,7 +16,7 @@ namespace Tethos.NSubstitute
         }
 
         /// <inheritdoc />
-        public override object MapToTarget(object targetObject, Type targetType)
+        public override object MapToTarget(Type targetType)
         {
             var mock = Substitute.For(new Type[] { targetType }, new object[] { });
 

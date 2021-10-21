@@ -24,17 +24,11 @@ namespace Tethos
         }
 
         /// <summary>
-        /// Mocking target type.
-        /// </summary>
-        public virtual Type DiamondType { get; }
-
-        /// <summary>
         /// Maps target mock object to mocked object type.
         /// </summary>
-        /// <param name="targetObject">Target Mock object to converted to destination object.</param>
         /// <param name="targetType">Target type for object to be converted to destination object.</param>
         /// <returns></returns>
-        public abstract object MapToTarget(object targetObject, Type targetType);
+        public abstract object MapToTarget(Type targetType);
 
         /// <inheritdoc />
         public bool CanResolve(
@@ -50,13 +44,6 @@ namespace Tethos
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
             DependencyModel dependency
-        )
-        {
-            var targetType = dependency.TargetType;
-            var mockType = DiamondType?.MakeGenericType(targetType);
-            var targetObject = DiamondType != null ? Kernel.Resolve(mockType) : null;
-
-            return MapToTarget(targetObject, targetType);
-        }
+        ) => MapToTarget(dependency.TargetType);
     }
 }

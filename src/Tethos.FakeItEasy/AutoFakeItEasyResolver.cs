@@ -1,9 +1,7 @@
 ﻿using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
-using FakeItEasy;
 using FakeItEasy.Sdk;
 using System;
-using System.Linq;
 
 namespace Tethos.FakeItEasy
 {
@@ -18,7 +16,7 @@ namespace Tethos.FakeItEasy
         }
 
         /// <inheritdoc />
-        public override object MapToTarget(object targetObject, Type targetType)
+        public override object MapToTarget(Type targetType)
         {
             var fakedObject = Create.Fake(targetType);
 
