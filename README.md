@@ -1,8 +1,6 @@
 # Tethos
 
 ![Build](https://github.com/iamdmitrij/Tethos/actions/workflows/nuget.yml/badge.svg?branch=main)
-[![Version](https://img.shields.io/nuget/vpre/Tethos.Moq.svg)](https://www.nuget.org/packages/Tethos.Moq)
-[![Downloads](https://img.shields.io/nuget/dt/Tethos.Moq.svg)](https://www.nuget.org/packages/Tethos.Moq)
 
 `Tethos` is automated auto-mocking system which utilizes `Castle.Windsor` as backbone for working with mocked dependencies used during unit testing. It is test framework agnostic. `Tethos` supports all popular mocking libraries - `Moq`, `NSubstitute` and `FakeItEasy`.
 
@@ -35,10 +33,10 @@ in order to resolve dependencies for `SystemUnderTest` we will need to write fol
 public void Test()
 {
     var sut = new SystemUnderTest(
-        new Mock<MockA>(new Mock<UnknownA>(new Mock<UnknownB>(), new Mock<UnknownC>()))
-        new Mock<MockB>(new Mock<UnknownC>())
-        new Mock<MockC>(new Mock<UnknownD>())
-        new Mock<MockD>(new Mock<UnknownD>())
+        new Mock<MockA>(new Mock<UnknownA>(new Mock<UnknownB>().Object, new Mock<UnknownC>().Object).Object).Object,
+        new Mock<MockB>(new Mock<UnknownC>().Object).Object,
+        new Mock<MockC>(new Mock<UnknownD>().Object, new Mock<UnknownE>().Object).Object,
+        new Mock<MockD>(new Mock<UnknownD>().Object).Object
     );
 
     ...
