@@ -1,18 +1,20 @@
 ﻿using Castle.MicroKernel;
 using FluentAssertions;
-using Tethos.NSubstitute.Tests;
 using Tethos.Tests.Common;
 using Xunit;
 
-namespace Tethos.FakeItEasy.Tests
+namespace Tethos.NSubstitute.Tests
 {
-    public class AutoFakeItEasyResolverTests
+    public class AutoNSubstituteResolverTests
     {
-        [Theory, AutoFakeItEasyData]
-        public void MapToTarget_ShouldReturnMock(IMockable mockable, IKernel kernel)
+        [Theory, AutoNSubstituteData]
+        public void MapToTarget_ShouldReturnMock(
+            IMockable mockable,
+            IKernel kernel
+        )
         {
             // Arrange
-            var sut = new AutoFakeItEasyResolver(kernel);
+            var sut = new AutoNSubstituteResolver(kernel);
             var expected = mockable.GetType();
             var type = typeof(IMockable);
 

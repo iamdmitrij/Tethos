@@ -1,13 +1,13 @@
 ﻿using AutoFixture.Xunit2;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
-using FakeItEasy;
 using FluentAssertions;
+using NSubstitute;
 using System;
 using Tethos.Tests.Common;
 using Xunit;
 
-namespace Tethos.FakeItEasy.Tests
+namespace Tethos.NSubstitute.Tests
 {
     public class AutoMockingTestTests : AutoMockingTest
     {
@@ -18,16 +18,19 @@ namespace Tethos.FakeItEasy.Tests
             var actual = Container.Resolve<ISubDependencyResolver>();
 
             // Assert
-            actual.Should().BeOfType<AutoFakeItEasyResolver>();
+            actual.Should().BeOfType<AutoNSubstituteResolver>();
         }
+
 
         [Theory, AutoData]
         public void Test_SimpleDependency_ShouldMatchValue(int expected)
         {
             // Arrange
             var sut = Container.Resolve<SystemUnderTest>();
+
             var mock = Container.Resolve<IMockable>();
-            A.CallTo(() => mock.Do()).Returns(expected);
+            mock.Do()
+                .Returns(expected);
 
             // Act
             var actual = sut.Do();

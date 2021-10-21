@@ -2,6 +2,7 @@
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using System;
+using System.Linq;
 using System.Reflection;
 
 namespace Tethos
@@ -37,19 +38,18 @@ namespace Tethos
         }
 
         /// <inheritdoc />
-        public virtual void Install(IWindsorContainer container, IConfigurationStore store)
-        {
-            foreach (var assembly in Assemblies)
-            {
-                container.Register(Classes.FromAssembly(assembly)
-                    .Pick()
-                    .WithServiceBase()
-                    .WithServiceAllInterfaces()
-                    .WithServiceSelf()
-                    .LifestyleTransient()
-                );
-            }
-        }
+        public virtual void Install(IWindsorContainer container, IConfigurationStore store) =>
+            container.Register(
+                Assemblies.Select(x =>
+                    Classes.FromAssembly(x)
+                        .Pick()
+                        .WithServiceBase()
+                        .WithServiceAllInterfaces()
+                        .WithServiceSelf()
+                        .LifestyleTransient()
+                )
+                .ToArray()
+            );
 
         /// <inheritdoc />
         public void Dispose()
@@ -72,6 +72,5 @@ namespace Tethos
             Container
                 .Kernel
                 .Resolver.RemoveSubResolver(AutoResolver);
-
     }
 }

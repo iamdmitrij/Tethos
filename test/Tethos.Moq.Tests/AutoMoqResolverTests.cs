@@ -1,39 +1,27 @@
-﻿using AutoFixture.Xunit2;
-using Castle.MicroKernel;
+﻿using Castle.MicroKernel;
 using FluentAssertions;
 using Moq;
-using System;
+using Tethos.Tests.Common;
 using Xunit;
 
 namespace Tethos.Moq.Tests
 {
     public class AutoMoqResolverTests
     {
-        [Theory, AutoData]
-        public void DiamondType_ShouldResolveToMoqType(Mock<IKernel> kernel)
+        [Fact]
+        public void MapToTarget_ShouldReturnMock()
         {
             // Arrange
-            var sut = new AutoMoqResolver(kernel.Object);
-            var expected = typeof(Mock<>).GetType();
+            var kernel = new Mock<IKernel>();
+            var expected = new Mock<IMockable>();
 
+            kernel.Setup(x => x.Resolve(typeof(Mock<IMockable>))).Returns(expected);
+            var sut = new AutoMoqResolver(kernel.Object);
             // Act
-            var actual = sut.DiamondType;
+            var actual = sut.MapToTarget(typeof(IMockable));
 
             // Assert
-            actual.Should().BeOfType(expected);
-        }
-
-        [Theory, AutoData]
-        public void MapToTarget_ShouldReturnMock(Mock<object> expected, Mock<IKernel> kernel, Type targetType)
-        {
-            // Arrange
-            var sut = new AutoMoqResolver(kernel.Object);
-
-            // Act
-            var actual = sut.MapToTarget(expected, targetType);
-
-            // Assert
-            actual.Should().Equals(expected);
+            actual.Should().BeOfType(expected.Object.GetType());
         }
     }
 }
