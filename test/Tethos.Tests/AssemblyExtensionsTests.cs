@@ -46,7 +46,6 @@ namespace Tethos.Tests
             actual.Should().NotBeNull();
         }
 
-
         [Theory]
         [ClassData(typeof(AssemblyTheoryData))]
         public void GetDependencies_UsingLocalDependencies_ShouldMatchLoaddingAssemblyCount(
@@ -62,7 +61,6 @@ namespace Tethos.Tests
             // Assert
             actual.Should().BeEquivalentTo(expectedAssemblyName);
         }
-
 
         [Fact]
         public void GetDependencies_UsingCoreDependencies_ShouldBeEmpty()

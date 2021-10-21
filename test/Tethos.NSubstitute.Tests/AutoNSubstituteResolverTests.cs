@@ -8,7 +8,7 @@ namespace Tethos.NSubstitute.Tests
     public class AutoNSubstituteResolverTests
     {
         [Theory, AutoNSubstituteData]
-        public void MapToTarget_ShouldReturnMock(
+        public void MapToTarget_ShouldMatchMockedType(
             IMockable mockable,
             IKernel kernel
         )
