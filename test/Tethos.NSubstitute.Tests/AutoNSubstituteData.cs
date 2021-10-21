@@ -4,9 +4,9 @@ using AutoFixture.Xunit2;
 
 namespace Tethos.NSubstitute.Tests
 {
-    public class AutoNSubstituteData : AutoDataAttribute
+    internal class AutoNSubstituteData : AutoDataAttribute
     {
-        public AutoNSubstituteData() : base(
+        internal AutoNSubstituteData() : base(
             () => new Fixture().Customize(new AutoNSubstituteCustomization())
         )
         {
