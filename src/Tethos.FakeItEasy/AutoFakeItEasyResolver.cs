@@ -18,14 +18,14 @@ namespace Tethos.FakeItEasy
         /// <inheritdoc />
         public override object MapToTarget(Type targetType)
         {
-            var fakedObject = Create.Fake(targetType);
+            var mock = Create.Fake(targetType);
 
             Kernel.Register(Component.For(targetType)
-                .Instance(fakedObject)
+                .Instance(mock)
                 .OverridesExistingRegistration()
             );
 
-            return fakedObject;
+            return mock;
         }
     }
 }

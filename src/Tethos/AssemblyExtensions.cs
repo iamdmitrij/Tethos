@@ -9,7 +9,7 @@ namespace Tethos
     /// <summary>
     /// Extension utilities used by <see cref="BaseAutoMockingTest{T}"/>.
     /// </summary>
-    public static class AssemblyExtensions
+    internal static class AssemblyExtensions
     {
         /// <summary>
         /// A collection of allowed file extensions for container assemblies.
@@ -24,7 +24,7 @@ namespace Tethos
         /// </summary>
         /// <param name="rootAssembly">Reference assembly for pattern extraction.</param>
         /// <returns>Pattern search criteria.</returns>
-        public static string GetPattern(this Assembly rootAssembly)
+        internal static string GetPattern(this Assembly rootAssembly)
         {
             var patternSeparators = new[] { '.', ',' };
             var name = rootAssembly.FullName;
@@ -46,7 +46,7 @@ namespace Tethos
         /// </summary>
         /// <param name="rootAssembly">Reference assembly for pattern extraction.</param>
         /// <returns>A collection of loaded assemblies.</returns>
-        public static Assembly[] GetDependencies(this Assembly rootAssembly)
+        internal static Assembly[] GetDependencies(this Assembly rootAssembly)
         {
             var pattern = rootAssembly.GetPattern();
             var directory = AppDomain.CurrentDomain.BaseDirectory;
@@ -62,7 +62,6 @@ namespace Tethos
                 .Select(TryToLoadAssembly)
                 .OfType<Assembly>()
                 .ToArray();
-        
 
         internal static IEnumerable<string> FilterAssemblies(this IEnumerable<string> assemblies, string searchPattern) =>
             assemblies

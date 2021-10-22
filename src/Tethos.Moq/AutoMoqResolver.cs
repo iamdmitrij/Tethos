@@ -18,9 +18,9 @@ namespace Tethos.Moq
         public override object MapToTarget(Type targetType)
         {
             var mockType = typeof(Mock<>).MakeGenericType(targetType);
-            var targetObject = Kernel.Resolve(mockType);
-
-            return ((Mock)targetObject).Object;
+            var mock = Kernel.Resolve(mockType) as Mock;
+            
+            return mock?.Object;
         }
     }
 }
