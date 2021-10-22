@@ -8,9 +8,6 @@
         /// <summary>
         /// Creates ready to use auto-mocking ready.
         /// </summary>
-        public static IAutoMoqContainer Create()
-        {
-            return new AutoMockingTest().Container;
-        }
+        public static IAutoMoqContainer Create() => new AutoMockingTest().Container;
     }
 }
