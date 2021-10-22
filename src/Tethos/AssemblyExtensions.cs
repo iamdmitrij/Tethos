@@ -62,7 +62,6 @@ namespace Tethos
                 .Select(TryToLoadAssembly)
                 .OfType<Assembly>()
                 .ToArray();
-        
 
         internal static IEnumerable<string> FilterAssemblies(this IEnumerable<string> assemblies, string searchPattern) =>
             assemblies
