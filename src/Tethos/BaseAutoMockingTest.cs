@@ -40,8 +40,8 @@ namespace Tethos
         /// <inheritdoc />
         public virtual void Install(IWindsorContainer container, IConfigurationStore store) =>
             container.Register(
-                Assemblies.Select(x =>
-                    Classes.FromAssembly(x)
+                Assemblies.Select(assembly =>
+                    Classes.FromAssembly(assembly)
                         .Pick()
                         .WithServiceBase()
                         .WithServiceAllInterfaces()
