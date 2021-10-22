@@ -170,7 +170,8 @@ Tethos uses [Moq](https://www.moqthis.com/moq4/) to auto-mock incoming dependenc
 [Fact]
 public void Test()
 {
-    var mock = Container.Resolve<Mock<IMockable>>().Setup(...);
+    var mock = Container.Resolve<Mock<IMockable>>();
+    mock.Setup(x => x.Do()).Returns(42);
 }
 ```
 
@@ -186,6 +187,7 @@ Tethos uses [NSubstitute](https://nsubstitute.github.io/) to auto-mock incoming 
 public void Test()
 {
     var mock = Container.Resolve<IMockable>(); // <-- This will be mocked
+    mock.Do().Returns(42);
 }
 ```
 
@@ -201,5 +203,6 @@ Tethos uses [FakeItEasy](https://fakeiteasy.github.io/) to auto-mock incoming de
 public void Test()
 {
     var mock = Container.Resolve<IMockable>(); // <-- This will be mocked
+    A.CallTo(() => mock.Do()).Returns(42)
 }
 ```
