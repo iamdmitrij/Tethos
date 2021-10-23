@@ -35,7 +35,7 @@ jobs:
         with:
           reports: 'coverage/**/coverage.cobertura.xml' # REQUIRED # The coverage reports that should be parsed (separated by semicolon). Globbing is supported.
           targetdir: 'coveragereport' # REQUIRED # The directory where the generated report should be saved.
-          reporttypes: 'HtmlInline;Badges;MarkdownSummary' # The output formats and scope (separated by semicolon) Values: Badges, Clover, Cobertura, CsvSummary, Html, HtmlChart, HtmlInline, HtmlInline_AzurePipelines, HtmlInline_AzurePipelines_Dark, HtmlSummary, JsonSummary, Latex, LatexSummary, lcov, MarkdownSummary, MHtml, PngChart, SonarQube, TeamCitySummary, TextSummary, Xml, XmlSummary
+          reporttypes: 'HtmlInline;Badges' # The output formats and scope (separated by semicolon) Values: Badges, Clover, Cobertura, CsvSummary, Html, HtmlChart, HtmlInline, HtmlInline_AzurePipelines, HtmlInline_AzurePipelines_Dark, HtmlSummary, JsonSummary, Latex, LatexSummary, lcov, MarkdownSummary, MHtml, PngChart, SonarQube, TeamCitySummary, TextSummary, Xml, XmlSummary
           sourcedirs: '' # Optional directories which contain the corresponding source code (separated by semicolon). The source directories are used if coverage report contains classes without path information.
           historydir: '' # Optional directory for storing persistent coverage information. Can be used in future reports to show coverage evolution.
           plugins: '' # Optional plugin files for custom reports or custom history storage (separated by semicolon).
@@ -55,26 +55,7 @@ jobs:
           path: "**/*.html" # Directory containing files to upload
       
 
-      #- name: Code Coverage Summary Report
-      #  uses: irongut/CodeCoverageSummary@v1.0.5
-      #  with:
-      #    filename: coverage/coverage.cobertura.xml
-      #    badge: true
-      #    format: 'markdown'
-      #    output: 'both'
 
-      - name: Add Coverage as a comment
-        uses: marocchino/sticky-pull-request-comment@v2
-        if: github.event_name == 'pull_request'
-        with:
-          recreate: true
-          path: coveragereport/Summary.md
 
       - name: Codecov
         uses: codecov/codecov-action@v1
-
-      #- name: Create code coverage report
-      #  run: |
-      #    dotnet tool install -g dotnet-reportgenerator-globaltool
-      #    reportgenerator -reports:$(Agent.WorkFolder)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage -reporttypes:'Cobertura'
-     
