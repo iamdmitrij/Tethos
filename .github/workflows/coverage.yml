@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v2.2.3
         with:
           name: CoverageReport # Artifact name        
-          path: coveragereport # Directory containing files to upload
+          path: "**/*.html" # Directory containing files to upload
       
 
       #- name: Code Coverage Summary Report
