@@ -70,6 +70,9 @@ jobs:
           recreate: true
           path: coveragereport/Summary.md
 
+      - name: Codecov
+        uses: codecov/codecov-action@v1
+
       #- name: Create code coverage report
       #  run: |
       #    dotnet tool install -g dotnet-reportgenerator-globaltool
