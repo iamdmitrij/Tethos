@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Test Coverage
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "5.0.x"
+
       - name: Test
         run: dotnet test ./Tethos.sln --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory ./coverage
 
