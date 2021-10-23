@@ -6,8 +6,4 @@
 		<NoWarn>1701;1702;NETSDK1138</NoWarn>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute" />
-	</ItemGroup>
-
 </Project>
