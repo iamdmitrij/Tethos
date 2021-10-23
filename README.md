@@ -1,6 +1,7 @@
 # Tethos
 
 ![Build](https://github.com/iamdmitrij/Tethos/actions/workflows/nuget.yml/badge.svg?branch=main)
+[![codecov](https://codecov.io/gh/iamdmitrij/Tethos/branch/main/graph/badge.svg?token=F4IE0T79QP)](https://codecov.io/gh/iamdmitrij/Tethos)
 
 `Tethos` is automated auto-mocking system which utilizes `Castle.Windsor` as backbone for working with mocked dependencies used during unit testing. It is test framework agnostic. `Tethos` supports all popular mocking libraries - `Moq`, `NSubstitute` and `FakeItEasy`.
 
