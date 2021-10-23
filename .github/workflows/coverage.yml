@@ -68,7 +68,7 @@ jobs:
         if: github.event_name == 'pull_request'
         with:
           recreate: true
-          path: coveragereport/index.md
+          path: coveragereport/Summary.md
 
       #- name: Create code coverage report
       #  run: |
