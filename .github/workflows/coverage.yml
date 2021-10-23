@@ -1,0 +1,45 @@
+﻿name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Test Coverage
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: 🔨 Use .NET Core 5.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "5.0.x"
+      - name: Test
+        run: dotnet test ./Tethos.sln --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory ./coverage
+
+      - name: Copy Coverage To Predictable Location
+        run: cp coverage/**/coverage.cobertura.xml coverage/coverage.cobertura.xml
+
+      - name: Code Coverage Summary Report
+        uses: irongut/CodeCoverageSummary@v1.0.5
+        with:
+          filename: coverage/coverage.cobertura.xml
+          badge: true
+          format: 'markdown'
+          output: 'both'
+
+      - name: Add Coverage as a comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          recreate: true
+          path: code-coverage-results.md
+
+      - name: Create code coverage report
+        run: |
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+          reportgenerator -reports:$(Agent.WorkFolder)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage -reporttypes:'Cobertura'
+     
