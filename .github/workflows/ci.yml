@@ -29,3 +29,16 @@ jobs:
         with:
           name: test-results
           path: coverage/*.trx
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@master
+        with:
+          name: test-results
+      - uses: dorny/test-reporter@v1
+        with:
+          artifact: test-results
+          name: xUnit Tests
+          path: "**/*.trx"
+          path-replace-backslashes: "true"
+          reporter: dotnet-trx
