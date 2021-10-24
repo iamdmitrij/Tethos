@@ -41,18 +41,45 @@ namespace Tethos.NSubstitute.Tests
         public void Container_Resolve_WithClassAndArguments_ShouldMockClass()
         {
             // Arrange
+            var expectedType = Substitute.For<Concrete>(100, 200).GetType();
             var actual = Container.Resolve<SystemUnderTestClass>(
                 new Arguments()
                     .AddNamed("minValue", 100)
                     .AddNamed("maxValue", 200)
             );
-            var mock = Container.Resolve<IMockable>();
+            var mock = Container.Resolve<Concrete>();
 
             // Act
             actual.Do();
 
             // Assert
-            mock.Should().NotBeOfType<IMockable>();
+            mock.Should().BeOfType(expectedType);
+            mock.Received().Do();
+        }
+
+        [Fact]
+        public void Container_Resolve_WithClassAndPrimitiveType_ShouldMockClass()
+        {
+            // Arrange
+            var expectedType = Substitute.For<Concrete>(100, 200).GetType();
+            var expectedThresholdType = Substitute.For<Threshold>(true).GetType();
+
+            var actual = Container.Resolve<SystemUnderTwoClasses>(
+                new Arguments()
+                    .AddDependencyTo<Concrete, int>("minValue", 100)
+                    .AddDependencyTo<Concrete, int>("maxValue", 200)
+                    .AddDependencyTo<Threshold, bool>("enabled", true)
+            );
+            var mock = Container.Resolve<Concrete>();
+            var thresholdMock = Container.Resolve<Threshold>();
+
+            // Act
+            actual.Do();
+
+            // Assert
+            mock.Should().BeOfType(expectedType);
+            mock.Received().Do();
+            thresholdMock.Should().BeOfType(expectedThresholdType);
         }
 
         [Theory, AutoData]

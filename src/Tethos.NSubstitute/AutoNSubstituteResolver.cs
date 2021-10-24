@@ -25,8 +25,8 @@ namespace Tethos.NSubstitute
         /// <inheritdoc />
         public override object MapToTarget(Type targetType, CreationContext context)
         {
-            // TODO: Need to implement argument separation logic
             var arguments = context.AdditionalArguments
+                .Where(argument => GetType(argument.Key) == $"{targetType}")
                 .Select(argument => argument.Value)
                 .ToArray();
 
@@ -39,5 +39,9 @@ namespace Tethos.NSubstitute
 
             return mock;
         }
+
+        internal string GetType(object argument) =>
+            argument?.ToString()?.Split(new string[] { "__" }, StringSplitOptions.None).FirstOrDefault();
+
     }
 }
