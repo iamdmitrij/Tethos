@@ -31,13 +31,3 @@ jobs:
         with:
           name: test-results
           path: coverage/*.trx
-  report:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: dorny/test-reporter@v1
-      with:
-        artifact: test-results # Artifact name
-        name: xUnit Tests # Name of the check run which will be created
-        path: '**/*.trx' # Path to test results (inside artifact .zip)
-        path-replace-backslashes: "true"
-        reporter: dotnet-trx # Format of test results

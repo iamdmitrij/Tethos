@@ -1,0 +1,17 @@
+﻿name: 'Test Report'
+on:
+  workflow_run:
+    workflows: ['ci']                     # runs after CI workflow
+    types:
+      - completed
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: dorny/test-reporter@v1
+      with:
+        artifact: test-results # Artifact name
+        name: xUnit Tests # Name of the check run which will be created
+        path: '**/*.trx' # Path to test results (inside artifact .zip)
+        path-replace-backslashes: "true"
+        reporter: dotnet-trx # Format of test results
