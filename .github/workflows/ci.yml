@@ -1,4 +1,4 @@
-﻿name: ci
+﻿name: CI
 
 on:
   push:
@@ -8,20 +8,25 @@ on:
 
 jobs:
   build:
-    name: Build, Test, Push
+    name: 🔨 Build & 🔬 Test
     runs-on: windows-latest
-
     steps:
       - uses: actions/checkout@v2
-      - name: 🔨 Use .NET Core 5.0 SDK
+      - name: 🔧 Use .NET Core 5.0 SDK
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "5.0.x"
-      - name: Restore dependencies
+      - name: 🔩 Restore dependencies
         run: dotnet restore ./Tethos.sln
-      - name: Build
+      - name: 🔨 Build
         run: dotnet build ./Tethos.sln --no-restore
-      - name: Test
+      - name: 🔬 Test
         run: dotnet test ./Tethos.sln --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory ./coverage
-      - name: Codecov
+      - name: 🔍 Coverage
         uses: codecov/codecov-action@v1
+      - name: 📚 Artifact
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: test-results
+          path: coverage/*.trx
