@@ -22,6 +22,15 @@ jobs:
       - name: Build
         run: dotnet build ./Tethos.sln --no-restore
       - name: Test
-        run: dotnet test ./Tethos.sln --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory ./coverage
+        run: dotnet test ./Tethos.sln --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger GitHubActions --logger trx --results-directory ./coverage
       - name: Codecov
         uses: codecov/codecov-action@v1
+  report:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: dorny/test-reporter@v1
+      with:
+        artifact: test-results            # Artifact name
+        name: xUnit Tests                 # Name of the check run which will be created
+        path: '*.trx'                     # Path to test results (inside artifact .zip)
+        reporter: dotnet-trx              # Format of test results
