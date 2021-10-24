@@ -13,7 +13,7 @@ jobs:
       - uses: dorny/test-reporter@v1
         with:
           artifact: test-results
-          name: xUnit Tests
+          name: Tests
           path: "**/*.trx"
           path-replace-backslashes: "true"
           reporter: dotnet-trx
