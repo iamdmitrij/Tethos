@@ -30,4 +30,5 @@ jobs:
           artifact: test-results # Artifact name
           name: xUnit Tests # Name of the check run which will be created
           path: '**\*.trx' # Path to test results (inside artifact .zip)
+          path-replace-backslashes: "true"
           reporter: dotnet-trx # Format of test results
