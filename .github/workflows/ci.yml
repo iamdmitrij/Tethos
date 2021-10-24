@@ -25,10 +25,19 @@ jobs:
         run: dotnet test ./Tethos.sln --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger GitHubActions --logger trx --results-directory ./coverage
       - name: Codecov
         uses: codecov/codecov-action@v1
-      - uses: dorny/test-reporter@v1
+
+      - uses: actions/upload-artifact@v2  # upload test results
+        if: success() || failure()        # run this step even if previous step failed
         with:
-          artifact: test-results # Artifact name
-          name: xUnit Tests # Name of the check run which will be created
-          path: '**\*.trx' # Path to test results (inside artifact .zip)
-          path-replace-backslashes: "true"
-          reporter: dotnet-trx # Format of test results
+          name: test-results
+          path: coverage/*.trx
+  report:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: dorny/test-reporter@v1
+      with:
+        artifact: test-results # Artifact name
+        name: xUnit Tests # Name of the check run which will be created
+        path: '**/*.trx' # Path to test results (inside artifact .zip)
+        path-replace-backslashes: "true"
+        reporter: dotnet-trx # Format of test results
