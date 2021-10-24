@@ -1,4 +1,4 @@
-﻿name: "CI"
+﻿name: CI
 
 on:
   push:
@@ -8,9 +8,8 @@ on:
 
 jobs:
   build:
-    name: Build, Test, Push
+    name: Build, Test, Coverage
     runs-on: windows-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: 🔨 Use .NET Core 5.0 SDK
@@ -25,9 +24,8 @@ jobs:
         run: dotnet test ./Tethos.sln --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger GitHubActions --logger trx --results-directory ./coverage
       - name: Codecov
         uses: codecov/codecov-action@v1
-
-      - uses: actions/upload-artifact@v2 # upload test results
-        if: success() || failure() # run this step even if previous step failed
+      - uses: actions/upload-artifact@v2
+        if: success() || failure()
         with:
           name: test-results
           path: coverage/*.trx
