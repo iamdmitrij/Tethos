@@ -25,7 +25,7 @@ namespace Tethos.Tests
             Add("Fake.Core31.dll",
                 new[]
                 {
-                    "Fake.Core21",
+                    "Fake.Core211",
                     "Fake.Core22",
                     "Fake.Core30",
                     "Fake.Core31",
