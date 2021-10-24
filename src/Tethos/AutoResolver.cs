@@ -24,11 +24,12 @@ namespace Tethos
         /// Maps target mock object to mocked object type.
         /// </summary>
         /// <param name="targetType">Target type for object to be converted to destination object.</param>
+        /// <param name="context">Context of parent object to be resolved.</param>
         /// <returns></returns>
-        public abstract object MapToTarget(Type targetType);
+        public abstract object MapToTarget(Type targetType, CreationContext context);
 
         /// <inheritdoc />
-        public bool CanResolve(
+        public virtual bool CanResolve(
             CreationContext context,
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
@@ -41,6 +42,6 @@ namespace Tethos
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
             DependencyModel dependency
-        ) => MapToTarget(dependency.TargetType);
+        ) => MapToTarget(dependency.TargetType, context);
     }
 }

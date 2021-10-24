@@ -37,6 +37,24 @@ namespace Tethos.NSubstitute.Tests
             actual.Should().Be(expected);
         }
 
+        [Fact]
+        public void Container_Resolve_WithClassAndArguments_ShouldMockClass()
+        {
+            // Arrange
+            var actual = Container.Resolve<SystemUnderTestClass>(
+                new Arguments()
+                    .AddNamed("minValue", 100)
+                    .AddNamed("maxValue", 200)
+            );
+            var mock = Container.Resolve<IMockable>();
+
+            // Act
+            actual.Do();
+
+            // Assert
+            mock.Should().NotBeOfType<IMockable>();
+        }
+
         [Theory, AutoData]
         public void Clean_ShouldRevertBackToOriginalBehavior(Mockable mockable)
         {

@@ -1,4 +1,5 @@
 ﻿using Castle.MicroKernel;
+using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Registration;
 using FakeItEasy.Sdk;
 using System;
@@ -16,7 +17,7 @@ namespace Tethos.FakeItEasy
         }
 
         /// <inheritdoc />
-        public override object MapToTarget(Type targetType)
+        public override object MapToTarget(Type targetType, CreationContext context)
         {
             var mock = Create.Fake(targetType);
 
