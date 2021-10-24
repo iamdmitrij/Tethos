@@ -21,7 +21,7 @@ jobs:
       - name: Build
         run: dotnet build ./Tethos.sln --no-restore
       - name: Test
-        run: dotnet test ./Tethos.sln --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger GitHubActions --logger trx --results-directory ./coverage
+        run: dotnet test ./Tethos.sln --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory ./coverage
       - name: Codecov
         uses: codecov/codecov-action@v1
       - uses: actions/upload-artifact@v2
