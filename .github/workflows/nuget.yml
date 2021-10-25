@@ -21,6 +21,6 @@ jobs:
       - name: Build
         run: dotnet build ./Tethos.sln --no-restore
       - name: Test
-        run: dotnet test ./Tethos.sln --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory ./coverage
+        run: dotnet test ./Tethos.sln --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory ./coverage
       - name: Push to NuGet
         run: dotnet nuget push **/Tethos.*.nupkg --source ${{ secrets.NUGET_FEED }} --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
