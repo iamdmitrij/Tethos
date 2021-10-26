@@ -19,7 +19,7 @@ jobs:
       - name: 🔩 Restore dependencies
         run: dotnet restore ./Tethos.sln
       - name: 🔨 Build
-        run: dotnet build ./Tethos.sln --no-restore
+        run: dotnet build ./Tethos.sln --configuration Release --no-restore
       - name: 🔬 Test
         run: dotnet test ./Tethos.sln --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory ./coverage
       - name: 🔍 Coverage
