@@ -31,7 +31,7 @@ namespace Tethos
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public BaseAutoMockingTest()
+        protected BaseAutoMockingTest()
         {
             Assemblies = Assembly.GetAssembly(GetType()).GetDependencies();
             Container = (T)new T().Install(this);

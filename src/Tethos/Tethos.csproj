@@ -6,7 +6,7 @@
 		<IsPackable>true</IsPackable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>iamdmitrij</Authors>
-		<Version>1.2.0</Version>
+		<Version>1.2.1</Version>
 		<Description>Library which allows to seemlesly mock dependencies for unit tests.</Description>
 		<PackageLicense>https://github.com/iamdmitrij/Tethos/blob/main/LICENSE</PackageLicense>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -14,7 +14,7 @@
 		<PackageTags>auto-mocking container test core</PackageTags>
 		<PackageIconUrl></PackageIconUrl>
 		<Copyright>Copyright © 2021</Copyright>
-		<PackageIcon>tethos_logo.png</PackageIcon>
+		<PackageIcon>logo.png</PackageIcon>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -44,7 +44,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="..\..\img\tethos_logo.png">
+		<None Include="..\..\img\logo.png">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>

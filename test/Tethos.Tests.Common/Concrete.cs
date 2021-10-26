@@ -1,4 +1,4 @@
-﻿using System;
+﻿using static PeanutButter.RandomGenerators.RandomValueGen;
 
 namespace Tethos.Tests.Common
 {
@@ -18,6 +18,6 @@ namespace Tethos.Tests.Common
             MaxValue = maxValue;
         }
 
-        public int Do() => new Random().Next(MinValue, MaxValue);
+        public int Do() => GetRandomInt(MinValue, MaxValue);
     }
 }

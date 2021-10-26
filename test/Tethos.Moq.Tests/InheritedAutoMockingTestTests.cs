@@ -14,7 +14,20 @@ namespace Tethos.Moq.Tests
             sut.Dispose();
 
             // Assert
-            sut.ContainerMock.Verify(x => x.Dispose(), Times.Once);
+            sut.Proxy.Verify(x => x.Dispose(), Times.Once);
+        }
+
+        [Theory, AutoData]
+        public void Dispose_NullContainer_ShouldNotDisposeMock(InheritedAutoMockingTest sut)
+        {
+            // Arrange
+            sut.Container = null;
+
+            // Act
+            sut.Dispose();
+
+            // Assert
+            sut.Proxy.Verify(x => x.Dispose(), Times.Never);
         }
     }
 }
