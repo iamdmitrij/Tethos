@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fake.Standard21", "test\Fak
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "img", "img", "{EB2794A8-7985-4585-B467-234351FDA055}"
 	ProjectSection(SolutionItems) = preProject
-		img\tethos_logo.png = img\tethos_logo.png
+		img\logo.png = img\logo.png
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos", "src\Tethos\Tethos.csproj", "{37AFC534-4ACC-4378-A605-92972151B8EA}"
