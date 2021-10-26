@@ -18,7 +18,7 @@ namespace Tethos
         /// <summary>
         /// Constructor accepting <see cref="Castle.Windsor"/> kernel as dependency.
         /// </summary>
-        public AutoResolver(IKernel kernel) => Kernel = kernel;
+        protected AutoResolver(IKernel kernel) => Kernel = kernel;
 
         /// <summary>
         /// Maps target mock object to mocked object type.
