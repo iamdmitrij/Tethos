@@ -4,6 +4,8 @@ namespace Tethos.NSubstitute.Tests.SUT
 {
     public class InheritedAutoMockingTest : AutoMockingTest
     {
-        public InheritedAutoMockingTest() => Container = Substitute.For<AutoNSubstituteContainer>();
+        public AutoNSubstituteContainer Proxy { get; }
+
+        public InheritedAutoMockingTest() => Proxy = Container = Substitute.For<AutoNSubstituteContainer>();
     }
 }

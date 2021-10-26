@@ -4,6 +4,8 @@ namespace Tethos.FakeItEasy.Tests.SUT
 {
     public class InheritedAutoMockingTest : AutoMockingTest
     {
-        public InheritedAutoMockingTest() => Container = A.Fake<AutoFakeItEasyContainer>();
+        public AutoFakeItEasyContainer Proxy { get; }
+
+        public InheritedAutoMockingTest() => Proxy = Container = A.Fake<AutoFakeItEasyContainer>();
     }
 }

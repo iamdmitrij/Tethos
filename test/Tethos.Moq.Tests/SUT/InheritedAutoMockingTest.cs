@@ -4,12 +4,12 @@ namespace Tethos.Moq.Tests.SUT
 {
     public class InheritedAutoMockingTest : AutoMockingTest
     {
-        public Mock<AutoMoqContainer> ContainerMock { get; }
+        public Mock<AutoMoqContainer> Proxy { get; }
 
         public InheritedAutoMockingTest()
         {
-            ContainerMock = new Mock<AutoMoqContainer>();
-            Container = ContainerMock.Object;
+            Proxy = new Mock<AutoMoqContainer>();
+            Container = Proxy.Object;
         }
     }
 }

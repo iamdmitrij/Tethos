@@ -16,5 +16,18 @@ namespace Tethos.FakeItEasy.Tests
             // Assert
             A.CallTo(() => sut.Container.Dispose()).MustHaveHappened();
         }
+
+        [Theory, AutoData]
+        public void Dispose_NullContainer_ShouldNotDisposeMock(InheritedAutoMockingTest sut)
+        {
+            // Arrange
+            sut.Container = null;
+
+            // Act
+            sut.Dispose();
+
+            // Assert
+            A.CallTo(() => sut.Proxy.Dispose()).MustNotHaveHappened();
+        }
     }
 }
