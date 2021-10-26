@@ -54,15 +54,8 @@ namespace Tethos
         /// <inheritdoc />
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            Container?.Dispose();
         }
-
-        /// <summary>
-        /// Disposes <see cref="IWindsorContainer"/> current instance.
-        /// </summary>
-        /// <param name="disposing"></param>
-        protected virtual void Dispose(bool disposing) => Container?.Dispose();
 
         /// <summary>
         /// Releases automocking resolver from <see cref="WindsorContainer"/>.
