@@ -16,5 +16,18 @@ namespace Tethos.NSubstitute.Tests
             // Assert
             sut.Container.Received().Dispose();
         }
+
+        [Theory, AutoData]
+        public void Dispose_NullContainer_ShouldNotDisposeMock(InheritedAutoMockingTest sut)
+        {
+            // Arrange
+            sut.Container = null;
+
+            // Act
+            sut.Dispose();
+
+            // Assert
+            sut.Proxy.DidNotReceive().Dispose();
+        }
     }
 }
