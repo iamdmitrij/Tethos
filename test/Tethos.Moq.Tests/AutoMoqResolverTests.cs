@@ -3,7 +3,7 @@ using Castle.MicroKernel.Context;
 using FluentAssertions;
 using Moq;
 using System;
-using Tethos.NSubstitute.Tests;
+using Tethos.NSubstitute.Tests.Attributes;
 using Tethos.Tests.Common;
 using Xunit;
 
