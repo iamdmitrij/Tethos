@@ -1,6 +1,6 @@
 ﻿using Castle.MicroKernel;
 using FluentAssertions;
-using Tethos.NSubstitute.Tests;
+using Tethos.NSubstitute.Tests.Attributes;
 using Tethos.Tests.Common;
 using Xunit;
 
