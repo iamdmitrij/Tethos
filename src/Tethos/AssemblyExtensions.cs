@@ -54,8 +54,18 @@ namespace Tethos
             return Directory
                 .EnumerateFiles(directory, "*.*", SearchOption.AllDirectories)
                 .FilterAssemblies(pattern)
+                .ElseLoadEverything(directory)
+                .FilterRef()
                 .LoadAssemblies();
         }
+
+        internal static IEnumerable<string> FilterRef(this IEnumerable<string> assemblies) =>
+            assemblies
+                .Where(filePath => !Path.GetDirectoryName(filePath).EndsWith("ref"));
+
+        internal static IEnumerable<string> ElseLoadEverything(this IEnumerable<string> assemblies, string directory) =>
+            assemblies.Any() ? assemblies : Directory.EnumerateFiles(directory, "*.*", SearchOption.AllDirectories)
+                .Where(filePath => FileExtensions.Contains(Path.GetExtension(filePath)));
 
         internal static Assembly[] LoadAssemblies(this IEnumerable<string> assemblies) =>
             assemblies.Select(Path.GetFileName)
@@ -66,8 +76,7 @@ namespace Tethos
         internal static IEnumerable<string> FilterAssemblies(this IEnumerable<string> assemblies, string searchPattern) =>
             assemblies
                 .Where(filePath => FileExtensions.Contains(Path.GetExtension(filePath)))
-                .Where(fileName => Path.GetFileName(fileName).Contains(searchPattern))
-                .Where(filePath => !Path.GetDirectoryName(filePath).EndsWith("ref"));
+                .Where(fileName => Path.GetFileName(fileName).Contains(searchPattern));
 
         /// <summary>
         /// Silently loads assembly by its name.
