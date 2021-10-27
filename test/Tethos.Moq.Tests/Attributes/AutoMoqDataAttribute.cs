@@ -4,9 +4,9 @@ using AutoFixture.Xunit2;
 
 namespace Tethos.NSubstitute.Tests.Attributes
 {
-    internal class AutoMoqData : AutoDataAttribute
+    internal class AutoMoqDataAttribute : AutoDataAttribute
     {
-        public AutoMoqData() : base(
+        public AutoMoqDataAttribute() : base(
             () => new Fixture().Customize(new AutoMoqCustomization())
         )
         {
