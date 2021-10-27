@@ -2,11 +2,11 @@
 using AutoFixture.AutoFakeItEasy;
 using AutoFixture.Xunit2;
 
-namespace Tethos.NSubstitute.Tests
+namespace Tethos.NSubstitute.Tests.Attributes
 {
-    internal class AutoFakeItEasyData : AutoDataAttribute
+    internal class AutoFakeItEasyDataAttribute : AutoDataAttribute
     {
-        public AutoFakeItEasyData() : base(
+        public AutoFakeItEasyDataAttribute() : base(
             () => new Fixture().Customize(new AutoFakeItEasyCustomization())
         )
         {
