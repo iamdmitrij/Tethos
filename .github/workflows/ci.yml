@@ -77,4 +77,6 @@ jobs:
         if: success()
         with:
           name: nuget-packages
-          path: "**/*(.nupkg|.snupkg)"
+          path: |
+            **/*.nupkg
+            **/*.snupkg
