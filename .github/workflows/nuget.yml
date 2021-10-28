@@ -21,8 +21,9 @@ jobs:
         with:
           dotnet-version: "5.0.x"
 
-      - uses: actions/download-artifact@v2
+      - uses: dawidd6/action-download-artifact@v2
         with:
+          workflow: ci.yml
           name: nuget-packages
 
       - name: 🎁 Push to NuGet
