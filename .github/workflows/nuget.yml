@@ -1,26 +1,29 @@
-name: nuget
+name: NuGet
 
 on:
+  workflow_run:
+    workflows:
+      - CI
+    types:
+      - completed
   push:
     tags:
       - "v*"
 
 jobs:
   build:
-    name: Build, Test, Push
+    name: 📦 Publish to NuGet
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
       - name: 🔨 Use .NET Core 5.0 SDK
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "5.0.x"
-      - name: Restore dependencies
-        run: dotnet restore ./Tethos.sln
-      - name: Build
-        run: dotnet build ./Tethos.sln --configuration Release --no-restore
-      - name: Test
-        run: dotnet test ./Tethos.sln --configuration Release --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory ./coverage
-      - name: Push to NuGet
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: nuget-packages
+
+      - name: 🎁 Push to NuGet
         run: dotnet nuget push **/Tethos.*.nupkg --source ${{ secrets.NUGET_FEED }} --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
