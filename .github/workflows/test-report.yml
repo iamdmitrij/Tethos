@@ -8,12 +8,11 @@ on:
       - completed
 jobs:
   report:
-    name: 📜 Test Report
     runs-on: ubuntu-latest
     steps:
       - uses: dorny/test-reporter@v1
         with:
           artifact: test-results
-          name: Tests
+          name: 📜 Test Report
           path: "*.trx"
           reporter: dotnet-trx
