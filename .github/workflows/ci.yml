@@ -78,5 +78,5 @@ jobs:
         with:
           name: nuget-packages
           path: |
-            **/*.nupkg
-            **/*.snupkg
+            src/**/Tethos*.nupkg
+            src/**/Tethos*.snupkg
