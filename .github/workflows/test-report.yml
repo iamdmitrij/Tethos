@@ -1,4 +1,4 @@
-name: 📜 Test Report
+name: Report
 
 on:
   workflow_run:
@@ -8,6 +8,7 @@ on:
       - completed
 jobs:
   report:
+    name: 📜 Test Report
     runs-on: ubuntu-latest
     steps:
       - uses: dorny/test-reporter@v1
