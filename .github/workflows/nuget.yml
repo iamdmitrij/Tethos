@@ -1,6 +1,11 @@
 name: NuGet
 
 on:
+  workflow_run:
+    workflows:
+      - CI
+    types:
+      - completed
   push:
     tags:
       - "v*"
