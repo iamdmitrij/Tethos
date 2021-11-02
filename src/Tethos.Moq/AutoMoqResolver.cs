@@ -18,7 +18,7 @@
         public override object MapToTarget(Type targetType)
         {
             var mockType = typeof(Mock<>).MakeGenericType(targetType);
-            var mock = Kernel.Resolve(mockType) as Mock;
+            var mock = this.Kernel.Resolve(mockType) as Mock;
             
             return mock?.Object;
         }

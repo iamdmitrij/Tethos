@@ -12,7 +12,7 @@
 
         public ContainerInjected(IAutoMoqContainer container)
         {
-            Container = container;
+            this.Container = container;
         }
 
         [Fact]
@@ -20,9 +20,9 @@
         {
             // Arrange
             var expected = 42;
-            var sut = Container.Resolve<SystemUnderTest>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
 
-            Container.Resolve<Mock<IMockable>>()
+            this.Container.Resolve<Mock<IMockable>>()
                 .Setup(x => x.Do())
                 .Returns(expected);
 
@@ -35,13 +35,13 @@
 
         public void Dispose()
         {
-            Dispose(true);
+            this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool disposing)
         {
-            Container?.Dispose();
+            this.Container?.Dispose();
         }
     }
 }

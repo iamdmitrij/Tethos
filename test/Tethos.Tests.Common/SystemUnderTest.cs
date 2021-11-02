@@ -4,8 +4,8 @@
     {
         public IMockable Mockable { get; }
 
-        public SystemUnderTest(IMockable mockable) => Mockable = mockable;
+        public SystemUnderTest(IMockable mockable) => this.Mockable = mockable;
 
-        public int Do() => Mockable.Do();
+        public int Do() => this.Mockable.Do();
     }
 }

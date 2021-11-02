@@ -12,7 +12,7 @@ namespace Tethos.MSTest.Demo
 
         public ContainerAsProperty()
         {
-            Container = AutoMoqContainerFactory.Create();
+            this.Container = AutoMoqContainerFactory.Create();
         }
 
         [TestMethod]
@@ -20,9 +20,9 @@ namespace Tethos.MSTest.Demo
         {
             // Arrange
             var expected = 42;
-            var sut = Container.Resolve<SystemUnderTest>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
 
-            Container.Resolve<Mock<IMockable>>()
+            this.Container.Resolve<Mock<IMockable>>()
                 .Setup(x => x.Do())
                 .Returns(expected);
 

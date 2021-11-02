@@ -21,7 +21,7 @@
             // TODO: Pass constructor arguments received from Castle Container.Resolve(params)
             var mock = Substitute.For(new Type[] { targetType }, new object[] { });
 
-            Kernel.Register(Component.For(targetType)
+            this.Kernel.Register(Component.For(targetType)
                 .Instance(mock)
                 .OverridesExistingRegistration()
             );

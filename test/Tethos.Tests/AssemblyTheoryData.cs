@@ -7,7 +7,7 @@
     {
         public AssemblyTheoryData()
         {
-            Add("Fake.Core21.dll",
+            this.Add("Fake.Core21.dll",
                 new[]
                 {
                     "Fake.Core21",
@@ -22,7 +22,7 @@
                 }
             );
 
-            Add("Fake.Core31.dll",
+            this.Add("Fake.Core31.dll",
                 new[]
                 {
                     "Fake.Core21",
@@ -37,7 +37,7 @@
                 }
             );
 
-            Add("Fake.Net50.dll",
+            this.Add("Fake.Net50.dll",
                 new[]
                 {
                     "Fake.Core21",
@@ -52,7 +52,7 @@
                 }
             );
 
-            Add("Tethos.dll",
+            this.Add("Tethos.dll",
                 new[]
                 {
                     "Tethos",
@@ -61,7 +61,7 @@
                 }
             );
 
-            Add("Tethos.Tests.dll",
+            this.Add("Tethos.Tests.dll",
                 new[]
                 {
                     "Tethos",
@@ -70,7 +70,7 @@
                 }
             );
 
-            Add("Tethos.Tests.Common.dll",
+            this.Add("Tethos.Tests.Common.dll",
                 new[]
                 {
                     "Tethos",

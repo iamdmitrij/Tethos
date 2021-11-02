@@ -8,8 +8,8 @@
 
         public InheritedAutoMockingTest()
         {
-            Proxy = new Mock<AutoMoqContainer>();
-            Container = Proxy.Object;
+            this.Proxy = new Mock<AutoMoqContainer>();
+            this.Container = this.Proxy.Object;
         }
     }
 }

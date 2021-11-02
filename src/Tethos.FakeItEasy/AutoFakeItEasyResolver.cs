@@ -20,7 +20,7 @@
         {
             var mock = Create.Fake(targetType);
 
-            Kernel.Register(Component.For(targetType)
+            this.Kernel.Register(Component.For(targetType)
                 .Instance(mock)
                 .OverridesExistingRegistration()
             );

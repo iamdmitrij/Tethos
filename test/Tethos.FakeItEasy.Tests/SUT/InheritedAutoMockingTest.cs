@@ -6,6 +6,6 @@
     {
         public AutoFakeItEasyContainer Proxy { get; }
 
-        public InheritedAutoMockingTest() => Proxy = Container = A.Fake<AutoFakeItEasyContainer>();
+        public InheritedAutoMockingTest() => this.Proxy = this.Container = A.Fake<AutoFakeItEasyContainer>();
     }
 }

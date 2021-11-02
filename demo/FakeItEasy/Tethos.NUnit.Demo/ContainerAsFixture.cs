@@ -11,7 +11,7 @@ namespace Tethos.NUnit.Demo
 
         public ContainerAsProperty()
         {
-            Container = AutoFakeItEasyContainerFactory.Create();
+            this.Container = AutoFakeItEasyContainerFactory.Create();
         }
 
         [Test]
@@ -19,8 +19,8 @@ namespace Tethos.NUnit.Demo
         {
             // Arrange
             var expected = 42;
-            var sut = Container.Resolve<SystemUnderTest>();
-            var mock = Container.Resolve<IMockable>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
+            var mock = this.Container.Resolve<IMockable>();
 
             A.CallTo(() => mock.Do()).Returns(expected);
 

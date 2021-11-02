@@ -10,7 +10,7 @@
         public void Test_SimplyDependency_ShouldMatchValue()
         {
             // Arrange
-            var sut = Container.Resolve<SystemUnderTest>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
 
             // Act
             var actual = sut.Do();

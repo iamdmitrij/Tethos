@@ -11,10 +11,10 @@
         /// <inheritdoc />
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            AutoResolver = new AutoNSubstituteResolver(container.Kernel);
+            this.AutoResolver = new AutoNSubstituteResolver(container.Kernel);
 
             container.Kernel.Resolver.AddSubResolver(
-                AutoResolver
+                this.AutoResolver
             );
 
             base.Install(container, store);

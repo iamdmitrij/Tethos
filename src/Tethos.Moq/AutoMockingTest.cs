@@ -13,10 +13,10 @@
         /// <inheritdoc />
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            AutoResolver = new AutoMoqResolver(container.Kernel);
+            this.AutoResolver = new AutoMoqResolver(container.Kernel);
 
             container.Kernel.Resolver.AddSubResolver(
-                AutoResolver
+                this.AutoResolver
             );
 
             container.Register(Component.For(typeof(Mock<>)));

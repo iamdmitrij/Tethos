@@ -12,8 +12,8 @@ namespace Tethos.NUnit.Demo
         {
             // Arrange
             var expected = 42;
-            var sut = Container.Resolve<SystemUnderTest>();
-            var mock = Container.Resolve<IMockable>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
+            var mock = this.Container.Resolve<IMockable>();
 
             mock.Do().Returns(expected);
 

@@ -15,7 +15,7 @@
         public void Container_ShouldHaveAutoResolverInstalled()
         {
             // Act
-            var actual = Container.Resolve<ISubDependencyResolver>();
+            var actual = this.Container.Resolve<ISubDependencyResolver>();
 
             // Assert
             actual.Should().BeOfType<AutoNSubstituteResolver>();
@@ -25,8 +25,8 @@
         public void Test_SimpleDependency_ShouldMatchValue(int expected)
         {
             // Arrange
-            var sut = Container.Resolve<SystemUnderTest>();
-            Container.Resolve<IMockable>()
+            var sut = this.Container.Resolve<SystemUnderTest>();
+            this.Container.Resolve<IMockable>()
                 .Do()
                 .Returns(expected);
 
@@ -41,16 +41,16 @@
         public void Clean_ShouldRevertBackToOriginalBehavior(Mockable mockable)
         {
             // Arrange
-            var sut = Container.Resolve<SystemUnderTest>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
 
-            Container.Register(Component.For<SystemUnderTest>()
+            this.Container.Register(Component.For<SystemUnderTest>()
                 .OverridesExistingRegistration()
                 .DependsOn(Dependency.OnValue<IMockable>(mockable))
             );
 
             // Act
-            Clean();
-            var concrete = Container.Resolve<SystemUnderTest>();
+            this.Clean();
+            var concrete = this.Container.Resolve<SystemUnderTest>();
             Action action = () => concrete.Do();
             sut.Do();
 
