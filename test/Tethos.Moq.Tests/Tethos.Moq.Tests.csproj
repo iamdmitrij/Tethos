@@ -4,6 +4,7 @@
 		<TargetFramework>net5.0</TargetFramework>
 		<IsTestProject>true</IsTestProject>
 		<NoWarn>1701;1702;NU1603;NU1702</NoWarn>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
 
 	<ItemGroup>
