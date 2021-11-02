@@ -11,20 +11,21 @@
     public abstract class AutoResolver : ISubDependencyResolver
     {
         /// <summary>
-        /// <see cref="Castle.Windsor"/> kernel dependency.
+        /// Initializes a new instance of the <see cref="AutoResolver"/> class.
         /// </summary>
-        public IKernel Kernel { get; }
+        /// <param name="kernel"><see cref="Castle.Windsor"/> kernel setup.</param>
+        protected AutoResolver(IKernel kernel) => this.Kernel = kernel;
 
         /// <summary>
-        /// Constructor accepting <see cref="Castle.Windsor"/> kernel as dependency.
+        /// Gets <see cref="Castle.Windsor"/> kernel dependency.
         /// </summary>
-        protected AutoResolver(IKernel kernel) => this.Kernel = kernel;
+        public IKernel Kernel { get; }
 
         /// <summary>
         /// Maps target mock object to mocked object type.
         /// </summary>
         /// <param name="targetType">Target type for object to be converted to destination object.</param>
-        /// <returns></returns>
+        /// <returns>Object converted to mock type.</returns>
         public abstract object MapToTarget(Type targetType);
 
         /// <inheritdoc />

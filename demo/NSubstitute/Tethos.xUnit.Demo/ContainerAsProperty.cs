@@ -1,19 +1,19 @@
 ﻿namespace Tethos.xUnit.Demo
 {
     using System;
-    using NSubstitute;
+    using global::NSubstitute;
     using Tethos.NSubstitute;
     using Tethos.Tests.Common;
     using Xunit;
 
     public class ContainerAsProperty : IDisposable
     {
-        public IAutoNSubstituteContainer Container { get; }
-
         public ContainerAsProperty()
         {
             this.Container = AutoNSubstituteContainerFactory.Create();
         }
+
+        public IAutoNSubstituteContainer Container { get; }
 
         [Fact]
         public void Do_WithMock_ShouldReturn42()

@@ -10,32 +10,33 @@
     /// <summary>
     /// Base for <see cref="Tethos"/> auto-mocking system.
     /// </summary>
+    /// <typeparam name="T">Container contract.</typeparam>
     public abstract class BaseAutoMockingTest<T> : IWindsorInstaller, IDisposable
         where T : IAutoMockingContainer, new()
     {
         /// <summary>
-        /// Auto-mocking container
-        /// </summary>
-        protected AutoResolver AutoResolver { get; set; }
-
-        /// <summary>
-        /// Entry assembly from which sub-dependencies are loaded into <see cref="Castle.Windsor"/> IoC.
-        /// </summary>
-        public virtual Assembly[] Assemblies { get; }
-
-        /// <summary>
-        /// <see cref="Castle.Windsor"/> container dependency.
-        /// </summary>
-        public T Container { get; internal set; }
-
-        /// <summary>
-        /// Default constructor.
+        /// Initializes a new instance of the <see cref="BaseAutoMockingTest{T}"/> class.
         /// </summary>
         protected BaseAutoMockingTest()
         {
             this.Assemblies = Assembly.GetAssembly(this.GetType()).GetDependencies();
             this.Container = (T)new T().Install(this);
         }
+
+        /// <summary>
+        /// Gets entry assembly from which sub-dependencies are loaded into <see cref="Castle.Windsor"/> IoC.
+        /// </summary>
+        public virtual Assembly[] Assemblies { get; }
+
+        /// <summary>
+        /// Gets <see cref="Castle.Windsor"/> container dependency.
+        /// </summary>
+        public T Container { get; internal set; }
+
+        /// <summary>
+        /// Gets or sets auto-mocking container.
+        /// </summary>
+        protected AutoResolver AutoResolver { get; set; }
 
         /// <inheritdoc />
         public virtual void Install(IWindsorContainer container, IConfigurationStore store) =>
@@ -49,6 +50,15 @@
                         .LifestyleTransient())
                 .ToArray());
 
+        /// <summary>
+        /// Releases automocking resolver from <see cref="WindsorContainer"/>.
+        /// Restoring container to normal function without auto-mocking.
+        /// </summary>
+        public void Clean() =>
+            this.Container
+                .Kernel
+                .Resolver.RemoveSubResolver(this.AutoResolver);
+
         /// <inheritdoc />
         public void Dispose()
         {
@@ -59,16 +69,7 @@
         /// <summary>
         /// Disposes <see cref="IWindsorContainer"/> current instance.
         /// </summary>
-        /// <param name="disposing"></param>
+        /// <param name="disposing">Is instance disposing.</param>
         protected virtual void Dispose(bool disposing) => this.Container?.Dispose();
-
-        /// <summary>
-        /// Releases automocking resolver from <see cref="WindsorContainer"/>.
-        /// Restoring container to normal function without auto-mocking.
-        /// </summary>
-        public void Clean() =>
-            this.Container
-                .Kernel
-                .Resolver.RemoveSubResolver(this.AutoResolver);
     }
 }

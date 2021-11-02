@@ -1,18 +1,18 @@
 namespace Tethos.NUnit.Demo
 {
-    using Moq;
-    using NUnit.Framework;
+    using global::Moq;
+    using global::NUnit.Framework;
     using Tethos.Moq;
     using Tethos.Tests.Common;
 
     public class ContainerAsProperty
     {
-        public IAutoMoqContainer Container { get; }
-
         public ContainerAsProperty()
         {
             this.Container = AutoMoqContainerFactory.Create();
         }
+
+        public IAutoMoqContainer Container { get; }
 
         [Test]
         public void Do_WithMock_ShouldReturn42()

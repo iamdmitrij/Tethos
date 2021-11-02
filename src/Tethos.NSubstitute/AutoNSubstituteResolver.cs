@@ -3,14 +3,17 @@
     using System;
     using Castle.MicroKernel;
     using Castle.MicroKernel.Registration;
-    using NSubstitute;
+    using global::NSubstitute;
 
     /// <summary>
     /// <see cref="AutoResolver"/> tailored for <see cref="NSubstitute"/> mocking systems.
     /// </summary>
     public class AutoNSubstituteResolver : AutoResolver
     {
-        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AutoNSubstituteResolver"/> class.
+        /// </summary>
+        /// <param name="kernel"><see cref="Castle.Windsor"/> kernel setup.</param>
         public AutoNSubstituteResolver(IKernel kernel)
             : base(kernel)
         {

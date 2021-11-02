@@ -12,11 +12,11 @@
     internal static class AssemblyExtensions
     {
         /// <summary>
-        /// A collection of allowed file extensions for container assemblies.
+        /// Gets a collection of allowed file extensions for container assemblies.
         /// </summary>
         internal static HashSet<string> FileExtensions { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
-            ".dll", ".exe"
+            ".dll", ".exe",
         };
 
         /// <summary>
@@ -73,11 +73,13 @@
         /// Silently loads assembly by its name.
         /// If any failure occurs in the assembly format, it will return null value.
         /// </summary>
-        internal static Assembly TryToLoadAssembly(this string assembly)
+        /// <param name="assemblyName">Name of an assembly to load.</param>
+        /// <returns>Loaded assembly instance.</returns>
+        internal static Assembly TryToLoadAssembly(this string assemblyName)
         {
             try
             {
-                return Assembly.LoadFrom(assembly);
+                return Assembly.LoadFrom(assemblyName);
             }
             catch (BadImageFormatException)
             {
