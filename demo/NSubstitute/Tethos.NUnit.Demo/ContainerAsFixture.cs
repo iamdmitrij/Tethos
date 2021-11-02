@@ -1,10 +1,10 @@
-using NSubstitute;
-using NUnit.Framework;
-using Tethos.NSubstitute;
-using Tethos.Tests.Common;
-
 namespace Tethos.NUnit.Demo
 {
+    using NSubstitute;
+    using NUnit.Framework;
+    using Tethos.NSubstitute;
+    using Tethos.Tests.Common;
+
     public class ContainerAsProperty
     {
         public IAutoNSubstituteContainer Container { get; }

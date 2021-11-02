@@ -1,7 +1,7 @@
-﻿using NSubstitute;
-
-namespace Tethos.NSubstitute.Tests.SUT
+﻿namespace Tethos.NSubstitute.Tests.SUT
 {
+    using NSubstitute;
+
     public class InheritedAutoMockingTest : AutoMockingTest
     {
         public AutoNSubstituteContainer Proxy { get; }

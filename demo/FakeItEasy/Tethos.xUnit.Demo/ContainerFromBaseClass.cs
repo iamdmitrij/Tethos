@@ -1,10 +1,10 @@
-using FakeItEasy;
-using Tethos.FakeItEasy;
-using Tethos.Tests.Common;
-using Xunit;
-
 namespace Tethos.xUnit.Demo
 {
+    using FakeItEasy;
+    using Tethos.FakeItEasy;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class ContainerFromBaseClass : AutoMockingTest
     {
         [Fact]

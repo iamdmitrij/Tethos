@@ -1,11 +1,11 @@
-﻿using NSubstitute;
-using System;
-using Tethos.NSubstitute;
-using Tethos.Tests.Common;
-using Xunit;
-
-namespace Tethos.xUnit.Demo
+﻿namespace Tethos.xUnit.Demo
 {
+    using System;
+    using NSubstitute;
+    using Tethos.NSubstitute;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class ContainerInjected : IDisposable
     {
         public IAutoNSubstituteContainer Container { get; }

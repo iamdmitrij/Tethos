@@ -1,10 +1,10 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using Tethos.Moq;
-using Tethos.Tests.Common;
-
 namespace Tethos.MSTest.Demo
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
+    using Tethos.Moq;
+    using Tethos.Tests.Common;
+
     [TestClass]
     public class ContainerFromBaseClass : AutoMockingTest
     {

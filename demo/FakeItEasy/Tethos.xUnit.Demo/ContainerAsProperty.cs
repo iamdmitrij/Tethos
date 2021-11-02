@@ -1,11 +1,11 @@
-﻿using FakeItEasy;
-using System;
-using Tethos.FakeItEasy;
-using Tethos.Tests.Common;
-using Xunit;
-
-namespace Tethos.xUnit.Demo
+﻿namespace Tethos.xUnit.Demo
 {
+    using System;
+    using FakeItEasy;
+    using Tethos.FakeItEasy;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class ContainerAsProperty : IDisposable
     {
         public IAutoFakeItEasyContainer Container { get; }

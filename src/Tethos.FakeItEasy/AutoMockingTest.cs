@@ -1,8 +1,8 @@
-﻿using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
-
-namespace Tethos.FakeItEasy
+﻿namespace Tethos.FakeItEasy
 {
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
+
     /// <summary>
     /// <see cref="Tethos"/> auto-mocking system using <see cref="FakeItEasy"/> to inject mocks.
     /// </summary>

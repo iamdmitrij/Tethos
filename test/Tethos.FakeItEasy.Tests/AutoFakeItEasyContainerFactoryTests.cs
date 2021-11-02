@@ -1,11 +1,11 @@
-﻿using FakeItEasy;
-using FluentAssertions;
-using Tethos.FakeItEasy.Tests.Attributes;
-using Tethos.Tests.Common;
-using Xunit;
-
-namespace Tethos.FakeItEasy.Tests
+﻿namespace Tethos.FakeItEasy.Tests
 {
+    using FakeItEasy;
+    using FluentAssertions;
+    using Tethos.FakeItEasy.Tests.Attributes;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class AutoFakeItEasyContainerFactoryTests
     {
         [Theory, FactoryContainerData]

@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Tethos.FakeItEasy;
-
-namespace Tethos.xUnit.Demo
+﻿namespace Tethos.xUnit.Demo
 {
+    using Microsoft.Extensions.DependencyInjection;
+    using Tethos.FakeItEasy;
+
     public class Startup
     {
 #pragma warning disable CA1822 // Mark members as static

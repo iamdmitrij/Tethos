@@ -1,7 +1,7 @@
-﻿using Castle.Windsor;
-
-namespace Tethos.FakeItEasy
+﻿namespace Tethos.FakeItEasy
 {
+    using Castle.Windsor;
+
     /// <summary>
     /// Auto-mocking contrainer for <see cref="FakeItEasy"/> concrete type.
     /// </summary>

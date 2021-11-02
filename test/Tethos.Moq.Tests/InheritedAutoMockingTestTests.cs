@@ -1,10 +1,10 @@
-﻿using Moq;
-using Xunit;
-using Tethos.Moq.Tests.SUT;
-using AutoFixture.Xunit2;
-
-namespace Tethos.Moq.Tests
+﻿namespace Tethos.Moq.Tests
 {
+    using AutoFixture.Xunit2;
+    using Moq;
+    using Tethos.Moq.Tests.SUT;
+    using Xunit;
+
     public class InheritedAutoMockingTestTests : AutoMockingTest
     {
         [Theory, AutoData]

@@ -1,10 +1,10 @@
-using Moq;
-using NUnit.Framework;
-using Tethos.Moq;
-using Tethos.Tests.Common;
-
 namespace Tethos.NUnit.Demo
 {
+    using Moq;
+    using NUnit.Framework;
+    using Tethos.Moq;
+    using Tethos.Tests.Common;
+
     public class ContainerAsProperty
     {
         public IAutoMoqContainer Container { get; }

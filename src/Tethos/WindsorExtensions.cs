@@ -1,8 +1,8 @@
-﻿using Castle.MicroKernel.Registration;
-using System;
-
-namespace Tethos
+﻿namespace Tethos
 {
+    using System;
+    using Castle.MicroKernel.Registration;
+
     internal static class WindsorExtensions
     {
         internal static ComponentRegistration<T> OverridesExistingRegistration<T>(

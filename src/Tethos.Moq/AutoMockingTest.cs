@@ -1,10 +1,10 @@
-﻿using Castle.MicroKernel.Registration;
-using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
-using Moq;
-
-namespace Tethos.Moq
+﻿namespace Tethos.Moq
 {
+    using Castle.MicroKernel.Registration;
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
+    using Moq;
+
     /// <summary>
     /// <see cref="Tethos"/> auto-mocking system using <see cref="Moq"/> to inject mocks.
     /// </summary>

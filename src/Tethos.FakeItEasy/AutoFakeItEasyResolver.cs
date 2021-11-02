@@ -1,10 +1,10 @@
-﻿using Castle.MicroKernel;
-using Castle.MicroKernel.Registration;
-using FakeItEasy.Sdk;
-using System;
-
-namespace Tethos.FakeItEasy
+﻿namespace Tethos.FakeItEasy
 {
+    using System;
+    using Castle.MicroKernel;
+    using Castle.MicroKernel.Registration;
+    using FakeItEasy.Sdk;
+
     /// <summary>
     /// <see cref="AutoResolver"/> tailored for <see cref="FakeItEasy"/> mocking systems.
     /// </summary>

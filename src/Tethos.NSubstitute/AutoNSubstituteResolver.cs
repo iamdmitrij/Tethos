@@ -1,10 +1,10 @@
-﻿using Castle.MicroKernel;
-using Castle.MicroKernel.Registration;
-using NSubstitute;
-using System;
-
-namespace Tethos.NSubstitute
+﻿namespace Tethos.NSubstitute
 {
+    using System;
+    using Castle.MicroKernel;
+    using Castle.MicroKernel.Registration;
+    using NSubstitute;
+
     /// <summary>
     /// <see cref="AutoResolver"/> tailored for <see cref="NSubstitute"/> mocking systems.
     /// </summary>

@@ -1,10 +1,10 @@
-﻿using Xunit;
-using AutoFixture.Xunit2;
-using Tethos.NSubstitute.Tests.SUT;
-using NSubstitute;
-
-namespace Tethos.NSubstitute.Tests
+﻿namespace Tethos.NSubstitute.Tests
 {
+    using AutoFixture.Xunit2;
+    using NSubstitute;
+    using Tethos.NSubstitute.Tests.SUT;
+    using Xunit;
+
     public class InheritedAutoMockingTestTests : AutoMockingTest
     {
         [Theory, AutoData]

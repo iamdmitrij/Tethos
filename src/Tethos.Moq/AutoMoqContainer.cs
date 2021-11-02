@@ -1,7 +1,7 @@
-﻿using Castle.Windsor;
-
-namespace Tethos.Moq
+﻿namespace Tethos.Moq
 {
+    using Castle.Windsor;
+
     /// <summary>
     /// Auto-mocking contrainer for <see cref="Moq"/> concrete type.
     /// </summary>

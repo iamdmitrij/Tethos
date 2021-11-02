@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace FakeAssemblyFramework472
+﻿namespace FakeAssemblyFramework472
 {
+    using System;
+
     static class Program
     {
         static void Main(string[] args)

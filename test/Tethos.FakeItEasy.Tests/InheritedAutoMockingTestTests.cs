@@ -1,10 +1,10 @@
-﻿using AutoFixture.Xunit2;
-using FakeItEasy;
-using Tethos.FakeItEasy.Tests.SUT;
-using Xunit;
-
-namespace Tethos.FakeItEasy.Tests
+﻿namespace Tethos.FakeItEasy.Tests
 {
+    using AutoFixture.Xunit2;
+    using FakeItEasy;
+    using Tethos.FakeItEasy.Tests.SUT;
+    using Xunit;
+
     public class InheritedAutoMockingTestTests : AutoMockingTest
     {
         [Theory, AutoData]

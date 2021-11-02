@@ -1,7 +1,7 @@
-﻿using Castle.Windsor;
-
-namespace Tethos.NSubstitute
+﻿namespace Tethos.NSubstitute
 {
+    using Castle.Windsor;
+
     /// <summary>
     /// Auto-mocking contrainer for <see cref="NSubstitute"/> concrete type.
     /// </summary>

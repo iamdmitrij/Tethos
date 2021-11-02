@@ -1,14 +1,14 @@
-﻿using AutoFixture.Xunit2;
-using Castle.MicroKernel;
-using Castle.MicroKernel.Registration;
-using FakeItEasy;
-using FluentAssertions;
-using System;
-using Tethos.Tests.Common;
-using Xunit;
-
-namespace Tethos.FakeItEasy.Tests
+﻿namespace Tethos.FakeItEasy.Tests
 {
+    using System;
+    using AutoFixture.Xunit2;
+    using Castle.MicroKernel;
+    using Castle.MicroKernel.Registration;
+    using FakeItEasy;
+    using FluentAssertions;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class AutoMockingTestTests : AutoMockingTest
     {
         [Fact]

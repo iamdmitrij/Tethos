@@ -1,9 +1,9 @@
-﻿using Castle.MicroKernel;
-using Moq;
-using System;
-
-namespace Tethos.Moq
+﻿namespace Tethos.Moq
 {
+    using System;
+    using Castle.MicroKernel;
+    using Moq;
+
     /// <summary>
     /// <see cref="AutoResolver"/> tailored for <see cref="Moq"/> mocking systems.
     /// </summary>

@@ -1,9 +1,9 @@
-﻿using AutoFixture;
-using AutoFixture.AutoFakeItEasy;
-using AutoFixture.Xunit2;
-
-namespace Tethos.FakeItEasy.Tests.Attributes
+﻿namespace Tethos.FakeItEasy.Tests.Attributes
 {
+    using AutoFixture;
+    using AutoFixture.AutoFakeItEasy;
+    using AutoFixture.Xunit2;
+
     internal class FactoryContainerDataAttribute : AutoDataAttribute
     {
         public FactoryContainerDataAttribute() : base(

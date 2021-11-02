@@ -1,10 +1,10 @@
-using FakeItEasy;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tethos.FakeItEasy;
-using Tethos.Tests.Common;
-
 namespace Tethos.MSTest.Demo
 {
+    using FakeItEasy;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Tethos.FakeItEasy;
+    using Tethos.Tests.Common;
+
     [TestClass]
     public class ContainerAsProperty
     {

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Xunit;
-
-namespace Tethos.Tests
+﻿namespace Tethos.Tests
 {
+    using System.Collections.Generic;
+    using Xunit;
+
     public class AssemblyTheoryData : TheoryData<string, IEnumerable<string>>
     {
         public AssemblyTheoryData()

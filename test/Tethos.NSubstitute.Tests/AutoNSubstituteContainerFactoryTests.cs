@@ -1,11 +1,11 @@
-﻿using FluentAssertions;
-using NSubstitute;
-using Tethos.NSubstitute.Tests.Attributes;
-using Tethos.Tests.Common;
-using Xunit;
-
-namespace Tethos.NSubstitute.Tests
+﻿namespace Tethos.NSubstitute.Tests
 {
+    using FluentAssertions;
+    using NSubstitute;
+    using Tethos.NSubstitute.Tests.Attributes;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class AutoNSubstituteContainerFactoryTests
     {
         [Theory, FactoryContainerData]
