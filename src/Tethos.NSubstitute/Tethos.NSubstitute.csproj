@@ -6,7 +6,7 @@
 		<IsPackable>true</IsPackable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>iamdmitrij</Authors>
-		<Version>1.2.1</Version>
+		<Version>1.2.2</Version>
 		<Description>Library which allows to seemlesly mock NSubstitute dependencies for more simpler unit tests.</Description>
 		<PackageLicense>https://github.com/iamdmitrij/Tethos/blob/main/LICENSE</PackageLicense>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
