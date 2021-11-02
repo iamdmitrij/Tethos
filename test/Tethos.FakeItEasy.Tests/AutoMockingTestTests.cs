@@ -44,8 +44,7 @@
 
             this.Container.Register(Component.For<SystemUnderTest>()
                 .OverridesExistingRegistration()
-                .DependsOn(Dependency.OnValue<IMockable>(mockable))
-            );
+                .DependsOn(Dependency.OnValue<IMockable>(mockable)));
 
             // Act
             this.Clean();

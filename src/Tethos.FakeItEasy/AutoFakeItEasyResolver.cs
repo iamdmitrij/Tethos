@@ -11,7 +11,8 @@
     public class AutoFakeItEasyResolver : AutoResolver
     {
         /// <inheritdoc />
-        public AutoFakeItEasyResolver(IKernel kernel) : base(kernel)
+        public AutoFakeItEasyResolver(IKernel kernel)
+            : base(kernel)
         {
         }
 
@@ -22,8 +23,7 @@
 
             this.Kernel.Register(Component.For(targetType)
                 .Instance(mock)
-                .OverridesExistingRegistration()
-            );
+                .OverridesExistingRegistration());
 
             return mock;
         }

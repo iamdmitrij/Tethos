@@ -16,8 +16,7 @@
             this.AutoResolver = new AutoMoqResolver(container.Kernel);
 
             container.Kernel.Resolver.AddSubResolver(
-                this.AutoResolver
-            );
+                this.AutoResolver);
 
             container.Register(Component.For(typeof(Mock<>)));
 

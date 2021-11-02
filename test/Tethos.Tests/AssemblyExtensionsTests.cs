@@ -49,8 +49,7 @@
         [Theory]
         [ClassData(typeof(AssemblyTheoryData))]
         public void GetDependencies_UsingLocalDependencies_ShouldMatchLoaddingAssemblyCount(
-            string assemblyName, IEnumerable<string> expectedAssemblyName
-        )
+            string assemblyName, IEnumerable<string> expectedAssemblyName)
         {
             // Arrange
             var assembly = Assembly.LoadFrom(assemblyName);

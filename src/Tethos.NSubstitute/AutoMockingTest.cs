@@ -14,8 +14,7 @@
             this.AutoResolver = new AutoNSubstituteResolver(container.Kernel);
 
             container.Kernel.Resolver.AddSubResolver(
-                this.AutoResolver
-            );
+                this.AutoResolver);
 
             base.Install(container, store);
         }

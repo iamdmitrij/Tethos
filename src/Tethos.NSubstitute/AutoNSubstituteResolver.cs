@@ -11,7 +11,8 @@
     public class AutoNSubstituteResolver : AutoResolver
     {
         /// <inheritdoc />
-        public AutoNSubstituteResolver(IKernel kernel) : base(kernel)
+        public AutoNSubstituteResolver(IKernel kernel)
+            : base(kernel)
         {
         }
 
@@ -23,8 +24,7 @@
 
             this.Kernel.Register(Component.For(targetType)
                 .Instance(mock)
-                .OverridesExistingRegistration()
-            );
+                .OverridesExistingRegistration());
 
             return mock;
         }

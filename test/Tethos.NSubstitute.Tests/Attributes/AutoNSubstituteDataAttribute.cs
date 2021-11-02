@@ -6,9 +6,9 @@
 
     internal class AutoNSubstituteDataAttribute : AutoDataAttribute
     {
-        public AutoNSubstituteDataAttribute() : base(
-            () => new Fixture().Customize(new AutoNSubstituteCustomization())
-        )
+        public AutoNSubstituteDataAttribute()
+            : base(
+            () => new Fixture().Customize(new AutoNSubstituteCustomization()))
         {
         }
     }

@@ -11,8 +11,7 @@
         [Theory, AutoNSubstituteData]
         public void MapToTarget_ShouldMatchMockedType(
             IMockable mockable,
-            IKernel kernel
-        )
+            IKernel kernel)
         {
             // Arrange
             var sut = new AutoNSubstituteResolver(kernel);

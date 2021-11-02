@@ -19,8 +19,7 @@
                     "Fake.Framework472",
                     "Fake.Standard20",
                     "Fake.Standard21",
-                }
-            );
+                });
 
             this.Add("Fake.Core31.dll",
                 new[]
@@ -34,8 +33,7 @@
                     "Fake.Framework472",
                     "Fake.Standard20",
                     "Fake.Standard21",
-                }
-            );
+                });
 
             this.Add("Fake.Net50.dll",
                 new[]
@@ -49,8 +47,7 @@
                     "Fake.Framework472",
                     "Fake.Standard20",
                     "Fake.Standard21",
-                }
-            );
+                });
 
             this.Add("Tethos.dll",
                 new[]
@@ -58,8 +55,7 @@
                     "Tethos",
                     "Tethos.Tests",
                     "Tethos.Tests.Common",
-                }
-            );
+                });
 
             this.Add("Tethos.Tests.dll",
                 new[]
@@ -67,8 +63,7 @@
                     "Tethos",
                     "Tethos.Tests",
                     "Tethos.Tests.Common",
-                }
-            );
+                });
 
             this.Add("Tethos.Tests.Common.dll",
                 new[]
@@ -76,8 +71,7 @@
                     "Tethos",
                     "Tethos.Tests",
                     "Tethos.Tests.Common",
-                }
-            );
+                });
         }
     }
 }

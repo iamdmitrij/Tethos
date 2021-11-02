@@ -32,8 +32,7 @@
             bool expected,
             Mock<IKernel> kernel,
             Mock<ISubDependencyResolver> resolver,
-            string key
-        )
+            string key)
         {
             // Arrange
             var sut = new ConcreteAutoResolver(kernel.Object);
@@ -43,8 +42,7 @@
                 resolver.Object as CreationContext,
                 resolver.Object,
                 new ComponentModel(),
-                new DependencyModel(key, type, false)
-            );
+                new DependencyModel(key, type, false));
 
             // Assert
             actual.Should().Be(expected);
@@ -54,8 +52,7 @@
         public void Resolve_Object_ShouldMatch(
             Mock<IKernel> kernel,
             Mock<ISubDependencyResolver> resolver,
-            string key
-        )
+            string key)
         {
             // Arrange
             var expected = new Mock<object>(key);
@@ -67,8 +64,7 @@
                 resolver.Object as CreationContext,
                 resolver.Object,
                 new ComponentModel(),
-                new DependencyModel(key, expected.GetType(), false)
-            );
+                new DependencyModel(key, expected.GetType(), false));
 
             // Assert
             actual.Should().Equals(expected);

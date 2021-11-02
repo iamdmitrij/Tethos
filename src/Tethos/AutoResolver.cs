@@ -32,15 +32,13 @@
             CreationContext context,
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
-            DependencyModel dependency
-        ) => dependency.TargetType.IsInterface;
+            DependencyModel dependency) => dependency.TargetType.IsInterface;
 
         /// <inheritdoc />
         public object Resolve(
             CreationContext context,
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
-            DependencyModel dependency
-        ) => this.MapToTarget(dependency.TargetType);
+            DependencyModel dependency) => this.MapToTarget(dependency.TargetType);
     }
 }
