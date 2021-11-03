@@ -41,7 +41,7 @@ namespace Tethos.Tests
         public void TryToLoadAssembly_ShouldLoadAssembly(string assemblyName)
         {
             // Act
-            var assembly = Assembly.Load(assemblyName);
+            var assembly = Assembly.LoadFrom(assemblyName);
             var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
 
             // Assert
