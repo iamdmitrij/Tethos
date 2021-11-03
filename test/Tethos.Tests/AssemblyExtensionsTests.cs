@@ -146,5 +146,57 @@ namespace Tethos.Tests
             // Assert
             actual.Should().HaveCount(expected);
         }
+
+        [Theory]
+        [InlineData(0, "ref/Fake.Core31.dll", "foo/ref/Fake.Core31.dll")]
+        [InlineData(0, "ref/Fake.Core31.ref.dll")]
+        [InlineData(1, "Fake.Core31.dll")]
+        [InlineData(2, "Fake.ref.Core31.dll", "Fake.ref.ref.ref")]
+        public void FilterRef(int expected, params string[] assemblies)
+        {
+            // Act
+            var actual = assemblies.FilterRef();
+
+            // Assert
+            actual.Should().HaveCount(expected);
+        }
+
+        [Fact]
+        public void GetPath_FromExecutingAssembly_ShouldMatchLocation()
+        {
+            // Act
+            var assembly = Assembly.GetExecutingAssembly();
+            var expected = assembly.Location.Replace("\\", "/");
+            var actual = assembly.GetPath();
+
+            // Assert
+            actual.Should().Be(expected);
+        }
+
+        [Theory, AutoData]
+        public void ElseLoadReferencedAssemblies_ShouldReturnOriginal(Uri[] uris)
+        {
+            // Act
+            var assembly = Assembly.GetExecutingAssembly();
+            var assemblies = uris.Select(x => x.AbsolutePath).ToList();
+            var expected = assemblies.Count;
+            var actual = assemblies.ElseLoadReferencedAssemblies(assembly);
+
+            // Assert
+            actual.Should().HaveCount(expected);
+        }
+
+        [Fact]
+        public void ElseLoadReferencedAssemblies_Empty_ShouldReturnReferenceAssemblied()
+        {
+            // Act
+            var assembly = Assembly.GetExecutingAssembly();
+            var assemblies = Array.Empty<string>();
+            var expected = assembly.GetReferencedAssemblies().Length;
+            var actual = assemblies.ElseLoadReferencedAssemblies(assembly);
+
+            // Assert
+            actual.Should().HaveCount(expected);
+        }
     }
 }
