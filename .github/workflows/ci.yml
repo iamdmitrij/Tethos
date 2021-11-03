@@ -14,18 +14,19 @@ jobs:
     name: 🔨 Build & 🔬 Test
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
+      - name: 🔙 Get Previous Version
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
 
       - name: 🔧 Use .NET Core 5.0 SDK
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "5.0.x"
-
-      - name: 🔙 Get Previous Version
-        id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@v1"
 
       - name: 🔧 Set up JDK 11
         uses: actions/setup-java@v1
