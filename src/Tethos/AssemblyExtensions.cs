@@ -67,7 +67,7 @@ namespace Tethos
             new Uri(assembly.CodeBase).AbsolutePath;
 
         internal static IEnumerable<string> ElseLoadReferencedAssemblies(this IEnumerable<string> assemblies, Assembly rootAssembly) =>
-            assemblies.Any() ? assemblies : rootAssembly.GetReferencedAssemblies().Select(Assembly.Load).Select(GetPath);
+            assemblies.Any() ? assemblies : rootAssembly.GetReferencedAssemblies().Select(TryToLoadAssembly).OfType<Assembly>().Select(GetPath);
 
         internal static Assembly[] LoadAssemblies(this IEnumerable<string> assemblies) =>
             assemblies.Select(Path.GetFileName)
@@ -80,20 +80,32 @@ namespace Tethos
                 .Where(filePath => FileExtensions.Contains(Path.GetExtension(filePath)))
                 .Where(fileName => Path.GetFileName(fileName).Contains(searchPattern));
 
+        internal static Assembly SwallowExceptions(this Func<Assembly> func, params Type[] types)
+        {
+            try
+            {
+                return func.Invoke();
+            }
+            catch (Exception ex) when (types.Contains(ex.GetType()))
+            {
+                return null;
+            }
+        }
+
+        internal static Assembly TryToLoadAssembly(this AssemblyName assemblyName)
+        {
+            Func<Assembly> func = () => Assembly.Load(assemblyName);
+            return func.SwallowExceptions(typeof(BadImageFormatException), typeof(FileNotFoundException));
+        }
+
         /// <summary>
         /// Silently loads assembly by its name.
         /// If any failure occurs in the assembly format, it will return null value.
         /// </summary>
-        internal static Assembly TryToLoadAssembly(this string assembly)
+        internal static Assembly TryToLoadAssembly(this string assemblyPath)
         {
-            try
-            {
-                return Assembly.LoadFrom(assembly);
-            }
-            catch (BadImageFormatException)
-            {
-                return null;
-            }
+            Func<Assembly> func = () => Assembly.LoadFrom(assemblyPath);
+            return func.SwallowExceptions(typeof(BadImageFormatException), typeof(FileNotFoundException));
         }
     }
 }
