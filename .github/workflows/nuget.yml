@@ -1,11 +1,6 @@
-name: NuGet
+name: 📮 NuGet
 
 on:
-  workflow_run:
-    workflows:
-      - CI
-    types:
-      - completed
   push:
     tags:
       - "v*"
@@ -16,15 +11,15 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: 🔨 Use .NET Core 5.0 SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: "5.0.x"
-
       - uses: dawidd6/action-download-artifact@v2
         with:
           workflow: ci.yml
           name: nuget-packages
+
+      - name: 🔨 Use .NET Core 5.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "5.0.x"
 
       - name: 🎁 Push to NuGet
         run: dotnet nuget push **/Tethos.*.nupkg --source ${{ secrets.NUGET_FEED }} --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
