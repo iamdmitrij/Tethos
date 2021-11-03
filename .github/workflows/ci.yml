@@ -63,12 +63,13 @@ jobs:
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
         with:
           fallback: 1.0.0 # Optional fallback tag to use when no tag can be found
-
+      - name: Set env
+        run: echo "$GITHUB_TAG_NAME=$(echo ${{ steps.previoustag.outputs.tag }} | tr -d 'v')" >> $GITHUB_ENV
+      - name: Test
+        run: echo ${{ env.GITHUB_TAG_NAME }}
       - name: 🔩 Restore dependencies
         run: dotnet restore ./Tethos.sln
 
-      - name: Set env
-        run: echo "$GITHUB_TAG_NAME=$(echo ${{ steps.previoustag.outputs.tag }} | tr -d 'v')" >> $GITHUB_ENV
       - name: 🔨 Build
         run: dotnet build ./Tethos.sln --configuration Release --no-restore -p:Version=${{ env.GITHUB_TAG_NAME }}
 
