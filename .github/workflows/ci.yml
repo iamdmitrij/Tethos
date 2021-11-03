@@ -63,12 +63,12 @@ jobs:
           fallback: 1.0.0 # Optional fallback tag to use when no tag can be found
 
       - name: Echo tag
-        run: echo ${{ steps.previoustag.outputs.tag }}
+        run: echo ${{ echo steps.previoustag.outputs.tag | tr -d 'v' }}
       - name: 🔩 Restore dependencies
         run: dotnet restore ./Tethos.sln
 
       - name: 🔨 Build
-        run: dotnet build ./Tethos.sln --configuration Release --no-restore -p:Version=${{ steps.previoustag.outputs.tag }}
+        run: dotnet build ./Tethos.sln --configuration Release --no-restore -p:Version=${{ echo steps.previoustag.outputs.tag | tr -d 'v' }}
 
       - name: 🔬 Test
         run: dotnet test ./Tethos.sln --configuration Release --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory ./coverage
