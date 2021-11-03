@@ -3,6 +3,8 @@
 on:
   push:
     branches: [main]
+    tags:
+      - "v*"
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened]
@@ -66,9 +68,9 @@ jobs:
         run: dotnet restore ./Tethos.sln
 
       - name: Set env
-        run: echo "VERSION_TAG=$(echo steps.previoustag.outputs.tag | tr -d 'v')" >> $GITHUB_ENV
+        run: echo "$GITHUB_TAG_NAME=$(echo steps.previoustag.outputs.tag | tr -d 'v')" >> $GITHUB_ENV
       - name: 🔨 Build
-        run: dotnet build ./Tethos.sln --configuration Release --no-restore -p:Version=${{ env.VERSION_TAG }}
+        run: dotnet build ./Tethos.sln --configuration Release --no-restore -p:Version=$GITHUB_TAG_NAME
 
       - name: 🔬 Test
         run: dotnet test ./Tethos.sln --configuration Release --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory ./coverage
