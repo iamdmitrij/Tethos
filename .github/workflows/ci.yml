@@ -68,7 +68,7 @@ jobs:
         run: dotnet restore ./Tethos.sln
 
       - name: Set env
-        run: echo "$GITHUB_TAG_NAME=$(echo steps.previoustag.outputs.tag | tr -d 'v')" >> $GITHUB_ENV
+        run: echo "$GITHUB_TAG_NAME=$(echo ${{ steps.previoustag.outputs.tag }} | tr -d 'v')" >> $GITHUB_ENV
       - name: 🔨 Build
         run: dotnet build ./Tethos.sln --configuration Release --no-restore -p:Version=$GITHUB_TAG_NAME
 
