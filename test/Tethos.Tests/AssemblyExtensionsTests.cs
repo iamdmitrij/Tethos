@@ -1,5 +1,6 @@
 ﻿using AutoFixture.Xunit2;
 using FluentAssertions;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,10 +41,35 @@ namespace Tethos.Tests
         public void TryToLoadAssembly_ShouldLoadAssembly(string assemblyName)
         {
             // Act
+            var assembly = Assembly.Load(assemblyName);
             var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
 
             // Assert
-            actual.Should().NotBeNull();
+            actual.Should().BeSameAs(assembly);
+        }
+
+        [Theory, AutoData]
+        public void TryToLoadAssembly_UsingAssemblyName_ShouldReturnNull(string name)
+        {
+            // Act
+            var assemblyName = new AssemblyName(name);
+            
+            var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
+
+            // Assert
+            actual.Should().BeNull();
+        }
+
+        [Fact]
+        public void TryToLoadAssembly_UsingAssemblyName_ShouldLoadAssembly()
+        {
+            // Act
+            var assembly = Assembly.GetExecutingAssembly();
+            var assemblyName = assembly.GetName();
+            var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
+
+            // Assert
+            actual.Should().BeSameAs(assembly);
         }
 
         [Theory]
