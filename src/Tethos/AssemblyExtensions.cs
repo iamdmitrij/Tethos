@@ -67,7 +67,7 @@ namespace Tethos
             new Uri(assembly.CodeBase).AbsolutePath;
 
         internal static IEnumerable<string> ElseLoadReferencedAssemblies(this IEnumerable<string> assemblies, Assembly rootAssembly) =>
-            assemblies.Any() ? assemblies : rootAssembly.GetReferencedAssemblies().Select(TryToLoadAssembly).OfType<Assembly>().Select(GetPath);
+            assemblies.Count() < 2 ? assemblies : rootAssembly.GetReferencedAssemblies().Select(TryToLoadAssembly).OfType<Assembly>().Select(GetPath);
 
         internal static Assembly[] LoadAssemblies(this IEnumerable<string> assemblies) =>
             assemblies.Select(Path.GetFileName)
