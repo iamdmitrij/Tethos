@@ -12,16 +12,6 @@ namespace Tethos.Tests
     public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
     {
         [Fact]
-        public void AllowedExtensions_ShouldBeOfTypeHashSet()
-        {
-            // Act
-            var actual = AssemblyExtensions.FileExtensions;
-
-            // Assert
-            actual.Should().NotBeEmpty().And.BeOfType<HashSet<string>>();
-        }
-
-        [Fact]
         public void TryToLoadAssembly_WithCorruptAssembly_ShouldReturnNull()
         {
             // Arrange
@@ -167,8 +157,11 @@ namespace Tethos.Tests
         [InlineData("xunit", 1, "xunit.abstractions.dll")]
         public void FilterAssemblies_ShouldMatchCount(string pattern, int expected, params string[] assemblies)
         {
+            // Arrange
+            var extensions = new[] { ".dll", ".exe" };
+
             // Act
-            var actual = assemblies.FilterAssemblies(pattern);
+            var actual = assemblies.FilterAssemblies(pattern, extensions);
 
             // Assert
             actual.Should().HaveCount(expected);
@@ -182,7 +175,7 @@ namespace Tethos.Tests
         public void FilterRef(int expected, params string[] assemblies)
         {
             // Act
-            var actual = assemblies.FilterRef();
+            var actual = assemblies.FilterRefAssemblies();
 
             // Assert
             actual.Should().HaveCount(expected);
