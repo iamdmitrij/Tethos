@@ -94,12 +94,13 @@ namespace Tethos.Tests
             // Arrange
             var assemblyName = "mscorlib";
             var assembly = Assembly.Load(assemblyName);
+            var expected = new[] { assembly };
 
             // Act
             var actual = assembly.GetDependencies();
 
             // Assert
-            actual.Should().BeEmpty();
+            actual.Should().BeEquivalentTo(expected);
         }
 
         [Fact]

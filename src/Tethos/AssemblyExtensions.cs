@@ -53,10 +53,10 @@ namespace Tethos
 
             return Directory
                 .EnumerateFiles(directory, "*.*", SearchOption.AllDirectories)
-                .FilterAssemblies(pattern)
+                .FilterAssemblies(pattern, rootAssembly)
                 .ElseLoadReferencedAssemblies(rootAssembly)
                 .FilterRef()
-                .LoadAssemblies();
+                .LoadAssemblies(rootAssembly);
         }
 
         internal static IEnumerable<string> FilterRef(this IEnumerable<string> assemblies) =>
@@ -67,18 +67,20 @@ namespace Tethos
             new Uri(assembly.CodeBase).AbsolutePath;
 
         internal static IEnumerable<string> ElseLoadReferencedAssemblies(this IEnumerable<string> assemblies, Assembly rootAssembly) =>
-            assemblies.Count() < 2 ? assemblies : rootAssembly.GetReferencedAssemblies().Select(TryToLoadAssembly).OfType<Assembly>().Select(GetPath);
+            assemblies.Any() ? assemblies : rootAssembly.GetReferencedAssemblies().Select(TryToLoadAssembly).OfType<Assembly>().Select(GetPath);
 
-        internal static Assembly[] LoadAssemblies(this IEnumerable<string> assemblies) =>
+        internal static Assembly[] LoadAssemblies(this IEnumerable<string> assemblies, params Assembly[] extras) =>
             assemblies.Select(Path.GetFileName)
                 .Select(TryToLoadAssembly)
                 .OfType<Assembly>()
+                .Union(extras)
                 .ToArray();
 
-        internal static IEnumerable<string> FilterAssemblies(this IEnumerable<string> assemblies, string searchPattern) =>
+        internal static IEnumerable<string> FilterAssemblies(this IEnumerable<string> assemblies, string searchPattern, params Assembly[] rootAssemblies) =>
             assemblies
                 .Where(filePath => FileExtensions.Contains(Path.GetExtension(filePath)))
-                .Where(fileName => Path.GetFileName(fileName).Contains(searchPattern));
+                .Where(fileName => Path.GetFileName(fileName).Contains(searchPattern))
+                .Where(fileName => !rootAssemblies.Select(assembly => Path.GetFileName(assembly.Location)).Contains(Path.GetFileName(fileName)));
 
         internal static Assembly SwallowExceptions(this Func<Assembly> func, params Type[] types)
         {
