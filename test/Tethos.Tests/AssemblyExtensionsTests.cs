@@ -1,6 +1,5 @@
 ﻿using AutoFixture.Xunit2;
 using FluentAssertions;
-using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,8 +29,10 @@ namespace Tethos.Tests
         [InlineData("Fake.Core31.dll")]
         public void TryToLoadAssembly_ShouldLoadAssembly(string assemblyName)
         {
-            // Act
+            // Arrange
             var assembly = Assembly.LoadFrom(assemblyName);
+
+            // Act
             var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
 
             // Assert
@@ -41,9 +42,10 @@ namespace Tethos.Tests
         [Theory, AutoData]
         public void TryToLoadAssembly_UsingAssemblyName_ShouldReturnNull(string name)
         {
-            // Act
+            // Arrange
             var assemblyName = new AssemblyName(name);
-            
+
+            // Act
             var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
 
             // Assert
@@ -53,9 +55,11 @@ namespace Tethos.Tests
         [Fact]
         public void TryToLoadAssembly_UsingAssemblyName_ShouldLoadAssembly()
         {
-            // Act
+            // Arrange
             var assembly = Assembly.GetExecutingAssembly();
             var assemblyName = assembly.GetName();
+
+            // Act
             var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
 
             // Assert
@@ -124,10 +128,11 @@ namespace Tethos.Tests
         public void LoadAssemblies_ShouldLoad(params string[] assemblies)
         {
             // Arrange
+            var files = assemblies.Select(x => x.GetFile());
             var expected = assemblies.Length;
 
             // Act
-            var actual = assemblies.LoadAssemblies();
+            var actual = files.LoadAssemblies();
 
             // Assert
             actual.Should().HaveCount(expected);
@@ -137,8 +142,11 @@ namespace Tethos.Tests
         [InlineData("Fake.Core30.exe", "Fake.Core31.exe")]
         public void LoadAssemblies_ShouldSkip(params string[] assemblies)
         {
+            // Arrange
+            var files = assemblies.Select(x => x.GetFile());
+
             // Act
-            var actual = assemblies.LoadAssemblies();
+            var actual = files.LoadAssemblies();
 
             // Assert
             actual.Should().BeEmpty();
@@ -159,9 +167,10 @@ namespace Tethos.Tests
         {
             // Arrange
             var extensions = new[] { ".dll", ".exe" };
+            var files = assemblies.Select(x => x.GetFile());
 
             // Act
-            var actual = assemblies.FilterAssemblies(pattern, extensions);
+            var actual = files.FilterAssemblies(pattern, extensions);
 
             // Assert
             actual.Should().HaveCount(expected);
@@ -174,8 +183,11 @@ namespace Tethos.Tests
         [InlineData(2, "Fake.ref.Core31.dll", "Fake.ref.ref.ref")]
         public void ExcludeRefDirectory(int expected, params string[] assemblies)
         {
+            // Arrange
+            var files = assemblies.Select(x => x.GetFile());
+
             // Act
-            var actual = assemblies.ExcludeRefDirectory();
+            var actual = files.ExcludeRefDirectory();
 
             // Assert
             actual.Should().HaveCount(expected);
@@ -184,23 +196,26 @@ namespace Tethos.Tests
         [Fact]
         public void GetPath_FromExecutingAssembly_ShouldMatchLocation()
         {
-            // Act
+            // Arrange
             var assembly = Assembly.GetExecutingAssembly();
-            var expected = assembly.Location.Replace("\\", "/");
-            var actual = assembly.GetPath();
+            var expected = assembly.Location;
+
+            // Act
+            var actual = expected.GetFile();
 
             // Assert
-            actual.Should().Be(expected);
+            actual.Path.Should().Be(expected);
         }
 
         [Theory, AutoData]
-        public void ElseLoadReferencedAssemblies_ShouldReturnOriginal(Uri[] uris)
+        internal void ElseLoadReferencedAssemblies_ShouldReturnOriginal(File[] files)
         {
-            // Act
+            // Arrange
             var assembly = Assembly.GetExecutingAssembly();
-            var assemblies = uris.Select(x => x.AbsolutePath).ToList();
-            var expected = assemblies.Count;
-            var actual = assemblies.ElseLoadReferencedAssemblies(assembly);
+            var expected = files.Length;
+
+            // Act
+            var actual = files.ElseLoadReferencedAssemblies(assembly);
 
             // Assert
             actual.Should().HaveCount(expected);
@@ -209,10 +224,12 @@ namespace Tethos.Tests
         [Fact]
         public void ElseLoadReferencedAssemblies_Empty_ShouldReturnReferenceAssemblied()
         {
-            // Act
+            // Arrange
             var assembly = Assembly.GetExecutingAssembly();
-            var assemblies = Array.Empty<string>();
+            var assemblies = Array.Empty<File>();
             var expected = assembly.GetReferencedAssemblies().Length;
+
+            // Act
             var actual = assemblies.ElseLoadReferencedAssemblies(assembly);
 
             // Assert

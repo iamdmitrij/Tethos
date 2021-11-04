@@ -19,15 +19,16 @@ namespace Tethos
                 .LoadAssemblies(rootAssembly)
                 .ToArray();
 
-        internal static IEnumerable<string> GetAssemblyFiles(this string directory) =>
+        internal static IEnumerable<File> GetAssemblyFiles(this string directory) =>
             Directory
-                .EnumerateFiles(directory, "*.*", SearchOption.AllDirectories);
+                .EnumerateFiles(directory, "*.*", SearchOption.AllDirectories)
+                .Select(filePath => filePath.GetFile());
 
-        internal static IEnumerable<string> FilterAssemblies(this IEnumerable<string> assemblies, string searchPattern, string[] fileExtensions, params Assembly[] rootAssemblies) =>
+        internal static IEnumerable<File> FilterAssemblies(this IEnumerable<File> assemblies, string searchPattern, string[] allowedFileExtensions, params Assembly[] rootAssemblies) =>
             assemblies
-                .Where(filePath => fileExtensions.Contains(Path.GetExtension(filePath).ToLowerInvariant()))
-                .Where(fileName => Path.GetFileName(fileName).Contains(searchPattern))
-                .Where(fileName => !rootAssemblies.Select(assembly => Path.GetFileName(assembly.Location)).Contains(Path.GetFileName(fileName)));
+                .Where(file => allowedFileExtensions.Contains(file.Extension))
+                .Where(file => file.Name.Contains(searchPattern))
+                .Where(file => !rootAssemblies.Select(assembly => Path.GetFileName(assembly.Location)).Contains(file.Name));
 
         internal static string GetPattern(this Assembly rootAssembly)
         {
@@ -46,18 +47,15 @@ namespace Tethos
             return pattern;
         }
 
-        internal static IEnumerable<string> ExcludeRefDirectory(this IEnumerable<string> assemblies) =>
+        internal static IEnumerable<File> ExcludeRefDirectory(this IEnumerable<File> assemblies) =>
             assemblies
-                .Where(filePath => !Path.GetDirectoryName(filePath).EndsWith("ref"));
+                .Where(file => !file.Directory.EndsWith("ref"));
 
-        internal static IEnumerable<string> ElseLoadReferencedAssemblies(this IEnumerable<string> assemblies, Assembly rootAssembly) =>
-            assemblies.Any() ? assemblies : rootAssembly.GetReferencedAssemblies().Select(TryToLoadAssembly).OfType<Assembly>().Select(GetPath);
+        internal static IEnumerable<File> ElseLoadReferencedAssemblies(this IEnumerable<File> assemblies, Assembly rootAssembly) =>
+            assemblies.Any() ? assemblies : rootAssembly.GetReferencedAssemblies().Select(TryToLoadAssembly).OfType<Assembly>().Select(assembly => new Uri(assembly.CodeBase).AbsolutePath).Select(filePath => filePath.GetFile());
 
-        internal static string GetPath(this Assembly assembly) =>
-            new Uri(assembly.CodeBase).AbsolutePath;
-
-        internal static IEnumerable<Assembly> LoadAssemblies(this IEnumerable<string> assemblies, params Assembly[] extras) =>
-            assemblies.Select(Path.GetFileName)
+        internal static IEnumerable<Assembly> LoadAssemblies(this IEnumerable<File> assemblies, params Assembly[] extras) =>
+            assemblies.Select(file => file.Name)
                 .Select(TryToLoadAssembly)
                 .OfType<Assembly>()
                 .Union(extras);
