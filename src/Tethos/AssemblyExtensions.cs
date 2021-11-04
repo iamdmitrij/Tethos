@@ -52,13 +52,20 @@ namespace Tethos
                 .Where(file => !file.Directory.EndsWith("ref"));
 
         internal static IEnumerable<File> ElseLoadReferencedAssemblies(this IEnumerable<File> assemblies, Assembly rootAssembly) =>
-            assemblies.Any() ? assemblies : rootAssembly.GetReferencedAssemblies().Select(TryToLoadAssembly).OfType<Assembly>().Select(assembly => new Uri(assembly.CodeBase).AbsolutePath).Select(filePath => filePath.GetFile());
+            assemblies.Any()
+                ? assemblies
+                : rootAssembly
+                    .GetReferencedAssemblies()
+                    .Select(TryToLoadAssembly)
+                    .OfType<Assembly>()
+                    .Select(assembly => new Uri(assembly.CodeBase).AbsolutePath)
+                    .Select(filePath => filePath.GetFile());
 
-        internal static IEnumerable<Assembly> LoadAssemblies(this IEnumerable<File> assemblies, params Assembly[] extras) =>
+        internal static IEnumerable<Assembly> LoadAssemblies(this IEnumerable<File> assemblies, params Assembly[] extraAssemblies) =>
             assemblies.Select(file => file.Name)
                 .Select(TryToLoadAssembly)
                 .OfType<Assembly>()
-                .Union(extras);
+                .Union(extraAssemblies);
 
         internal static Assembly TryToLoadAssembly(this AssemblyName assemblyName)
         {
