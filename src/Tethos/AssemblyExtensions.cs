@@ -14,7 +14,7 @@ namespace Tethos
         internal static Assembly[] GetDependencies(this Assembly rootAssembly) =>
             AppDomain.CurrentDomain.BaseDirectory.GetAssemblyFiles()
                 .FilterAssemblies(rootAssembly.GetPattern(), new[] { ".dll", ".exe" }, rootAssembly)
-                .FilterRefAssemblies()
+                .ExcludeRefDirectory()
                 .ElseLoadReferencedAssemblies(rootAssembly)
                 .LoadAssemblies(rootAssembly)
                 .ToArray();
@@ -46,7 +46,7 @@ namespace Tethos
             return pattern;
         }
 
-        internal static IEnumerable<string> FilterRefAssemblies(this IEnumerable<string> assemblies) =>
+        internal static IEnumerable<string> ExcludeRefDirectory(this IEnumerable<string> assemblies) =>
             assemblies
                 .Where(filePath => !Path.GetDirectoryName(filePath).EndsWith("ref"));
 

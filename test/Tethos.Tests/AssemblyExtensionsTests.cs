@@ -172,10 +172,10 @@ namespace Tethos.Tests
         [InlineData(0, "ref/Fake.Core31.ref.dll")]
         [InlineData(1, "Fake.Core31.dll")]
         [InlineData(2, "Fake.ref.Core31.dll", "Fake.ref.ref.ref")]
-        public void FilterRef(int expected, params string[] assemblies)
+        public void ExcludeRefDirectory(int expected, params string[] assemblies)
         {
             // Act
-            var actual = assemblies.FilterRefAssemblies();
+            var actual = assemblies.ExcludeRefDirectory();
 
             // Assert
             actual.Should().HaveCount(expected);
