@@ -25,7 +25,7 @@ namespace Tethos
 
         internal static IEnumerable<string> FilterAssemblies(this IEnumerable<string> assemblies, string searchPattern, string[] fileExtensions, params Assembly[] rootAssemblies) =>
             assemblies
-                .Where(filePath => fileExtensions.Contains(Path.GetExtension(filePath)?.ToLowerInvariant()))
+                .Where(filePath => fileExtensions.Contains(Path.GetExtension(filePath).ToLowerInvariant()))
                 .Where(fileName => Path.GetFileName(fileName).Contains(searchPattern))
                 .Where(fileName => !rootAssemblies.Select(assembly => Path.GetFileName(assembly.Location)).Contains(Path.GetFileName(fileName)));
 
