@@ -11,19 +11,11 @@ namespace Tethos
     /// </summary>
     internal static class AssemblyExtensions
     {
-        /// <summary>
-        /// A collection of allowed file extensions for container assemblies.
-        /// </summary>
         internal static HashSet<string> FileExtensions { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
             ".dll", ".exe"
         };
 
-        /// <summary>
-        /// Gets assembly search criteria.
-        /// </summary>
-        /// <param name="rootAssembly">Reference assembly for pattern extraction.</param>
-        /// <returns>Pattern search criteria.</returns>
         internal static string GetPattern(this Assembly rootAssembly)
         {
             var patternSeparators = new[] { '.', ',' };
@@ -41,25 +33,18 @@ namespace Tethos
             return pattern;
         }
 
-        /// <summary>
-        /// Get all dependencies from entry assembly and file search pattern.
-        /// </summary>
-        /// <param name="rootAssembly">Reference assembly for pattern extraction.</param>
-        /// <returns>A collection of loaded assemblies.</returns>
-        internal static Assembly[] GetDependencies(this Assembly rootAssembly)
-        {
-            var pattern = rootAssembly.GetPattern();
-            var directory = AppDomain.CurrentDomain.BaseDirectory;
-
-            return Directory
-                .EnumerateFiles(directory, "*.*", SearchOption.AllDirectories)
-                .FilterAssemblies(pattern, rootAssembly)
+        internal static Assembly[] GetDependencies(this Assembly rootAssembly) =>
+            AppDomain.CurrentDomain.BaseDirectory.GetAssemblyFiles()
+                .FilterAssemblies(rootAssembly.GetPattern(), rootAssembly)
+                .FilterRefAssemblies()
                 .ElseLoadReferencedAssemblies(rootAssembly)
-                .FilterRef()
                 .LoadAssemblies(rootAssembly);
-        }
 
-        internal static IEnumerable<string> FilterRef(this IEnumerable<string> assemblies) =>
+        internal static IEnumerable<string> GetAssemblyFiles(this string directory) => 
+            Directory
+                .EnumerateFiles(directory, "*.*", SearchOption.AllDirectories);
+
+        internal static IEnumerable<string> FilterRefAssemblies(this IEnumerable<string> assemblies) =>
             assemblies
                 .Where(filePath => !Path.GetDirectoryName(filePath).EndsWith("ref"));
 
@@ -96,16 +81,14 @@ namespace Tethos
 
         internal static Assembly TryToLoadAssembly(this AssemblyName assemblyName)
         {
+            // TODO: Explicit Func type won't necessary in C# 10
             Func<Assembly> func = () => Assembly.Load(assemblyName);
             return func.SwallowExceptions(typeof(BadImageFormatException), typeof(FileNotFoundException));
         }
 
-        /// <summary>
-        /// Silently loads assembly by its name.
-        /// If any failure occurs in the assembly format, it will return null value.
-        /// </summary>
         internal static Assembly TryToLoadAssembly(this string assemblyPath)
         {
+            // TODO: Explicit Func type won't necessary in C# 10
             Func<Assembly> func = () => Assembly.LoadFrom(assemblyPath);
             return func.SwallowExceptions(typeof(BadImageFormatException), typeof(FileNotFoundException));
         }
