@@ -90,6 +90,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.NUnit.Demo", "demo\N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.xUnit.Demo", "demo\NSubstitute\Tethos.xUnit.Demo\Tethos.xUnit.Demo.csproj", "{FD2DBE23-A8AC-4243-8C02-693ED36FB4FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferencedAssemblies.Tests", "test\ReferencedAssemblies.Tests\ReferencedAssemblies.Tests.csproj", "{E8911617-3F58-465B-9F07-6B044880CD69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -204,6 +206,10 @@ Global
 		{FD2DBE23-A8AC-4243-8C02-693ED36FB4FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD2DBE23-A8AC-4243-8C02-693ED36FB4FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD2DBE23-A8AC-4243-8C02-693ED36FB4FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8911617-3F58-465B-9F07-6B044880CD69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8911617-3F58-465B-9F07-6B044880CD69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8911617-3F58-465B-9F07-6B044880CD69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8911617-3F58-465B-9F07-6B044880CD69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -237,6 +243,7 @@ Global
 		{1A338F36-D517-4F5E-94D9-CED79681953C} = {0447E3FF-FB0B-4D55-9C9C-277E950BB886}
 		{C5FA32C9-46E9-4ACE-95CD-597B8151542A} = {0447E3FF-FB0B-4D55-9C9C-277E950BB886}
 		{FD2DBE23-A8AC-4243-8C02-693ED36FB4FD} = {0447E3FF-FB0B-4D55-9C9C-277E950BB886}
+		{E8911617-3F58-465B-9F07-6B044880CD69} = {A7503D75-64C3-4AAC-90C8-F6297B09AB70}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF888DCC-71E7-4562-AA35-5B93FD8DD252}
