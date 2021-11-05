@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Tethos.Tests.Common
+﻿namespace Tethos.Tests.Common
 {
     public class SystemUnderPartialClass
     {
@@ -11,6 +9,6 @@ namespace Tethos.Tests.Common
             Threshold = threshold;
         }
 
-        public int Do() => Threshold.Enalbed ? throw new NotImplementedException() : 0;
+        public int Do() => Threshold.Enalbed ? 1 : 0;
     }
 }
