@@ -107,7 +107,7 @@ namespace Tethos.NSubstitute.Tests
             // Arrange
             var expectedThresholdType = Substitute.For<PartialThreshold>(false).GetType();
 
-            var actual = Container.Resolve<SystemUnderMixedClasses>(
+            var actual = Container.Resolve<SystemUnderPartialClass>(
                 new Arguments()
                     .AddDependencyTo<PartialThreshold, bool>("enabled", false)
             );
