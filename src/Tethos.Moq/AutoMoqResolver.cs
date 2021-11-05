@@ -1,4 +1,5 @@
 ﻿using Castle.MicroKernel;
+using Castle.MicroKernel.Context;
 using Moq;
 using System;
 
@@ -15,7 +16,7 @@ namespace Tethos.Moq
         }
 
         /// <inheritdoc />
-        public override object MapToTarget(Type targetType)
+        public override object MapToTarget(Type targetType, CreationContext context)
         {
             var mockType = typeof(Mock<>).MakeGenericType(targetType);
             var mock = Kernel.Resolve(mockType) as Mock;
