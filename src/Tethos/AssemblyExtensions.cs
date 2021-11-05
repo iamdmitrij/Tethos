@@ -11,19 +11,25 @@ namespace Tethos
     /// </summary>
     internal static class AssemblyExtensions
     {
-        /// <summary>
-        /// A collection of allowed file extensions for container assemblies.
-        /// </summary>
-        internal static HashSet<string> FileExtensions { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        {
-            ".dll", ".exe"
-        };
+        internal static Assembly[] GetDependencies(this Assembly rootAssembly) =>
+            AppDomain.CurrentDomain.BaseDirectory.GetAssemblyFiles()
+                .FilterAssemblies(rootAssembly.GetPattern(), new[] { ".dll", ".exe" }, rootAssembly)
+                .ExcludeRefDirectory()
+                .ElseLoadReferencedAssemblies(rootAssembly)
+                .LoadAssemblies(rootAssembly)
+                .ToArray();
 
-        /// <summary>
-        /// Gets assembly search criteria.
-        /// </summary>
-        /// <param name="rootAssembly">Reference assembly for pattern extraction.</param>
-        /// <returns>Pattern search criteria.</returns>
+        internal static IEnumerable<File> GetAssemblyFiles(this string directory) =>
+            Directory
+                .EnumerateFiles(directory, "*.*", SearchOption.AllDirectories)
+                .Select(filePath => filePath.GetFile());
+
+        internal static IEnumerable<File> FilterAssemblies(this IEnumerable<File> assemblies, string searchPattern, string[] allowedFileExtensions, params Assembly[] rootAssemblies) =>
+            assemblies
+                .Where(file => allowedFileExtensions.Contains(file.Extension))
+                .Where(file => file.Name.Contains(searchPattern))
+                .Where(file => !rootAssemblies.Select(assembly => Path.GetFileName(assembly.Location)).Contains(file.Name));
+
         internal static string GetPattern(this Assembly rootAssembly)
         {
             var patternSeparators = new[] { '.', ',' };
@@ -41,45 +47,47 @@ namespace Tethos
             return pattern;
         }
 
-        /// <summary>
-        /// Get all dependencies from entry assembly and file search pattern.
-        /// </summary>
-        /// <param name="rootAssembly">Reference assembly for pattern extraction.</param>
-        /// <returns>A collection of loaded assemblies.</returns>
-        internal static Assembly[] GetDependencies(this Assembly rootAssembly)
-        {
-            var pattern = rootAssembly.GetPattern();
-            var directory = AppDomain.CurrentDomain.BaseDirectory;
+        internal static IEnumerable<File> ExcludeRefDirectory(this IEnumerable<File> assemblies) =>
+            assemblies
+                .Where(file => !file.Directory.EndsWith("ref"));
 
-            return Directory
-                .EnumerateFiles(directory, "*.*", SearchOption.AllDirectories)
-                .FilterAssemblies(pattern)
-                .LoadAssemblies();
-        }
+        internal static IEnumerable<File> ElseLoadReferencedAssemblies(this IEnumerable<File> assemblies, Assembly rootAssembly) =>
+            assemblies.Any()
+                ? assemblies
+                : rootAssembly
+                    .GetReferencedAssemblies()
+                    .Select(TryToLoadAssembly)
+                    .OfType<Assembly>()
+                    .Select(assembly => new Uri(assembly.CodeBase).AbsolutePath)
+                    .Select(filePath => filePath.GetFile());
 
-        internal static Assembly[] LoadAssemblies(this IEnumerable<string> assemblies) =>
-            assemblies.Select(Path.GetFileName)
+        internal static IEnumerable<Assembly> LoadAssemblies(this IEnumerable<File> assemblies, params Assembly[] extraAssemblies) =>
+            assemblies.Select(file => file.Name)
                 .Select(TryToLoadAssembly)
                 .OfType<Assembly>()
-                .ToArray();
+                .Union(extraAssemblies);
 
-        internal static IEnumerable<string> FilterAssemblies(this IEnumerable<string> assemblies, string searchPattern) =>
-            assemblies
-                .Where(filePath => FileExtensions.Contains(Path.GetExtension(filePath)))
-                .Where(fileName => Path.GetFileName(fileName).Contains(searchPattern))
-                .Where(filePath => !Path.GetDirectoryName(filePath).EndsWith("ref"));
+        internal static Assembly TryToLoadAssembly(this AssemblyName assemblyName)
+        {
+            // TODO: Explicit Func type won't necessary in C# 10
+            Func<Assembly> func = () => Assembly.Load(assemblyName);
+            return func.SwallowExceptions(typeof(BadImageFormatException), typeof(FileNotFoundException));
+        }
 
-        /// <summary>
-        /// Silently loads assembly by its name.
-        /// If any failure occurs in the assembly format, it will return null value.
-        /// </summary>
-        internal static Assembly TryToLoadAssembly(this string assembly)
+        internal static Assembly TryToLoadAssembly(this string assemblyPath)
+        {
+            // TODO: Explicit Func type won't necessary in C# 10
+            Func<Assembly> func = () => Assembly.LoadFrom(assemblyPath);
+            return func.SwallowExceptions(typeof(BadImageFormatException), typeof(FileNotFoundException));
+        }
+
+        internal static Assembly SwallowExceptions(this Func<Assembly> func, params Type[] types)
         {
             try
             {
-                return Assembly.LoadFrom(assembly);
+                return func.Invoke();
             }
-            catch (BadImageFormatException)
+            catch (Exception ex) when (types.Contains(ex.GetType()))
             {
                 return null;
             }

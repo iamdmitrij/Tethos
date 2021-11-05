@@ -11,16 +11,6 @@ namespace Tethos.Tests
     public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
     {
         [Fact]
-        public void AllowedExtensions_ShouldBeOfTypeHashSet()
-        {
-            // Act
-            var actual = AssemblyExtensions.FileExtensions;
-
-            // Assert
-            actual.Should().NotBeEmpty().And.BeOfType<HashSet<string>>();
-        }
-
-        [Fact]
         public void TryToLoadAssembly_WithCorruptAssembly_ShouldReturnNull()
         {
             // Arrange
@@ -39,11 +29,41 @@ namespace Tethos.Tests
         [InlineData("Fake.Core31.dll")]
         public void TryToLoadAssembly_ShouldLoadAssembly(string assemblyName)
         {
+            // Arrange
+            var assembly = Assembly.LoadFrom(assemblyName);
+
             // Act
             var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
 
             // Assert
-            actual.Should().NotBeNull();
+            actual.Should().BeSameAs(assembly);
+        }
+
+        [Theory, AutoData]
+        public void TryToLoadAssembly_UsingAssemblyName_ShouldReturnNull(string name)
+        {
+            // Arrange
+            var assemblyName = new AssemblyName(name);
+
+            // Act
+            var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
+
+            // Assert
+            actual.Should().BeNull();
+        }
+
+        [Fact]
+        public void TryToLoadAssembly_UsingAssemblyName_ShouldLoadAssembly()
+        {
+            // Arrange
+            var assembly = Assembly.GetExecutingAssembly();
+            var assemblyName = assembly.GetName();
+
+            // Act
+            var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
+
+            // Assert
+            actual.Should().BeSameAs(assembly);
         }
 
         [Theory]
@@ -68,12 +88,13 @@ namespace Tethos.Tests
             // Arrange
             var assemblyName = "mscorlib";
             var assembly = Assembly.Load(assemblyName);
+            var expected = new[] { assembly };
 
             // Act
             var actual = assembly.GetDependencies();
 
             // Assert
-            actual.Should().BeEmpty();
+            actual.Should().BeEquivalentTo(expected);
         }
 
         [Fact]
@@ -107,10 +128,11 @@ namespace Tethos.Tests
         public void LoadAssemblies_ShouldLoad(params string[] assemblies)
         {
             // Arrange
+            var files = assemblies.Select(x => x.GetFile());
             var expected = assemblies.Length;
 
             // Act
-            var actual = assemblies.LoadAssemblies();
+            var actual = files.LoadAssemblies();
 
             // Assert
             actual.Should().HaveCount(expected);
@@ -120,8 +142,11 @@ namespace Tethos.Tests
         [InlineData("Fake.Core30.exe", "Fake.Core31.exe")]
         public void LoadAssemblies_ShouldSkip(params string[] assemblies)
         {
+            // Arrange
+            var files = assemblies.Select(x => x.GetFile());
+
             // Act
-            var actual = assemblies.LoadAssemblies();
+            var actual = files.LoadAssemblies();
 
             // Assert
             actual.Should().BeEmpty();
@@ -133,15 +158,65 @@ namespace Tethos.Tests
         [InlineData("Fake", 2, "Fake.Core31.dll", "Fake.Core31.pdb", "Fake.Core31.exe")]
         [InlineData("Fake", 0, "Fake.Standard20.deps.json")]
         [InlineData("Fake", 1, "Fake.Standard20.dll")]
-        [InlineData("Tethos", 0, "ref/Tethos.Tests.dll")]
-        [InlineData("Tethos", 1, "ref/Tethos.Tests.dll", "Tethos.Tests.Common.dll")]
+        [InlineData("Tethos", 1, "ref/Tethos.Tests.dll")]
+        [InlineData("Tethos", 2, "ref/Tethos.Tests.dll", "Tethos.Tests.Common.dll")]
         [InlineData("Tethos", 0, "Fake.Standard20.dll")]
-        [InlineData("Tethos", 0, "Fake.Standard20.dll", "ref/Tethos.Tests.dll")]
+        [InlineData("Tethos", 1, "Fake.Standard20.dll", "ref/Tethos.Tests.dll")]
         [InlineData("xunit", 1, "xunit.abstractions.dll")]
         public void FilterAssemblies_ShouldMatchCount(string pattern, int expected, params string[] assemblies)
         {
+            // Arrange
+            var extensions = new[] { ".dll", ".exe" };
+            var files = assemblies.Select(x => x.GetFile());
+
             // Act
-            var actual = assemblies.FilterAssemblies(pattern);
+            var actual = files.FilterAssemblies(pattern, extensions);
+
+            // Assert
+            actual.Should().HaveCount(expected);
+        }
+
+        [Theory]
+        [InlineData(0, "ref/Fake.Core31.dll", "foo/ref/Fake.Core31.dll")]
+        [InlineData(0, "ref/Fake.Core31.ref.dll")]
+        [InlineData(1, "Fake.Core31.dll")]
+        [InlineData(2, "Fake.ref.Core31.dll", "Fake.ref.ref.ref")]
+        public void ExcludeRefDirectory(int expected, params string[] assemblies)
+        {
+            // Arrange
+            var files = assemblies.Select(x => x.GetFile());
+
+            // Act
+            var actual = files.ExcludeRefDirectory();
+
+            // Assert
+            actual.Should().HaveCount(expected);
+        }
+
+        [Theory, AutoData]
+        internal void ElseLoadReferencedAssemblies_ShouldReturnOriginal(File[] files)
+        {
+            // Arrange
+            var assembly = Assembly.GetExecutingAssembly();
+            var expected = files.Length;
+
+            // Act
+            var actual = files.ElseLoadReferencedAssemblies(assembly);
+
+            // Assert
+            actual.Should().HaveCount(expected);
+        }
+
+        [Fact]
+        public void ElseLoadReferencedAssemblies_Empty_ShouldReturnReferenceAssemblied()
+        {
+            // Arrange
+            var assembly = Assembly.GetExecutingAssembly();
+            var assemblies = Array.Empty<File>();
+            var expected = assembly.GetReferencedAssemblies().Length;
+
+            // Act
+            var actual = assemblies.ElseLoadReferencedAssemblies(assembly);
 
             // Assert
             actual.Should().HaveCount(expected);
