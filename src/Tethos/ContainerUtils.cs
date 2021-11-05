@@ -1,4 +1,5 @@
 ﻿using Castle.MicroKernel;
+using System;
 
 namespace Tethos
 {
@@ -16,6 +17,14 @@ namespace Tethos
         /// <param name="name"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static Arguments AddDependencyTo<T, K>(this Arguments arguments, string name, K value) => arguments.AddNamed($"{typeof(T)}__{name}", value);
+        public static Arguments AddDependencyTo<T, K>(this Arguments arguments, string name, K value)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+
+            return arguments.AddNamed($"{typeof(T)}__{name}", value);
+        }
     }
 }
