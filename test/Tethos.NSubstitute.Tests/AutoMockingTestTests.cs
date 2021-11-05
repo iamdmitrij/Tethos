@@ -82,6 +82,44 @@ namespace Tethos.NSubstitute.Tests
             thresholdMock.Should().BeOfType(expectedThresholdType);
         }
 
+        [Fact]
+        public void Container_Resolve_WithAbstractClass_ShouldMockClass()
+        {
+            // Arrange
+            var expectedThresholdType = Substitute.For<AbstractThreshold>(false).GetType();
+
+            var actual = Container.Resolve<SystemUnderMixedClasses>(
+                new Arguments()
+                    .AddDependencyTo<AbstractThreshold, bool>("enabled", false)
+            );
+            var thresholdMock = Container.Resolve<AbstractThreshold>();
+
+            // Act
+            actual.Do();
+
+            // Assert
+            thresholdMock.Should().BeOfType(expectedThresholdType);
+        }
+
+        [Fact]
+        public void Container_Resolve_WithPartialClass_ShouldMockClass()
+        {
+            // Arrange
+            var expectedThresholdType = Substitute.For<PartialThreshold>(false).GetType();
+
+            var actual = Container.Resolve<SystemUnderMixedClasses>(
+                new Arguments()
+                    .AddDependencyTo<PartialThreshold, bool>("enabled", false)
+            );
+            var thresholdMock = Container.Resolve<PartialThreshold>();
+
+            // Act
+            actual.Do();
+
+            // Assert
+            thresholdMock.Should().BeOfType(expectedThresholdType);
+        }
+
         [Theory, AutoData]
         public void Clean_ShouldRevertBackToOriginalBehavior(Mockable mockable)
         {
