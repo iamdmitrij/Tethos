@@ -43,5 +43,41 @@ namespace Tethos.Tests
             // Assert
             actual.Should().Throw<ArgumentNullException>();
         }
+
+        [Theory, AutoData]
+        public void AddDependencyTo_UsingTypeParam_ShouldMatchArguments(Arguments sut, string name, int expected)
+        {
+            // Act
+            var actual = sut.AddDependencyTo(typeof(string), name, expected);
+
+            // Assert
+            actual[$"{typeof(string)}__{name}"].Should().Be(expected);
+        }
+
+        [Theory, AutoData]
+        public void AddDependencyTo_UsingTypeParam_WithNullValue_ShouldBeBull(Arguments sut, string name)
+        {
+            // Arrange
+            object expected = null;
+
+            // Act
+            var actual = sut.AddDependencyTo(typeof(string), name, expected);
+
+            // Assert
+            actual[$"{typeof(string)}__{name}"].Should().Be(expected);
+        }
+
+        [Theory, AutoData]
+        public void AddDependencyTo_UsingTypeParam_WithNameValue_ShouldThrowArgumentNullException(Arguments sut, int value)
+        {
+            // Arrange
+            string expected = null;
+
+            // Act
+            Action actual = () => sut.AddDependencyTo(typeof(string), expected, value);
+
+            // Assert
+            actual.Should().Throw<ArgumentNullException>();
+        }
     }
 }
