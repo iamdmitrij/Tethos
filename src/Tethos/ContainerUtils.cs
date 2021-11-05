@@ -18,7 +18,8 @@ namespace Tethos
         /// <param name="name"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static Arguments AddDependencyTo<T, K>(this Arguments arguments, string name, K value) => arguments.AddDependencyTo(typeof(T), name, value);
+        public static Arguments AddDependencyTo<T, K>(this Arguments arguments, string name, K value)
+            => arguments.AddDependencyTo(typeof(T), name, value);
 
         /// <summary>
         /// TODO: Comments

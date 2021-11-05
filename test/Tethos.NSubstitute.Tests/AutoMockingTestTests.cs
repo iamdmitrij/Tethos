@@ -129,7 +129,7 @@ namespace Tethos.NSubstitute.Tests
                     .AddDependencyTo<PartialThreshold, bool>("enabled", false)
                     .AddDependencyTo<AbstractThreshold, bool>("enabled", false)
             );
-            
+
             // Act
             sut.Do();
 
