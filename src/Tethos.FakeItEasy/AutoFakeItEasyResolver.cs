@@ -1,4 +1,5 @@
-﻿using Castle.MicroKernel;
+﻿using Castle.Core;
+using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Registration;
 using FakeItEasy.Sdk;
@@ -17,9 +18,15 @@ namespace Tethos.FakeItEasy
         }
 
         /// <inheritdoc />
-        public override object MapToTarget(Type targetType, CreationContext context)
+        public override bool CanResolve(CreationContext context, ISubDependencyResolver contextHandlerResolver, ComponentModel model, DependencyModel dependency)
+            => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
+
+        /// <inheritdoc />
+        public override object MapToTarget(Type targetType, object[] constructorArguments)
         {
-            var mock = Create.Fake(targetType);
+            var mock = Create.Fake(targetType, options =>
+                _ = targetType.IsInterface ? options :
+                options.WithArgumentsForConstructor(constructorArguments));
 
             Kernel.Register(Component.For(targetType)
                 .Instance(mock)

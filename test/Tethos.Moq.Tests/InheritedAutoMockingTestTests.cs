@@ -1,7 +1,7 @@
-﻿using Moq;
-using Xunit;
+﻿using AutoFixture.Xunit2;
+using Moq;
 using Tethos.Moq.Tests.SUT;
-using AutoFixture.Xunit2;
+using Xunit;
 
 namespace Tethos.Moq.Tests
 {

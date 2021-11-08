@@ -1,7 +1,7 @@
-﻿using Xunit;
-using AutoFixture.Xunit2;
-using Tethos.NSubstitute.Tests.SUT;
+﻿using AutoFixture.Xunit2;
 using NSubstitute;
+using Tethos.NSubstitute.Tests.SUT;
+using Xunit;
 
 namespace Tethos.NSubstitute.Tests
 {

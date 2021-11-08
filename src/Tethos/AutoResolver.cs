@@ -2,6 +2,7 @@
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
 using System;
+using System.Linq;
 
 namespace Tethos
 {
@@ -24,9 +25,9 @@ namespace Tethos
         /// Maps target mock object to mocked object type.
         /// </summary>
         /// <param name="targetType">Target type for object to be converted to destination object.</param>
-        /// <param name="context">Context of parent object to be resolved.</param>
+        /// <param name="constructorArguments">Constructor argument for target type in case it is non-abstract type.</param>
         /// <returns></returns>
-        public abstract object MapToTarget(Type targetType, CreationContext context);
+        public abstract object MapToTarget(Type targetType, object[] constructorArguments);
 
         /// <inheritdoc />
         public virtual bool CanResolve(
@@ -42,6 +43,18 @@ namespace Tethos
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
             DependencyModel dependency
-        ) => MapToTarget(dependency.TargetType, context);
+        )
+        {
+            string GetType(object argument) =>
+                argument.ToString().Split(new string[] { "__" }, StringSplitOptions.None).FirstOrDefault();
+            var targetType = dependency.TargetType;
+            var arguments = context.AdditionalArguments
+                .Where(_ => !targetType.IsInterface)
+                .Where(argument => GetType(argument.Key) == $"{targetType}")
+                .Select(argument => argument.Value)
+                .ToArray();
+
+            return MapToTarget(targetType, arguments);
+        }
     }
 }

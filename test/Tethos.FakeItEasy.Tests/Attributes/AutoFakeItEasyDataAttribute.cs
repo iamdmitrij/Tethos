@@ -2,7 +2,7 @@
 using AutoFixture.AutoFakeItEasy;
 using AutoFixture.Xunit2;
 
-namespace Tethos.NSubstitute.Tests.Attributes
+namespace Tethos.FakeItEasy.Tests.Attributes
 {
     internal class AutoFakeItEasyDataAttribute : AutoDataAttribute
     {
