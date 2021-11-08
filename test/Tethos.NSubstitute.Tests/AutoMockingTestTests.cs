@@ -140,7 +140,6 @@ namespace Tethos.NSubstitute.Tests
             Container.Resolve<AbstractThreshold>().Should().BeOfType(Substitute.For<AbstractThreshold>(true).GetType());
         }
 
-
         [Theory, AutoData]
         public void Clean_ShouldRevertBackToOriginalBehavior(Mockable mockable)
         {
