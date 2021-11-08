@@ -42,6 +42,5 @@ namespace Tethos.NSubstitute
 
         internal string GetType(object argument) =>
             argument.ToString().Split(new string[] { "__" }, StringSplitOptions.None).FirstOrDefault();
-
     }
 }
