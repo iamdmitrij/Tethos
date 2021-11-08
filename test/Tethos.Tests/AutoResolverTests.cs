@@ -30,14 +30,14 @@ namespace Tethos.Tests
         public void CanResolve_Interface_ShouldMatch(
             Type type,
             bool expected,
-            Mock<IKernel> kernel,
+            IKernel kernel,
             ISubDependencyResolver resolver,
             CreationContext context,
             string key
         )
         {
             // Arrange
-            var sut = new ConcreteAutoResolver(kernel.Object);
+            var sut = new ConcreteAutoResolver(kernel);
 
             // Act
             var actual = sut.CanResolve(
