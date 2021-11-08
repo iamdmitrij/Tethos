@@ -18,6 +18,6 @@ namespace Tethos.Tests.Common
             MaxValue = maxValue;
         }
 
-        public int Do() => GetRandomInt(MinValue, MaxValue);
+        public virtual int Do() => GetRandomInt(MinValue, MaxValue);
     }
 }

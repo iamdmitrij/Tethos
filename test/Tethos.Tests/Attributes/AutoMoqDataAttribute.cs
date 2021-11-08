@@ -2,7 +2,7 @@
 using AutoFixture.AutoMoq;
 using AutoFixture.Xunit2;
 
-namespace Tethos.Moq.Tests.Attributes
+namespace Tethos.Tests.Attributes
 {
     internal class AutoMoqDataAttribute : AutoDataAttribute
     {

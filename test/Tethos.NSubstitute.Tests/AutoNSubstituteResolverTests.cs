@@ -1,5 +1,4 @@
 ﻿using Castle.MicroKernel;
-using Castle.MicroKernel.Context;
 using FluentAssertions;
 using Tethos.NSubstitute.Tests.Attributes;
 using Tethos.Tests.Common;
@@ -13,7 +12,7 @@ namespace Tethos.NSubstitute.Tests
         public void MapToTarget_ShouldMatchMockedType(
             IMockable mockable,
             IKernel kernel,
-            CreationContext resolver
+            object[] constructorArguments
         )
         {
             // Arrange
@@ -22,7 +21,7 @@ namespace Tethos.NSubstitute.Tests
             var type = typeof(IMockable);
 
             // Act
-            var actual = sut.MapToTarget(type, resolver);
+            var actual = sut.MapToTarget(type, constructorArguments);
 
             // Assert
             actual.Should().BeOfType(expected);

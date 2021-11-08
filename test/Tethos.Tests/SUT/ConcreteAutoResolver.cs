@@ -1,5 +1,4 @@
 ﻿using Castle.MicroKernel;
-using Castle.MicroKernel.Context;
 using Moq;
 using System;
 
@@ -11,6 +10,6 @@ namespace Tethos.Tests.SUT
         {
         }
 
-        public override object MapToTarget(Type targetType, CreationContext context) => new Mock<object>();
+        public override object MapToTarget(Type targetType, object[] constructorArguments) => new Mock<object>();
     }
 }
