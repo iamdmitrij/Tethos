@@ -1,5 +1,4 @@
-﻿using AutoFixture.Xunit2;
-using Castle.Core;
+﻿using Castle.Core;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
 using FluentAssertions;
@@ -8,6 +7,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
+using Tethos.Tests.Attributes;
 using Tethos.Tests.SUT;
 using Xunit;
 
@@ -16,22 +16,23 @@ namespace Tethos.Tests
     public class AutoResolverTests
     {
         [Theory]
-        [InlineAutoData(typeof(IList), true)]
-        [InlineAutoData(typeof(IEnumerable), true)]
-        [InlineAutoData(typeof(Array), false)]
-        [InlineAutoData(typeof(Enumerable), false)]
-        [InlineAutoData(typeof(Type), false)]
-        [InlineAutoData(typeof(AutoResolver), false)]
-        [InlineAutoData(typeof(TimeoutException), false)]
-        [InlineAutoData(typeof(Guid), false)]
-        [InlineAutoData(typeof(Task<>), false)]
-        [InlineAutoData(typeof(Task<int>), false)]
-        [InlineAutoData(typeof(int), false)]
+        [InlineAutoMoqData(typeof(IList), true)]
+        [InlineAutoMoqData(typeof(IEnumerable), true)]
+        [InlineAutoMoqData(typeof(Array), false)]
+        [InlineAutoMoqData(typeof(Enumerable), false)]
+        [InlineAutoMoqData(typeof(Type), false)]
+        [InlineAutoMoqData(typeof(AutoResolver), false)]
+        [InlineAutoMoqData(typeof(TimeoutException), false)]
+        [InlineAutoMoqData(typeof(Guid), false)]
+        [InlineAutoMoqData(typeof(Task<>), false)]
+        [InlineAutoMoqData(typeof(Task<int>), false)]
+        [InlineAutoMoqData(typeof(int), false)]
         public void CanResolve_Interface_ShouldMatch(
             Type type,
             bool expected,
             Mock<IKernel> kernel,
-            Mock<ISubDependencyResolver> resolver,
+            ISubDependencyResolver resolver,
+            CreationContext context,
             string key
         )
         {
@@ -40,8 +41,8 @@ namespace Tethos.Tests
 
             // Act
             var actual = sut.CanResolve(
-                resolver.Object as CreationContext,
-                resolver.Object,
+                context,
+                resolver,
                 new ComponentModel(),
                 new DependencyModel(key, type, false)
             );
@@ -50,10 +51,11 @@ namespace Tethos.Tests
             actual.Should().Be(expected);
         }
 
-        [Theory, AutoData]
+        [Theory, AutoMoqData]
         public void Resolve_Object_ShouldMatch(
             Mock<IKernel> kernel,
-            Mock<ISubDependencyResolver> resolver,
+            ISubDependencyResolver resolver,
+            CreationContext context,
             string key
         )
         {
@@ -64,8 +66,8 @@ namespace Tethos.Tests
 
             // Act
             var actual = sut.Resolve(
-                resolver.Object as CreationContext,
-                resolver.Object,
+                context,
+                resolver,
                 new ComponentModel(),
                 new DependencyModel(key, expected.GetType(), false)
             );

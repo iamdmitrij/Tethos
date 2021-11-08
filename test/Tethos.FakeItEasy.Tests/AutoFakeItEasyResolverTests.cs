@@ -1,7 +1,6 @@
 ﻿using Castle.MicroKernel;
-using Castle.MicroKernel.Context;
 using FluentAssertions;
-using Tethos.NSubstitute.Tests.Attributes;
+using Tethos.FakeItEasy.Tests.Attributes;
 using Tethos.Tests.Common;
 using Xunit;
 
@@ -10,7 +9,7 @@ namespace Tethos.FakeItEasy.Tests
     public class AutoFakeItEasyResolverTests
     {
         [Theory, AutoFakeItEasyData]
-        public void MapToTarget_ShouldMatchMockedType(IMockable mockable, IKernel kernel, CreationContext creationContext)
+        public void MapToTarget_ShouldMatchMockedType(IMockable mockable, IKernel kernel, object[] constructorArguments)
         {
             // Arrange
             var sut = new AutoFakeItEasyResolver(kernel);
@@ -18,7 +17,7 @@ namespace Tethos.FakeItEasy.Tests
             var type = typeof(IMockable);
 
             // Act
-            var actual = sut.MapToTarget(type, creationContext);
+            var actual = sut.MapToTarget(type, constructorArguments);
 
             // Assert
             actual.Should().BeOfType(expected);
