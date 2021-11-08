@@ -1,5 +1,5 @@
-using NSubstitute;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 using Tethos.NSubstitute;
 using Tethos.Tests.Common;
 

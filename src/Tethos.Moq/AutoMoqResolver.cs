@@ -10,7 +10,7 @@ namespace Tethos.Moq
     public class AutoMoqResolver : AutoResolver
     {
         /// <inheritdoc />
-        public AutoMoqResolver(IKernel kernel): base(kernel)
+        public AutoMoqResolver(IKernel kernel) : base(kernel)
         {
         }
 
@@ -19,7 +19,7 @@ namespace Tethos.Moq
         {
             var mockType = typeof(Mock<>).MakeGenericType(targetType);
             var mock = Kernel.Resolve(mockType) as Mock;
-            
+
             return mock?.Object;
         }
     }
