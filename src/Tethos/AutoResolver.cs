@@ -49,6 +49,7 @@ namespace Tethos
                 argument.ToString().Split(new string[] { "__" }, StringSplitOptions.None).FirstOrDefault();
             var targetType = dependency.TargetType;
             var arguments = context.AdditionalArguments
+                .Where(_ => !targetType.IsInterface)
                 .Where(argument => GetType(argument.Key) == $"{targetType}")
                 .Select(argument => argument.Value)
                 .ToArray();
