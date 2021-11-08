@@ -20,6 +20,7 @@ namespace Tethos.Moq
             var mockType = typeof(Mock<>).MakeGenericType(targetType);
             var mock = Kernel.Resolve(mockType) as Mock;
 
+            // TODO: Reimplement
             return mock?.Object;
         }
     }
