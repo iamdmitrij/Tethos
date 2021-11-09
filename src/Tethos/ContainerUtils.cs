@@ -22,7 +22,7 @@ namespace Tethos
             => arguments.AddDependencyTo(typeof(T), name, value);
 
         /// <summary>
-        /// TODO: Comments
+        /// Add type for container mapping.
         /// </summary>
         /// <param name="arguments">Arguments used to contruct destination object.</param>
         /// <param name="sourceType">Type of source object.</param>
