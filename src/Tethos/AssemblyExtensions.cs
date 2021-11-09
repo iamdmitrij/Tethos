@@ -69,15 +69,13 @@ namespace Tethos
 
         internal static Assembly TryToLoadAssembly(this AssemblyName assemblyName)
         {
-            // TODO: Explicit Func type won't necessary in C# 10
-            Func<Assembly> func = () => Assembly.Load(assemblyName);
+            var func = () => Assembly.Load(assemblyName);
             return func.SwallowExceptions(typeof(BadImageFormatException), typeof(FileNotFoundException));
         }
 
         internal static Assembly TryToLoadAssembly(this string assemblyPath)
         {
-            // TODO: Explicit Func type won't necessary in C# 10
-            Func<Assembly> func = () => Assembly.LoadFrom(assemblyPath);
+            var func = () => Assembly.LoadFrom(assemblyPath);
             return func.SwallowExceptions(typeof(BadImageFormatException), typeof(FileNotFoundException));
         }
 
