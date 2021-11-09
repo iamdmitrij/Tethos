@@ -34,6 +34,19 @@ namespace Tethos.Moq.Tests
             actual.Should().BeOfType<AutoMoqResolver>();
         }
 
+        [Fact]
+        public void Test_Idempotency_ShouldMatchMocks()
+        {
+            // Arrange
+            var expected = Container.Resolve<Mock<IMockable>>();
+
+            // Act
+            var actual = Container.Resolve<Mock<IMockable>>();
+
+            // Assert
+            actual.Should().Be(expected);
+        }
+
         [Theory, AutoData]
         public void Test_SimpleDependency_ShouldMatchValue(int expected)
         {
