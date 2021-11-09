@@ -1,5 +1,6 @@
 ﻿using Castle.MicroKernel;
 using System;
+using System.Linq;
 
 namespace Tethos
 {
@@ -38,5 +39,8 @@ namespace Tethos
 
             return arguments.AddNamed($"{sourceType}__{name}", value);
         }
+
+        internal static object[] Flatten(this Arguments arguments) =>
+            arguments.Select(argument => argument.Value).ToArray();
     }
 }

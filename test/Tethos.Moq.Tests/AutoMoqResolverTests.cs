@@ -1,7 +1,6 @@
 ﻿using Castle.MicroKernel;
 using FluentAssertions;
 using Moq;
-using System;
 using Tethos.Moq.Tests.Attributes;
 using Tethos.Tests.Common;
 using Xunit;
