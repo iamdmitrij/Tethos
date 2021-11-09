@@ -16,7 +16,7 @@ jobs:
           workflow: ci.yml
           name: nuget-packages
 
-      - name: 🔨 Use .NET Core 5.0 SDK
+      - name: 🔨 Use .NET Core 6.0 SDK
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "6.0.x"
