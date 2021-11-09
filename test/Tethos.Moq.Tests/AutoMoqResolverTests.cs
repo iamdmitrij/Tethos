@@ -24,19 +24,5 @@ namespace Tethos.Moq.Tests
             // Assert
             actual.Should().BeOfType(expected);
         }
-
-        [Theory, AutoMoqData]
-        public void MapToTarget_WhenMockIsNull_ShouldReturnNull(Mock<IKernel> kernel, Type type, Arguments constructorArguments)
-        {
-            // Arrange
-            var sut = new AutoMoqResolver(kernel.Object);
-            kernel.Setup(x => x.Resolve(type)).Returns(null);
-
-            // Act
-            var actual = sut.MapToTarget(type, constructorArguments);
-
-            // Assert
-            actual.Should().BeNull();
-        }
     }
 }

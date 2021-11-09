@@ -35,7 +35,7 @@ namespace Tethos.Moq
                 .Instance(mock)
             );
 
-            return mock?.Object;
+            return mock.Object;
         }
     }
 }
