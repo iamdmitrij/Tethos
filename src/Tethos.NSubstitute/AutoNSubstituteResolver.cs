@@ -4,6 +4,7 @@ using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Registration;
 using NSubstitute;
 using System;
+using System.Linq;
 
 namespace Tethos.NSubstitute
 {
@@ -22,9 +23,10 @@ namespace Tethos.NSubstitute
             => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
-        public override object MapToTarget(Type targetType, object[] constructorArguments)
+        public override object MapToTarget(Type targetType, Arguments constructorArguments)
         {
-            var mock = Substitute.For(new Type[] { targetType }, targetType.IsInterface ? Array.Empty<object>() : constructorArguments);
+            // TODO: Move .Select(x => x.Value).ToArray() convertion to utils 
+            var mock = Substitute.For(new Type[] { targetType }, targetType.IsInterface ? Array.Empty<object>() : constructorArguments.Select(x => x.Value).ToArray());
 
             Kernel.Register(Component.For(targetType)
                 .Instance(mock)

@@ -4,6 +4,7 @@ using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Registration;
 using FakeItEasy.Sdk;
 using System;
+using System.Linq;
 
 namespace Tethos.FakeItEasy
 {
@@ -22,11 +23,12 @@ namespace Tethos.FakeItEasy
             => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
-        public override object MapToTarget(Type targetType, object[] constructorArguments)
+        public override object MapToTarget(Type targetType, Arguments constructorArguments)
         {
+            // TODO: Move .Select(x => x.Value).ToArray() convertion to utils 
             var mock = Create.Fake(targetType, options =>
                 _ = targetType.IsInterface ? options :
-                options.WithArgumentsForConstructor(constructorArguments));
+                options.WithArgumentsForConstructor(constructorArguments.Select(x => x.Value).ToArray()));
 
             Kernel.Register(Component.For(targetType)
                 .Instance(mock)
