@@ -19,7 +19,7 @@ jobs:
       - name: 🔨 Use .NET Core 5.0 SDK
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: "5.0.x"
+          dotnet-version: "6.0.x"
 
       - name: 🎁 Push to NuGet
         run: dotnet nuget push **/Tethos.*.nupkg --source ${{ secrets.NUGET_FEED }} --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
