@@ -23,6 +23,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<InternalsVisibleTo Include="Tethos.Moq" />
 		<InternalsVisibleTo Include="Tethos.FakeItEasy" />
 		<InternalsVisibleTo Include="Tethos.NSubstitute" />
 		<InternalsVisibleTo Include="Tethos.Tests" />

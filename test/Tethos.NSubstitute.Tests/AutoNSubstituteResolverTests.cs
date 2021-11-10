@@ -12,7 +12,7 @@ namespace Tethos.NSubstitute.Tests
         public void MapToTarget_ShouldMatchMockedType(
             IMockable mockable,
             IKernel kernel,
-            object[] constructorArguments
+            Arguments constructorArguments
         )
         {
             // Arrange

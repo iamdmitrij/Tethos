@@ -22,9 +22,9 @@ namespace Tethos.NSubstitute
             => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
-        public override object MapToTarget(Type targetType, object[] constructorArguments)
+        public override object MapToTarget(Type targetType, Arguments constructorArguments)
         {
-            var mock = Substitute.For(new Type[] { targetType }, targetType.IsInterface ? Array.Empty<object>() : constructorArguments);
+            var mock = Substitute.For(new Type[] { targetType }, targetType.IsInterface ? Array.Empty<object>() : constructorArguments.Flatten());
 
             Kernel.Register(Component.For(targetType)
                 .Instance(mock)
