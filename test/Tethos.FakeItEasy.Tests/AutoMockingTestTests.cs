@@ -21,6 +21,20 @@ namespace Tethos.FakeItEasy.Tests
             // Assert
             actual.Should().BeOfType<AutoFakeItEasyResolver>();
         }
+        
+        [Fact]
+        public void Test_Idempotency_ShouldMatchMocks()
+        {
+            // Arrange
+            Container.Resolve<SystemUnderTest>(); // TODO: What if this can be omitted?
+            var expected = Container.Resolve<IMockable>();
+
+            // Act
+            var actual = Container.Resolve<IMockable>();
+
+            // Assert
+            actual.Should().Be(expected);
+        }
 
         [Theory, AutoData]
         public void Test_SimpleDependency_ShouldMatchValue(int expected)

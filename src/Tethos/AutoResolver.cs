@@ -27,7 +27,7 @@ namespace Tethos
         /// <param name="targetType">Target type for object to be converted to destination object.</param>
         /// <param name="constructorArguments">Constructor argument for target type in case it is non-abstract type.</param>
         /// <returns></returns>
-        public abstract object MapToTarget(Type targetType, object[] constructorArguments);
+        public abstract object MapToTarget(Type targetType, Arguments constructorArguments);
 
         /// <inheritdoc />
         public virtual bool CanResolve(
@@ -50,11 +50,10 @@ namespace Tethos
             var targetType = dependency.TargetType;
             var arguments = context.AdditionalArguments
                 .Where(_ => !targetType.IsInterface)
-                .Where(argument => GetType(argument.Key) == $"{targetType}")
-                .Select(argument => argument.Value)
-                .ToArray();
+                .Where(argument => GetType(argument.Key) == $"{targetType}");
+            var constructorArguments = new Arguments().Add(arguments);
 
-            return MapToTarget(targetType, arguments);
+            return MapToTarget(targetType, constructorArguments);
         }
     }
 }

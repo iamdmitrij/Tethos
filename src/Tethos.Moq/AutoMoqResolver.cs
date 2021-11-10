@@ -1,6 +1,10 @@
-﻿using Castle.MicroKernel;
+﻿using Castle.Core;
+using Castle.MicroKernel;
+using Castle.MicroKernel.Context;
+using Castle.MicroKernel.Registration;
 using Moq;
 using System;
+using System.Linq;
 
 namespace Tethos.Moq
 {
@@ -15,12 +19,23 @@ namespace Tethos.Moq
         }
 
         /// <inheritdoc />
-        public override object MapToTarget(Type targetType, object[] constructorArguments)
+        public override bool CanResolve(CreationContext context, ISubDependencyResolver contextHandlerResolver, ComponentModel model, DependencyModel dependency) =>
+            dependency.TargetType.IsClass && context.AdditionalArguments.Any() // TODO: Add tests covering default ctor
+            || base.CanResolve(context, contextHandlerResolver, model, dependency);
+
+        /// <inheritdoc />
+        public override object MapToTarget(Type targetType, Arguments constructorArguments)
         {
             var mockType = typeof(Mock<>).MakeGenericType(targetType);
-            var mock = Kernel.Resolve(mockType) as Mock;
+            var args = constructorArguments.Select(x => x.Value).ToArray();
+            var mock = Activator.CreateInstance(mockType, args) as Mock;
 
-            return mock?.Object;
+            Kernel.Register(Component.For(mockType)
+                .Instance(mock)
+                .OverridesExistingRegistration()
+            );
+
+            return mock.Object;
         }
     }
 }
