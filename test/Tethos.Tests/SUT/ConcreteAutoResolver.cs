@@ -10,6 +10,6 @@ namespace Tethos.Tests.SUT
         {
         }
 
-        public override object MapToTarget(Type targetType, object[] constructorArguments) => new Mock<object>();
+        public override object MapToTarget(Type targetType, Arguments constructorArguments) => new Mock<object>();
     }
 }
