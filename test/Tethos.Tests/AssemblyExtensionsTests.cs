@@ -102,10 +102,10 @@ namespace Tethos.Tests
         {
             // Arrange
             var expected = "Tethos";
-            var assembly = Assembly.GetExecutingAssembly();
+            var assemblyName = Assembly.GetExecutingAssembly().FullName;
 
             // Act
-            var actual = assembly.GetPattern();
+            var actual = assemblyName.GetPattern();
 
             // Assert
             actual.Should().Be(expected);
@@ -115,7 +115,7 @@ namespace Tethos.Tests
         public void GetPattern_WithSystemAssembly_ShouldThrowArgumentException(FakeAssembly assembly)
         {
             // Arrange
-            Action action = () => assembly.GetPattern();
+            Action action = () => assembly.FullName.GetPattern();
 
             // Act & Assert
             action.Should().Throw<ArgumentException>();

@@ -10,7 +10,7 @@ namespace Tethos
     {
         internal static Assembly[] GetDependencies(this Assembly rootAssembly) =>
             AppDomain.CurrentDomain.BaseDirectory.GetAssemblyFiles()
-                .FilterAssemblies(rootAssembly.GetPattern(), new[] { ".dll", ".exe" }, rootAssembly)
+                .FilterAssemblies(rootAssembly.FullName.GetPattern(), new[] { ".dll", ".exe" }, rootAssembly)
                 .ExcludeRefDirectory()
                 .ElseLoadReferencedAssemblies(rootAssembly)
                 .LoadAssemblies(rootAssembly)
@@ -27,23 +27,13 @@ namespace Tethos
                 .Where(file => file.Name.Contains(searchPattern))
                 .Where(file => !rootAssemblies.Select(assembly => Path.GetFileName(assembly.Location)).Contains(file.Name));
 
-        internal static string GetPattern(this Assembly rootAssembly)
-        {
-            // TODO: Use pattern matching?
-            var patternSeparators = new[] { '.', ',' };
-            var name = rootAssembly.FullName;
-            var index = name.IndexOfAny(patternSeparators);
-
-            if (index < 0)
+        internal static string GetPattern(this string assemblyName) =>
+            assemblyName.IndexOfAny(new[] { '.', ',' }) switch
             {
-                throw new ArgumentException($"Could not determine application name for assembly {name}. " +
-                    "Please use a different method for obtaining assemblies.");
-            }
-
-            var pattern = name.Substring(0, index);
-
-            return pattern;
-        }
+                var index when index < 0 => throw new ArgumentException($"Could not determine application name for assembly {assemblyName}. " +
+                   "Please use a different method for obtaining assemblies."),
+                var index => assemblyName.Substring(0, index),
+            };
 
         internal static IEnumerable<File> ExcludeRefDirectory(this IEnumerable<File> assemblies) =>
             assemblies
