@@ -22,11 +22,11 @@ namespace Tethos.FakeItEasy
             => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
-        public override object MapToTarget(Type targetType, object[] constructorArguments)
+        public override object MapToTarget(Type targetType, Arguments constructorArguments)
         {
             var mock = Create.Fake(targetType, options =>
                 _ = targetType.IsInterface ? options :
-                options.WithArgumentsForConstructor(constructorArguments));
+                options.WithArgumentsForConstructor(constructorArguments.Flatten()));
 
             Kernel.Register(Component.For(targetType)
                 .Instance(mock)

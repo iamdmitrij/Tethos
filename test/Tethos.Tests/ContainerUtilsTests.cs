@@ -2,6 +2,7 @@
 using Castle.MicroKernel;
 using FluentAssertions;
 using System;
+using System.Linq;
 using Xunit;
 
 namespace Tethos.Tests
@@ -78,6 +79,19 @@ namespace Tethos.Tests
 
             // Assert
             actual.Should().Throw<ArgumentNullException>();
+        }
+
+        [Theory, AutoData]
+        public void Flatten_ShouldReturnValueArray(Arguments sut)
+        {
+            // Arrange
+            var expected = sut.Select(x => x.Value);
+
+            // Act
+            var actual = sut.Flatten();
+
+            // Assert
+            actual.Should().BeEquivalentTo(expected);
         }
     }
 }
