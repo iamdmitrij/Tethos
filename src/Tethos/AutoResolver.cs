@@ -26,7 +26,7 @@ namespace Tethos
         /// </summary>
         /// <param name="targetType">Target type for object to be converted to destination object.</param>
         /// <param name="constructorArguments">Constructor argument for target type in case it is non-abstract type.</param>
-        /// <returns></returns>
+        /// <returns>Auto-mocked object dependending on target type.</returns>
         public abstract object MapToTarget(Type targetType, Arguments constructorArguments);
 
         /// <inheritdoc />
