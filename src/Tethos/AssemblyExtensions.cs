@@ -29,6 +29,7 @@ namespace Tethos
 
         internal static string GetPattern(this Assembly rootAssembly)
         {
+            // TODO: Use pattern matching?
             var patternSeparators = new[] { '.', ',' };
             var name = rootAssembly.FullName;
             var index = name.IndexOfAny(patternSeparators);
