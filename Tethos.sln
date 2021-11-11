@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A7503D75-64C3-4AAC-90C8-F6297B09AB70}"
 EndProject
@@ -90,7 +90,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.NUnit.Demo", "demo\N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.xUnit.Demo", "demo\NSubstitute\Tethos.xUnit.Demo\Tethos.xUnit.Demo.csproj", "{FD2DBE23-A8AC-4243-8C02-693ED36FB4FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferencedAssemblies.Tests", "test\ReferencedAssemblies.Tests\ReferencedAssemblies.Tests.csproj", "{E8911617-3F58-465B-9F07-6B044880CD69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReferencedAssemblies.Tests", "test\ReferencedAssemblies.Tests\ReferencedAssemblies.Tests.csproj", "{E8911617-3F58-465B-9F07-6B044880CD69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fake.Net60", "test\Fakes\Fake.Net60\Fake.Net60.csproj", "{94561329-A126-4437-961B-57C5B1B25655}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -210,6 +212,10 @@ Global
 		{E8911617-3F58-465B-9F07-6B044880CD69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8911617-3F58-465B-9F07-6B044880CD69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8911617-3F58-465B-9F07-6B044880CD69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94561329-A126-4437-961B-57C5B1B25655}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94561329-A126-4437-961B-57C5B1B25655}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94561329-A126-4437-961B-57C5B1B25655}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94561329-A126-4437-961B-57C5B1B25655}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -244,6 +250,7 @@ Global
 		{C5FA32C9-46E9-4ACE-95CD-597B8151542A} = {0447E3FF-FB0B-4D55-9C9C-277E950BB886}
 		{FD2DBE23-A8AC-4243-8C02-693ED36FB4FD} = {0447E3FF-FB0B-4D55-9C9C-277E950BB886}
 		{E8911617-3F58-465B-9F07-6B044880CD69} = {A7503D75-64C3-4AAC-90C8-F6297B09AB70}
+		{94561329-A126-4437-961B-57C5B1B25655} = {B7C534E1-2D8F-408D-9739-DE6CD4F0A731}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF888DCC-71E7-4562-AA35-5B93FD8DD252}
