@@ -29,15 +29,12 @@ namespace Tethos
         /// <param name="name">Name of injected parameter.</param>
         /// <param name="value">Value of injected parameter.</param>
         /// <returns>Enriched arguments.</returns>
-        public static Arguments AddDependencyTo(this Arguments arguments, Type sourceType, string name, object value)
-        {
-            if (string.IsNullOrWhiteSpace(name))
+        public static Arguments AddDependencyTo(this Arguments arguments, Type sourceType, string name, object value) =>
+            name switch
             {
-                throw new ArgumentNullException(nameof(name));
-            }
-
-            return arguments.AddNamed($"{sourceType}__{name}", value);
-        }
+                var parameterName when string.IsNullOrWhiteSpace(parameterName) => throw new ArgumentNullException(nameof(parameterName)),
+                var parameterName => arguments.AddNamed($"{sourceType}__{parameterName}", value),
+            };
 
         internal static object[] Flatten(this Arguments arguments) =>
             arguments.Select(argument => argument.Value).ToArray();
