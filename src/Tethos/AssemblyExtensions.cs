@@ -6,9 +6,6 @@ using System.Reflection;
 
 namespace Tethos
 {
-    /// <summary>
-    /// Extension utilities used by <see cref="BaseAutoMockingTest{T}"/>.
-    /// </summary>
     internal static class AssemblyExtensions
     {
         internal static Assembly[] GetDependencies(this Assembly rootAssembly) =>
