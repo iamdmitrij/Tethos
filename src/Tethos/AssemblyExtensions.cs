@@ -54,14 +54,16 @@ namespace Tethos
         internal static IEnumerable<File> ElseLoadReferencedAssemblies(
             this IEnumerable<File> assemblies,
             Assembly rootAssembly
-        ) => assemblies.Any()
-                ? assemblies
-                : rootAssembly
-                    .GetReferencedAssemblies()
-                    .Select(TryToLoadAssembly)
-                    .OfType<Assembly>()
-                    .Select(assembly => new Uri(assembly.CodeBase).AbsolutePath)
-                    .Select(filePath => filePath.GetFile());
+        ) => assemblies.Any() switch
+        {
+            true => assemblies,
+            false => rootAssembly
+                        .GetReferencedAssemblies()
+                        .Select(TryToLoadAssembly)
+                        .OfType<Assembly>()
+                        .Select(assembly => new Uri(assembly.CodeBase).AbsolutePath)
+                        .Select(filePath => filePath.GetFile())
+        };
 
         internal static IEnumerable<Assembly> LoadAssemblies(
             this IEnumerable<File> assemblies,
