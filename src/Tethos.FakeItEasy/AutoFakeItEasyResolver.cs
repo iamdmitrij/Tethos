@@ -30,8 +30,6 @@ namespace Tethos.FakeItEasy
                 _ = targetType.IsInterface ? options :
                 options.WithArgumentsForConstructor(constructorArguments.Flatten()));
 
-            //var mock = Create.Fake(targetType); // <- TODO: This won't fail
-
             Kernel.Register(Component.For(targetType)
                 .Instance(mock)
                 .OverridesExistingRegistration()
