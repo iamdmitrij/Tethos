@@ -28,11 +28,11 @@ namespace Tethos.FakeItEasy
         /// <inheritdoc />
         public override object MapToTarget(Type targetType, Arguments constructorArguments)
         {
-            //var mock = Create.Fake(targetType, options =>
-            //    _ = targetType.IsInterface ? options :
-            //    options.WithArgumentsForConstructor(constructorArguments.Flatten()));
+            var mock = Create.Fake(targetType, options =>
+                _ = targetType.IsInterface ? options :
+                options.WithArgumentsForConstructor(constructorArguments.Flatten()));
 
-            var mock = Create.Fake(targetType); // <- TODO: This won't fail
+            //var mock = Create.Fake(targetType); // <- TODO: This won't fail
 
             Kernel.Register(Component.For(targetType)
                 .Instance(mock)

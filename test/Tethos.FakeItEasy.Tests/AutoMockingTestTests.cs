@@ -21,7 +21,7 @@ namespace Tethos.FakeItEasy.Tests
             // Assert
             actual.Should().BeOfType<AutoFakeItEasyResolver>();
         }
-        
+
         [Fact]
         public void Test_Idempotency_ShouldMatchMocks()
         {
@@ -52,14 +52,30 @@ namespace Tethos.FakeItEasy.Tests
         }
 
         [Fact]
+        public void Container_Resolve_WithClass_ShouldMockClass()
+        {
+            // Arrange
+            var expectedType = A.Fake<Concrete>(options => options.WithArgumentsForConstructor(new List<object>() { 100, 200 })).GetType();
+            var actual = Container.Resolve<SystemUnderTestClass>();
+            var mock = Container.Resolve<Concrete>();
+
+            // Act
+            actual.Do();
+
+            // Assert
+            mock.Should().BeOfType(expectedType);
+            A.CallTo(() => mock.Do()).MustHaveHappened();
+        }
+
+        [Fact]
         public void Container_Resolve_WithClassAndArguments_ShouldMockClass()
         {
             // Arrange
             var expectedType = A.Fake<Concrete>(options => options.WithArgumentsForConstructor(new List<object>() { 100, 200 })).GetType();
             var actual = Container.Resolve<SystemUnderTestClass>(
                 new Arguments()
-                    .AddNamed("minValue", 100)
-                    .AddNamed("maxValue", 200)
+                    .AddDependencyTo<Concrete, int>("minValue", 100)
+                    .AddDependencyTo<Concrete, int>("maxValue", 200)
             );
             var mock = Container.Resolve<Concrete>();
 
@@ -68,7 +84,8 @@ namespace Tethos.FakeItEasy.Tests
 
             // Assert
             mock.Should().BeOfType(expectedType);
-
+            mock.MinValue.Should().Be(100);
+            mock.MaxValue.Should().Be(200);
             A.CallTo(() => mock.Do()).MustHaveHappened();
         }
 
@@ -93,7 +110,10 @@ namespace Tethos.FakeItEasy.Tests
 
             // Assert
             mock.Should().BeOfType(expectedType);
+            mock.MinValue.Should().Be(100);
+            mock.MaxValue.Should().Be(200);
             thresholdMock.Should().BeOfType(expectedThresholdType);
+            thresholdMock.Enalbed.Should().Be(value);
         }
 
         [Theory, AutoData]
@@ -101,16 +121,18 @@ namespace Tethos.FakeItEasy.Tests
         {
             // Arrange
             var expected = A.Fake<AbstractThreshold>(options => options.WithArgumentsForConstructor(new List<object>() { value })).GetType();
-            var actual = Container.Resolve<SystemUnderAbstractClasses>(
+            var sut = Container.Resolve<SystemUnderAbstractClasses>(
                 new Arguments()
                     .AddDependencyTo<AbstractThreshold, bool>("enabled", value)
             );
 
             // Act
-            actual.Do();
+            sut.Do();
+            var actual = Container.Resolve<AbstractThreshold>();
 
             // Assert
-            Container.Resolve<AbstractThreshold>().Should().BeOfType(expected);
+            actual.Should().BeOfType(expected);
+            actual.Enalbed.Should().Be(value);
         }
 
         [Theory, AutoData]
@@ -125,9 +147,11 @@ namespace Tethos.FakeItEasy.Tests
 
             // Act
             sut.Do();
+            var actual = Container.Resolve<PartialThreshold>();
 
             // Assert
-            Container.Resolve<PartialThreshold>().Should().BeOfType(expected);
+            actual.Should().BeOfType(expected);
+            actual.Enalbed.Should().Be(value);
         }
 
         [Fact]
@@ -149,10 +173,17 @@ namespace Tethos.FakeItEasy.Tests
             sut.Do();
 
             // Assert
+            // TODO: Refactor this assert nightmare
             Container.Resolve<Concrete>().Should().BeOfType(A.Fake<Concrete>(options => options.WithArgumentsForConstructor(new List<object>() { 100, 200 })).GetType());
             Container.Resolve<Threshold>().Should().BeOfType(A.Fake<Threshold>(options => options.WithArgumentsForConstructor(new List<object>() { true })).GetType());
             Container.Resolve<PartialThreshold>().Should().BeOfType(A.Fake<PartialThreshold>(options => options.WithArgumentsForConstructor(new List<object>() { true })).GetType());
             Container.Resolve<AbstractThreshold>().Should().BeOfType(A.Fake<AbstractThreshold>(options => options.WithArgumentsForConstructor(new List<object>() { true })).GetType());
+
+            Container.Resolve<Concrete>().MinValue.Should().Be(100);
+            Container.Resolve<Concrete>().MaxValue.Should().Be(200);
+            Container.Resolve<Threshold>().Enalbed.Should().Be(true);
+            Container.Resolve<PartialThreshold>().Enalbed.Should().Be(false);
+            Container.Resolve<AbstractThreshold>().Enalbed.Should().Be(false);
         }
 
         [Theory, AutoData]
