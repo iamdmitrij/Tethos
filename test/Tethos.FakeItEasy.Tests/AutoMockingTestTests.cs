@@ -15,13 +15,10 @@ namespace Tethos.FakeItEasy.Tests
         [Fact]
         public void Container_ShouldHaveAutoResolverInstalled()
         {
-            // Act
-            var actual = Container.Resolve<ISubDependencyResolver>();
-
             // Assert
-            actual.Should().BeOfType<AutoFakeItEasyResolver>();
+            AutoResolver.Should().BeOfType<AutoFakeItEasyResolver>();
         }
-        
+
         [Fact]
         public void Test_Idempotency_ShouldMatchMocks()
         {
