@@ -51,7 +51,9 @@ namespace Tethos
                 .ToArray()
             );
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Provides a mechanism for releasing unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
