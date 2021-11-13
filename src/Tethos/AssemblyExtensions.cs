@@ -32,8 +32,8 @@ namespace Tethos
                 .Where(file => allowedFileExtensions.Contains(file.Extension))
                 .Where(file => file.Name.Contains(searchPattern))
                 .Where(file => !rootAssemblies
-                                    .Select(assembly => Path.GetFileName(assembly.Location))
-                                    .Contains(file.Name)
+                    .Select(assembly => Path.GetFileName(assembly.Location))
+                    .Any(fileName => fileName == file.Name)
                 );
 
         internal static string GetPattern(
