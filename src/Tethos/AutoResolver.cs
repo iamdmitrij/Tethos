@@ -46,7 +46,9 @@ namespace Tethos
         )
         {
             string GetType(object argument) =>
-                argument.ToString().Split(new string[] { "__" }, StringSplitOptions.None).FirstOrDefault();
+                argument.ToString()
+                .Split(new string[] { "__" }, StringSplitOptions.None)
+                .FirstOrDefault();
             var targetType = dependency.TargetType;
             var arguments = context.AdditionalArguments
                 .Where(_ => !targetType.IsInterface)
