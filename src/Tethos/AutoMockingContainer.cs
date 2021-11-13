@@ -3,7 +3,7 @@
 namespace Tethos
 {
     /// <summary>
-    /// Generic auto-mocking container.
+    /// Auto-mocking container implementation.
     /// </summary>
     public class AutoMockingContainer : WindsorContainer, IAutoMockingContainer
     {
