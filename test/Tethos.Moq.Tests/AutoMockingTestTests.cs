@@ -27,11 +27,8 @@ namespace Tethos.Moq.Tests
         [Fact]
         public void Container_ShouldHaveAutoResolverInstalled()
         {
-            // Act
-            var actual = Container.Resolve<ISubDependencyResolver>();
-
             // Assert
-            actual.Should().BeOfType<AutoMoqResolver>();
+            AutoResolver.Should().BeOfType<AutoMoqResolver>();
         }
 
         [Fact]

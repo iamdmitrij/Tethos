@@ -16,7 +16,7 @@ namespace Tethos
         /// <summary>
         /// Auto-mocking container
         /// </summary>
-        protected AutoResolver AutoResolver { get; set; }
+        internal AutoResolver AutoResolver { get; set; }
 
         /// <summary>
         /// Entry assembly from which sub-dependencies are loaded into <see cref="Castle.Windsor"/> IoC.

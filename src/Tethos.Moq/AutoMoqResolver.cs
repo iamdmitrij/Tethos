@@ -8,10 +8,8 @@ using System.Linq;
 
 namespace Tethos.Moq
 {
-    /// <summary>
-    /// <see cref="AutoResolver"/> tailored for <see cref="Moq"/> mocking systems.
-    /// </summary>
-    public class AutoMoqResolver : AutoResolver
+    /// <inheritdoc />
+    internal class AutoMoqResolver : AutoResolver
     {
         /// <inheritdoc />
         public AutoMoqResolver(IKernel kernel) : base(kernel)
