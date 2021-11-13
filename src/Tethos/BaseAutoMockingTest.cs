@@ -10,13 +10,14 @@ namespace Tethos
     /// <summary>
     /// Base for <see cref="Tethos"/> auto-mocking system.
     /// </summary>
+    /// <typeparam name="T">Container instance type derived from <see cref="IAutoMockingContainer"/>.</typeparam>
     public abstract class BaseAutoMockingTest<T> : IWindsorInstaller, IDisposable
         where T : IAutoMockingContainer, new()
     {
         /// <summary>
         /// Auto-mocking container
         /// </summary>
-        protected AutoResolver AutoResolver { get; set; }
+        internal AutoResolver AutoResolver { get; set; }
 
         /// <summary>
         /// Entry assembly from which sub-dependencies are loaded into <see cref="Castle.Windsor"/> IoC.

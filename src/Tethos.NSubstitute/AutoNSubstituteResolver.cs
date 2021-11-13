@@ -7,10 +7,8 @@ using System;
 
 namespace Tethos.NSubstitute
 {
-    /// <summary>
-    /// <see cref="AutoResolver"/> tailored for <see cref="NSubstitute"/> mocking systems.
-    /// </summary>
-    public class AutoNSubstituteResolver : AutoResolver
+    /// <inheritdoc />
+    internal class AutoNSubstituteResolver : AutoResolver
     {
         /// <inheritdoc />
         public AutoNSubstituteResolver(IKernel kernel) : base(kernel)
