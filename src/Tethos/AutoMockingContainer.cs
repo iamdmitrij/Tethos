@@ -2,9 +2,7 @@
 
 namespace Tethos
 {
-    /// <summary>
-    /// Auto-mocking container implementation.
-    /// </summary>
+    /// <inheritdoc cref="IAutoMockingContainer" />
     public class AutoMockingContainer : WindsorContainer, IAutoMockingContainer
     {
     }

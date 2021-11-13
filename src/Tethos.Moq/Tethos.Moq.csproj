@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<LangVersion>10.0</LangVersion>
 		<TargetFramework>netstandard2.0</TargetFramework>
+		<NoWarn>$(NoWarn);IDT001</NoWarn>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<IsPackable>true</IsPackable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -51,6 +52,12 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Tethos\Tethos.csproj" />
+	</ItemGroup>
+
+	<!-- Following group is needed because of this: https://github.com/dotnet/standard/issues/1527 -->
+	<ItemGroup>
+		<PackageDownload Include="NETStandard.Library.Ref" Version="[2.1.0]" />
+		<InheritDocReference Include="$([MSBuild]::EnsureTrailingSlash('$(NugetPackageRoot)'))netstandard.library.ref\2.1.0\ref\netstandard2.1\netstandard.xml" />
 	</ItemGroup>
 
 </Project>
