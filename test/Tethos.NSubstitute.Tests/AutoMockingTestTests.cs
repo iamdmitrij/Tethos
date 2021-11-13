@@ -14,11 +14,8 @@ namespace Tethos.NSubstitute.Tests
         [Fact]
         public void Container_ShouldHaveAutoResolverInstalled()
         {
-            // Act
-            var actual = Container.Resolve<ISubDependencyResolver>();
-
             // Assert
-            actual.Should().BeOfType<AutoNSubstituteResolver>();
+            AutoResolver.Should().BeOfType<AutoNSubstituteResolver>();
         }
 
         [Fact]
