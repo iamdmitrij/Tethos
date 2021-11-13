@@ -9,6 +9,5 @@ namespace Tethos
             this ComponentRegistration<T> componentRegistration
         ) where T : class
             => componentRegistration?.Named($"{Guid.NewGuid()}").IsDefault();
-
     }
 }

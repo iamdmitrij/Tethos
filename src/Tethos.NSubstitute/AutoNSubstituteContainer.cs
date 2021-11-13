@@ -2,9 +2,7 @@
 
 namespace Tethos.NSubstitute
 {
-    /// <summary>
-    /// Auto-mocking contrainer for <see cref="NSubstitute"/> concrete type.
-    /// </summary>
+    /// <inheritdoc cref="IAutoNSubstituteContainer" />
     public class AutoNSubstituteContainer : WindsorContainer, IAutoNSubstituteContainer
     {
     }

@@ -3,7 +3,7 @@
 namespace Tethos
 {
     /// <summary>
-    /// Auto-mocking container contract.
+    /// Auto-mocking container based on <see cref="IWindsorContainer"/>.
     /// </summary>
     public interface IAutoMockingContainer : IWindsorContainer
     {

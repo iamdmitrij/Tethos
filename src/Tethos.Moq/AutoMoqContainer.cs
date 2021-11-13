@@ -2,9 +2,7 @@
 
 namespace Tethos.Moq
 {
-    /// <summary>
-    /// Auto-mocking contrainer for <see cref="Moq"/> concrete type.
-    /// </summary>
+    /// <inheritdoc cref="IAutoMoqContainer" />
     public class AutoMoqContainer : WindsorContainer, IAutoMoqContainer
     {
     }
