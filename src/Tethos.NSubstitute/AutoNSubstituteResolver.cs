@@ -28,7 +28,11 @@ namespace Tethos.NSubstitute
         /// <inheritdoc />
         public override object MapToTarget(Type targetType, Arguments constructorArguments)
         {
-            var arguments = targetType.IsInterface ? Array.Empty<object>() : constructorArguments.Flatten();
+            var arguments = targetType.IsInterface switch
+            {
+                true => Array.Empty<object>(),
+                false => constructorArguments.Flatten()
+            };
             var mock = Substitute.For(new Type[] { targetType }, arguments);
 
             Kernel.Register(Component.For(targetType)
