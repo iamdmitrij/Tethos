@@ -18,8 +18,12 @@ namespace Tethos.FakeItEasy
         }
 
         /// <inheritdoc />
-        public override bool CanResolve(CreationContext context, ISubDependencyResolver contextHandlerResolver, ComponentModel model, DependencyModel dependency)
-            => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
+        public override bool CanResolve(
+            CreationContext context,
+            ISubDependencyResolver contextHandlerResolver,
+            ComponentModel model,
+            DependencyModel dependency
+        ) => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
         public override object MapToTarget(Type targetType, Arguments constructorArguments)
