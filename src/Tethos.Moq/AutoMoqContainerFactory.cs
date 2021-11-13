@@ -6,7 +6,7 @@
     public static class AutoMoqContainerFactory
     {
         /// <summary>
-        /// Creates ready to use auto-mocking ready.
+        /// Creates ready to use auto-mocking container.
         /// </summary>
         public static IAutoMoqContainer Create() => new AutoMockingTest().Container;
     }

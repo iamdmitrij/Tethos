@@ -6,7 +6,7 @@
     public static class AutoFakeItEasyContainerFactory
     {
         /// <summary>
-        /// Creates ready to use auto-mocking ready.
+        /// Creates ready to use auto-mocking container.
         /// </summary>
         public static IAutoFakeItEasyContainer Create() => new AutoMockingTest().Container;
     }

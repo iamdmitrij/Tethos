@@ -6,7 +6,7 @@
     public static class AutoNSubstituteContainerFactory
     {
         /// <summary>
-        /// Creates ready to use auto-mocking ready.
+        /// Creates ready to use auto-mocking container.
         /// </summary>
         public static IAutoNSubstituteContainer Create() => new AutoMockingTest().Container;
     }
