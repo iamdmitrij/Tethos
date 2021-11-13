@@ -9,7 +9,7 @@ namespace Tethos
     /// <summary>
     /// Auto mocking resolver abstraction.
     /// </summary>
-    public abstract class AutoResolver : ISubDependencyResolver
+    internal abstract class AutoResolver : ISubDependencyResolver
     {
         /// <summary>
         /// <see cref="Castle.Windsor"/> kernel dependency.
