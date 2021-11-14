@@ -4,7 +4,6 @@ using Castle.MicroKernel.Registration;
 using FakeItEasy;
 using FluentAssertions;
 using System;
-using System.Collections.Generic;
 using Tethos.Tests.Common;
 using Xunit;
 
@@ -49,107 +48,150 @@ namespace Tethos.FakeItEasy.Tests
         }
 
         [Fact]
-        public void Container_Resolve_WithClassAndArguments_ShouldMockClass()
+        public void Container_Resolve_WithClass_ShouldMockClass()
         {
             // Arrange
-            var expectedType = A.Fake<Concrete>(options => options.WithArgumentsForConstructor(new List<object>() { 100, 200 })).GetType();
-            var actual = Container.Resolve<SystemUnderTestClass>(
-                new Arguments()
-                    .AddNamed("minValue", 100)
-                    .AddNamed("maxValue", 200)
-            );
-            var mock = Container.Resolve<Concrete>();
-
-            // Act
-            actual.Do();
-
-            // Assert
-            mock.Should().BeOfType(expectedType);
-
-            A.CallTo(() => mock.Do()).MustHaveHappened();
-        }
-
-        [Theory, AutoData]
-        public void Container_Resolve_WithClassAndPrimitiveType_ShouldMatchMockTypes(bool value)
-        {
-            // Arrange
-            var expectedType = A.Fake<Concrete>(options => options.WithArgumentsForConstructor(new List<object>() { 100, 200 })).GetType();
-            var expectedThresholdType = A.Fake<Threshold>(options => options.WithArgumentsForConstructor(new List<object>() { value })).GetType();
-
-            var actual = Container.Resolve<SystemUnderTwoClasses>(
-                new Arguments()
-                    .AddDependencyTo<Concrete, int>("minValue", 100)
-                    .AddDependencyTo<Concrete, int>("maxValue", 200)
-                    .AddDependencyTo<Threshold, bool>("enabled", value)
-            );
-            var mock = Container.Resolve<Concrete>();
-            var thresholdMock = Container.Resolve<Threshold>();
-
-            // Act
-            actual.Do();
-
-            // Assert
-            mock.Should().BeOfType(expectedType);
-            thresholdMock.Should().BeOfType(expectedThresholdType);
-        }
-
-        [Theory, AutoData]
-        public void Container_Resolve_WithAbstractClass_ShouldMatchMockTypes(bool value)
-        {
-            // Arrange
-            var expected = A.Fake<AbstractThreshold>(options => options.WithArgumentsForConstructor(new List<object>() { value })).GetType();
-            var actual = Container.Resolve<SystemUnderAbstractClasses>(
-                new Arguments()
-                    .AddDependencyTo<AbstractThreshold, bool>("enabled", value)
-            );
-
-            // Act
-            actual.Do();
-
-            // Assert
-            Container.Resolve<AbstractThreshold>().Should().BeOfType(expected);
-        }
-
-        [Theory, AutoData]
-        public void Container_Resolve_WithPartialClass_ShouldMatchMockTypes(bool value)
-        {
-            // Arrange
-            var expected = A.Fake<PartialThreshold>(options => options.WithArgumentsForConstructor(new List<object>() { value })).GetType();
-            var sut = Container.Resolve<SystemUnderPartialClass>(
-                new Arguments()
-                    .AddDependencyTo<PartialThreshold, bool>("enabled", value)
-            );
+            var sut = Container.Resolve<SystemUnderTestClass>();
+            var expected = sut.Mockable.GetType();
+            var actual = Container.Resolve<Concrete>();
 
             // Act
             sut.Do();
 
             // Assert
-            Container.Resolve<PartialThreshold>().Should().BeOfType(expected);
+            actual.Should().BeOfType(expected);
+            A.CallTo(() => actual.Do()).MustHaveHappened();
         }
 
-        [Fact]
-        public void Container_Resolve_WithMixedClasses_ShouldCallMock()
+        [Theory, AutoData]
+        public void Container_Resolve_WithClassAndArguments_ShouldMockClass(int minValue, int maxValue)
+        {
+            // Arrange
+            var sut = Container.Resolve<SystemUnderTestClass>(
+                new Arguments()
+                    .AddDependencyTo<Concrete, int>(nameof(minValue), minValue)
+                    .AddDependencyTo<Concrete, int>(nameof(maxValue), maxValue)
+            );
+            var expected = sut.Mockable.GetType();
+            var actual = Container.Resolve<Concrete>();
+
+            // Act
+            sut.Do();
+
+            // Assert
+            A.CallTo(() => actual.Do()).MustHaveHappened();
+            actual.MinValue.Should().Be(minValue);
+            actual.MaxValue.Should().Be(maxValue);
+            actual.Should().BeOfType(expected);
+        }
+
+        [Theory, AutoData]
+        public void Container_Resolve_WithClassAndPrimitiveType_ShouldMatchMockTypes(
+            int minValue,
+            int maxValue,
+            bool enabled
+        )
+        {
+            // Arrange
+            var sut = Container.Resolve<SystemUnderTwoClasses>(
+                new Arguments()
+                    .AddDependencyTo<Concrete, int>(nameof(minValue), minValue)
+                    .AddDependencyTo<Concrete, int>(nameof(maxValue), maxValue)
+                    .AddDependencyTo<Threshold, bool>(nameof(enabled), enabled)
+            );
+            var expectedType = sut.Mockable.GetType();
+            var expectedThresholdType = sut.Threshold.GetType();
+            var mock = Container.Resolve<Concrete>();
+            var thresholdMock = Container.Resolve<Threshold>();
+
+            // Act
+            sut.Do();
+
+            // Assert
+            mock.Should().BeOfType(expectedType);
+            mock.MinValue.Should().Be(minValue);
+            mock.MaxValue.Should().Be(maxValue);
+            thresholdMock.Should().BeOfType(expectedThresholdType);
+            thresholdMock.Enalbed.Should().Be(enabled);
+        }
+
+        [Theory, AutoData]
+        public void Container_Resolve_WithAbstractClass_ShouldMatchMockTypes(bool enabled)
+        {
+            // Arrange
+            var sut = Container.Resolve<SystemUnderAbstractClasses>(
+                new Arguments()
+                    .AddDependencyTo<AbstractThreshold, bool>(nameof(enabled), enabled)
+            );
+            var expected = sut.Threshold.GetType();
+            var actual = Container.Resolve<AbstractThreshold>();
+
+            // Act
+            sut.Do();
+
+            // Assert
+            actual.Should().BeOfType(expected);
+            actual.Enalbed.Should().Be(enabled);
+        }
+
+        [Theory, AutoData]
+        public void Container_Resolve_WithPartialClass_ShouldMatchMockTypes(bool enabled)
+        {
+            // Arrange
+            var sut = Container.Resolve<SystemUnderPartialClass>(
+                new Arguments()
+                    .AddDependencyTo<PartialThreshold, bool>(nameof(enabled), enabled)
+            );
+            var expected = sut.Threshold.GetType();
+            var actual = Container.Resolve<PartialThreshold>();
+
+            // Act
+            sut.Do();
+
+            // Assert
+            actual.Should().BeOfType(expected);
+            actual.Enalbed.Should().Be(enabled);
+        }
+
+        [Theory, AutoData]
+        public void Container_Resolve_WithMixedClasses_ShouldCallMock(
+            int minValue,
+            int maxValue,
+            bool thresholdEnabled,
+            bool partialThresholdEnabled,
+            bool abstractThresholdEnabled
+        )
         {
             // Arrange
             var sut = Container.Resolve<SystemUnderMixedClasses>(
                 new Arguments()
                     .AddNamed("demo", 1)
                     .AddTyped(new SealedConcrete())
-                    .AddDependencyTo<Concrete, int>("minValue", 100)
-                    .AddDependencyTo<Concrete, int>("maxValue", 200)
-                    .AddDependencyTo<Threshold, bool>("enabled", true)
-                    .AddDependencyTo<PartialThreshold, bool>("enabled", false)
-                    .AddDependencyTo<AbstractThreshold, bool>("enabled", false)
+                    .AddDependencyTo<Concrete, int>(nameof(minValue), minValue)
+                    .AddDependencyTo<Concrete, int>(nameof(maxValue), maxValue)
+                    .AddDependencyTo<Threshold, bool>("enabled", thresholdEnabled)
+                    .AddDependencyTo<PartialThreshold, bool>("enabled", partialThresholdEnabled)
+                    .AddDependencyTo<AbstractThreshold, bool>("enabled", abstractThresholdEnabled)
             );
+            var concrete = Container.Resolve<Concrete>();
+            var threshold = Container.Resolve<Threshold>();
+            var partialThreshold = Container.Resolve<PartialThreshold>();
+            var abstractThreshold = Container.Resolve<AbstractThreshold>();
 
             // Act
             sut.Do();
 
             // Assert
-            Container.Resolve<Concrete>().Should().BeOfType(A.Fake<Concrete>(options => options.WithArgumentsForConstructor(new List<object>() { 100, 200 })).GetType());
-            Container.Resolve<Threshold>().Should().BeOfType(A.Fake<Threshold>(options => options.WithArgumentsForConstructor(new List<object>() { true })).GetType());
-            Container.Resolve<PartialThreshold>().Should().BeOfType(A.Fake<PartialThreshold>(options => options.WithArgumentsForConstructor(new List<object>() { true })).GetType());
-            Container.Resolve<AbstractThreshold>().Should().BeOfType(A.Fake<AbstractThreshold>(options => options.WithArgumentsForConstructor(new List<object>() { true })).GetType());
+            concrete.Should().BeOfType(sut.Mockable.GetType());
+            threshold.Should().BeOfType(sut.Threshold.GetType());
+            partialThreshold.Should().BeOfType(sut.PartialThreshold.GetType());
+            abstractThreshold.Should().BeOfType(sut.AbstractThreshold.GetType());
+
+            concrete.MinValue.Should().Be(minValue);
+            concrete.MaxValue.Should().Be(maxValue);
+            threshold.Enalbed.Should().Be(thresholdEnabled);
+            partialThreshold.Enalbed.Should().Be(partialThresholdEnabled);
+            abstractThreshold.Enalbed.Should().Be(abstractThresholdEnabled);
         }
 
         [Theory, AutoData]
