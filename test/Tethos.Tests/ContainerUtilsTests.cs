@@ -10,6 +10,7 @@ namespace Tethos.Tests
     public class ContainerUtilsTests
     {
         [Theory, AutoData]
+        [Trait("Foo")]
         public void AddDependencyTo_ShouldMatchArguments(Arguments sut, string name, int expected)
         {
             // Act
