@@ -16,7 +16,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Tethos.Moq" Version="1.2.0" />
+		<PackageReference Include="Tethos.Moq" Version="1.2.2" />
 	</ItemGroup>
 
 	<ItemGroup>
