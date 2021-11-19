@@ -7,7 +7,7 @@ namespace Tethos.Tests
     public class BaseAutoMockingTestTests : BaseAutoMockingTest<AutoMockingContainer>
     {
         [Fact]
-        [Trait("", "Integration")]
+        [Trait("Category", "Integration")]
         public void SystemUnderTest_Do_ShouldMatchValueRange()
         {
             // Arrange

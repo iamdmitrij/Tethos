@@ -11,7 +11,7 @@ namespace Tethos.Tests
     public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
     {
         [Fact]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         public void TryToLoadAssembly_WithCorruptAssembly_ShouldReturnNull()
         {
             // Arrange
@@ -28,7 +28,7 @@ namespace Tethos.Tests
         [InlineData("Microsoft.Extensions.DependencyModel.dll")]
         [InlineData("Fake.Framework461.exe")]
         [InlineData("Fake.Core31.dll")]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         public void TryToLoadAssembly_ShouldLoadAssembly(string assemblyName)
         {
             // Arrange
@@ -42,7 +42,7 @@ namespace Tethos.Tests
         }
 
         [Theory, AutoData]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         public void TryToLoadAssembly_UsingAssemblyName_ShouldReturnNull(string name)
         {
             // Arrange
@@ -56,7 +56,7 @@ namespace Tethos.Tests
         }
 
         [Fact]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         public void TryToLoadAssembly_UsingAssemblyName_ShouldLoadAssembly()
         {
             // Arrange
@@ -72,7 +72,7 @@ namespace Tethos.Tests
 
         [Theory]
         [ClassData(typeof(AssemblyTheoryData))]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         public void GetDependencies_UsingLocalDependencies_ShouldMatchLoaddingAssemblyCount(
             string assemblyName, IEnumerable<string> expectedAssemblyName
         )
@@ -88,7 +88,7 @@ namespace Tethos.Tests
         }
 
         [Fact]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         public void GetDependencies_UsingCoreDependencies_ShouldBeEmpty()
         {
             // Arrange
@@ -104,7 +104,7 @@ namespace Tethos.Tests
         }
 
         [Fact]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         public void GetPattern_WithExecutingAssembly_ShouldMatchProperPattern()
         {
             // Arrange
@@ -119,7 +119,7 @@ namespace Tethos.Tests
         }
 
         [Theory, AutoData]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         public void GetPattern_WithSystemAssembly_ShouldThrowArgumentException(FakeAssembly assembly)
         {
             // Arrange
@@ -133,7 +133,7 @@ namespace Tethos.Tests
         [InlineData("Tethos.dll", "Tethos.Tests.Common.dll")]
         [InlineData("AutoFixture.dll", "FluentAssertions.dll", "Moq.dll", "xunit.core.dll")]
         [InlineData("Castle.Core.dll", "Castle.Windsor.dll")]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         public void LoadAssemblies_ShouldLoad(params string[] assemblies)
         {
             // Arrange
@@ -149,7 +149,7 @@ namespace Tethos.Tests
 
         [Theory]
         [InlineData("Fake.Core30.exe", "Fake.Core31.exe")]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         public void LoadAssemblies_ShouldSkip(params string[] assemblies)
         {
             // Arrange
@@ -173,7 +173,7 @@ namespace Tethos.Tests
         [InlineData("Tethos", 0, "Fake.Standard20.dll")]
         [InlineData("Tethos", 1, "Fake.Standard20.dll", "ref/Tethos.Tests.dll")]
         [InlineData("xunit", 1, "xunit.abstractions.dll")]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         public void FilterAssemblies_ShouldMatchCount(string pattern, int expected, params string[] assemblies)
         {
             // Arrange
@@ -192,7 +192,7 @@ namespace Tethos.Tests
         [InlineData(0, "ref/Fake.Core31.ref.dll")]
         [InlineData(1, "Fake.Core31.dll")]
         [InlineData(2, "Fake.ref.Core31.dll", "Fake.ref.ref.ref")]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         public void ExcludeRefDirectory(int expected, params string[] assemblies)
         {
             // Arrange
@@ -206,7 +206,7 @@ namespace Tethos.Tests
         }
 
         [Theory, AutoData]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         internal void ElseLoadReferencedAssemblies_ShouldReturnOriginal(File[] files)
         {
             // Arrange
@@ -221,7 +221,7 @@ namespace Tethos.Tests
         }
 
         [Fact]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         public void ElseLoadReferencedAssemblies_Empty_ShouldReturnReferenceAssemblied()
         {
             // Arrange

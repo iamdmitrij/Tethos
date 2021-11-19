@@ -10,7 +10,7 @@ namespace Tethos.FakeItEasy.Tests
     public class AutoMoqContainerFactoryTests
     {
         [Theory, FactoryContainerData]
-        [Trait("", "Integration")]
+        [Trait("Category", "Integration")]
         public void Create_SimpleDependency_ShouldMatchValue(
             IAutoMoqContainer container,
             int expected

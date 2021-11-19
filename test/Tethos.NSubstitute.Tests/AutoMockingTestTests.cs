@@ -12,7 +12,7 @@ namespace Tethos.NSubstitute.Tests
     public class AutoMockingTestTests : AutoMockingTest
     {
         [Fact]
-        [Trait("", "Integration")]
+        [Trait("Category", "Integration")]
         public void Container_ShouldHaveAutoResolverInstalled()
         {
             // Assert
@@ -20,7 +20,7 @@ namespace Tethos.NSubstitute.Tests
         }
 
         [Fact]
-        [Trait("", "Integration")]
+        [Trait("Category", "Integration")]
         public void Test_Idempotency_ShouldMatchMocks()
         {
             // Arrange
@@ -35,7 +35,7 @@ namespace Tethos.NSubstitute.Tests
         }
 
         [Theory, AutoData]
-        [Trait("", "Integration")]
+        [Trait("Category", "Integration")]
         public void Test_SimpleDependency_ShouldMatchValue(int expected)
         {
             // Arrange
@@ -52,7 +52,7 @@ namespace Tethos.NSubstitute.Tests
         }
 
         [Fact]
-        [Trait("", "Integration")]
+        [Trait("Category", "Integration")]
         public void Container_Resolve_WithClassAndArguments_ShouldMockClass()
         {
             // Arrange
@@ -73,7 +73,7 @@ namespace Tethos.NSubstitute.Tests
         }
 
         [Theory, AutoData]
-        [Trait("", "Integration")]
+        [Trait("Category", "Integration")]
         public void Container_Resolve_WithClassAndPrimitiveType_ShouldMatchMockTypes(bool value)
         {
             // Arrange
@@ -98,7 +98,7 @@ namespace Tethos.NSubstitute.Tests
         }
 
         [Theory, AutoData]
-        [Trait("", "Integration")]
+        [Trait("Category", "Integration")]
         public void Container_Resolve_WithAbstractClass_ShouldMatchMockTypes(bool value)
         {
             // Arrange
@@ -116,7 +116,7 @@ namespace Tethos.NSubstitute.Tests
         }
 
         [Theory, AutoData]
-        [Trait("", "Integration")]
+        [Trait("Category", "Integration")]
         public void Container_Resolve_WithPartialClass_ShouldMatchMockTypes(bool value)
         {
             // Arrange
@@ -134,7 +134,7 @@ namespace Tethos.NSubstitute.Tests
         }
 
         [Fact]
-        [Trait("", "Integration")]
+        [Trait("Category", "Integration")]
         public void Container_Resolve_WithMixedClasses_ShouldCallMock()
         {
             // Arrange
@@ -160,7 +160,7 @@ namespace Tethos.NSubstitute.Tests
         }
 
         [Theory, AutoData]
-        [Trait("", "Integration")]
+        [Trait("Category", "Integration")]
         public void Clean_ShouldRevertBackToOriginalBehavior(Mockable mockable)
         {
             // Arrange

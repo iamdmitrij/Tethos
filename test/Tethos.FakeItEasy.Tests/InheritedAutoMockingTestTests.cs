@@ -8,7 +8,7 @@ namespace Tethos.FakeItEasy.Tests
     public class InheritedAutoMockingTestTests : AutoMockingTest
     {
         [Theory, AutoData]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         public void Dispose_ShouldDisposeMock(InheritedAutoMockingTest sut)
         {
             // Act
@@ -19,7 +19,7 @@ namespace Tethos.FakeItEasy.Tests
         }
 
         [Theory, AutoData]
-        [Trait("", "Unit")]
+        [Trait("Category", "Unit")]
         public void Dispose_NullContainer_ShouldNotDisposeMock(InheritedAutoMockingTest sut)
         {
             // Arrange

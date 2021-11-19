@@ -8,7 +8,7 @@ namespace Tethos.xUnit.Demo
     public class ContainerFromBaseClass : AutoMockingTest
     {
         [Fact]
-        [Trait("", "Demo")]
+        [Trait("Category", "Demo")]
         public void Do_WithMock_ShouldReturn42()
         {
             // Arrange
