@@ -16,7 +16,7 @@ namespace Tethos.MSTest.Demo
         }
 
         [TestMethod]
-        [TestCategory("Demo")]
+        [TestProperty("Category", "Demo")]
         public void Do_WithMock_ShouldReturn42()
         {
             // Arrange
