@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<IsTestProject>true</IsTestProject>
 		<NoWarn>1701;1702;NU1702</NoWarn>
 	</PropertyGroup>
@@ -36,6 +36,7 @@
 		<ProjectReference Include="..\Fakes\Fake.Framework461\Fake.Framework461.csproj" />
 		<ProjectReference Include="..\Fakes\Fake.Framework472\Fake.Framework472.csproj" />
 		<ProjectReference Include="..\Fakes\Fake.Net50\Fake.Net50.csproj" />
+		<ProjectReference Include="..\Fakes\Fake.Net60\Fake.Net60.csproj" />
 		<ProjectReference Include="..\Fakes\Fake.Standard20\Fake.Standard20.csproj" />
 		<ProjectReference Include="..\Fakes\Fake.Standard21\Fake.Standard21.csproj" />
 		<ProjectReference Include="..\Tethos.Tests.Common\Tethos.Tests.Common.csproj" />
