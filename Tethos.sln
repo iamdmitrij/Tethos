@@ -43,6 +43,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{D99B762A-D2FA-4094-8E91-65E096FB9145}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{8DDA643A-1839-4470-A593-5EE9507FB294}"
+	ProjectSection(SolutionItems) = preProject
+		.github\.codecov.yml = .github\.codecov.yml
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{A4A25CC2-61ED-47F0-B91C-9CB93D90D3CC}"
 	ProjectSection(SolutionItems) = preProject
@@ -92,7 +96,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.xUnit.Demo", "demo\N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReferencedAssemblies.Tests", "test\ReferencedAssemblies.Tests\ReferencedAssemblies.Tests.csproj", "{E8911617-3F58-465B-9F07-6B044880CD69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fake.Net60", "test\Fakes\Fake.Net60\Fake.Net60.csproj", "{94561329-A126-4437-961B-57C5B1B25655}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fake.Net60", "test\Fakes\Fake.Net60\Fake.Net60.csproj", "{94561329-A126-4437-961B-57C5B1B25655}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
