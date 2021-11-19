@@ -9,6 +9,7 @@ namespace Tethos.FakeItEasy.Tests
     public class AutoFakeItEasyContainerFactoryTests
     {
         [Theory, FactoryContainerData]
+        [Trait("Category", "Integration")]
         public void Create_SimpleDependency_ShouldMatchValue(
             IAutoFakeItEasyContainer container,
             int expected
