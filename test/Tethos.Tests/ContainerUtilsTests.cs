@@ -10,7 +10,7 @@ namespace Tethos.Tests
     public class ContainerUtilsTests
     {
         [Theory, AutoData]
-        [Trait("Category", "Public")]
+        [Trait("", "Public")]
         public void AddDependencyTo_ShouldMatchArguments(Arguments sut, string name, int expected)
         {
             // Act
@@ -21,7 +21,7 @@ namespace Tethos.Tests
         }
 
         [Theory, AutoData]
-        [Trait("Category", "Public")]
+        [Trait("", "Public")]
         public void AddDependencyTo_WithNullValue_ShouldBeBull(Arguments sut, string name)
         {
             // Arrange
@@ -35,7 +35,7 @@ namespace Tethos.Tests
         }
 
         [Theory, AutoData]
-        [Trait("Category", "Public")]
+        [Trait("", "Public")]
         public void AddDependencyTo_WithNameValue_ShouldThrowArgumentNullException(Arguments sut, int value)
         {
             // Arrange
@@ -49,7 +49,7 @@ namespace Tethos.Tests
         }
 
         [Theory, AutoData]
-        [Trait("Category", "Public")]
+        [Trait("", "Public")]
         public void AddDependencyTo_UsingTypeParam_ShouldMatchArguments(Arguments sut, string name, int expected)
         {
             // Act
@@ -60,7 +60,7 @@ namespace Tethos.Tests
         }
 
         [Theory, AutoData]
-        [Trait("Category", "Public")]
+        [Trait("", "Public")]
         public void AddDependencyTo_UsingTypeParam_WithNullValue_ShouldBeBull(Arguments sut, string name)
         {
             // Arrange
@@ -74,7 +74,7 @@ namespace Tethos.Tests
         }
 
         [Theory, AutoData]
-        [Trait("Category", "Public")]
+        [Trait("", "Public")]
         public void AddDependencyTo_UsingTypeParam_WithNameValue_ShouldThrowArgumentNullException(Arguments sut, int value)
         {
             // Arrange
@@ -88,7 +88,7 @@ namespace Tethos.Tests
         }
 
         [Theory, AutoData]
-        [Trait("Category", "Internal")]
+        [Trait("", "Internal")]
         public void Flatten_ShouldReturnValueArray(Arguments sut)
         {
             // Arrange

@@ -12,7 +12,7 @@ namespace Tethos.FakeItEasy.Tests
     public class AutoMockingTestTests : AutoMockingTest
     {
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("", "Integration")]
         public void Container_ShouldHaveAutoResolverInstalled()
         {
             // Assert
@@ -20,7 +20,7 @@ namespace Tethos.FakeItEasy.Tests
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("", "Integration")]
         public void Test_Idempotency_ShouldMatchMocks()
         {
             // Arrange
@@ -35,7 +35,7 @@ namespace Tethos.FakeItEasy.Tests
         }
 
         [Theory, AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("", "Integration")]
         public void Test_SimpleDependency_ShouldMatchValue(int expected)
         {
             // Arrange
@@ -51,7 +51,7 @@ namespace Tethos.FakeItEasy.Tests
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("", "Integration")]
         public void Container_Resolve_WithClass_ShouldMockClass()
         {
             // Arrange
@@ -68,7 +68,7 @@ namespace Tethos.FakeItEasy.Tests
         }
 
         [Theory, AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("", "Integration")]
         public void Container_Resolve_WithClassAndArguments_ShouldMockClass(int minValue, int maxValue)
         {
             // Arrange
@@ -91,7 +91,7 @@ namespace Tethos.FakeItEasy.Tests
         }
 
         [Theory, AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("", "Integration")]
         public void Container_Resolve_WithClassAndPrimitiveType_ShouldMatchMockTypes(
             int minValue,
             int maxValue,
@@ -122,7 +122,7 @@ namespace Tethos.FakeItEasy.Tests
         }
 
         [Theory, AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("", "Integration")]
         public void Container_Resolve_WithAbstractClass_ShouldMatchMockTypes(bool enabled)
         {
             // Arrange
@@ -142,7 +142,7 @@ namespace Tethos.FakeItEasy.Tests
         }
 
         [Theory, AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("", "Integration")]
         public void Container_Resolve_WithPartialClass_ShouldMatchMockTypes(bool enabled)
         {
             // Arrange
@@ -162,7 +162,7 @@ namespace Tethos.FakeItEasy.Tests
         }
 
         [Theory, AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("", "Integration")]
         public void Container_Resolve_WithMixedClasses_ShouldCallMock(
             int minValue,
             int maxValue,
@@ -204,7 +204,7 @@ namespace Tethos.FakeItEasy.Tests
         }
 
         [Theory, AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("", "Integration")]
         public void Clean_ShouldRevertBackToOriginalBehavior(Mockable mockable)
         {
             // Arrange

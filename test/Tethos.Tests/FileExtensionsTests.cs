@@ -7,7 +7,7 @@ namespace Tethos.Tests
     public class FileExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
     {
         [Fact]
-        [Trait("Category", "Internal")]
+        [Trait("", "Internal")]
         public void GetPath_FromExecutingAssembly_ShouldMatchLocation()
         {
             // Arrange
