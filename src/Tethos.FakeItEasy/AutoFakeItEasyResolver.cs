@@ -29,11 +29,9 @@ namespace Tethos.FakeItEasy
         {
             Action<IFakeOptions> arguments = targetType.IsInterface switch
             {
-                true => options => { }
-                ,
                 false => options => options.WithArgumentsForConstructor(constructorArguments.Flatten()),
+                true => options => { }
             };
-            // TODO: Tests won't fail if next line is changed to var mock = Create.Fake(targetType);
             var mock = Create.Fake(targetType, arguments);
 
             Kernel.Register(Component.For(targetType)
