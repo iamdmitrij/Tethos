@@ -27,6 +27,7 @@ namespace Tethos.Tests
         [InlineAutoMoqData(typeof(Task<>), false)]
         [InlineAutoMoqData(typeof(Task<int>), false)]
         [InlineAutoMoqData(typeof(int), false)]
+        [Trait("Category", "Core")]
         public void CanResolve_Interface_ShouldMatch(
             Type type,
             bool expected,
@@ -52,6 +53,7 @@ namespace Tethos.Tests
         }
 
         [Theory, AutoMoqData]
+        [Trait("Category", "Core")]
         public void Resolve_Object_ShouldMatch(
             Mock<IKernel> kernel,
             ISubDependencyResolver resolver,
