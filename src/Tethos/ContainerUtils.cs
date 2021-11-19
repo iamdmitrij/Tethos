@@ -32,7 +32,7 @@ namespace Tethos
         public static Arguments AddDependencyTo(this Arguments arguments, Type sourceType, string name, object value) =>
             name switch
             {
-                var parameterName when string.IsNullOrWhiteSpace(parameterName) => throw new ArgumentNullException(nameof(parameterName)),
+                var parameterName when string.IsNullOrWhiteSpace(parameterName) => throw new ArgumentNullException(nameof(name)),
                 var parameterName => arguments.AddNamed($"{sourceType}__{parameterName}", value),
             };
 
