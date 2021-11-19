@@ -9,7 +9,7 @@ namespace Tethos.FakeItEasy.Tests
     public class AutoFakeItEasyResolverTests
     {
         [Theory, AutoFakeItEasyData]
-        [Trait("", "Internal")]
+        [Trait("", "Unit")]
         public void MapToTarget_ShouldMatchMockedType(IMockable mockable, IKernel kernel, Arguments constructorArguments)
         {
             // Arrange

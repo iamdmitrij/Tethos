@@ -9,7 +9,7 @@ namespace Tethos.Tests
     public class WindsorExtensionsTests
     {
         [Fact]
-        [Trait("", "Internal")]
+        [Trait("", "Unit")]
         public void OverridesExistingRegistration_PassNull_ShouldBeNull()
         {
             // Arrange
@@ -23,7 +23,7 @@ namespace Tethos.Tests
         }
 
         [Theory, AutoData]
-        [Trait("", "Internal")]
+        [Trait("", "Unit")]
         public void OverridesExistingRegistration_ShouldSetNameToGuid(ComponentRegistration sut)
         {
             // Act

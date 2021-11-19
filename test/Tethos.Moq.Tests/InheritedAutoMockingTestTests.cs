@@ -8,7 +8,7 @@ namespace Tethos.Moq.Tests
     public class InheritedAutoMockingTestTests : AutoMockingTest
     {
         [Theory, AutoData]
-        [Trait("", "Internal")]
+        [Trait("", "Unit")]
         public void Dispose_ShouldDisposeMock(InheritedAutoMockingTest sut)
         {
             // Act
@@ -19,7 +19,7 @@ namespace Tethos.Moq.Tests
         }
 
         [Theory, AutoData]
-        [Trait("", "Internal")]
+        [Trait("", "Unit")]
         public void Dispose_NullContainer_ShouldNotDisposeMock(InheritedAutoMockingTest sut)
         {
             // Arrange
