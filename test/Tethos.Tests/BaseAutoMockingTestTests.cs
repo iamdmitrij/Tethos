@@ -7,7 +7,7 @@ namespace Tethos.Tests
     public class BaseAutoMockingTestTests : BaseAutoMockingTest<AutoMockingContainer>
     {
         [Fact]
-        public void Test_SimplyDependency_ShouldMatchValue()
+        public void SystemUnderTest_Do_ShouldMatchValueRange()
         {
             // Arrange
             var sut = Container.Resolve<SystemUnderTest>();
