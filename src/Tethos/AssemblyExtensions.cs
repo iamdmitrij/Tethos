@@ -11,7 +11,7 @@ namespace Tethos
         internal static Assembly[] GetDependencies(
             this Assembly rootAssembly
         ) => AppDomain.CurrentDomain.BaseDirectory.GetAssemblyFiles()
-                .FilterAssemblies(rootAssembly.GetPattern(), new[] { ".dll", ".exe" }, rootAssembly)
+                .FilterAssemblies(rootAssembly.FullName.GetPattern(), new[] { ".dll", ".exe" }, rootAssembly)
                 .ExcludeRefDirectory()
                 .ElseLoadReferencedAssemblies(rootAssembly)
                 .LoadAssemblies(rootAssembly)
@@ -37,23 +37,13 @@ namespace Tethos
                 );
 
         internal static string GetPattern(
-            this Assembly rootAssembly
-        )
+            this string assemblyName
+        ) => assemblyName.IndexOfAny(new[] { '.', ',' }) switch
         {
-            var patternSeparators = new[] { '.', ',' };
-            var name = rootAssembly.FullName;
-            var index = name.IndexOfAny(patternSeparators);
-
-            if (index < 0)
-            {
-                throw new ArgumentException($"Could not determine application name for assembly {name}. " +
-                    "Please use a different method for obtaining assemblies.");
-            }
-
-            var pattern = name.Substring(0, index);
-
-            return pattern;
-        }
+            var index when index < 0 => throw new ArgumentException($"Could not determine application name " +
+                $"for assembly {assemblyName}. Please use a different method for obtaining assemblies."),
+            var index => assemblyName.Substring(0, index),
+        };
 
         internal static IEnumerable<File> ExcludeRefDirectory(
             this IEnumerable<File> assemblies
@@ -64,14 +54,16 @@ namespace Tethos
         internal static IEnumerable<File> ElseLoadReferencedAssemblies(
             this IEnumerable<File> assemblies,
             Assembly rootAssembly
-        ) => assemblies.Any()
-                ? assemblies
-                : rootAssembly
-                    .GetReferencedAssemblies()
-                    .Select(TryToLoadAssembly)
-                    .OfType<Assembly>()
-                    .Select(assembly => new Uri(assembly.CodeBase).AbsolutePath)
-                    .Select(filePath => filePath.GetFile());
+        ) => assemblies.Any() switch
+        {
+            true => assemblies,
+            false => rootAssembly
+                        .GetReferencedAssemblies()
+                        .Select(TryToLoadAssembly)
+                        .OfType<Assembly>()
+                        .Select(assembly => new Uri(assembly.CodeBase).AbsolutePath)
+                        .Select(filePath => filePath.GetFile())
+        };
 
         internal static IEnumerable<Assembly> LoadAssemblies(
             this IEnumerable<File> assemblies,
@@ -86,8 +78,7 @@ namespace Tethos
             this AssemblyName assemblyName
         )
         {
-            // TODO: Explicit Func type won't necessary in C# 10
-            Func<Assembly> func = () => Assembly.Load(assemblyName);
+            var func = () => Assembly.Load(assemblyName);
             return func.SwallowExceptions(typeof(BadImageFormatException), typeof(FileNotFoundException));
         }
 
@@ -95,8 +86,7 @@ namespace Tethos
             this string assemblyPath
         )
         {
-            // TODO: Explicit Func type won't necessary in C# 10
-            Func<Assembly> func = () => Assembly.LoadFrom(assemblyPath);
+            var func = () => Assembly.LoadFrom(assemblyPath);
             return func.SwallowExceptions(typeof(BadImageFormatException), typeof(FileNotFoundException));
         }
 

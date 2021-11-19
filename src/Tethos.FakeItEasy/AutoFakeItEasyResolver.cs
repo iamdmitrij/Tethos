@@ -2,6 +2,7 @@
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Registration;
+using FakeItEasy.Creation;
 using FakeItEasy.Sdk;
 using System;
 
@@ -26,9 +27,12 @@ namespace Tethos.FakeItEasy
         /// <inheritdoc />
         public override object MapToTarget(Type targetType, Arguments constructorArguments)
         {
-            var mock = Create.Fake(targetType, options =>
-                _ = targetType.IsInterface ? options :
-                options.WithArgumentsForConstructor(constructorArguments.Flatten()));
+            Action<IFakeOptions> arguments = targetType.IsInterface switch
+            {
+                false => options => options.WithArgumentsForConstructor(constructorArguments.Flatten()),
+                true => options => { }
+            };
+            var mock = Create.Fake(targetType, arguments);
 
             Kernel.Register(Component.For(targetType)
                 .Instance(mock)
