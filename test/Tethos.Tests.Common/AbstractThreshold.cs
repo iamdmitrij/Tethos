@@ -2,7 +2,7 @@
 {
     public abstract class AbstractThreshold
     {
-        public AbstractThreshold(bool enabled)
+        protected AbstractThreshold(bool enabled)
         {
             this.Enalbed = enabled;
         }
