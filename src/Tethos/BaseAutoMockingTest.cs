@@ -15,11 +15,6 @@ namespace Tethos
         where T : IAutoMockingContainer, new()
     {
         /// <summary>
-        /// Auto-mocking container.
-        /// </summary>
-        internal AutoResolver AutoResolver { get; set; }
-
-        /// <summary>
         /// Entry assembly from which sub-dependencies are loaded into <see cref="Castle.Windsor"/> IoC.
         /// </summary>
         public virtual Assembly[] Assemblies { get; }
@@ -38,6 +33,11 @@ namespace Tethos
             this.Container = (T)new T().Install(this);
         }
 
+        /// <summary>
+        /// Auto-mocking container.
+        /// </summary>
+        internal AutoResolver AutoResolver { get; set; }
+
         /// <inheritdoc />
         public virtual void Install(IWindsorContainer container, IConfigurationStore store) =>
             container.Register(
@@ -49,6 +49,15 @@ namespace Tethos
                         .WithServiceSelf()
                         .LifestyleTransient())
                 .ToArray());
+
+        /// <summary>
+        /// Releases automocking resolver from <see cref="WindsorContainer"/>.
+        /// Restoring container to normal function without auto-mocking.
+        /// </summary>
+        public void Clean() =>
+            this.Container
+                .Kernel
+                .Resolver.RemoveSubResolver(this.AutoResolver);
 
         /// <inheritdoc />
         public void Dispose()
@@ -62,14 +71,5 @@ namespace Tethos
         /// </summary>
         /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing) => this.Container?.Dispose();
-
-        /// <summary>
-        /// Releases automocking resolver from <see cref="WindsorContainer"/>.
-        /// Restoring container to normal function without auto-mocking.
-        /// </summary>
-        public void Clean() =>
-            this.Container
-                .Kernel
-                .Resolver.RemoveSubResolver(this.AutoResolver);
     }
 }

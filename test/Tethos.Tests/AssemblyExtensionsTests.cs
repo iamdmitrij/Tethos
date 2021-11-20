@@ -204,21 +204,6 @@ namespace Tethos.Tests
             actual.Should().HaveCount(expected);
         }
 
-        [Theory, AutoData]
-        [Trait("Category", "Unit")]
-        internal void ElseLoadReferencedAssemblies_ShouldReturnOriginal(File[] files)
-        {
-            // Arrange
-            var assembly = Assembly.GetExecutingAssembly();
-            var expected = files.Length;
-
-            // Act
-            var actual = files.ElseLoadReferencedAssemblies(assembly);
-
-            // Assert
-            actual.Should().HaveCount(expected);
-        }
-
         [Fact]
         [Trait("Category", "Unit")]
         public void ElseLoadReferencedAssemblies_Empty_ShouldReturnReferenceAssemblied()
@@ -230,6 +215,21 @@ namespace Tethos.Tests
 
             // Act
             var actual = assemblies.ElseLoadReferencedAssemblies(assembly);
+
+            // Assert
+            actual.Should().HaveCount(expected);
+        }
+
+        [Theory, AutoData]
+        [Trait("Category", "Unit")]
+        internal void ElseLoadReferencedAssemblies_ShouldReturnOriginal(File[] files)
+        {
+            // Arrange
+            var assembly = Assembly.GetExecutingAssembly();
+            var expected = files.Length;
+
+            // Act
+            var actual = files.ElseLoadReferencedAssemblies(assembly);
 
             // Assert
             actual.Should().HaveCount(expected);
