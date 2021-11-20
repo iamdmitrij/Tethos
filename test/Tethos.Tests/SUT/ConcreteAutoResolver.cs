@@ -1,8 +1,8 @@
 ﻿namespace Tethos.Tests.SUT
 {
+    using System;
     using Castle.MicroKernel;
     using Moq;
-    using System;
 
     internal class ConcreteAutoResolver : AutoResolver
     {

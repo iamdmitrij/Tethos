@@ -1,7 +1,7 @@
 ﻿namespace Tethos.xUnit.Demo
 {
-    using global::NSubstitute;
     using System;
+    using global::NSubstitute;
     using Tethos.NSubstitute;
     using Tethos.Tests.Common;
     using Xunit;

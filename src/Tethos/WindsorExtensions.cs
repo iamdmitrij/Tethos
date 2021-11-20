@@ -1,7 +1,7 @@
 ﻿namespace Tethos
 {
-    using Castle.MicroKernel.Registration;
     using System;
+    using Castle.MicroKernel.Registration;
 
     internal static class WindsorExtensions
     {

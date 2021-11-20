@@ -1,10 +1,10 @@
 ﻿namespace Tethos.Tests
 {
+    using System;
+    using System.Linq;
     using AutoFixture.Xunit2;
     using Castle.MicroKernel;
     using FluentAssertions;
-    using System;
-    using System.Linq;
     using Xunit;
 
     public class ContainerUtilsTests

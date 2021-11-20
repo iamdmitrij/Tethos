@@ -1,11 +1,11 @@
 ﻿namespace Tethos.Moq.Tests
 {
+    using System;
     using AutoFixture.Xunit2;
     using Castle.MicroKernel;
     using Castle.MicroKernel.Registration;
     using FluentAssertions;
     using global::Moq;
-    using System;
     using Tethos.Tests.Common;
     using Xunit;
 

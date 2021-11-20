@@ -1,7 +1,7 @@
 ﻿namespace Tethos.xUnit.Demo
 {
-    using global::Moq;
     using System;
+    using global::Moq;
     using Tethos.Moq;
     using Tethos.Tests.Common;
     using Xunit;

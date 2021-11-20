@@ -1,8 +1,8 @@
 ﻿namespace Tethos
 {
-    using Castle.MicroKernel;
     using System;
     using System.Linq;
+    using Castle.MicroKernel;
 
     /// <summary>
     /// A set of utils function helping to extend <see cref="Castle.Windsor.IWindsorContainer"/> for auto-mocking.

@@ -1,11 +1,11 @@
 ﻿namespace Tethos.NSubstitute
 {
+    using System;
     using Castle.Core;
     using Castle.MicroKernel;
     using Castle.MicroKernel.Context;
     using Castle.MicroKernel.Registration;
     using global::NSubstitute;
-    using System;
 
     /// <inheritdoc />
     internal class AutoNSubstituteResolver : AutoResolver

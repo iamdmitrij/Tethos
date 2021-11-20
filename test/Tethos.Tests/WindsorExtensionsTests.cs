@@ -1,9 +1,9 @@
 ﻿namespace Tethos.Tests
 {
+    using System;
     using AutoFixture.Xunit2;
     using Castle.MicroKernel.Registration;
     using FluentAssertions;
-    using System;
     using Xunit;
 
     public class WindsorExtensionsTests

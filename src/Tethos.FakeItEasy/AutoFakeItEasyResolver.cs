@@ -1,12 +1,12 @@
 ﻿namespace Tethos.FakeItEasy
 {
+    using System;
     using Castle.Core;
     using Castle.MicroKernel;
     using Castle.MicroKernel.Context;
     using Castle.MicroKernel.Registration;
     using global::FakeItEasy.Creation;
     using global::FakeItEasy.Sdk;
-    using System;
 
     /// <inheritdoc />
     internal class AutoFakeItEasyResolver : AutoResolver

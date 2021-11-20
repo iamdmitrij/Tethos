@@ -1,7 +1,7 @@
 ﻿namespace Tethos.xUnit.Demo
 {
-    using global::FakeItEasy;
     using System;
+    using global::FakeItEasy;
     using Tethos.FakeItEasy;
     using Tethos.Tests.Common;
     using Xunit;

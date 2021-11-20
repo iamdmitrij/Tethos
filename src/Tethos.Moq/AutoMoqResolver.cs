@@ -1,12 +1,12 @@
 ﻿namespace Tethos.Moq
 {
+    using System;
+    using System.Linq;
     using Castle.Core;
     using Castle.MicroKernel;
     using Castle.MicroKernel.Context;
     using Castle.MicroKernel.Registration;
     using global::Moq;
-    using System;
-    using System.Linq;
 
     /// <inheritdoc />
     internal class AutoMoqResolver : AutoResolver

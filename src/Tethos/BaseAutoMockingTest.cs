@@ -1,11 +1,11 @@
 ﻿namespace Tethos
 {
-    using Castle.MicroKernel.Registration;
-    using Castle.MicroKernel.SubSystems.Configuration;
-    using Castle.Windsor;
     using System;
     using System.Linq;
     using System.Reflection;
+    using Castle.MicroKernel.Registration;
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
 
     /// <summary>
     /// Base for <see cref="Tethos"/> auto-mocking system.

@@ -1,11 +1,11 @@
 ﻿namespace Tethos.FakeItEasy.Tests
 {
+    using System;
     using AutoFixture.Xunit2;
     using Castle.MicroKernel;
     using Castle.MicroKernel.Registration;
-    using global::FakeItEasy;
     using FluentAssertions;
-    using System;
+    using global::FakeItEasy;
     using Tethos.Tests.Common;
     using Xunit;
 

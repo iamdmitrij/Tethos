@@ -1,7 +1,7 @@
 ﻿namespace Tethos.FakeItEasy.Tests
 {
-    using global::FakeItEasy;
     using FluentAssertions;
+    using global::FakeItEasy;
     using Tethos.FakeItEasy.Tests.Attributes;
     using Tethos.Tests.Common;
     using Xunit;
