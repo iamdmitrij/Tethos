@@ -8,6 +8,7 @@ namespace Tethos.NSubstitute.Tests
     public class InheritedAutoMockingTestTests : AutoMockingTest
     {
         [Theory, AutoData]
+        [Trait("Category", "Unit")]
         public void Dispose_ShouldDisposeMock(InheritedAutoMockingTest sut)
         {
             // Act
@@ -18,6 +19,7 @@ namespace Tethos.NSubstitute.Tests
         }
 
         [Theory, AutoData]
+        [Trait("Category", "Unit")]
         public void Dispose_NullContainer_ShouldNotDisposeMock(InheritedAutoMockingTest sut)
         {
             // Arrange
