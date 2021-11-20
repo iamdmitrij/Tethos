@@ -69,7 +69,7 @@ namespace Tethos
         /// <summary>
         /// Disposes <see cref="IWindsorContainer"/> current instance.
         /// </summary>
-        /// <param name="disposing"></param>
+        /// <param name="disposing">Is instance disposing.</param>
         protected virtual void Dispose(bool disposing) => this.Container?.Dispose();
     }
 }
