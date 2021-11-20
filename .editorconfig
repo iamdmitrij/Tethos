@@ -1,0 +1,6 @@
+﻿[*.cs]
+
+# Default severity for analyzer diagnostics with category 'StyleCop.CSharp.DocumentationRules'
+dotnet_analyzer_diagnostic.category-StyleCop.CSharp.DocumentationRules.severity = silent
+dotnet_diagnostic.SA0001.severity=silent
+dotnet_diagnostic.SA1633.severity=silent

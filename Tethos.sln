@@ -98,6 +98,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReferencedAssemblies.Tests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fake.Net60", "test\Fakes\Fake.Net60\Fake.Net60.csproj", "{94561329-A126-4437-961B-57C5B1B25655}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{1937FC5E-15AC-4DAB-ABBD-25B9F4C96AEA}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
