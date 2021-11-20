@@ -1,12 +1,12 @@
-﻿using AutoFixture.Xunit2;
-using Castle.MicroKernel;
-using FluentAssertions;
-using System;
-using System.Linq;
-using Xunit;
-
-namespace Tethos.Tests
+﻿namespace Tethos.Tests
 {
+    using AutoFixture.Xunit2;
+    using Castle.MicroKernel;
+    using FluentAssertions;
+    using System;
+    using System.Linq;
+    using Xunit;
+
     public class ContainerUtilsTests
     {
         [Theory]

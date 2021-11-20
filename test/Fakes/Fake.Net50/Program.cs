@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace FakeAssemblyNet50
+﻿namespace FakeAssemblyNet50
 {
+    using System;
+
     static class Program
     {
         static void Main(string[] args)

@@ -1,11 +1,11 @@
-﻿using FakeItEasy;
-using System;
-using Tethos.FakeItEasy;
-using Tethos.Tests.Common;
-using Xunit;
-
-namespace Tethos.xUnit.Demo
+﻿namespace Tethos.xUnit.Demo
 {
+    using global::FakeItEasy;
+    using System;
+    using Tethos.FakeItEasy;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class ContainerInjected : IDisposable
     {
         public ContainerInjected(IAutoFakeItEasyContainer container)

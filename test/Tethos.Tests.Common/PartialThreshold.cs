@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Tethos.Tests.Common
+﻿namespace Tethos.Tests.Common
 {
+    using System;
+
     public partial class PartialThreshold : AbstractThreshold
     {
         public DateTime CreatedOn { get; }

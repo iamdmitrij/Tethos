@@ -1,7 +1,7 @@
-﻿using static PeanutButter.RandomGenerators.RandomValueGen;
-
-namespace Tethos.Tests.Common
+﻿namespace Tethos.Tests.Common
 {
+    using static PeanutButter.RandomGenerators.RandomValueGen;
+
     public class Concrete : IMockable
     {
         public Concrete()

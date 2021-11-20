@@ -1,12 +1,12 @@
-﻿using Castle.MicroKernel;
-using FluentAssertions;
-using Moq;
-using Tethos.Moq.Tests.Attributes;
-using Tethos.Tests.Common;
-using Xunit;
-
-namespace Tethos.Moq.Tests
+﻿namespace Tethos.Moq.Tests
 {
+    using Castle.MicroKernel;
+    using FluentAssertions;
+    using global::Moq;
+    using Tethos.Moq.Tests.Attributes;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class AutoMoqResolverTests
     {
         [Theory]

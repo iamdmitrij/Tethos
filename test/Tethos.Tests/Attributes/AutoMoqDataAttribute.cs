@@ -1,9 +1,9 @@
-﻿using AutoFixture;
-using AutoFixture.AutoMoq;
-using AutoFixture.Xunit2;
-
-namespace Tethos.Tests.Attributes
+﻿namespace Tethos.Tests.Attributes
 {
+    using AutoFixture;
+    using AutoFixture.AutoMoq;
+    using AutoFixture.Xunit2;
+
     internal class AutoMoqDataAttribute : AutoDataAttribute
     {
         public AutoMoqDataAttribute()

@@ -1,11 +1,11 @@
-﻿using Moq;
-using System;
-using Tethos.Moq;
-using Tethos.Tests.Common;
-using Xunit;
-
-namespace Tethos.xUnit.Demo
+﻿namespace Tethos.xUnit.Demo
 {
+    using global::Moq;
+    using System;
+    using Tethos.Moq;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class ContainerAsProperty : IDisposable
     {
         public IAutoMoqContainer Container { get; }

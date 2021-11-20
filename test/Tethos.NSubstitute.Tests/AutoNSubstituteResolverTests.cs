@@ -1,11 +1,11 @@
-﻿using Castle.MicroKernel;
-using FluentAssertions;
-using Tethos.NSubstitute.Tests.Attributes;
-using Tethos.Tests.Common;
-using Xunit;
-
-namespace Tethos.NSubstitute.Tests
+﻿namespace Tethos.NSubstitute.Tests
 {
+    using Castle.MicroKernel;
+    using FluentAssertions;
+    using Tethos.NSubstitute.Tests.Attributes;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class AutoNSubstituteResolverTests
     {
         [Theory]

@@ -1,10 +1,10 @@
-using NSubstitute;
-using Tethos.NSubstitute;
-using Tethos.Tests.Common;
-using Xunit;
-
 namespace Tethos.xUnit.Demo
 {
+    using global::NSubstitute;
+    using Tethos.NSubstitute;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class ContainerFromBaseClass : AutoMockingTest
     {
         [Fact]

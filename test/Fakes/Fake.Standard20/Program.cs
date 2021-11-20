@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace FakeAssemblyStandard20
+﻿namespace FakeAssemblyStandard20
 {
+    using System;
+
     static class Program
     {
         static void Main(string[] args)

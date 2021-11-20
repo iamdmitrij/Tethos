@@ -1,13 +1,13 @@
-﻿using AutoFixture.Xunit2;
-using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Xunit;
-
-namespace Tethos.Tests
+﻿namespace Tethos.Tests
 {
+    using AutoFixture.Xunit2;
+    using FluentAssertions;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using Xunit;
+
     public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
     {
         [Fact]
@@ -18,7 +18,7 @@ namespace Tethos.Tests
             var corruptAssembly = "Fake.Core30.exe";
 
             // Act
-            var actual = AssemblyExtensions.TryToLoadAssembly(corruptAssembly);
+            var actual = corruptAssembly.TryToLoadAssembly();
 
             // Assert
             actual.Should().BeNull();
@@ -35,7 +35,7 @@ namespace Tethos.Tests
             var assembly = Assembly.LoadFrom(assemblyName);
 
             // Act
-            var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
+            var actual = assemblyName.TryToLoadAssembly();
 
             // Assert
             actual.Should().BeSameAs(assembly);
@@ -50,7 +50,7 @@ namespace Tethos.Tests
             var assemblyName = new AssemblyName(name);
 
             // Act
-            var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
+            var actual = assemblyName.TryToLoadAssembly();
 
             // Assert
             actual.Should().BeNull();
@@ -65,7 +65,7 @@ namespace Tethos.Tests
             var assemblyName = assembly.GetName();
 
             // Act
-            var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
+            var actual = assemblyName.TryToLoadAssembly();
 
             // Assert
             actual.Should().BeSameAs(assembly);

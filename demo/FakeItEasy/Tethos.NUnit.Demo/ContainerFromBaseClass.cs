@@ -1,10 +1,10 @@
-using FakeItEasy;
-using NUnit.Framework;
-using Tethos.FakeItEasy;
-using Tethos.Tests.Common;
-
 namespace Tethos.NUnit.Demo
 {
+    using global::FakeItEasy;
+    using global::NUnit.Framework;
+    using Tethos.FakeItEasy;
+    using Tethos.Tests.Common;
+
     public class ContainerFromBaseClass : AutoMockingTest
     {
         [Test]

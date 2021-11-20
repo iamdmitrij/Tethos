@@ -1,11 +1,11 @@
-﻿using Castle.Core;
-using Castle.MicroKernel;
-using Castle.MicroKernel.Context;
-using System;
-using System.Linq;
-
-namespace Tethos
+﻿namespace Tethos
 {
+    using Castle.Core;
+    using Castle.MicroKernel;
+    using Castle.MicroKernel.Context;
+    using System;
+    using System.Linq;
+
     /// <summary>
     /// Auto mocking resolver abstraction.
     /// </summary>

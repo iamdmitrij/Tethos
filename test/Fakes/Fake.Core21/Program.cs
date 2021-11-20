@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace FakeAssemblyCore21
+﻿namespace FakeAssemblyCore21
 {
+    using System;
+
     static class Program
     {
         static void Main(string[] args)

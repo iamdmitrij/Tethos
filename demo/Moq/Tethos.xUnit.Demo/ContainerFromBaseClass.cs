@@ -1,10 +1,10 @@
-using Moq;
-using Tethos.Moq;
-using Tethos.Tests.Common;
-using Xunit;
-
 namespace Tethos.xUnit.Demo
 {
+    using global::Moq;
+    using Tethos.Moq;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class ContainerFromBaseClass : AutoMockingTest
     {
         [Fact]

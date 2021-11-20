@@ -1,13 +1,13 @@
-﻿using Castle.Core;
-using Castle.MicroKernel;
-using Castle.MicroKernel.Context;
-using Castle.MicroKernel.Registration;
-using FakeItEasy.Creation;
-using FakeItEasy.Sdk;
-using System;
-
-namespace Tethos.FakeItEasy
+﻿namespace Tethos.FakeItEasy
 {
+    using Castle.Core;
+    using Castle.MicroKernel;
+    using Castle.MicroKernel.Context;
+    using Castle.MicroKernel.Registration;
+    using global::FakeItEasy.Creation;
+    using global::FakeItEasy.Sdk;
+    using System;
+
     /// <inheritdoc />
     internal class AutoFakeItEasyResolver : AutoResolver
     {

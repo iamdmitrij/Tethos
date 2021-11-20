@@ -1,10 +1,10 @@
-using FluentAssertions;
-using Tethos;
-using Tethos.Tests.Common;
-using Xunit;
-
 namespace ReferencedAssemblies.Tests
 {
+    using FluentAssertions;
+    using Tethos;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class BaseAutoMockingTestTests : BaseAutoMockingTest<AutoMockingContainer>
     {
         [Fact]

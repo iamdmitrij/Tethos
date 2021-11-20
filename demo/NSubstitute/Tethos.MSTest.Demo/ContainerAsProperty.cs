@@ -1,10 +1,10 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
-using Tethos.NSubstitute;
-using Tethos.Tests.Common;
-
 namespace Tethos.MSTest.Demo
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using global::NSubstitute;
+    using Tethos.NSubstitute;
+    using Tethos.Tests.Common;
+
     [TestClass]
     public class ContainerAsProperty
     {

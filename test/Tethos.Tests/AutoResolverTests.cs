@@ -1,18 +1,18 @@
-﻿using Castle.Core;
-using Castle.MicroKernel;
-using Castle.MicroKernel.Context;
-using FluentAssertions;
-using Moq;
-using System;
-using System.Collections;
-using System.Linq;
-using System.Threading.Tasks;
-using Tethos.Tests.Attributes;
-using Tethos.Tests.SUT;
-using Xunit;
-
-namespace Tethos.Tests
+﻿namespace Tethos.Tests
 {
+    using Castle.Core;
+    using Castle.MicroKernel;
+    using Castle.MicroKernel.Context;
+    using FluentAssertions;
+    using Moq;
+    using System;
+    using System.Collections;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Tethos.Tests.Attributes;
+    using Tethos.Tests.SUT;
+    using Xunit;
+
     public class AutoResolverTests
     {
         [Theory]
