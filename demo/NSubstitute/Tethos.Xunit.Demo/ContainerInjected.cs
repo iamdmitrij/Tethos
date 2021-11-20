@@ -1,19 +1,19 @@
-﻿namespace Tethos.xUnit.Demo
+﻿namespace Tethos.Xunit.Demo
 {
     using System;
-    using global::FakeItEasy;
-    using Tethos.FakeItEasy;
+    using global::NSubstitute;
+    using global::Xunit;
+    using Tethos.NSubstitute;
     using Tethos.Tests.Common;
-    using Xunit;
 
-    public class ContainerAsProperty : IDisposable
+    public class ContainerInjected : IDisposable
     {
-        public ContainerAsProperty()
+        public ContainerInjected(IAutoNSubstituteContainer container)
         {
-            this.Container = AutoFakeItEasyContainerFactory.Create();
+            this.Container = container;
         }
 
-        public IAutoFakeItEasyContainer Container { get; }
+        public IAutoNSubstituteContainer Container { get; }
 
         [Fact]
         [Trait("", "Demo")]
@@ -24,7 +24,7 @@
             var sut = this.Container.Resolve<SystemUnderTest>();
             var mock = this.Container.Resolve<IMockable>();
 
-            A.CallTo(() => mock.Do()).Returns(expected);
+            mock.Do().Returns(expected);
 
             // Act
             var actual = sut.Do();

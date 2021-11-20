@@ -1,20 +1,12 @@
-﻿namespace Tethos.xUnit.Demo
+namespace Tethos.Xunit.Demo
 {
-    using System;
     using global::NSubstitute;
+    using global::Xunit;
     using Tethos.NSubstitute;
     using Tethos.Tests.Common;
-    using Xunit;
 
-    public class ContainerInjected : IDisposable
+    public class ContainerFromBaseClass : AutoMockingTest
     {
-        public ContainerInjected(IAutoNSubstituteContainer container)
-        {
-            this.Container = container;
-        }
-
-        public IAutoNSubstituteContainer Container { get; }
-
         [Fact]
         [Trait("", "Demo")]
         public void Do_WithMock_ShouldReturn42()
@@ -31,17 +23,6 @@
 
             // Assert
             Assert.Equal(actual, expected);
-        }
-
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            this.Container?.Dispose();
         }
     }
 }

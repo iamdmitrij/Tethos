@@ -1,9 +1,9 @@
-namespace Tethos.xUnit.Demo
+namespace Tethos.Xunit.Demo
 {
-    using global::FakeItEasy;
-    using Tethos.FakeItEasy;
+    using global::Moq;
+    using global::Xunit;
+    using Tethos.Moq;
     using Tethos.Tests.Common;
-    using Xunit;
 
     public class ContainerFromBaseClass : AutoMockingTest
     {
@@ -14,9 +14,10 @@ namespace Tethos.xUnit.Demo
             // Arrange
             var expected = 42;
             var sut = this.Container.Resolve<SystemUnderTest>();
-            var mock = this.Container.Resolve<IMockable>();
 
-            A.CallTo(() => mock.Do()).Returns(expected);
+            this.Container.Resolve<Mock<IMockable>>()
+                .Setup(x => x.Do())
+                .Returns(expected);
 
             // Act
             var actual = sut.Do();

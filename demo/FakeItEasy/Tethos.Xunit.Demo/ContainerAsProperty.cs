@@ -1,16 +1,16 @@
-﻿namespace Tethos.xUnit.Demo
+﻿namespace Tethos.Xunit.Demo
 {
     using System;
     using global::FakeItEasy;
+    using global::Xunit;
     using Tethos.FakeItEasy;
     using Tethos.Tests.Common;
-    using Xunit;
 
-    public class ContainerInjected : IDisposable
+    public class ContainerAsProperty : IDisposable
     {
-        public ContainerInjected(IAutoFakeItEasyContainer container)
+        public ContainerAsProperty()
         {
-            this.Container = container;
+            this.Container = AutoFakeItEasyContainerFactory.Create();
         }
 
         public IAutoFakeItEasyContainer Container { get; }

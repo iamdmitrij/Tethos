@@ -1,16 +1,16 @@
-﻿namespace Tethos.xUnit.Demo
+﻿namespace Tethos.Xunit.Demo
 {
     using System;
     using global::Moq;
+    using global::Xunit;
     using Tethos.Moq;
     using Tethos.Tests.Common;
-    using Xunit;
 
-    public class ContainerInjected : IDisposable
+    public class ContainerAsProperty : IDisposable
     {
-        public ContainerInjected(IAutoMoqContainer container)
+        public ContainerAsProperty()
         {
-            this.Container = container;
+            this.Container = AutoMoqContainerFactory.Create();
         }
 
         public IAutoMoqContainer Container { get; }

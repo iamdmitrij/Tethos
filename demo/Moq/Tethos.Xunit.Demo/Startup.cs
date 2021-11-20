@@ -1,7 +1,7 @@
-﻿namespace Tethos.xUnit.Demo
+﻿namespace Tethos.Xunit.Demo
 {
     using Microsoft.Extensions.DependencyInjection;
-    using Tethos.NSubstitute;
+    using Tethos.Moq;
 
     public class Startup
     {
@@ -9,7 +9,7 @@
         public void ConfigureServices(IServiceCollection services)
 #pragma warning restore CA1822 // Mark members as static
         {
-            services.AddScoped(_ => AutoNSubstituteContainerFactory.Create());
+            services.AddScoped(_ => AutoMoqContainerFactory.Create());
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Tethos.xUnit.Demo
+﻿namespace Tethos.Xunit.Demo
 {
     using Microsoft.Extensions.DependencyInjection;
     using Tethos.FakeItEasy;
