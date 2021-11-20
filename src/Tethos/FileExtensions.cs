@@ -10,7 +10,7 @@ namespace Tethos
                 Path = filePath,
                 Name = Path.GetFileName(filePath),
                 Extension = Path.GetExtension(filePath).ToLowerInvariant(),
-                Directory = Path.GetDirectoryName(filePath)
+                Directory = Path.GetDirectoryName(filePath),
             };
     }
 }
