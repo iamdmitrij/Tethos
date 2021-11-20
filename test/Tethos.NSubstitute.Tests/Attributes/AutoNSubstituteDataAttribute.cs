@@ -6,7 +6,8 @@ namespace Tethos.NSubstitute.Tests.Attributes
 {
     internal class AutoNSubstituteDataAttribute : AutoDataAttribute
     {
-        public AutoNSubstituteDataAttribute() : base(
+        public AutoNSubstituteDataAttribute()
+            : base(
             () => new Fixture().Customize(new AutoNSubstituteCustomization()))
         {
         }

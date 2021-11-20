@@ -2,11 +2,13 @@
 {
     public sealed class SealedConcrete : Concrete
     {
-        public SealedConcrete() : base()
+        public SealedConcrete()
+            : base()
         {
         }
 
-        public SealedConcrete(int minValue, int maxValue) : base(minValue, maxValue)
+        public SealedConcrete(int minValue, int maxValue)
+            : base(minValue, maxValue)
         {
         }
     }

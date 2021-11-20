@@ -6,7 +6,8 @@ namespace Tethos.Tests.Attributes
 {
     internal class AutoMoqDataAttribute : AutoDataAttribute
     {
-        public AutoMoqDataAttribute() : base(
+        public AutoMoqDataAttribute()
+            : base(
             () => new Fixture().Customize(new AutoMoqCustomization()))
         {
         }

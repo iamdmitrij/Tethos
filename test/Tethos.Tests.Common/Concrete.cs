@@ -8,7 +8,8 @@ namespace Tethos.Tests.Common
 
         public int MaxValue { get; set; }
 
-        public Concrete() : this(0, 10)
+        public Concrete()
+            : this(0, 10)
         {
         }
 

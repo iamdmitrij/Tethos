@@ -11,7 +11,8 @@ namespace Tethos.NSubstitute
     internal class AutoNSubstituteResolver : AutoResolver
     {
         /// <inheritdoc />
-        public AutoNSubstituteResolver(IKernel kernel) : base(kernel)
+        public AutoNSubstituteResolver(IKernel kernel)
+            : base(kernel)
         {
         }
 

@@ -6,7 +6,8 @@ namespace Tethos.FakeItEasy.Tests.Attributes
 {
     internal class FactoryContainerDataAttribute : AutoDataAttribute
     {
-        public FactoryContainerDataAttribute() : base(
+        public FactoryContainerDataAttribute()
+            : base(
             () =>
             {
                 var fixture = new Fixture();

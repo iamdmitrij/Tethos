@@ -6,7 +6,8 @@ namespace Tethos.Tests.SUT
 {
     internal class ConcreteAutoResolver : AutoResolver
     {
-        public ConcreteAutoResolver(IKernel kernel) : base(kernel)
+        public ConcreteAutoResolver(IKernel kernel)
+            : base(kernel)
         {
         }
 

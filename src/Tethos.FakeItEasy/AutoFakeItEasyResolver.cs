@@ -12,7 +12,8 @@ namespace Tethos.FakeItEasy
     internal class AutoFakeItEasyResolver : AutoResolver
     {
         /// <inheritdoc />
-        public AutoFakeItEasyResolver(IKernel kernel) : base(kernel)
+        public AutoFakeItEasyResolver(IKernel kernel)
+            : base(kernel)
         {
         }
 

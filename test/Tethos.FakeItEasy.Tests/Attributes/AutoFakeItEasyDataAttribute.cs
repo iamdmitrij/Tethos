@@ -6,7 +6,8 @@ namespace Tethos.FakeItEasy.Tests.Attributes
 {
     internal class AutoFakeItEasyDataAttribute : AutoDataAttribute
     {
-        public AutoFakeItEasyDataAttribute() : base(
+        public AutoFakeItEasyDataAttribute()
+            : base(
             () => new Fixture().Customize(new AutoFakeItEasyCustomization()))
         {
         }
