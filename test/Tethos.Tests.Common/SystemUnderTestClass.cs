@@ -2,9 +2,9 @@
 {
     public class SystemUnderTestClass
     {
-        public Concrete Mockable { get; }
-
         public SystemUnderTestClass(Concrete mockable) => this.Mockable = mockable;
+
+        public Concrete Mockable { get; }
 
         public int Do() => this.Mockable.Do();
     }

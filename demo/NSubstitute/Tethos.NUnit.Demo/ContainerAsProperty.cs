@@ -7,12 +7,12 @@ namespace Tethos.NUnit.Demo
 
     public class ContainerAsProperty
     {
-        public IAutoNSubstituteContainer Container { get; }
-
         public ContainerAsProperty()
         {
             this.Container = AutoNSubstituteContainerFactory.Create();
         }
+
+        public IAutoNSubstituteContainer Container { get; }
 
         [Test]
         [Category("Demo")]

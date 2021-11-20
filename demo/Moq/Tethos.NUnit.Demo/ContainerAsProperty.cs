@@ -7,12 +7,12 @@ namespace Tethos.NUnit.Demo
 
     public class ContainerAsProperty
     {
-        public IAutoMoqContainer Container { get; }
-
         public ContainerAsProperty()
         {
             this.Container = AutoMoqContainerFactory.Create();
         }
+
+        public IAutoMoqContainer Container { get; }
 
         [Test]
         [Category("Demo")]

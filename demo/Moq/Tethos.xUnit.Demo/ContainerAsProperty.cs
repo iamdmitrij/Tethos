@@ -8,12 +8,12 @@
 
     public class ContainerAsProperty : IDisposable
     {
-        public IAutoMoqContainer Container { get; }
-
         public ContainerAsProperty()
         {
             this.Container = AutoMoqContainerFactory.Create();
         }
+
+        public IAutoMoqContainer Container { get; }
 
         [Fact]
         [Trait("", "Demo")]

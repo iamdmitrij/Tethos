@@ -1,19 +1,19 @@
 namespace Tethos.MSTest.Demo
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using global::Moq;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Tethos.Moq;
     using Tethos.Tests.Common;
 
     [TestClass]
     public class ContainerAsProperty
     {
-        public IAutoMoqContainer Container { get; }
-
         public ContainerAsProperty()
         {
             this.Container = AutoMoqContainerFactory.Create();
         }
+
+        public IAutoMoqContainer Container { get; }
 
         [TestMethod]
         [TestCategory("Demo")]

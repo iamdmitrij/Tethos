@@ -8,12 +8,12 @@
 
     public class ContainerInjected : IDisposable
     {
-        public IAutoNSubstituteContainer Container { get; }
-
         public ContainerInjected(IAutoNSubstituteContainer container)
         {
             this.Container = container;
         }
+
+        public IAutoNSubstituteContainer Container { get; }
 
         [Fact]
         [Trait("", "Demo")]

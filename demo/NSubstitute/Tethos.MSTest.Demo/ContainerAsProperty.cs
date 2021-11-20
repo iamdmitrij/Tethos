@@ -1,19 +1,19 @@
 namespace Tethos.MSTest.Demo
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using global::NSubstitute;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Tethos.NSubstitute;
     using Tethos.Tests.Common;
 
     [TestClass]
     public class ContainerAsProperty
     {
-        public IAutoNSubstituteContainer Container { get; }
-
         public ContainerAsProperty()
         {
             this.Container = AutoNSubstituteContainerFactory.Create();
         }
+
+        public IAutoNSubstituteContainer Container { get; }
 
         [TestMethod]
         [TestCategory("Demo")]
