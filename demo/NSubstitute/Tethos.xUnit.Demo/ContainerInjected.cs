@@ -12,7 +12,7 @@ namespace Tethos.xUnit.Demo
 
         public ContainerInjected(IAutoNSubstituteContainer container)
         {
-            Container = container;
+            this.Container = container;
         }
 
         [Fact]
@@ -21,8 +21,8 @@ namespace Tethos.xUnit.Demo
         {
             // Arrange
             var expected = 42;
-            var sut = Container.Resolve<SystemUnderTest>();
-            var mock = Container.Resolve<IMockable>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
+            var mock = this.Container.Resolve<IMockable>();
 
             mock.Do().Returns(expected);
 
@@ -35,13 +35,13 @@ namespace Tethos.xUnit.Demo
 
         public void Dispose()
         {
-            Dispose(true);
+            this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool disposing)
         {
-            Container?.Dispose();
+            this.Container?.Dispose();
         }
     }
 }

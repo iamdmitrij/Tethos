@@ -32,7 +32,7 @@ namespace Tethos.NSubstitute
             };
             var mock = Substitute.For(new Type[] { targetType }, arguments);
 
-            Kernel.Register(Component.For(targetType)
+            this.Kernel.Register(Component.For(targetType)
                 .Instance(mock)
                 .OverridesExistingRegistration());
 

@@ -33,7 +33,7 @@ namespace Tethos.FakeItEasy
             };
             var mock = Create.Fake(targetType, arguments);
 
-            Kernel.Register(Component.For(targetType)
+            this.Kernel.Register(Component.For(targetType)
                 .Instance(mock)
                 .OverridesExistingRegistration());
 

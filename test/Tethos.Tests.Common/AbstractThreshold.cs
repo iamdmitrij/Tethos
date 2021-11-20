@@ -6,7 +6,7 @@
 
         public AbstractThreshold(bool enabled)
         {
-            Enalbed = enabled;
+            this.Enalbed = enabled;
         }
     }
 }

@@ -11,10 +11,10 @@ namespace Tethos.FakeItEasy
         /// <inheritdoc />
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            AutoResolver = new AutoFakeItEasyResolver(container.Kernel);
+            this.AutoResolver = new AutoFakeItEasyResolver(container.Kernel);
 
             container.Kernel.Resolver.AddSubResolver(
-                AutoResolver);
+                this.AutoResolver);
 
             base.Install(container, store);
         }

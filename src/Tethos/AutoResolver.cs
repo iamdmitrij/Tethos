@@ -19,7 +19,7 @@ namespace Tethos
         /// <summary>
         /// Constructor accepting <see cref="Castle.Windsor"/> kernel as dependency.
         /// </summary>
-        protected AutoResolver(IKernel kernel) => Kernel = kernel;
+        protected AutoResolver(IKernel kernel) => this.Kernel = kernel;
 
         /// <summary>
         /// Maps target mock object to mocked object type.
@@ -53,7 +53,7 @@ namespace Tethos
                 .Where(argument => GetType(argument.Key) == $"{targetType}");
             var constructorArguments = new Arguments().Add(arguments);
 
-            return MapToTarget(targetType, constructorArguments);
+            return this.MapToTarget(targetType, constructorArguments);
         }
     }
 }

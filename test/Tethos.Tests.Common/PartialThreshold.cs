@@ -8,7 +8,7 @@ namespace Tethos.Tests.Common
 
         public PartialThreshold(bool enabled) : base(enabled)
         {
-            CreatedOn = DateTime.UtcNow;
+            this.CreatedOn = DateTime.UtcNow;
         }
     }
 

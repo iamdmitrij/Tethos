@@ -6,7 +6,7 @@
 
         public Threshold(bool enabled)
         {
-            Enalbed = enabled;
+            this.Enalbed = enabled;
         }
     }
 }

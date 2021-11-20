@@ -34,14 +34,14 @@ namespace Tethos
         /// </summary>
         protected BaseAutoMockingTest()
         {
-            Assemblies = Assembly.GetAssembly(GetType()).GetDependencies();
-            Container = (T)new T().Install(this);
+            this.Assemblies = Assembly.GetAssembly(this.GetType()).GetDependencies();
+            this.Container = (T)new T().Install(this);
         }
 
         /// <inheritdoc />
         public virtual void Install(IWindsorContainer container, IConfigurationStore store) =>
             container.Register(
-                Assemblies.Select(assembly =>
+                this.Assemblies.Select(assembly =>
                     Classes.FromAssembly(assembly)
                         .Pick()
                         .WithServiceBase()
@@ -53,7 +53,7 @@ namespace Tethos
         /// <inheritdoc />
         public void Dispose()
         {
-            Dispose(true);
+            this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
@@ -61,15 +61,15 @@ namespace Tethos
         /// Disposes <see cref="IWindsorContainer"/> current instance.
         /// </summary>
         /// <param name="disposing"></param>
-        protected virtual void Dispose(bool disposing) => Container?.Dispose();
+        protected virtual void Dispose(bool disposing) => this.Container?.Dispose();
 
         /// <summary>
         /// Releases automocking resolver from <see cref="WindsorContainer"/>.
         /// Restoring container to normal function without auto-mocking.
         /// </summary>
         public void Clean() =>
-            Container
+            this.Container
                 .Kernel
-                .Resolver.RemoveSubResolver(AutoResolver);
+                .Resolver.RemoveSubResolver(this.AutoResolver);
     }
 }

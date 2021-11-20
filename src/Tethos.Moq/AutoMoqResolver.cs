@@ -31,7 +31,7 @@ namespace Tethos.Moq
             var arguments = constructorArguments.Select(x => x.Value).ToArray();
             var mock = Activator.CreateInstance(mockType, arguments) as Mock;
 
-            Kernel.Register(Component.For(mockType)
+            this.Kernel.Register(Component.For(mockType)
                 .Instance(mock)
                 .OverridesExistingRegistration());
 

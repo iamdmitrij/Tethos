@@ -16,14 +16,14 @@
 
         public SystemUnderMixedClasses(int demo, Threshold threshold, Concrete mockable, SealedConcrete sealedMockable, PartialThreshold partialThreshold, AbstractThreshold abstractThreshold)
         {
-            Demo = demo;
-            SealedMockable = sealedMockable;
-            Mockable = mockable;
-            PartialThreshold = partialThreshold;
-            AbstractThreshold = abstractThreshold;
-            Threshold = threshold;
+            this.Demo = demo;
+            this.SealedMockable = sealedMockable;
+            this.Mockable = mockable;
+            this.PartialThreshold = partialThreshold;
+            this.AbstractThreshold = abstractThreshold;
+            this.Threshold = threshold;
         }
 
-        public int Do() => Threshold.Enalbed ? Mockable.Do() : 0;
+        public int Do() => this.Threshold.Enalbed ? this.Mockable.Do() : 0;
     }
 }
