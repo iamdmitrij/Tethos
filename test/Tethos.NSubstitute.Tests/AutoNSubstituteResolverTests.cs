@@ -9,6 +9,7 @@ namespace Tethos.NSubstitute.Tests
     public class AutoNSubstituteResolverTests
     {
         [Theory, AutoNSubstituteData]
+        [Trait("Category", "Unit")]
         public void MapToTarget_ShouldMatchMockedType(
             IMockable mockable,
             IKernel kernel,

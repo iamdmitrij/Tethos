@@ -9,6 +9,7 @@ namespace Tethos.MSTest.Demo
     public class ContainerFromBaseClass : AutoMockingTest
     {
         [TestMethod]
+        [TestCategory("Demo")]
         public void Do_WithMock_ShouldReturn42()
         {
             // Arrange
