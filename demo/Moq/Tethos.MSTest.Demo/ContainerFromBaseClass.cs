@@ -1,7 +1,7 @@
 namespace Tethos.MSTest.Demo
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using global::Moq;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Tethos.Moq;
     using Tethos.Tests.Common;
 
