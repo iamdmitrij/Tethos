@@ -2,7 +2,7 @@
 {
     using System;
 
-    public sealed partial class PartialThreshold : AbstractThreshold
+    public partial class PartialThreshold : AbstractThreshold
     {
         public PartialThreshold(bool enabled)
             : base(enabled)
@@ -13,11 +13,14 @@
         public DateTime CreatedOn { get; }
     }
 
-    public sealed partial class PartialThreshold : AbstractThreshold, IDisposable
+    public partial class PartialThreshold : AbstractThreshold, IDisposable
     {
         public void Dispose()
         {
-            throw new NotImplementedException();
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
+
+        protected virtual void Dispose(bool disposing) => throw new NotImplementedException();
     }
 }
