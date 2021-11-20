@@ -1,17 +1,18 @@
-﻿using Castle.Core;
-using Castle.MicroKernel;
-using Castle.MicroKernel.Context;
-using Castle.MicroKernel.Registration;
-using NSubstitute;
-using System;
-
-namespace Tethos.NSubstitute
+﻿namespace Tethos.NSubstitute
 {
+    using System;
+    using Castle.Core;
+    using Castle.MicroKernel;
+    using Castle.MicroKernel.Context;
+    using Castle.MicroKernel.Registration;
+    using global::NSubstitute;
+
     /// <inheritdoc />
     internal class AutoNSubstituteResolver : AutoResolver
     {
-        /// <inheritdoc />
-        public AutoNSubstituteResolver(IKernel kernel) : base(kernel)
+        /// <inheritdoc cref="AutoResolver" />
+        public AutoNSubstituteResolver(IKernel kernel)
+            : base(kernel)
         {
         }
 
@@ -20,8 +21,7 @@ namespace Tethos.NSubstitute
             CreationContext context,
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
-            DependencyModel dependency
-        ) => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
+            DependencyModel dependency) => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
         public override object MapToTarget(Type targetType, Arguments constructorArguments)
@@ -29,14 +29,13 @@ namespace Tethos.NSubstitute
             var arguments = targetType.IsInterface switch
             {
                 true => Array.Empty<object>(),
-                false => constructorArguments.Flatten()
+                false => constructorArguments.Flatten(),
             };
             var mock = Substitute.For(new Type[] { targetType }, arguments);
 
-            Kernel.Register(Component.For(targetType)
+            this.Kernel.Register(Component.For(targetType)
                 .Instance(mock)
-                .OverridesExistingRegistration()
-            );
+                .OverridesExistingRegistration());
 
             return mock;
         }

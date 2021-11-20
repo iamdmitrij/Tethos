@@ -1,13 +1,13 @@
-﻿using AutoFixture.Xunit2;
-using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Xunit;
-
-namespace Tethos.Tests
+﻿namespace Tethos.Tests
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using AutoFixture.Xunit2;
+    using FluentAssertions;
+    using Xunit;
+
     public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
     {
         [Fact]
@@ -18,7 +18,7 @@ namespace Tethos.Tests
             var corruptAssembly = "Fake.Core30.exe";
 
             // Act
-            var actual = AssemblyExtensions.TryToLoadAssembly(corruptAssembly);
+            var actual = corruptAssembly.TryToLoadAssembly();
 
             // Assert
             actual.Should().BeNull();
@@ -35,13 +35,14 @@ namespace Tethos.Tests
             var assembly = Assembly.LoadFrom(assemblyName);
 
             // Act
-            var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
+            var actual = assemblyName.TryToLoadAssembly();
 
             // Assert
             actual.Should().BeSameAs(assembly);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void TryToLoadAssembly_UsingAssemblyName_ShouldReturnNull(string name)
         {
@@ -49,7 +50,7 @@ namespace Tethos.Tests
             var assemblyName = new AssemblyName(name);
 
             // Act
-            var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
+            var actual = assemblyName.TryToLoadAssembly();
 
             // Assert
             actual.Should().BeNull();
@@ -64,7 +65,7 @@ namespace Tethos.Tests
             var assemblyName = assembly.GetName();
 
             // Act
-            var actual = AssemblyExtensions.TryToLoadAssembly(assemblyName);
+            var actual = assemblyName.TryToLoadAssembly();
 
             // Assert
             actual.Should().BeSameAs(assembly);
@@ -74,8 +75,7 @@ namespace Tethos.Tests
         [ClassData(typeof(AssemblyTheoryData))]
         [Trait("Category", "Unit")]
         public void GetDependencies_UsingLocalDependencies_ShouldMatchLoaddingAssemblyCount(
-            string assemblyName, IEnumerable<string> expectedAssemblyName
-        )
+            string assemblyName, IEnumerable<string> expectedAssemblyName)
         {
             // Arrange
             var assembly = Assembly.LoadFrom(assemblyName);
@@ -118,7 +118,8 @@ namespace Tethos.Tests
             actual.Should().Be(expected);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void GetPattern_WithSystemAssembly_ShouldThrowArgumentException(FakeAssembly assembly)
         {
@@ -205,21 +206,6 @@ namespace Tethos.Tests
             actual.Should().HaveCount(expected);
         }
 
-        [Theory, AutoData]
-        [Trait("Category", "Unit")]
-        internal void ElseLoadReferencedAssemblies_ShouldReturnOriginal(File[] files)
-        {
-            // Arrange
-            var assembly = Assembly.GetExecutingAssembly();
-            var expected = files.Length;
-
-            // Act
-            var actual = files.ElseLoadReferencedAssemblies(assembly);
-
-            // Assert
-            actual.Should().HaveCount(expected);
-        }
-
         [Fact]
         [Trait("Category", "Unit")]
         public void ElseLoadReferencedAssemblies_Empty_ShouldReturnReferenceAssemblied()
@@ -231,6 +217,22 @@ namespace Tethos.Tests
 
             // Act
             var actual = assemblies.ElseLoadReferencedAssemblies(assembly);
+
+            // Assert
+            actual.Should().HaveCount(expected);
+        }
+
+        [Theory]
+        [AutoData]
+        [Trait("Category", "Unit")]
+        internal void ElseLoadReferencedAssemblies_ShouldReturnOriginal(File[] files)
+        {
+            // Arrange
+            var assembly = Assembly.GetExecutingAssembly();
+            var expected = files.Length;
+
+            // Act
+            var actual = files.ElseLoadReferencedAssemblies(assembly);
 
             // Assert
             actual.Should().HaveCount(expected);

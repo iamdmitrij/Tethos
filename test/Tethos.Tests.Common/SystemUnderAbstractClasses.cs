@@ -2,13 +2,13 @@
 {
     public class SystemUnderAbstractClasses
     {
-        public AbstractThreshold Threshold { get; }
-
         public SystemUnderAbstractClasses(AbstractThreshold threshold)
         {
-            Threshold = threshold;
+            this.Threshold = threshold;
         }
 
-        public int Do() => Threshold.Enalbed ? 1 : 0;
+        public AbstractThreshold Threshold { get; }
+
+        public int Do() => this.Threshold.Enalbed ? 1 : 0;
     }
 }

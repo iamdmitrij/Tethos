@@ -1,20 +1,20 @@
-﻿using FluentAssertions;
-using Moq;
-using Tethos.Moq;
-using Tethos.Moq.Tests.Attributes;
-using Tethos.Tests.Common;
-using Xunit;
-
-namespace Tethos.FakeItEasy.Tests
+﻿namespace Tethos.FakeItEasy.Tests
 {
+    using FluentAssertions;
+    using global::Moq;
+    using Tethos.Moq;
+    using Tethos.Moq.Tests.Attributes;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class AutoMoqContainerFactoryTests
     {
-        [Theory, FactoryContainerData]
+        [Theory]
+        [FactoryContainerData]
         [Trait("Category", "Integration")]
         public void Create_SimpleDependency_ShouldMatchValue(
             IAutoMoqContainer container,
-            int expected
-        )
+            int expected)
         {
             // Arrange
             var sut = container.Resolve<SystemUnderTest>();

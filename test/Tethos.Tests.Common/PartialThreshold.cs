@@ -1,15 +1,16 @@
-﻿using System;
-
-namespace Tethos.Tests.Common
+﻿namespace Tethos.Tests.Common
 {
+    using System;
+
     public partial class PartialThreshold : AbstractThreshold
     {
-        public DateTime CreatedOn { get; }
-
-        public PartialThreshold(bool enabled) : base(enabled)
+        public PartialThreshold(bool enabled)
+            : base(enabled)
         {
-            CreatedOn = DateTime.UtcNow;
+            this.CreatedOn = DateTime.UtcNow;
         }
+
+        public DateTime CreatedOn { get; }
     }
 
     public partial class PartialThreshold : AbstractThreshold, IDisposable

@@ -1,11 +1,10 @@
-namespace Tethos.MSTest.Demo
+namespace Tethos.NUnit.Demo
 {
     using global::FakeItEasy;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using global::NUnit.Framework;
     using Tethos.FakeItEasy;
     using Tethos.Tests.Common;
 
-    [TestClass]
     public class ContainerAsProperty
     {
         public ContainerAsProperty()
@@ -15,8 +14,8 @@ namespace Tethos.MSTest.Demo
 
         public IAutoFakeItEasyContainer Container { get; }
 
-        [TestMethod]
-        [TestCategory("Demo")]
+        [Test]
+        [Category("Demo")]
         public void Do_WithMock_ShouldReturn42()
         {
             // Arrange

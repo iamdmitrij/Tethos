@@ -1,10 +1,10 @@
-using NSubstitute;
-using NUnit.Framework;
-using Tethos.NSubstitute;
-using Tethos.Tests.Common;
-
 namespace Tethos.NUnit.Demo
 {
+    using global::NSubstitute;
+    using global::NUnit.Framework;
+    using Tethos.NSubstitute;
+    using Tethos.Tests.Common;
+
     public class ContainerFromBaseClass : AutoMockingTest
     {
         [Test]
@@ -13,8 +13,8 @@ namespace Tethos.NUnit.Demo
         {
             // Arrange
             var expected = 42;
-            var sut = Container.Resolve<SystemUnderTest>();
-            var mock = Container.Resolve<IMockable>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
+            var mock = this.Container.Resolve<IMockable>();
 
             mock.Do().Returns(expected);
 

@@ -1,8 +1,8 @@
-﻿using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
-
-namespace Tethos.FakeItEasy
+﻿namespace Tethos.FakeItEasy
 {
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
+
     /// <summary>
     /// <see cref="Tethos"/> auto-mocking system using <see cref="FakeItEasy"/> to inject mocks.
     /// </summary>
@@ -11,11 +11,10 @@ namespace Tethos.FakeItEasy
         /// <inheritdoc />
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            AutoResolver = new AutoFakeItEasyResolver(container.Kernel);
+            this.AutoResolver = new AutoFakeItEasyResolver(container.Kernel);
 
             container.Kernel.Resolver.AddSubResolver(
-                AutoResolver
-            );
+                this.AutoResolver);
 
             base.Install(container, store);
         }

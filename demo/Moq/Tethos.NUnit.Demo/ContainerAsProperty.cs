@@ -1,18 +1,18 @@
-using NSubstitute;
-using NUnit.Framework;
-using Tethos.NSubstitute;
-using Tethos.Tests.Common;
-
 namespace Tethos.NUnit.Demo
 {
+    using global::Moq;
+    using global::NUnit.Framework;
+    using Tethos.Moq;
+    using Tethos.Tests.Common;
+
     public class ContainerAsProperty
     {
-        public IAutoNSubstituteContainer Container { get; }
-
         public ContainerAsProperty()
         {
-            Container = AutoNSubstituteContainerFactory.Create();
+            this.Container = AutoMoqContainerFactory.Create();
         }
+
+        public IAutoMoqContainer Container { get; }
 
         [Test]
         [Category("Demo")]
@@ -20,10 +20,11 @@ namespace Tethos.NUnit.Demo
         {
             // Arrange
             var expected = 42;
-            var sut = Container.Resolve<SystemUnderTest>();
-            var mock = Container.Resolve<IMockable>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
 
-            mock.Do().Returns(expected);
+            this.Container.Resolve<Mock<IMockable>>()
+                .Setup(x => x.Do())
+                .Returns(expected);
 
             // Act
             var actual = sut.Do();

@@ -1,9 +1,9 @@
-﻿using FluentAssertions;
-using Tethos.Tests.Common;
-using Xunit;
-
-namespace Tethos.Tests
+﻿namespace Tethos.Tests
 {
+    using FluentAssertions;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class BaseAutoMockingTestTests : BaseAutoMockingTest<AutoMockingContainer>
     {
         [Fact]
@@ -11,7 +11,7 @@ namespace Tethos.Tests
         public void SystemUnderTest_Do_ShouldMatchValueRange()
         {
             // Arrange
-            var sut = Container.Resolve<SystemUnderTest>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
 
             // Act
             var actual = sut.Do();

@@ -1,12 +1,12 @@
-﻿using Castle.MicroKernel.Registration;
-using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
-using System;
-using System.Linq;
-using System.Reflection;
-
-namespace Tethos
+﻿namespace Tethos
 {
+    using System;
+    using System.Linq;
+    using System.Reflection;
+    using Castle.MicroKernel.Registration;
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
+
     /// <summary>
     /// Base for <see cref="Tethos"/> auto-mocking system.
     /// </summary>
@@ -15,63 +15,61 @@ namespace Tethos
         where T : IAutoMockingContainer, new()
     {
         /// <summary>
-        /// Auto-mocking container
+        /// Initializes a new instance of the <see cref="BaseAutoMockingTest{T}"/> class.
         /// </summary>
-        internal AutoResolver AutoResolver { get; set; }
+        protected BaseAutoMockingTest()
+        {
+            this.Assemblies = Assembly.GetAssembly(this.GetType()).GetDependencies();
+            this.Container = (T)new T().Install(this);
+        }
 
         /// <summary>
-        /// Entry assembly from which sub-dependencies are loaded into <see cref="Castle.Windsor"/> IoC.
+        /// Gets entry assembly from which sub-dependencies are loaded into <see cref="Castle.Windsor"/> IoC.
         /// </summary>
         public virtual Assembly[] Assemblies { get; }
 
         /// <summary>
-        /// <see cref="Castle.Windsor"/> container dependency.
+        /// Gets <see cref="Castle.Windsor"/> container dependency.
         /// </summary>
         public T Container { get; internal set; }
 
         /// <summary>
-        /// Default constructor.
+        /// Gets or sets auto-mocking container.
         /// </summary>
-        protected BaseAutoMockingTest()
-        {
-            Assemblies = Assembly.GetAssembly(GetType()).GetDependencies();
-            Container = (T)new T().Install(this);
-        }
+        internal AutoResolver AutoResolver { get; set; }
 
         /// <inheritdoc />
         public virtual void Install(IWindsorContainer container, IConfigurationStore store) =>
             container.Register(
-                Assemblies.Select(assembly =>
+                this.Assemblies.Select(assembly =>
                     Classes.FromAssembly(assembly)
                         .Pick()
                         .WithServiceBase()
                         .WithServiceAllInterfaces()
                         .WithServiceSelf()
-                        .LifestyleTransient()
-                )
-                .ToArray()
-            );
-
-        /// <inheritdoc />
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        /// Disposes <see cref="IWindsorContainer"/> current instance.
-        /// </summary>
-        /// <param name="disposing"></param>
-        protected virtual void Dispose(bool disposing) => Container?.Dispose();
+                        .LifestyleTransient())
+                .ToArray());
 
         /// <summary>
         /// Releases automocking resolver from <see cref="WindsorContainer"/>.
         /// Restoring container to normal function without auto-mocking.
         /// </summary>
         public void Clean() =>
-            Container
+            this.Container
                 .Kernel
-                .Resolver.RemoveSubResolver(AutoResolver);
+                .Resolver.RemoveSubResolver(this.AutoResolver);
+
+        /// <inheritdoc />
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Disposes <see cref="IWindsorContainer"/> current instance.
+        /// </summary>
+        /// <param name="disposing">Is instance disposing.</param>
+        protected virtual void Dispose(bool disposing) => this.Container?.Dispose();
     }
 }

@@ -1,19 +1,19 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using Tethos.Moq;
-using Tethos.Tests.Common;
-
 namespace Tethos.MSTest.Demo
 {
+    using global::Moq;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Tethos.Moq;
+    using Tethos.Tests.Common;
+
     [TestClass]
     public class ContainerAsProperty
     {
-        public IAutoMoqContainer Container { get; }
-
         public ContainerAsProperty()
         {
-            Container = AutoMoqContainerFactory.Create();
+            this.Container = AutoMoqContainerFactory.Create();
         }
+
+        public IAutoMoqContainer Container { get; }
 
         [TestMethod]
         [TestCategory("Demo")]
@@ -21,9 +21,9 @@ namespace Tethos.MSTest.Demo
         {
             // Arrange
             var expected = 42;
-            var sut = Container.Resolve<SystemUnderTest>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
 
-            Container.Resolve<Mock<IMockable>>()
+            this.Container.Resolve<Mock<IMockable>>()
                 .Setup(x => x.Do())
                 .Returns(expected);
 

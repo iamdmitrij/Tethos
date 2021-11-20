@@ -1,14 +1,14 @@
-﻿using AutoFixture.Xunit2;
-using Castle.MicroKernel;
-using Castle.MicroKernel.Registration;
-using FluentAssertions;
-using Moq;
-using System;
-using Tethos.Tests.Common;
-using Xunit;
-
-namespace Tethos.Moq.Tests
+﻿namespace Tethos.Moq.Tests
 {
+    using System;
+    using AutoFixture.Xunit2;
+    using Castle.MicroKernel;
+    using Castle.MicroKernel.Registration;
+    using FluentAssertions;
+    using global::Moq;
+    using Tethos.Tests.Common;
+    using Xunit;
+
     public class AutoMockingTestTests : AutoMockingTest
     {
         [Fact]
@@ -19,7 +19,7 @@ namespace Tethos.Moq.Tests
             var expected = typeof(Mock<object>);
 
             // Act
-            var actual = Container.Resolve(expected);
+            var actual = this.Container.Resolve(expected);
 
             // Assert
             actual.Should().BeOfType(expected);
@@ -30,7 +30,7 @@ namespace Tethos.Moq.Tests
         public void Container_ShouldHaveAutoResolverInstalled()
         {
             // Assert
-            AutoResolver.Should().BeOfType<AutoMoqResolver>();
+            this.AutoResolver.Should().BeOfType<AutoMoqResolver>();
         }
 
         [Fact]
@@ -38,23 +38,24 @@ namespace Tethos.Moq.Tests
         public void Test_Idempotency_ShouldMatchMocks()
         {
             // Arrange
-            var expected = Container.Resolve<Mock<IMockable>>();
+            var expected = this.Container.Resolve<Mock<IMockable>>();
 
             // Act
-            var actual = Container.Resolve<Mock<IMockable>>();
+            var actual = this.Container.Resolve<Mock<IMockable>>();
 
             // Assert
             actual.Should().Be(expected);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Test_SimpleDependency_ShouldMatchValue(int expected)
         {
             // Arrange
-            var sut = Container.Resolve<SystemUnderTest>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
 
-            Container.Resolve<Mock<IMockable>>()
+            this.Container.Resolve<Mock<IMockable>>()
                 .Setup(x => x.Do())
                 .Returns(expected);
 
@@ -71,12 +72,11 @@ namespace Tethos.Moq.Tests
         {
             // Arrange
             var expectedType = new Mock<Concrete>(100, 200).GetType();
-            var actual = Container.Resolve<SystemUnderTestClass>(
+            var actual = this.Container.Resolve<SystemUnderTestClass>(
                 new Arguments()
                     .AddNamed("minValue", 100)
-                    .AddNamed("maxValue", 200)
-            );
-            var mock = Container.Resolve<Mock<Concrete>>();
+                    .AddNamed("maxValue", 200));
+            var mock = this.Container.Resolve<Mock<Concrete>>();
 
             // Act
             actual.Do();
@@ -86,7 +86,8 @@ namespace Tethos.Moq.Tests
             mock.Verify(x => x.Do(), Times.Once);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Container_Resolve_WithClassAndPrimitiveType_ShouldMatchMockTypes(bool value)
         {
@@ -94,14 +95,13 @@ namespace Tethos.Moq.Tests
             var expectedType = new Mock<Concrete>(100, 200).GetType();
             var expectedThresholdType = new Mock<Threshold>(value).GetType();
 
-            var actual = Container.Resolve<SystemUnderTwoClasses>(
+            var actual = this.Container.Resolve<SystemUnderTwoClasses>(
                 new Arguments()
                     .AddDependencyTo<Concrete, int>("minValue", 100)
                     .AddDependencyTo<Concrete, int>("maxValue", 200)
-                    .AddDependencyTo<Threshold, bool>("enabled", value)
-            );
-            var mock = Container.Resolve<Mock<Concrete>>();
-            var thresholdMock = Container.Resolve<Mock<Threshold>>();
+                    .AddDependencyTo<Threshold, bool>("enabled", value));
+            var mock = this.Container.Resolve<Mock<Concrete>>();
+            var thresholdMock = this.Container.Resolve<Mock<Threshold>>();
 
             // Act
             actual.Do();
@@ -111,40 +111,40 @@ namespace Tethos.Moq.Tests
             thresholdMock.Should().BeOfType(expectedThresholdType);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Container_Resolve_WithAbstractClass_ShouldMatchMockTypes(bool value)
         {
             // Arrange
             var expected = new Mock<AbstractThreshold>(value).GetType();
-            var actual = Container.Resolve<SystemUnderAbstractClasses>(
+            var actual = this.Container.Resolve<SystemUnderAbstractClasses>(
                 new Arguments()
-                    .AddDependencyTo<AbstractThreshold, bool>("enabled", value)
-            );
+                    .AddDependencyTo<AbstractThreshold, bool>("enabled", value));
 
             // Act
             actual.Do();
 
             // Assert
-            Container.Resolve<Mock<AbstractThreshold>>().Should().BeOfType(expected);
+            this.Container.Resolve<Mock<AbstractThreshold>>().Should().BeOfType(expected);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Container_Resolve_WithPartialClass_ShouldMatchMockTypes(bool value)
         {
             // Arrange
             var expected = new Mock<PartialThreshold>(value).GetType();
-            var sut = Container.Resolve<SystemUnderPartialClass>(
+            var sut = this.Container.Resolve<SystemUnderPartialClass>(
                 new Arguments()
-                    .AddDependencyTo<PartialThreshold, bool>("enabled", value)
-            );
+                    .AddDependencyTo<PartialThreshold, bool>("enabled", value));
 
             // Act
             sut.Do();
 
             // Assert
-            Container.Resolve<Mock<PartialThreshold>>().Should().BeOfType(expected);
+            this.Container.Resolve<Mock<PartialThreshold>>().Should().BeOfType(expected);
         }
 
         [Fact]
@@ -152,7 +152,7 @@ namespace Tethos.Moq.Tests
         public void Container_Resolve_WithMixedClasses_ShouldCallMock()
         {
             // Arrange
-            var sut = Container.Resolve<SystemUnderMixedClasses>(
+            var sut = this.Container.Resolve<SystemUnderMixedClasses>(
                 new Arguments()
                     .AddNamed("demo", 1)
                     .AddTyped(new SealedConcrete())
@@ -160,34 +160,33 @@ namespace Tethos.Moq.Tests
                     .AddDependencyTo<Concrete, int>("maxValue", 200)
                     .AddDependencyTo<Threshold, bool>("enabled", true)
                     .AddDependencyTo<PartialThreshold, bool>("enabled", false)
-                    .AddDependencyTo<AbstractThreshold, bool>("enabled", false)
-            );
+                    .AddDependencyTo<AbstractThreshold, bool>("enabled", false));
 
             // Act
             sut.Do();
 
             // Assert
-            Container.Resolve<Mock<Concrete>>().Should().BeOfType(new Mock<Concrete>(100, 200).GetType()).GetType();
-            Container.Resolve<Mock<Threshold>>().Should().BeOfType(new Mock<Threshold>(true).GetType()).GetType();
-            Container.Resolve<Mock<PartialThreshold>>().Should().BeOfType(new Mock<PartialThreshold>(true).GetType()).GetType();
-            Container.Resolve<Mock<AbstractThreshold>>().Should().BeOfType(new Mock<AbstractThreshold>(true).GetType()).GetType();
+            this.Container.Resolve<Mock<Concrete>>().Should().BeOfType(new Mock<Concrete>(100, 200).GetType()).GetType();
+            this.Container.Resolve<Mock<Threshold>>().Should().BeOfType(new Mock<Threshold>(true).GetType()).GetType();
+            this.Container.Resolve<Mock<PartialThreshold>>().Should().BeOfType(new Mock<PartialThreshold>(true).GetType()).GetType();
+            this.Container.Resolve<Mock<AbstractThreshold>>().Should().BeOfType(new Mock<AbstractThreshold>(true).GetType()).GetType();
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Clean_ShouldRevertBackToOriginalBehavior(Mockable mockable)
         {
             // Arrange
-            var sut = Container.Resolve<SystemUnderTest>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
 
-            Container.Register(Component.For<SystemUnderTest>()
+            this.Container.Register(Component.For<SystemUnderTest>()
                 .OverridesExistingRegistration()
-                .DependsOn(Dependency.OnValue<IMockable>(mockable))
-            );
+                .DependsOn(Dependency.OnValue<IMockable>(mockable)));
 
             // Act
-            Clean();
-            var concrete = Container.Resolve<SystemUnderTest>();
+            this.Clean();
+            var concrete = this.Container.Resolve<SystemUnderTest>();
             Action action = () => concrete.Do();
             sut.Do();
 

@@ -1,10 +1,10 @@
-using Moq;
-using Tethos.Moq;
-using Tethos.Tests.Common;
-using Xunit;
-
-namespace Tethos.xUnit.Demo
+namespace Tethos.Xunit.Demo
 {
+    using global::Moq;
+    using global::Xunit;
+    using Tethos.Moq;
+    using Tethos.Tests.Common;
+
     public class ContainerFromBaseClass : AutoMockingTest
     {
         [Fact]
@@ -13,9 +13,9 @@ namespace Tethos.xUnit.Demo
         {
             // Arrange
             var expected = 42;
-            var sut = Container.Resolve<SystemUnderTest>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
 
-            Container.Resolve<Mock<IMockable>>()
+            this.Container.Resolve<Mock<IMockable>>()
                 .Setup(x => x.Do())
                 .Returns(expected);
 

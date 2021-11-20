@@ -8,6 +8,7 @@
         /// <summary>
         /// Creates ready to use auto-mocking container.
         /// </summary>
+        /// <returns>Auto-mocking container.</returns>
         public static IAutoNSubstituteContainer Create() => new AutoMockingTest().Container;
     }
 }

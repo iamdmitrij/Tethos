@@ -1,18 +1,19 @@
-﻿using Castle.Core;
-using Castle.MicroKernel;
-using Castle.MicroKernel.Context;
-using Castle.MicroKernel.Registration;
-using Moq;
-using System;
-using System.Linq;
-
-namespace Tethos.Moq
+﻿namespace Tethos.Moq
 {
+    using System;
+    using System.Linq;
+    using Castle.Core;
+    using Castle.MicroKernel;
+    using Castle.MicroKernel.Context;
+    using Castle.MicroKernel.Registration;
+    using global::Moq;
+
     /// <inheritdoc />
     internal class AutoMoqResolver : AutoResolver
     {
-        /// <inheritdoc />
-        public AutoMoqResolver(IKernel kernel) : base(kernel)
+        /// <inheritdoc cref="AutoResolver" />
+        public AutoMoqResolver(IKernel kernel)
+            : base(kernel)
         {
         }
 
@@ -21,8 +22,7 @@ namespace Tethos.Moq
             CreationContext context,
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
-            DependencyModel dependency
-        ) => dependency.TargetType.IsClass && context.AdditionalArguments.Any() // TODO: Add coverage for default ctor
+            DependencyModel dependency) => (dependency.TargetType.IsClass && context.AdditionalArguments.Any()) // TODO: Add coverage for default ctor
             || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
@@ -32,10 +32,9 @@ namespace Tethos.Moq
             var arguments = constructorArguments.Select(x => x.Value).ToArray();
             var mock = Activator.CreateInstance(mockType, arguments) as Mock;
 
-            Kernel.Register(Component.For(mockType)
+            this.Kernel.Register(Component.For(mockType)
                 .Instance(mock)
-                .OverridesExistingRegistration()
-            );
+                .OverridesExistingRegistration());
 
             return mock.Object;
         }

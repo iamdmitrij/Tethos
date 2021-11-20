@@ -2,13 +2,13 @@
 {
     public class SystemUnderPartialClass
     {
-        public PartialThreshold Threshold { get; }
-
         public SystemUnderPartialClass(PartialThreshold threshold)
         {
-            Threshold = threshold;
+            this.Threshold = threshold;
         }
 
-        public int Do() => Threshold.Enalbed ? 1 : 0;
+        public PartialThreshold Threshold { get; }
+
+        public int Do() => this.Threshold.Enalbed ? 1 : 0;
     }
 }

@@ -1,12 +1,13 @@
-﻿using Castle.MicroKernel;
-using Moq;
-using System;
-
-namespace Tethos.Tests.SUT
+﻿namespace Tethos.Tests.SUT
 {
+    using System;
+    using Castle.MicroKernel;
+    using Moq;
+
     internal class ConcreteAutoResolver : AutoResolver
     {
-        public ConcreteAutoResolver(IKernel kernel) : base(kernel)
+        public ConcreteAutoResolver(IKernel kernel)
+            : base(kernel)
         {
         }
 

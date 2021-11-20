@@ -1,14 +1,14 @@
-﻿using AutoFixture;
-using AutoFixture.AutoFakeItEasy;
-using AutoFixture.Xunit2;
-
-namespace Tethos.FakeItEasy.Tests.Attributes
+﻿namespace Tethos.FakeItEasy.Tests.Attributes
 {
+    using AutoFixture;
+    using AutoFixture.AutoFakeItEasy;
+    using AutoFixture.Xunit2;
+
     internal class AutoFakeItEasyDataAttribute : AutoDataAttribute
     {
-        public AutoFakeItEasyDataAttribute() : base(
-            () => new Fixture().Customize(new AutoFakeItEasyCustomization())
-        )
+        public AutoFakeItEasyDataAttribute()
+            : base(
+            () => new Fixture().Customize(new AutoFakeItEasyCustomization()))
         {
         }
     }

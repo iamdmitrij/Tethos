@@ -1,86 +1,85 @@
-﻿using System.Collections.Generic;
-using Xunit;
-
-namespace Tethos.Tests
+﻿namespace Tethos.Tests
 {
+    using System.Collections.Generic;
+    using Xunit;
+
     public class AssemblyTheoryData : TheoryData<string, IEnumerable<string>>
     {
         public AssemblyTheoryData()
         {
-            Add("Fake.Core21.dll",
-                new[]
-                {
-                    "Fake.Core21",
-                    "Fake.Core22",
-                    "Fake.Core30",
-                    "Fake.Core31",
-                    "Fake.Net50",
-                    "Fake.Net60",
-                    "Fake.Framework461",
-                    "Fake.Framework472",
-                    "Fake.Standard20",
-                    "Fake.Standard21",
-                }
-            );
+            var fakeCore21 = new[]
+            {
+                "Fake.Core21",
+                "Fake.Core22",
+                "Fake.Core30",
+                "Fake.Core31",
+                "Fake.Net50",
+                "Fake.Net60",
+                "Fake.Framework461",
+                "Fake.Framework472",
+                "Fake.Standard20",
+                "Fake.Standard21",
+            };
 
-            Add("Fake.Core31.dll",
-                new[]
-                {
-                    "Fake.Core21",
-                    "Fake.Core22",
-                    "Fake.Core30",
-                    "Fake.Core31",
-                    "Fake.Net50",
-                    "Fake.Net60",
-                    "Fake.Framework461",
-                    "Fake.Framework472",
-                    "Fake.Standard20",
-                    "Fake.Standard21",
-                }
-            );
+            this.Add("Fake.Core21.dll", fakeCore21);
 
-            Add("Fake.Net50.dll",
-                new[]
-                {
-                    "Fake.Core21",
-                    "Fake.Core22",
-                    "Fake.Core30",
-                    "Fake.Core31",
-                    "Fake.Net50",
-                    "Fake.Net60",
-                    "Fake.Framework461",
-                    "Fake.Framework472",
-                    "Fake.Standard20",
-                    "Fake.Standard21",
-                }
-            );
+            var fakeCore31 = new[]
+            {
+                "Fake.Core21",
+                "Fake.Core22",
+                "Fake.Core30",
+                "Fake.Core31",
+                "Fake.Net50",
+                "Fake.Net60",
+                "Fake.Framework461",
+                "Fake.Framework472",
+                "Fake.Standard20",
+                "Fake.Standard21",
+            };
 
-            Add("Tethos.dll",
-                new[]
-                {
-                    "Tethos",
-                    "Tethos.Tests",
-                    "Tethos.Tests.Common",
-                }
-            );
+            this.Add("Fake.Core31.dll", fakeCore31);
 
-            Add("Tethos.Tests.dll",
-                new[]
-                {
-                    "Tethos",
-                    "Tethos.Tests",
-                    "Tethos.Tests.Common",
-                }
-            );
+            var fakeCore50 = new[]
+            {
+                "Fake.Core21",
+                "Fake.Core22",
+                "Fake.Core30",
+                "Fake.Core31",
+                "Fake.Net50",
+                "Fake.Net60",
+                "Fake.Framework461",
+                "Fake.Framework472",
+                "Fake.Standard20",
+                "Fake.Standard21",
+            };
 
-            Add("Tethos.Tests.Common.dll",
-                new[]
-                {
-                    "Tethos",
-                    "Tethos.Tests",
-                    "Tethos.Tests.Common",
-                }
-            );
+            this.Add("Fake.Net50.dll", fakeCore50);
+
+            var tethos = new[]
+            {
+                "Tethos",
+                "Tethos.Tests",
+                "Tethos.Tests.Common",
+            };
+
+            this.Add("Tethos.dll", tethos);
+
+            var tethosTests = new[]
+            {
+                "Tethos",
+                "Tethos.Tests",
+                "Tethos.Tests.Common",
+            };
+
+            this.Add("Tethos.Tests.dll", tethosTests);
+
+            var tethosTestsCommon = new[]
+            {
+                "Tethos",
+                "Tethos.Tests",
+                "Tethos.Tests.Common",
+            };
+            this.Add("Tethos.Tests.Common.dll", tethosTestsCommon);
         }
     }
 }
