@@ -16,6 +16,7 @@ namespace Tethos.xUnit.Demo
         }
 
         [Fact]
+        [Trait("", "Demo")]
         public void Do_WithMock_ShouldReturn42()
         {
             // Arrange

@@ -15,6 +15,7 @@ namespace Tethos.NUnit.Demo
         }
 
         [Test]
+        [Category("Demo")]
         public void Do_WithMock_ShouldReturn42()
         {
             // Arrange
