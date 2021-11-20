@@ -15,7 +15,7 @@ namespace Tethos
         where T : IAutoMockingContainer, new()
     {
         /// <summary>
-        /// Auto-mocking container
+        /// Auto-mocking container.
         /// </summary>
         internal AutoResolver AutoResolver { get; set; }
 
