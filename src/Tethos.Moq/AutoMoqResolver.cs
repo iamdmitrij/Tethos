@@ -22,7 +22,10 @@
             CreationContext context,
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
-            DependencyModel dependency) => (dependency.TargetType.IsClass && context.AdditionalArguments.Any()) // TODO: Add coverage for default ctor
+            DependencyModel dependency) =>
+
+            // TODO: Add coverage for default ctor
+            (dependency.TargetType.IsClass && context.AdditionalArguments.Any())
             || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />

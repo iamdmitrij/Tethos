@@ -17,7 +17,10 @@
     {
         public void Dispose()
         {
-            throw new NotImplementedException();
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
+
+        protected virtual void Dispose(bool disposing) => throw new NotImplementedException();
     }
 }
