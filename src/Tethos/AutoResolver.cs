@@ -18,7 +18,7 @@ namespace Tethos
         protected AutoResolver(IKernel kernel) => this.Kernel = kernel;
 
         /// <summary>
-        /// <see cref="Castle.Windsor"/> kernel dependency.
+        /// Gets <see cref="Castle.Windsor"/> kernel dependency.
         /// </summary>
         public IKernel Kernel { get; }
 

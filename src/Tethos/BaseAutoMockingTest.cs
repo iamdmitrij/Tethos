@@ -24,17 +24,17 @@ namespace Tethos
         }
 
         /// <summary>
-        /// Entry assembly from which sub-dependencies are loaded into <see cref="Castle.Windsor"/> IoC.
+        /// Gets entry assembly from which sub-dependencies are loaded into <see cref="Castle.Windsor"/> IoC.
         /// </summary>
         public virtual Assembly[] Assemblies { get; }
 
         /// <summary>
-        /// <see cref="Castle.Windsor"/> container dependency.
+        /// Gets <see cref="Castle.Windsor"/> container dependency.
         /// </summary>
         public T Container { get; internal set; }
 
         /// <summary>
-        /// Auto-mocking container.
+        /// Gets or sets auto-mocking container.
         /// </summary>
         internal AutoResolver AutoResolver { get; set; }
 
