@@ -9,7 +9,8 @@ namespace Tethos.Tests
 {
     public class ContainerUtilsTests
     {
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void AddDependencyTo_ShouldMatchArguments(Arguments sut, string name, int expected)
         {
@@ -20,7 +21,8 @@ namespace Tethos.Tests
             actual[$"{typeof(string)}__{name}"].Should().Be(expected);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void AddDependencyTo_WithNullValue_ShouldBeBull(Arguments sut, string name)
         {
@@ -34,7 +36,8 @@ namespace Tethos.Tests
             actual[$"{typeof(string)}__{name}"].Should().Be(expected);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void AddDependencyTo_WithNameValue_ShouldThrowArgumentNullException(Arguments sut, int value)
         {
@@ -48,7 +51,8 @@ namespace Tethos.Tests
             actual.Should().Throw<ArgumentNullException>();
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void AddDependencyTo_UsingTypeParam_ShouldMatchArguments(Arguments sut, string name, int expected)
         {
@@ -59,7 +63,8 @@ namespace Tethos.Tests
             actual[$"{typeof(string)}__{name}"].Should().Be(expected);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void AddDependencyTo_UsingTypeParam_WithNullValue_ShouldBeBull(Arguments sut, string name)
         {
@@ -73,7 +78,8 @@ namespace Tethos.Tests
             actual[$"{typeof(string)}__{name}"].Should().Be(expected);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void AddDependencyTo_UsingTypeParam_WithNameValue_ShouldThrowArgumentNullException(Arguments sut, int value)
         {
@@ -87,7 +93,8 @@ namespace Tethos.Tests
             actual.Should().Throw<ArgumentNullException>();
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void Flatten_ShouldReturnValueArray(Arguments sut)
         {

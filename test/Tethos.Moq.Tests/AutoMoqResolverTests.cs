@@ -9,7 +9,8 @@ namespace Tethos.Moq.Tests
 {
     public class AutoMoqResolverTests
     {
-        [Theory, AutoMoqData]
+        [Theory]
+        [AutoMoqData]
         [Trait("Category", "Unit")]
         public void MapToTarget_ShouldMatchMockedType(Mock<IKernel> kernel, Mock<IMockable> mockable, Arguments constructorArguments)
         {

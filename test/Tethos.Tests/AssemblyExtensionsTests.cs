@@ -41,7 +41,8 @@ namespace Tethos.Tests
             actual.Should().BeSameAs(assembly);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void TryToLoadAssembly_UsingAssemblyName_ShouldReturnNull(string name)
         {
@@ -117,7 +118,8 @@ namespace Tethos.Tests
             actual.Should().Be(expected);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void GetPattern_WithSystemAssembly_ShouldThrowArgumentException(FakeAssembly assembly)
         {
@@ -220,7 +222,8 @@ namespace Tethos.Tests
             actual.Should().HaveCount(expected);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         internal void ElseLoadReferencedAssemblies_ShouldReturnOriginal(File[] files)
         {

@@ -34,7 +34,8 @@ namespace Tethos.NSubstitute.Tests
             actual.Should().Be(expected);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Test_SimpleDependency_ShouldMatchValue(int expected)
         {
@@ -71,7 +72,8 @@ namespace Tethos.NSubstitute.Tests
             mock.Received().Do();
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Container_Resolve_WithClassAndPrimitiveType_ShouldMatchMockTypes(bool value)
         {
@@ -95,7 +97,8 @@ namespace Tethos.NSubstitute.Tests
             thresholdMock.Should().BeOfType(expectedThresholdType);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Container_Resolve_WithAbstractClass_ShouldMatchMockTypes(bool value)
         {
@@ -112,7 +115,8 @@ namespace Tethos.NSubstitute.Tests
             this.Container.Resolve<AbstractThreshold>().Should().BeOfType(expected);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Container_Resolve_WithPartialClass_ShouldMatchMockTypes(bool value)
         {
@@ -154,7 +158,8 @@ namespace Tethos.NSubstitute.Tests
             this.Container.Resolve<AbstractThreshold>().Should().BeOfType(Substitute.For<AbstractThreshold>(true).GetType());
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Clean_ShouldRevertBackToOriginalBehavior(Mockable mockable)
         {

@@ -8,7 +8,8 @@ namespace Tethos.NSubstitute.Tests
 {
     public class AutoNSubstituteContainerFactoryTests
     {
-        [Theory, FactoryContainerData]
+        [Theory]
+        [FactoryContainerData]
         [Trait("Category", "Integration")]
         public void Create_SimpleDependency_ShouldMatchValue(
             IAutoNSubstituteContainer container,

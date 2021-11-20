@@ -7,7 +7,8 @@ namespace Tethos.Moq.Tests
 {
     public class InheritedAutoMockingTestTests : AutoMockingTest
     {
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void Dispose_ShouldDisposeMock(InheritedAutoMockingTest sut)
         {
@@ -18,7 +19,8 @@ namespace Tethos.Moq.Tests
             sut.Proxy.Verify(x => x.Dispose(), Times.Once);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void Dispose_NullContainer_ShouldNotDisposeMock(InheritedAutoMockingTest sut)
         {

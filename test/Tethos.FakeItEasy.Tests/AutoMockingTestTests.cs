@@ -34,7 +34,8 @@ namespace Tethos.FakeItEasy.Tests
             actual.Should().Be(expected);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Test_SimpleDependency_ShouldMatchValue(int expected)
         {
@@ -67,7 +68,8 @@ namespace Tethos.FakeItEasy.Tests
             A.CallTo(() => actual.Do()).MustHaveHappened();
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Container_Resolve_WithClassAndArguments_ShouldMockClass(int minValue, int maxValue)
         {
@@ -89,7 +91,8 @@ namespace Tethos.FakeItEasy.Tests
             actual.Should().BeOfType(expected);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Container_Resolve_WithClassAndPrimitiveType_ShouldMatchMockTypes(
             int minValue,
@@ -118,7 +121,8 @@ namespace Tethos.FakeItEasy.Tests
             thresholdMock.Enalbed.Should().Be(enabled);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Container_Resolve_WithAbstractClass_ShouldMatchMockTypes(bool enabled)
         {
@@ -137,7 +141,8 @@ namespace Tethos.FakeItEasy.Tests
             actual.Enalbed.Should().Be(enabled);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Container_Resolve_WithPartialClass_ShouldMatchMockTypes(bool enabled)
         {
@@ -156,7 +161,8 @@ namespace Tethos.FakeItEasy.Tests
             actual.Enalbed.Should().Be(enabled);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Container_Resolve_WithMixedClasses_ShouldCallMock(
             int minValue,
@@ -196,7 +202,8 @@ namespace Tethos.FakeItEasy.Tests
             abstractThreshold.Enalbed.Should().Be(abstractThresholdEnabled);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Integration")]
         public void Clean_ShouldRevertBackToOriginalBehavior(Mockable mockable)
         {

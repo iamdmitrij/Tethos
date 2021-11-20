@@ -22,7 +22,8 @@ namespace Tethos.Tests
             actual.Should().BeNull();
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void OverridesExistingRegistration_ShouldSetNameToGuid(ComponentRegistration sut)
         {
