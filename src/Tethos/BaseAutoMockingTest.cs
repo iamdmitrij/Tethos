@@ -15,7 +15,7 @@ namespace Tethos
         where T : IAutoMockingContainer, new()
     {
         /// <summary>
-        /// Default constructor.
+        /// Initializes a new instance of the <see cref="BaseAutoMockingTest{T}"/> class.
         /// </summary>
         protected BaseAutoMockingTest()
         {

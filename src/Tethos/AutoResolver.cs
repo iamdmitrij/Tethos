@@ -12,7 +12,7 @@ namespace Tethos
     internal abstract class AutoResolver : ISubDependencyResolver
     {
         /// <summary>
-        /// Constructor accepting <see cref="Castle.Windsor"/> kernel as dependency.
+        /// Initializes a new instance of the <see cref="AutoResolver"/> class.
         /// </summary>
         /// <param name="kernel">Reference to Castle Container.</param>
         protected AutoResolver(IKernel kernel) => this.Kernel = kernel;
