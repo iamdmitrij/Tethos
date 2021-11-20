@@ -11,7 +11,7 @@ namespace Tethos.Moq
     /// <inheritdoc />
     internal class AutoMoqResolver : AutoResolver
     {
-        /// <inheritdoc />
+        /// <inheritdoc cref="AutoResolver" />
         public AutoMoqResolver(IKernel kernel)
             : base(kernel)
         {
