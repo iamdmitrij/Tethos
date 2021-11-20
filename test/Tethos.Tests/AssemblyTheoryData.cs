@@ -73,7 +73,6 @@
 
             this.Add("Tethos.Tests.dll", tethosTests);
 
-
             var tethosTestsCommon = new[]
             {
                 "Tethos",
