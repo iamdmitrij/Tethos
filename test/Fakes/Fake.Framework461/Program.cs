@@ -1,10 +1,10 @@
-﻿using System;
-
-namespace FakeAssemblyFramework461
+﻿namespace FakeAssemblyFramework461
 {
-    static class Program
+    using System;
+
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
             Console.WriteLine("Hello World!");
         }

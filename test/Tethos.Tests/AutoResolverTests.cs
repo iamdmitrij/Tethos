@@ -1,18 +1,18 @@
-﻿using Castle.Core;
-using Castle.MicroKernel;
-using Castle.MicroKernel.Context;
-using FluentAssertions;
-using Moq;
-using System;
-using System.Collections;
-using System.Linq;
-using System.Threading.Tasks;
-using Tethos.Tests.Attributes;
-using Tethos.Tests.SUT;
-using Xunit;
-
-namespace Tethos.Tests
+﻿namespace Tethos.Tests
 {
+    using System;
+    using System.Collections;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Castle.Core;
+    using Castle.MicroKernel;
+    using Castle.MicroKernel.Context;
+    using FluentAssertions;
+    using Moq;
+    using Tethos.Tests.Attributes;
+    using Tethos.Tests.SUT;
+    using Xunit;
+
     public class AutoResolverTests
     {
         [Theory]
@@ -34,8 +34,7 @@ namespace Tethos.Tests
             IKernel kernel,
             ISubDependencyResolver resolver,
             CreationContext context,
-            string key
-        )
+            string key)
         {
             // Arrange
             var sut = new ConcreteAutoResolver(kernel);
@@ -45,21 +44,20 @@ namespace Tethos.Tests
                 context,
                 resolver,
                 new ComponentModel(),
-                new DependencyModel(key, type, false)
-            );
+                new DependencyModel(key, type, false));
 
             // Assert
             actual.Should().Be(expected);
         }
 
-        [Theory, AutoMoqData]
+        [Theory]
+        [AutoMoqData]
         [Trait("Category", "Unit")]
         public void Resolve_Object_ShouldMatch(
             Mock<IKernel> kernel,
             ISubDependencyResolver resolver,
             CreationContext context,
-            string key
-        )
+            string key)
         {
             // Arrange
             var expected = new Mock<object>(key);
@@ -71,8 +69,7 @@ namespace Tethos.Tests
                 context,
                 resolver,
                 new ComponentModel(),
-                new DependencyModel(key, expected.GetType(), false)
-            );
+                new DependencyModel(key, expected.GetType(), false));
 
             // Assert
             actual.Should().Equals(expected);

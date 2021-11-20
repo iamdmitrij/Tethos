@@ -1,13 +1,14 @@
-﻿using AutoFixture.Xunit2;
-using Moq;
-using Tethos.Moq.Tests.SUT;
-using Xunit;
-
-namespace Tethos.Moq.Tests
+﻿namespace Tethos.Moq.Tests
 {
+    using AutoFixture.Xunit2;
+    using global::Moq;
+    using Tethos.Moq.Tests.SUT;
+    using Xunit;
+
     public class InheritedAutoMockingTestTests : AutoMockingTest
     {
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void Dispose_ShouldDisposeMock(InheritedAutoMockingTest sut)
         {
@@ -18,7 +19,8 @@ namespace Tethos.Moq.Tests
             sut.Proxy.Verify(x => x.Dispose(), Times.Once);
         }
 
-        [Theory, AutoData]
+        [Theory]
+        [AutoData]
         [Trait("Category", "Unit")]
         public void Dispose_NullContainer_ShouldNotDisposeMock(InheritedAutoMockingTest sut)
         {

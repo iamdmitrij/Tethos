@@ -1,19 +1,19 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
-using Tethos.NSubstitute;
-using Tethos.Tests.Common;
-
 namespace Tethos.MSTest.Demo
 {
+    using global::NSubstitute;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Tethos.NSubstitute;
+    using Tethos.Tests.Common;
+
     [TestClass]
     public class ContainerAsProperty
     {
-        public IAutoNSubstituteContainer Container { get; }
-
         public ContainerAsProperty()
         {
-            Container = AutoNSubstituteContainerFactory.Create();
+            this.Container = AutoNSubstituteContainerFactory.Create();
         }
+
+        public IAutoNSubstituteContainer Container { get; }
 
         [TestMethod]
         [TestCategory("Demo")]
@@ -21,8 +21,8 @@ namespace Tethos.MSTest.Demo
         {
             // Arrange
             var expected = 42;
-            var sut = Container.Resolve<SystemUnderTest>();
-            var mock = Container.Resolve<IMockable>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
+            var mock = this.Container.Resolve<IMockable>();
 
             mock.Do().Returns(expected);
 

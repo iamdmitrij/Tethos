@@ -1,25 +1,26 @@
-﻿using Castle.Core;
-using Castle.MicroKernel;
-using Castle.MicroKernel.Context;
-using System;
-using System.Linq;
-
-namespace Tethos
+﻿namespace Tethos
 {
+    using System;
+    using System.Linq;
+    using Castle.Core;
+    using Castle.MicroKernel;
+    using Castle.MicroKernel.Context;
+
     /// <summary>
     /// Auto mocking resolver abstraction.
     /// </summary>
     internal abstract class AutoResolver : ISubDependencyResolver
     {
         /// <summary>
-        /// <see cref="Castle.Windsor"/> kernel dependency.
+        /// Initializes a new instance of the <see cref="AutoResolver"/> class.
         /// </summary>
-        public IKernel Kernel { get; }
+        /// <param name="kernel">Reference to Castle Container.</param>
+        protected AutoResolver(IKernel kernel) => this.Kernel = kernel;
 
         /// <summary>
-        /// Constructor accepting <see cref="Castle.Windsor"/> kernel as dependency.
+        /// Gets <see cref="Castle.Windsor"/> kernel dependency.
         /// </summary>
-        protected AutoResolver(IKernel kernel) => Kernel = kernel;
+        public IKernel Kernel { get; }
 
         /// <summary>
         /// Maps target mock object to mocked object type.
@@ -34,18 +35,16 @@ namespace Tethos
             CreationContext context,
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
-            DependencyModel dependency
-        ) => dependency.TargetType.IsInterface;
+            DependencyModel dependency) => dependency.TargetType.IsInterface;
 
         /// <inheritdoc />
         public object Resolve(
             CreationContext context,
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
-            DependencyModel dependency
-        )
+            DependencyModel dependency)
         {
-            string GetType(object argument) =>
+            static string GetType(object argument) =>
                 argument.ToString()
                 .Split(new string[] { "__" }, StringSplitOptions.None)
                 .FirstOrDefault();
@@ -55,7 +54,7 @@ namespace Tethos
                 .Where(argument => GetType(argument.Key) == $"{targetType}");
             var constructorArguments = new Arguments().Add(arguments);
 
-            return MapToTarget(targetType, constructorArguments);
+            return this.MapToTarget(targetType, constructorArguments);
         }
     }
 }

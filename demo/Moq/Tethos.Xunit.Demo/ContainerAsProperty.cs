@@ -1,19 +1,19 @@
-﻿using Moq;
-using System;
-using Tethos.Moq;
-using Tethos.Tests.Common;
-using Xunit;
-
-namespace Tethos.xUnit.Demo
+﻿namespace Tethos.Xunit.Demo
 {
+    using System;
+    using global::Moq;
+    using global::Xunit;
+    using Tethos.Moq;
+    using Tethos.Tests.Common;
+
     public class ContainerAsProperty : IDisposable
     {
-        public IAutoMoqContainer Container { get; }
-
         public ContainerAsProperty()
         {
-            Container = AutoMoqContainerFactory.Create();
+            this.Container = AutoMoqContainerFactory.Create();
         }
+
+        public IAutoMoqContainer Container { get; }
 
         [Fact]
         [Trait("", "Demo")]
@@ -21,9 +21,9 @@ namespace Tethos.xUnit.Demo
         {
             // Arrange
             var expected = 42;
-            var sut = Container.Resolve<SystemUnderTest>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
 
-            Container.Resolve<Mock<IMockable>>()
+            this.Container.Resolve<Mock<IMockable>>()
                 .Setup(x => x.Do())
                 .Returns(expected);
 
@@ -36,13 +36,13 @@ namespace Tethos.xUnit.Demo
 
         public void Dispose()
         {
-            Dispose(true);
+            this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool disposing)
         {
-            Container?.Dispose();
+            this.Container?.Dispose();
         }
     }
 }

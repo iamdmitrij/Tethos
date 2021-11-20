@@ -1,8 +1,8 @@
-﻿using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
-
-namespace Tethos.NSubstitute
+﻿namespace Tethos.NSubstitute
 {
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
+
     /// <summary>
     /// <see cref="Tethos"/> auto-mocking system using <see cref="NSubstitute"/> to inject mocks.
     /// </summary>
@@ -11,11 +11,10 @@ namespace Tethos.NSubstitute
         /// <inheritdoc />
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            AutoResolver = new AutoNSubstituteResolver(container.Kernel);
+            this.AutoResolver = new AutoNSubstituteResolver(container.Kernel);
 
             container.Kernel.Resolver.AddSubResolver(
-                AutoResolver
-            );
+                this.AutoResolver);
 
             base.Install(container, store);
         }

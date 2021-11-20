@@ -1,9 +1,9 @@
-﻿using FluentAssertions;
-using System.Reflection;
-using Xunit;
-
-namespace Tethos.Tests
+﻿namespace Tethos.Tests
 {
+    using System.Reflection;
+    using FluentAssertions;
+    using Xunit;
+
     public class FileExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
     {
         [Fact]

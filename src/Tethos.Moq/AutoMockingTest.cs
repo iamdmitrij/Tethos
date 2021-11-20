@@ -1,10 +1,10 @@
-﻿using Castle.MicroKernel.Registration;
-using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
-using Moq;
-
-namespace Tethos.Moq
+﻿namespace Tethos.Moq
 {
+    using Castle.MicroKernel.Registration;
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
+    using global::Moq;
+
     /// <summary>
     /// <see cref="Tethos"/> auto-mocking system using <see cref="Moq"/> to inject mocks.
     /// </summary>
@@ -13,11 +13,10 @@ namespace Tethos.Moq
         /// <inheritdoc />
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            AutoResolver = new AutoMoqResolver(container.Kernel);
+            this.AutoResolver = new AutoMoqResolver(container.Kernel);
 
             container.Kernel.Resolver.AddSubResolver(
-                AutoResolver
-            );
+                this.AutoResolver);
 
             container.Register(Component.For(typeof(Mock<>)));
 

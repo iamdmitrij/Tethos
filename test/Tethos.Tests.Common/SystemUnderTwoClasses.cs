@@ -2,16 +2,16 @@
 {
     public class SystemUnderTwoClasses
     {
+        public SystemUnderTwoClasses(Concrete mockable, Threshold threshold)
+        {
+            this.Mockable = mockable;
+            this.Threshold = threshold;
+        }
+
         public Concrete Mockable { get; }
 
         public Threshold Threshold { get; }
 
-        public SystemUnderTwoClasses(Concrete mockable, Threshold threshold)
-        {
-            Mockable = mockable;
-            Threshold = threshold;
-        }
-
-        public int Do() => Threshold.Enalbed ? Mockable.Do() : 0;
+        public int Do() => this.Threshold.Enalbed ? this.Mockable.Do() : 0;
     }
 }

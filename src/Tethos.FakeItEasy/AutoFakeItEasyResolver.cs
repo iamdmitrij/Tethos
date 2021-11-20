@@ -1,18 +1,19 @@
-﻿using Castle.Core;
-using Castle.MicroKernel;
-using Castle.MicroKernel.Context;
-using Castle.MicroKernel.Registration;
-using FakeItEasy.Creation;
-using FakeItEasy.Sdk;
-using System;
-
-namespace Tethos.FakeItEasy
+﻿namespace Tethos.FakeItEasy
 {
+    using System;
+    using Castle.Core;
+    using Castle.MicroKernel;
+    using Castle.MicroKernel.Context;
+    using Castle.MicroKernel.Registration;
+    using global::FakeItEasy.Creation;
+    using global::FakeItEasy.Sdk;
+
     /// <inheritdoc />
     internal class AutoFakeItEasyResolver : AutoResolver
     {
-        /// <inheritdoc />
-        public AutoFakeItEasyResolver(IKernel kernel) : base(kernel)
+        /// <inheritdoc cref="AutoResolver" />
+        public AutoFakeItEasyResolver(IKernel kernel)
+            : base(kernel)
         {
         }
 
@@ -21,8 +22,7 @@ namespace Tethos.FakeItEasy
             CreationContext context,
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
-            DependencyModel dependency
-        ) => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
+            DependencyModel dependency) => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
         public override object MapToTarget(Type targetType, Arguments constructorArguments)
@@ -30,14 +30,13 @@ namespace Tethos.FakeItEasy
             Action<IFakeOptions> arguments = targetType.IsInterface switch
             {
                 false => options => options.WithArgumentsForConstructor(constructorArguments.Flatten()),
-                true => options => { }
+                true => options => _ = options, // TODO: Visual Studio formatter goes nuts with the comma when using options => {},
             };
             var mock = Create.Fake(targetType, arguments);
 
-            Kernel.Register(Component.For(targetType)
+            this.Kernel.Register(Component.For(targetType)
                 .Instance(mock)
-                .OverridesExistingRegistration()
-            );
+                .OverridesExistingRegistration());
 
             return mock;
         }

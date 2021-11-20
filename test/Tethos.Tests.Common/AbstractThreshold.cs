@@ -2,11 +2,11 @@
 {
     public abstract class AbstractThreshold
     {
-        public bool Enalbed { get; }
-
         public AbstractThreshold(bool enabled)
         {
-            Enalbed = enabled;
+            this.Enalbed = enabled;
         }
+
+        public bool Enalbed { get; }
     }
 }

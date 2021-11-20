@@ -1,19 +1,19 @@
-﻿using NSubstitute;
-using System;
-using Tethos.NSubstitute;
-using Tethos.Tests.Common;
-using Xunit;
-
-namespace Tethos.xUnit.Demo
+﻿namespace Tethos.Xunit.Demo
 {
+    using System;
+    using global::NSubstitute;
+    using global::Xunit;
+    using Tethos.NSubstitute;
+    using Tethos.Tests.Common;
+
     public class ContainerAsProperty : IDisposable
     {
-        public IAutoNSubstituteContainer Container { get; }
-
         public ContainerAsProperty()
         {
-            Container = AutoNSubstituteContainerFactory.Create();
+            this.Container = AutoNSubstituteContainerFactory.Create();
         }
+
+        public IAutoNSubstituteContainer Container { get; }
 
         [Fact]
         [Trait("", "Demo")]
@@ -21,8 +21,8 @@ namespace Tethos.xUnit.Demo
         {
             // Arrange
             var expected = 42;
-            var sut = Container.Resolve<SystemUnderTest>();
-            var mock = Container.Resolve<IMockable>();
+            var sut = this.Container.Resolve<SystemUnderTest>();
+            var mock = this.Container.Resolve<IMockable>();
 
             mock.Do().Returns(expected);
 
@@ -35,13 +35,13 @@ namespace Tethos.xUnit.Demo
 
         public void Dispose()
         {
-            Dispose(true);
+            this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool disposing)
         {
-            Container?.Dispose();
+            this.Container?.Dispose();
         }
     }
 }

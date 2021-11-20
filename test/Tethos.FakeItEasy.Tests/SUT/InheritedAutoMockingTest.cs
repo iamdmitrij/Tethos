@@ -1,11 +1,11 @@
-﻿using FakeItEasy;
-
-namespace Tethos.FakeItEasy.Tests.SUT
+﻿namespace Tethos.FakeItEasy.Tests.SUT
 {
+    using global::FakeItEasy;
+
     public class InheritedAutoMockingTest : AutoMockingTest
     {
-        public AutoFakeItEasyContainer Proxy { get; }
+        public InheritedAutoMockingTest() => this.Proxy = this.Container = A.Fake<AutoFakeItEasyContainer>();
 
-        public InheritedAutoMockingTest() => Proxy = Container = A.Fake<AutoFakeItEasyContainer>();
+        public AutoFakeItEasyContainer Proxy { get; }
     }
 }

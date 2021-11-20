@@ -1,15 +1,15 @@
-﻿using Moq;
-
-namespace Tethos.Moq.Tests.SUT
+﻿namespace Tethos.Moq.Tests.SUT
 {
+    using global::Moq;
+
     public class InheritedAutoMockingTest : AutoMockingTest
     {
-        public Mock<AutoMoqContainer> Proxy { get; }
-
         public InheritedAutoMockingTest()
         {
-            Proxy = new Mock<AutoMoqContainer>();
-            Container = Proxy.Object;
+            this.Proxy = new Mock<AutoMoqContainer>();
+            this.Container = this.Proxy.Object;
         }
+
+        public Mock<AutoMoqContainer> Proxy { get; }
     }
 }

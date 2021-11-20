@@ -2,11 +2,11 @@
 {
     public class Threshold
     {
-        public bool Enalbed { get; }
-
         public Threshold(bool enabled)
         {
-            Enalbed = enabled;
+            this.Enalbed = enabled;
         }
+
+        public bool Enalbed { get; }
     }
 }
