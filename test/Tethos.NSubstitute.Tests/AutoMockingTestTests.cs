@@ -24,7 +24,8 @@
         public void Test_Idempotency_ShouldMatchMocks()
         {
             // Arrange
-            this.Container.Resolve<SystemUnderTest>(); // TODO: What if this can be omitted?
+            // TODO: What if this can be omitted?
+            this.Container.Resolve<SystemUnderTest>();
             var expected = this.Container.Resolve<IMockable>();
 
             // Act

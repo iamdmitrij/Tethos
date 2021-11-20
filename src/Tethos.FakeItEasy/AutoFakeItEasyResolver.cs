@@ -30,7 +30,9 @@
             Action<IFakeOptions> arguments = targetType.IsInterface switch
             {
                 false => options => options.WithArgumentsForConstructor(constructorArguments.Flatten()),
-                true => options => _ = options, // TODO: Visual Studio formatter goes nuts with the comma when using options => {},
+
+                // TODO: Visual Studio formatter goes nuts with the comma when using options => {},
+                true => options => _ = options,
             };
             var mock = Create.Fake(targetType, arguments);
 
