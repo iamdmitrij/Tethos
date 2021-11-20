@@ -12,8 +12,7 @@ namespace Tethos.Moq.Tests.Attributes
                 var fixture = new Fixture();
                 fixture.Register(AutoMoqContainerFactory.Create);
                 return fixture.Customize(new AutoMoqCustomization());
-            }
-        )
+            })
         {
         }
     }

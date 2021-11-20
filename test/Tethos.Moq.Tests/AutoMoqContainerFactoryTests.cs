@@ -13,8 +13,7 @@ namespace Tethos.FakeItEasy.Tests
         [Trait("Category", "Integration")]
         public void Create_SimpleDependency_ShouldMatchValue(
             IAutoMoqContainer container,
-            int expected
-        )
+            int expected)
         {
             // Arrange
             var sut = container.Resolve<SystemUnderTest>();

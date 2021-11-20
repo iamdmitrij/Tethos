@@ -14,8 +14,7 @@ namespace Tethos.NSubstitute
             AutoResolver = new AutoNSubstituteResolver(container.Kernel);
 
             container.Kernel.Resolver.AddSubResolver(
-                AutoResolver
-            );
+                AutoResolver);
 
             base.Install(container, store);
         }

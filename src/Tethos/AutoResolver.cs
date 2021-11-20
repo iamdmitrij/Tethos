@@ -34,16 +34,14 @@ namespace Tethos
             CreationContext context,
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
-            DependencyModel dependency
-        ) => dependency.TargetType.IsInterface;
+            DependencyModel dependency) => dependency.TargetType.IsInterface;
 
         /// <inheritdoc />
         public object Resolve(
             CreationContext context,
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
-            DependencyModel dependency
-        )
+            DependencyModel dependency)
         {
             string GetType(object argument) =>
                 argument.ToString()

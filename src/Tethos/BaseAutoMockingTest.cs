@@ -47,10 +47,8 @@ namespace Tethos
                         .WithServiceBase()
                         .WithServiceAllInterfaces()
                         .WithServiceSelf()
-                        .LifestyleTransient()
-                )
-                .ToArray()
-            );
+                        .LifestyleTransient())
+                .ToArray());
 
         /// <inheritdoc />
         public void Dispose()

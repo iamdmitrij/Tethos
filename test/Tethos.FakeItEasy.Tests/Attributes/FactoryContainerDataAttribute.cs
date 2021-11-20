@@ -12,8 +12,7 @@ namespace Tethos.FakeItEasy.Tests.Attributes
                 var fixture = new Fixture();
                 fixture.Register(AutoFakeItEasyContainerFactory.Create);
                 return fixture.Customize(new AutoFakeItEasyCustomization());
-            }
-        )
+            })
         {
         }
     }

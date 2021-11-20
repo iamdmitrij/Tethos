@@ -16,8 +16,7 @@ namespace Tethos.Moq
             AutoResolver = new AutoMoqResolver(container.Kernel);
 
             container.Kernel.Resolver.AddSubResolver(
-                AutoResolver
-            );
+                AutoResolver);
 
             container.Register(Component.For(typeof(Mock<>)));
 

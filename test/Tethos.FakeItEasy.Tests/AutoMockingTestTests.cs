@@ -75,8 +75,7 @@ namespace Tethos.FakeItEasy.Tests
             var sut = Container.Resolve<SystemUnderTestClass>(
                 new Arguments()
                     .AddDependencyTo<Concrete, int>(nameof(minValue), minValue)
-                    .AddDependencyTo<Concrete, int>(nameof(maxValue), maxValue)
-            );
+                    .AddDependencyTo<Concrete, int>(nameof(maxValue), maxValue));
             var expected = sut.Mockable.GetType();
             var actual = Container.Resolve<Concrete>();
 
@@ -95,16 +94,14 @@ namespace Tethos.FakeItEasy.Tests
         public void Container_Resolve_WithClassAndPrimitiveType_ShouldMatchMockTypes(
             int minValue,
             int maxValue,
-            bool enabled
-        )
+            bool enabled)
         {
             // Arrange
             var sut = Container.Resolve<SystemUnderTwoClasses>(
                 new Arguments()
                     .AddDependencyTo<Concrete, int>(nameof(minValue), minValue)
                     .AddDependencyTo<Concrete, int>(nameof(maxValue), maxValue)
-                    .AddDependencyTo<Threshold, bool>(nameof(enabled), enabled)
-            );
+                    .AddDependencyTo<Threshold, bool>(nameof(enabled), enabled));
             var expectedType = sut.Mockable.GetType();
             var expectedThresholdType = sut.Threshold.GetType();
             var mock = Container.Resolve<Concrete>();
@@ -128,8 +125,7 @@ namespace Tethos.FakeItEasy.Tests
             // Arrange
             var sut = Container.Resolve<SystemUnderAbstractClasses>(
                 new Arguments()
-                    .AddDependencyTo<AbstractThreshold, bool>(nameof(enabled), enabled)
-            );
+                    .AddDependencyTo<AbstractThreshold, bool>(nameof(enabled), enabled));
             var expected = sut.Threshold.GetType();
             var actual = Container.Resolve<AbstractThreshold>();
 
@@ -148,8 +144,7 @@ namespace Tethos.FakeItEasy.Tests
             // Arrange
             var sut = Container.Resolve<SystemUnderPartialClass>(
                 new Arguments()
-                    .AddDependencyTo<PartialThreshold, bool>(nameof(enabled), enabled)
-            );
+                    .AddDependencyTo<PartialThreshold, bool>(nameof(enabled), enabled));
             var expected = sut.Threshold.GetType();
             var actual = Container.Resolve<PartialThreshold>();
 
@@ -168,8 +163,7 @@ namespace Tethos.FakeItEasy.Tests
             int maxValue,
             bool thresholdEnabled,
             bool partialThresholdEnabled,
-            bool abstractThresholdEnabled
-        )
+            bool abstractThresholdEnabled)
         {
             // Arrange
             var sut = Container.Resolve<SystemUnderMixedClasses>(
@@ -180,8 +174,7 @@ namespace Tethos.FakeItEasy.Tests
                     .AddDependencyTo<Concrete, int>(nameof(maxValue), maxValue)
                     .AddDependencyTo<Threshold, bool>("enabled", thresholdEnabled)
                     .AddDependencyTo<PartialThreshold, bool>("enabled", partialThresholdEnabled)
-                    .AddDependencyTo<AbstractThreshold, bool>("enabled", abstractThresholdEnabled)
-            );
+                    .AddDependencyTo<AbstractThreshold, bool>("enabled", abstractThresholdEnabled));
             var concrete = Container.Resolve<Concrete>();
             var threshold = Container.Resolve<Threshold>();
             var partialThreshold = Container.Resolve<PartialThreshold>();
@@ -212,8 +205,7 @@ namespace Tethos.FakeItEasy.Tests
 
             Container.Register(Component.For<SystemUnderTest>()
                 .OverridesExistingRegistration()
-                .DependsOn(Dependency.OnValue<IMockable>(mockable))
-            );
+                .DependsOn(Dependency.OnValue<IMockable>(mockable)));
 
             // Act
             Clean();

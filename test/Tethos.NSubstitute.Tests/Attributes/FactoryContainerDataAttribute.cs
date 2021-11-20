@@ -12,8 +12,7 @@ namespace Tethos.NSubstitute.Tests.Attributes
                 var fixture = new Fixture();
                 fixture.Register(AutoNSubstituteContainerFactory.Create);
                 return fixture.Customize(new AutoNSubstituteCustomization());
-            }
-        )
+            })
         {
         }
     }

@@ -13,8 +13,7 @@ namespace Tethos.NSubstitute.Tests
         public void MapToTarget_ShouldMatchMockedType(
             IMockable mockable,
             IKernel kernel,
-            Arguments constructorArguments
-        )
+            Arguments constructorArguments)
         {
             // Arrange
             var sut = new AutoNSubstituteResolver(kernel);

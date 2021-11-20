@@ -34,8 +34,7 @@ namespace Tethos.Tests
             IKernel kernel,
             ISubDependencyResolver resolver,
             CreationContext context,
-            string key
-        )
+            string key)
         {
             // Arrange
             var sut = new ConcreteAutoResolver(kernel);
@@ -45,8 +44,7 @@ namespace Tethos.Tests
                 context,
                 resolver,
                 new ComponentModel(),
-                new DependencyModel(key, type, false)
-            );
+                new DependencyModel(key, type, false));
 
             // Assert
             actual.Should().Be(expected);
@@ -58,8 +56,7 @@ namespace Tethos.Tests
             Mock<IKernel> kernel,
             ISubDependencyResolver resolver,
             CreationContext context,
-            string key
-        )
+            string key)
         {
             // Arrange
             var expected = new Mock<object>(key);
@@ -71,8 +68,7 @@ namespace Tethos.Tests
                 context,
                 resolver,
                 new ComponentModel(),
-                new DependencyModel(key, expected.GetType(), false)
-            );
+                new DependencyModel(key, expected.GetType(), false));
 
             // Assert
             actual.Should().Equals(expected);

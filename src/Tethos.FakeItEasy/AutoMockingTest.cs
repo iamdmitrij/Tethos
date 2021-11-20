@@ -14,8 +14,7 @@ namespace Tethos.FakeItEasy
             AutoResolver = new AutoFakeItEasyResolver(container.Kernel);
 
             container.Kernel.Resolver.AddSubResolver(
-                AutoResolver
-            );
+                AutoResolver);
 
             base.Install(container, store);
         }

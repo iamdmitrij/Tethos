@@ -20,8 +20,7 @@ namespace Tethos.Tests
                     "Fake.Framework472",
                     "Fake.Standard20",
                     "Fake.Standard21",
-                }
-            );
+                });
 
             Add("Fake.Core31.dll",
                 new[]
@@ -36,8 +35,7 @@ namespace Tethos.Tests
                     "Fake.Framework472",
                     "Fake.Standard20",
                     "Fake.Standard21",
-                }
-            );
+                });
 
             Add("Fake.Net50.dll",
                 new[]
@@ -52,8 +50,7 @@ namespace Tethos.Tests
                     "Fake.Framework472",
                     "Fake.Standard20",
                     "Fake.Standard21",
-                }
-            );
+                });
 
             Add("Tethos.dll",
                 new[]
@@ -61,8 +58,7 @@ namespace Tethos.Tests
                     "Tethos",
                     "Tethos.Tests",
                     "Tethos.Tests.Common",
-                }
-            );
+                });
 
             Add("Tethos.Tests.dll",
                 new[]
@@ -70,8 +66,7 @@ namespace Tethos.Tests
                     "Tethos",
                     "Tethos.Tests",
                     "Tethos.Tests.Common",
-                }
-            );
+                });
 
             Add("Tethos.Tests.Common.dll",
                 new[]
@@ -79,8 +74,7 @@ namespace Tethos.Tests
                     "Tethos",
                     "Tethos.Tests",
                     "Tethos.Tests.Common",
-                }
-            );
+                });
         }
     }
 }

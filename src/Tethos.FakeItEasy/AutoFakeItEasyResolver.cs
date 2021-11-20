@@ -21,8 +21,7 @@ namespace Tethos.FakeItEasy
             CreationContext context,
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
-            DependencyModel dependency
-        ) => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
+            DependencyModel dependency) => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
         public override object MapToTarget(Type targetType, Arguments constructorArguments)
@@ -36,8 +35,7 @@ namespace Tethos.FakeItEasy
 
             Kernel.Register(Component.For(targetType)
                 .Instance(mock)
-                .OverridesExistingRegistration()
-            );
+                .OverridesExistingRegistration());
 
             return mock;
         }

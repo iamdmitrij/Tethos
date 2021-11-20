@@ -74,8 +74,7 @@ namespace Tethos.Tests
         [ClassData(typeof(AssemblyTheoryData))]
         [Trait("Category", "Unit")]
         public void GetDependencies_UsingLocalDependencies_ShouldMatchLoaddingAssemblyCount(
-            string assemblyName, IEnumerable<string> expectedAssemblyName
-        )
+            string assemblyName, IEnumerable<string> expectedAssemblyName)
         {
             // Arrange
             var assembly = Assembly.LoadFrom(assemblyName);

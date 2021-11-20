@@ -74,8 +74,7 @@ namespace Tethos.Moq.Tests
             var actual = Container.Resolve<SystemUnderTestClass>(
                 new Arguments()
                     .AddNamed("minValue", 100)
-                    .AddNamed("maxValue", 200)
-            );
+                    .AddNamed("maxValue", 200));
             var mock = Container.Resolve<Mock<Concrete>>();
 
             // Act
@@ -98,8 +97,7 @@ namespace Tethos.Moq.Tests
                 new Arguments()
                     .AddDependencyTo<Concrete, int>("minValue", 100)
                     .AddDependencyTo<Concrete, int>("maxValue", 200)
-                    .AddDependencyTo<Threshold, bool>("enabled", value)
-            );
+                    .AddDependencyTo<Threshold, bool>("enabled", value));
             var mock = Container.Resolve<Mock<Concrete>>();
             var thresholdMock = Container.Resolve<Mock<Threshold>>();
 
@@ -119,8 +117,7 @@ namespace Tethos.Moq.Tests
             var expected = new Mock<AbstractThreshold>(value).GetType();
             var actual = Container.Resolve<SystemUnderAbstractClasses>(
                 new Arguments()
-                    .AddDependencyTo<AbstractThreshold, bool>("enabled", value)
-            );
+                    .AddDependencyTo<AbstractThreshold, bool>("enabled", value));
 
             // Act
             actual.Do();
@@ -137,8 +134,7 @@ namespace Tethos.Moq.Tests
             var expected = new Mock<PartialThreshold>(value).GetType();
             var sut = Container.Resolve<SystemUnderPartialClass>(
                 new Arguments()
-                    .AddDependencyTo<PartialThreshold, bool>("enabled", value)
-            );
+                    .AddDependencyTo<PartialThreshold, bool>("enabled", value));
 
             // Act
             sut.Do();
@@ -160,8 +156,7 @@ namespace Tethos.Moq.Tests
                     .AddDependencyTo<Concrete, int>("maxValue", 200)
                     .AddDependencyTo<Threshold, bool>("enabled", true)
                     .AddDependencyTo<PartialThreshold, bool>("enabled", false)
-                    .AddDependencyTo<AbstractThreshold, bool>("enabled", false)
-            );
+                    .AddDependencyTo<AbstractThreshold, bool>("enabled", false));
 
             // Act
             sut.Do();
@@ -182,8 +177,7 @@ namespace Tethos.Moq.Tests
 
             Container.Register(Component.For<SystemUnderTest>()
                 .OverridesExistingRegistration()
-                .DependsOn(Dependency.OnValue<IMockable>(mockable))
-            );
+                .DependsOn(Dependency.OnValue<IMockable>(mockable)));
 
             // Act
             Clean();
