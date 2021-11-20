@@ -16,7 +16,7 @@ namespace Tethos.xUnit.Demo
         }
 
         [Fact]
-        [Trait("Category", "Demo")]
+        [Trait("", "Demo")]
         public void Do_WithMock_ShouldReturn42()
         {
             // Arrange

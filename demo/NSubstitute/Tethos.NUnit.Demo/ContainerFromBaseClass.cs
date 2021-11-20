@@ -8,7 +8,7 @@ namespace Tethos.NUnit.Demo
     public class ContainerFromBaseClass : AutoMockingTest
     {
         [Test]
-        [Property("Category", "Demo")]
+        [Category("Demo")]
         public void Do_WithMock_ShouldReturn42()
         {
             // Arrange
