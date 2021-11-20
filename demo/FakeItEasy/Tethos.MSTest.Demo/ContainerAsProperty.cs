@@ -8,12 +8,12 @@ namespace Tethos.MSTest.Demo
     [TestClass]
     public class ContainerAsProperty
     {
-        public IAutoFakeItEasyContainer Container { get; }
-
         public ContainerAsProperty()
         {
             this.Container = AutoFakeItEasyContainerFactory.Create();
         }
+
+        public IAutoFakeItEasyContainer Container { get; }
 
         [TestMethod]
         [TestCategory("Demo")]

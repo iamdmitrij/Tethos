@@ -8,12 +8,12 @@ namespace Tethos.xUnit.Demo
 {
     public class ContainerInjected : IDisposable
     {
-        public IAutoMoqContainer Container { get; }
-
         public ContainerInjected(IAutoMoqContainer container)
         {
             this.Container = container;
         }
+
+        public IAutoMoqContainer Container { get; }
 
         [Fact]
         [Trait("", "Demo")]

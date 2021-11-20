@@ -15,6 +15,15 @@ namespace Tethos
         where T : IAutoMockingContainer, new()
     {
         /// <summary>
+        /// Default constructor.
+        /// </summary>
+        protected BaseAutoMockingTest()
+        {
+            this.Assemblies = Assembly.GetAssembly(this.GetType()).GetDependencies();
+            this.Container = (T)new T().Install(this);
+        }
+
+        /// <summary>
         /// Entry assembly from which sub-dependencies are loaded into <see cref="Castle.Windsor"/> IoC.
         /// </summary>
         public virtual Assembly[] Assemblies { get; }
@@ -23,15 +32,6 @@ namespace Tethos
         /// <see cref="Castle.Windsor"/> container dependency.
         /// </summary>
         public T Container { get; internal set; }
-
-        /// <summary>
-        /// Default constructor.
-        /// </summary>
-        protected BaseAutoMockingTest()
-        {
-            this.Assemblies = Assembly.GetAssembly(this.GetType()).GetDependencies();
-            this.Container = (T)new T().Install(this);
-        }
 
         /// <summary>
         /// Auto-mocking container.

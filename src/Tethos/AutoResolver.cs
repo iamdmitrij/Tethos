@@ -12,15 +12,15 @@ namespace Tethos
     internal abstract class AutoResolver : ISubDependencyResolver
     {
         /// <summary>
-        /// <see cref="Castle.Windsor"/> kernel dependency.
-        /// </summary>
-        public IKernel Kernel { get; }
-
-        /// <summary>
         /// Constructor accepting <see cref="Castle.Windsor"/> kernel as dependency.
         /// </summary>
         /// <param name="kernel">Reference to Castle Container.</param>
         protected AutoResolver(IKernel kernel) => this.Kernel = kernel;
+
+        /// <summary>
+        /// <see cref="Castle.Windsor"/> kernel dependency.
+        /// </summary>
+        public IKernel Kernel { get; }
 
         /// <summary>
         /// Maps target mock object to mocked object type.
