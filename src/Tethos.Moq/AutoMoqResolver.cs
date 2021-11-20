@@ -22,7 +22,7 @@ namespace Tethos.Moq
             CreationContext context,
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
-            DependencyModel dependency) => dependency.TargetType.IsClass && context.AdditionalArguments.Any() // TODO: Add coverage for default ctor
+            DependencyModel dependency) => (dependency.TargetType.IsClass && context.AdditionalArguments.Any()) // TODO: Add coverage for default ctor
             || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
