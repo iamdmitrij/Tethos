@@ -55,7 +55,7 @@
                             .Select(TryToLoadAssembly)
                             .OfType<Assembly>()
                             .Select(assembly => new Uri(assembly.CodeBase).AbsolutePath)
-                            .Select(filePath => filePath.GetFile())
+                            .Select(filePath => filePath.GetFile()),
             };
 
         internal static IEnumerable<Assembly> LoadAssemblies(

@@ -29,7 +29,7 @@
             var arguments = targetType.IsInterface switch
             {
                 true => Array.Empty<object>(),
-                false => constructorArguments.Flatten()
+                false => constructorArguments.Flatten(),
             };
             var mock = Substitute.For(new Type[] { targetType }, arguments);
 
