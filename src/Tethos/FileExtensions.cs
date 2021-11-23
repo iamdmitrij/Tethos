@@ -5,7 +5,7 @@
     internal static class FileExtensions
     {
         internal static File GetFile(this string filePath) =>
-            new File
+            new()
             {
                 Path = filePath,
                 Name = Path.GetFileName(filePath),
