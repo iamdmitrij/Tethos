@@ -1,4 +1,4 @@
-﻿namespace Tethos.Tests.Extensions
+﻿namespace Tethos.Tests.Extensions.Extensions
 {
     using System;
     using AutoFixture.Xunit2;
