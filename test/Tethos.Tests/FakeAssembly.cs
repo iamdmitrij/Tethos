@@ -5,6 +5,6 @@
 
     public class FakeAssembly : Assembly
     {
-        public override string FullName => Guid.NewGuid().ToString();
+        public override string FullName => $"{Guid.NewGuid()}";
     }
 }
