@@ -1,4 +1,4 @@
-﻿namespace Tethos.Tests
+﻿namespace Tethos.Tests.Extensions
 {
     using System.Collections.Generic;
     using Xunit;
