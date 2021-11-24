@@ -122,7 +122,7 @@
         [Theory]
         [AutoData]
         [Trait("Category", "Unit")]
-        public void GetPattern_WithSystemAssembly_ShouldThrowArgumentException(FakeAssembly assembly)
+        public void GetPattern_WithSystemAssembly_ShouldThrowArgumentException(AssemblyStub assembly)
         {
             // Arrange
             Action action = () => assembly.FullName.GetPattern();
