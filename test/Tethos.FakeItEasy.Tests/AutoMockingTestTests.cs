@@ -6,6 +6,7 @@
     using Castle.MicroKernel.Registration;
     using FluentAssertions;
     using global::FakeItEasy;
+    using Tethos.Extensions;
     using Tethos.Tests.Common;
     using Xunit;
 

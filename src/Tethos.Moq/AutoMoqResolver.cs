@@ -7,6 +7,7 @@
     using Castle.MicroKernel.Context;
     using Castle.MicroKernel.Registration;
     using global::Moq;
+    using Tethos.Extensions;
 
     /// <inheritdoc />
     internal class AutoMoqResolver : AutoResolver

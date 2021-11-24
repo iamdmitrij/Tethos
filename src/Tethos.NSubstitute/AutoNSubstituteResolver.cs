@@ -6,6 +6,7 @@
     using Castle.MicroKernel.Context;
     using Castle.MicroKernel.Registration;
     using global::NSubstitute;
+    using Tethos.Extensions;
 
     /// <inheritdoc />
     internal class AutoNSubstituteResolver : AutoResolver

@@ -9,6 +9,7 @@
     using global::FakeItEasy;
     using global::FakeItEasy.Creation;
     using global::FakeItEasy.Sdk;
+    using Tethos.Extensions;
 
     /// <inheritdoc />
     internal class AutoFakeItEasyResolver : AutoResolver

@@ -1,6 +1,7 @@
-﻿namespace Tethos
+﻿namespace Tethos.Extensions
 {
     using System.IO;
+    using File = Tethos.File;
 
     internal static class FileExtensions
     {

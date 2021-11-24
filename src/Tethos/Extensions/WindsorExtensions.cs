@@ -1,8 +1,7 @@
-﻿namespace Tethos
+﻿namespace Tethos.Extensions
 {
     using System;
     using Castle.MicroKernel.Registration;
-    using Castle.Windsor;
 
     /// <summary>
     /// TODO: Docs

@@ -6,6 +6,7 @@
     using System.Reflection;
     using AutoFixture.Xunit2;
     using FluentAssertions;
+    using Tethos.Extensions;
     using Xunit;
 
     public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>

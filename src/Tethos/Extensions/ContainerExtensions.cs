@@ -1,4 +1,4 @@
-﻿namespace Tethos
+﻿namespace Tethos.Extensions
 {
     using System;
     using System.Linq;
@@ -7,7 +7,7 @@
     /// <summary>
     /// A set of utils function helping to extend <see cref="Castle.Windsor.IWindsorContainer"/> for auto-mocking.
     /// </summary>
-    public static class ContainerUtils
+    public static class ContainerExtensions
     {
         /// <summary>
         /// Add type for container mapping.
