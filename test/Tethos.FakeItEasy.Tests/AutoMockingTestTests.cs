@@ -24,6 +24,20 @@
         public void Test_Idempotency_ShouldMatchMocks()
         {
             // Arrange
+            var expected = this.Container.ResolveFrom<SystemUnderTest, IMockable>();
+
+            // Act
+            var actual = this.Container.ResolveFrom<SystemUnderTest, IMockable>();
+
+            // Assert
+            actual.Should().BeSameAs(expected);
+        }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public void Test_Idempotency_ShouldMatchMockTypes()
+        {
+            // Arrange
             // TODO: What if this can be omitted?
             this.Container.Resolve<SystemUnderTest>();
             var expected = this.Container.Resolve<IMockable>();

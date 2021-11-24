@@ -4,7 +4,9 @@
     using Castle.Core;
     using Castle.MicroKernel;
     using Castle.MicroKernel.Context;
+    using Castle.MicroKernel.Handlers;
     using Castle.MicroKernel.Registration;
+    using global::FakeItEasy;
     using global::FakeItEasy.Creation;
     using global::FakeItEasy.Sdk;
 
@@ -36,9 +38,26 @@
             };
             var mock = Create.Fake(targetType, arguments);
 
-            this.Kernel.Register(Component.For(targetType)
-                .Instance(mock)
-                .OverridesExistingRegistration());
+            object currentObject;
+            try
+            {
+                currentObject = this.Kernel.Resolve(targetType);
+            }
+            catch (ComponentNotFoundException)
+            {
+                currentObject = new object();
+            }
+            catch (HandlerException)
+            {
+                currentObject = new object();
+            }
+
+            if (!Fake.IsFake(currentObject))
+            {
+                this.Kernel.Register(Component.For(targetType)
+                    .Instance(mock)
+                    .OverridesExistingRegistration());
+            }
 
             return mock;
         }
