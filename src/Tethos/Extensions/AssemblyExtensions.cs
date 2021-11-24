@@ -5,7 +5,6 @@
     using System.IO;
     using System.Linq;
     using System.Reflection;
-    using File = Tethos.File;
 
     internal static class AssemblyExtensions
     {

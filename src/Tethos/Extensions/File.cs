@@ -1,4 +1,4 @@
-﻿namespace Tethos
+﻿namespace Tethos.Extensions
 {
     internal class File
     {
