@@ -5,7 +5,7 @@
     using Tethos.Moq.Tests.SUT;
     using Xunit;
 
-    public class InheritedAutoMockingTestTests : AutoMockingTest
+    public class InheritedAutoMockingTestTests
     {
         [Theory]
         [AutoData]
