@@ -37,20 +37,8 @@
                 true => options => _ = options,
             };
             var mock = Create.Fake(targetType, arguments);
-
-            object currentObject;
-            try
-            {
-                currentObject = this.Kernel.Resolve(targetType);
-            }
-            catch (ComponentNotFoundException)
-            {
-                currentObject = new object();
-            }
-            catch (HandlerException)
-            {
-                currentObject = new object();
-            }
+            var func = () => this.Kernel.Resolve(targetType);
+            var currentObject = func.SwallowExceptions(typeof(ComponentNotFoundException), typeof(HandlerException)) ?? 0;
 
             if (!Fake.IsFake(currentObject))
             {
