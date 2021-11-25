@@ -35,10 +35,10 @@ in order to resolve dependencies for `SystemUnderTest` we will need to write fol
 public void Test()
 {
     var sut = new SystemUnderTest(
-        new Mock<MockA>(new Mock<UnknownA>(new Mock<UnknownB>().Object, new Mock<UnknownC>().Object).Object).Object,
-        new Mock<MockB>(new Mock<UnknownC>().Object).Object,
-        new Mock<MockC>(new Mock<UnknownD>().Object, new Mock<UnknownE>().Object).Object,
-        new Mock<MockD>(new Mock<UnknownD>().Object).Object
+        Mock.Of<MockA>(Mock.Of<UnknownA>(Mock.Of<UnknownB>(), Mock.Of<UnknownC>())),
+        Mock.Of<MockB>(Mock.Of<UnknownC>()),
+        Mock.Of<MockC>(Mock.Of<UnknownD>(), Mock.Of<UnknownE>()),
+        Mock.Of<MockD>(Mock.Of<UnknownD>())
     );
 
     ...
