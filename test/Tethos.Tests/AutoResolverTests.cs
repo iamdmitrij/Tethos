@@ -60,7 +60,7 @@
             string key)
         {
             // Arrange
-            var expected = new Mock<object>(key);
+            var expected = Mock.Of<object>();
             kernel.Setup(x => x.Resolve(typeof(Mock<object>))).Returns(expected);
             var sut = new ConcreteAutoResolver(kernel.Object);
 
