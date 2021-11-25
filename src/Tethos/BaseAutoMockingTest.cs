@@ -6,7 +6,7 @@
     using Castle.MicroKernel.Registration;
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
-    using Tethos.Extensions;
+    using Tethos.Extensions.Assembly;
 
     /// <summary>
     /// Base for <see cref="Tethos"/> auto-mocking system.

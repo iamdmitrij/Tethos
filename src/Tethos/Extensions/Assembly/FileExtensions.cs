@@ -1,4 +1,4 @@
-﻿namespace Tethos.Extensions
+﻿namespace Tethos.Extensions.Assembly
 {
     using System.Collections.Generic;
     using System.IO;

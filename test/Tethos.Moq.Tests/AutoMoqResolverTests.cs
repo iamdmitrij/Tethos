@@ -17,7 +17,7 @@
             // Arrange
             var expected = mockable.Object.GetType();
             var sut = new AutoMoqResolver(kernel.Object);
-            kernel.Setup(x => x.Resolve(mockable.GetType())).Returns(mockable);
+            kernel.Setup(mock => mock.Resolve(mockable.GetType())).Returns(mockable);
 
             // Act
             var actual = sut.MapToMock(typeof(IMockable), targetObject, constructorArguments);

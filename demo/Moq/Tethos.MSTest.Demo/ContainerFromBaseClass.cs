@@ -17,7 +17,7 @@ namespace Tethos.MSTest.Demo
             var sut = this.Container.Resolve<SystemUnderTest>();
 
             this.Container.Resolve<Mock<IMockable>>()
-                .Setup(x => x.Do())
+                .Setup(mock => mock.Do())
                 .Returns(expected);
 
             // Act
