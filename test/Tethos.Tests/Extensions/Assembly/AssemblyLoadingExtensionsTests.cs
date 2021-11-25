@@ -9,35 +9,37 @@
 
     public class AssemblyLoadingExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
     {
-        [Fact]
+        [Theory]
+        [InlineData("Tethos.dll", "Tethos.Tests.Common.dll")]
+        [InlineData("AutoFixture.dll", "FluentAssertions.dll", "Moq.dll", "xunit.core.dll")]
+        [InlineData("Castle.Core.dll", "Castle.Windsor.dll")]
         [Trait("Category", "Unit")]
-        public void TryToLoadAssembly_WithCorruptAssembly_ShouldReturnNull()
+        public void LoadAssemblies_ShouldLoad(params string[] assemblies)
         {
             // Arrange
-            var corruptAssembly = "Fake.Core30.exe";
+            var files = assemblies.Select(assembly => assembly.GetFile());
+            var expected = assemblies.Length;
 
             // Act
-            var actual = corruptAssembly.TryToLoadAssembly();
+            var actual = files.LoadAssemblies();
 
             // Assert
-            actual.Should().BeNull();
+            actual.Should().HaveCount(expected);
         }
 
         [Theory]
-        [InlineData("Microsoft.Extensions.DependencyModel.dll")]
-        [InlineData("Fake.Framework461.exe")]
-        [InlineData("Fake.Core31.dll")]
+        [InlineData("Fake.Core30.exe", "Fake.Core31.exe")]
         [Trait("Category", "Unit")]
-        public void TryToLoadAssembly_ShouldLoadAssembly(string assemblyName)
+        public void LoadAssemblies_ShouldSkip(params string[] assemblies)
         {
             // Arrange
-            var assembly = Assembly.LoadFrom(assemblyName);
+            var files = assemblies.Select(assembly => assembly.GetFile());
 
             // Act
-            var actual = assemblyName.TryToLoadAssembly();
+            var actual = files.LoadAssemblies();
 
             // Assert
-            actual.Should().BeSameAs(assembly);
+            actual.Should().BeEmpty();
         }
 
         [Theory]
@@ -70,37 +72,35 @@
             actual.Should().BeSameAs(assembly);
         }
 
-        [Theory]
-        [InlineData("Tethos.dll", "Tethos.Tests.Common.dll")]
-        [InlineData("AutoFixture.dll", "FluentAssertions.dll", "Moq.dll", "xunit.core.dll")]
-        [InlineData("Castle.Core.dll", "Castle.Windsor.dll")]
+        [Fact]
         [Trait("Category", "Unit")]
-        public void LoadAssemblies_ShouldLoad(params string[] assemblies)
+        public void TryToLoadAssembly_WithCorruptAssembly_ShouldReturnNull()
         {
             // Arrange
-            var files = assemblies.Select(assembly => assembly.GetFile());
-            var expected = assemblies.Length;
+            var corruptAssembly = "Fake.Core30.exe";
 
             // Act
-            var actual = files.LoadAssemblies();
+            var actual = corruptAssembly.TryToLoadAssembly();
 
             // Assert
-            actual.Should().HaveCount(expected);
+            actual.Should().BeNull();
         }
 
         [Theory]
-        [InlineData("Fake.Core30.exe", "Fake.Core31.exe")]
+        [InlineData("Microsoft.Extensions.DependencyModel.dll")]
+        [InlineData("Fake.Framework461.exe")]
+        [InlineData("Fake.Core31.dll")]
         [Trait("Category", "Unit")]
-        public void LoadAssemblies_ShouldSkip(params string[] assemblies)
+        public void TryToLoadAssembly_ShouldLoadAssembly(string assemblyName)
         {
             // Arrange
-            var files = assemblies.Select(assembly => assembly.GetFile());
+            var assembly = Assembly.LoadFrom(assemblyName);
 
             // Act
-            var actual = files.LoadAssemblies();
+            var actual = assemblyName.TryToLoadAssembly();
 
             // Assert
-            actual.Should().BeEmpty();
+            actual.Should().BeSameAs(assembly);
         }
     }
 }

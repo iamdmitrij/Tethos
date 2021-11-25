@@ -11,22 +11,6 @@
 
     public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
     {
-        [Theory]
-        [ClassData(typeof(AssemblyTheoryData))]
-        [Trait("Category", "Unit")]
-        public void GetDependencies_UsingLocalDependencies_ShouldMatchLoaddingAssemblyCount(
-            string assemblyName, IEnumerable<string> expectedAssemblyName)
-        {
-            // Arrange
-            var assembly = Assembly.LoadFrom(assemblyName);
-
-            // Act
-            var actual = assembly.GetDependencies().Select(dependency => dependency.GetName().Name);
-
-            // Assert
-            actual.Should().BeEquivalentTo(expectedAssemblyName);
-        }
-
         [Fact]
         [Trait("Category", "Unit")]
         public void GetDependencies_UsingCoreDependencies_ShouldBeEmpty()
@@ -41,6 +25,22 @@
 
             // Assert
             actual.Should().BeEquivalentTo(expected);
+        }
+
+        [Theory]
+        [ClassData(typeof(AssemblyTheoryData))]
+        [Trait("Category", "Unit")]
+        public void GetDependencies_UsingLocalDependencies_ShouldMatchLoaddingAssemblyCount(
+            string assemblyName, IEnumerable<string> expectedAssemblyName)
+        {
+            // Arrange
+            var assembly = Assembly.LoadFrom(assemblyName);
+
+            // Act
+            var actual = assembly.GetDependencies().Select(dependency => dependency.GetName().Name);
+
+            // Assert
+            actual.Should().BeEquivalentTo(expectedAssemblyName);
         }
 
         [Fact]
