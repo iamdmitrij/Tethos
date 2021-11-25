@@ -5,8 +5,10 @@
     using Castle.MicroKernel;
     using Castle.MicroKernel.Context;
     using Castle.MicroKernel.Registration;
+    using global::FakeItEasy;
     using global::FakeItEasy.Creation;
     using global::FakeItEasy.Sdk;
+    using Tethos.Extensions;
 
     /// <inheritdoc />
     internal class AutoFakeItEasyResolver : AutoResolver
@@ -25,7 +27,7 @@
             DependencyModel dependency) => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
-        public override object MapToTarget(Type targetType, Arguments constructorArguments)
+        public override object MapToMock(Type targetType, object targetObject, Arguments constructorArguments)
         {
             Action<IFakeOptions> arguments = targetType.IsInterface switch
             {
@@ -35,10 +37,13 @@
                 true => options => _ = options,
             };
             var mock = Create.Fake(targetType, arguments);
-
-            this.Kernel.Register(Component.For(targetType)
-                .Instance(mock)
-                .OverridesExistingRegistration());
+            var isPlainObject = !Fake.IsFake(targetObject ?? 0);
+            if (isPlainObject)
+            {
+                this.Kernel.Register(Component.For(targetType)
+                    .Instance(mock)
+                    .OverridesExistingRegistration());
+            }
 
             return mock;
         }

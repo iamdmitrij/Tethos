@@ -6,6 +6,7 @@
     using Castle.MicroKernel.Registration;
     using FluentAssertions;
     using global::Moq;
+    using Tethos.Extensions;
     using Tethos.Tests.Common;
     using Xunit;
 
@@ -31,20 +32,6 @@
         {
             // Assert
             this.AutoResolver.Should().BeOfType<AutoMoqResolver>();
-        }
-
-        [Fact]
-        [Trait("Category", "Integration")]
-        public void Test_Idempotency_ShouldMatchMocks()
-        {
-            // Arrange
-            var expected = this.Container.Resolve<Mock<IMockable>>();
-
-            // Act
-            var actual = this.Container.Resolve<Mock<IMockable>>();
-
-            // Assert
-            actual.Should().Be(expected);
         }
 
         [Theory]

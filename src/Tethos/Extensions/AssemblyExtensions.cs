@@ -1,4 +1,4 @@
-﻿namespace Tethos
+﻿namespace Tethos.Extensions
 {
     using System;
     using System.Collections.Generic;
@@ -78,20 +78,6 @@
         {
             var func = () => Assembly.LoadFrom(assemblyPath);
             return func.SwallowExceptions(typeof(BadImageFormatException), typeof(FileNotFoundException));
-        }
-
-        internal static Assembly SwallowExceptions(
-            this Func<Assembly> func,
-            params Type[] types)
-        {
-            try
-            {
-                return func.Invoke();
-            }
-            catch (Exception ex) when (types.Contains(ex.GetType()))
-            {
-                return null;
-            }
         }
     }
 }

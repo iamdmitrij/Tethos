@@ -7,6 +7,7 @@
     using Castle.MicroKernel.Context;
     using Castle.MicroKernel.Registration;
     using global::Moq;
+    using Tethos.Extensions;
 
     /// <inheritdoc />
     internal class AutoMoqResolver : AutoResolver
@@ -29,15 +30,20 @@
             || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
-        public override object MapToTarget(Type targetType, Arguments constructorArguments)
+        public override object MapToMock(Type targetType, object targetObject, Arguments constructorArguments)
         {
             var mockType = typeof(Mock<>).MakeGenericType(targetType);
             var arguments = constructorArguments.Select(x => x.Value).ToArray();
             var mock = Activator.CreateInstance(mockType, arguments) as Mock;
+            var getMock = () => Mock.Get(targetObject);
+            var isPlainObject = getMock.Throws(typeof(ArgumentException));
 
-            this.Kernel.Register(Component.For(mockType)
-                .Instance(mock)
-                .OverridesExistingRegistration());
+            if (isPlainObject)
+            {
+                this.Kernel.Register(Component.For(mockType)
+                    .Instance(mock)
+                    .OverridesExistingRegistration());
+            }
 
             return mock.Object;
         }
