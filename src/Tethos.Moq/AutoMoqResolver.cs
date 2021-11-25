@@ -35,6 +35,8 @@
             var mockType = typeof(Mock<>).MakeGenericType(targetType);
             var arguments = constructorArguments.Select(x => x.Value).ToArray();
             var mock = Activator.CreateInstance(mockType, arguments) as Mock;
+
+            // TODO: Create function in ExceptionExtensions for this boiler-plate
             var isMock = false;
             try
             {
