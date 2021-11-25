@@ -11,6 +11,6 @@
         {
         }
 
-        public override object MapToTarget(Type targetType, Arguments constructorArguments) => new Mock<object>();
+        public override object MapToTarget(Type targetType, Arguments constructorArguments) => Mock.Of<object>();
     }
 }
