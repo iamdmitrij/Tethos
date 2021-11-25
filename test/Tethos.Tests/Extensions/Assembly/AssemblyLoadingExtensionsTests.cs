@@ -78,7 +78,7 @@
         public void LoadAssemblies_ShouldLoad(params string[] assemblies)
         {
             // Arrange
-            var files = assemblies.Select(x => x.GetFile());
+            var files = assemblies.Select(assembly => assembly.GetFile());
             var expected = assemblies.Length;
 
             // Act
@@ -94,7 +94,7 @@
         public void LoadAssemblies_ShouldSkip(params string[] assemblies)
         {
             // Arrange
-            var files = assemblies.Select(x => x.GetFile());
+            var files = assemblies.Select(assembly => assembly.GetFile());
 
             // Act
             var actual = files.LoadAssemblies();

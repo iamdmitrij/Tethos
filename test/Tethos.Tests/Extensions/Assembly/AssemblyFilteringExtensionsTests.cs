@@ -23,7 +23,7 @@
         {
             // Arrange
             var extensions = new[] { ".dll", ".exe" };
-            var files = assemblies.Select(x => x.GetFile());
+            var files = assemblies.Select(assembly => assembly.GetFile());
 
             // Act
             var actual = files.FilterAssemblies(pattern, extensions);
@@ -41,7 +41,7 @@
         public void ExcludeRefDirectory(int expected, params string[] assemblies)
         {
             // Arrange
-            var files = assemblies.Select(x => x.GetFile());
+            var files = assemblies.Select(assembly => assembly.GetFile());
 
             // Act
             var actual = files.ExcludeRefDirectory();
