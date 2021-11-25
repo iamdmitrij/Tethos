@@ -21,7 +21,7 @@
             var assembly = Assembly.LoadFrom(assemblyName);
 
             // Act
-            var actual = assembly.GetDependencies().Select(x => x.GetName().Name);
+            var actual = assembly.GetDependencies().Select(dependency => dependency.GetName().Name);
 
             // Assert
             actual.Should().BeEquivalentTo(expectedAssemblyName);

@@ -73,7 +73,7 @@ public void Do()
     // Arrange
     var mock = Container.Resolve<Mock<SystemUnderTest>>();
 
-    mock.Setup(x => x.Do())
+    mock.Setup(m => m.Do())
         .Returns(expected);
     ...
 }
@@ -173,7 +173,7 @@ Tethos uses [Moq](https://www.moqthis.com/moq4/) to auto-mock incoming dependenc
 public void Test()
 {
     var mock = Container.Resolve<Mock<IMockable>>();
-    mock.Setup(x => x.Do()).Returns(42);
+    mock.Setup(m => m.Do()).Returns(42);
 }
 ```
 

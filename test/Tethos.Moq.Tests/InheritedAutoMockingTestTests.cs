@@ -16,7 +16,7 @@
             sut.Dispose();
 
             // Assert
-            sut.Proxy.Verify(x => x.Dispose(), Times.Once);
+            sut.Proxy.Verify(mock => mock.Dispose(), Times.Once);
         }
 
         [Theory]
@@ -31,7 +31,7 @@
             sut.Dispose();
 
             // Assert
-            sut.Proxy.Verify(x => x.Dispose(), Times.Never);
+            sut.Proxy.Verify(mock => mock.Dispose(), Times.Never);
         }
     }
 }

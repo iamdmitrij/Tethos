@@ -20,7 +20,7 @@
             var sut = container.Resolve<SystemUnderTest>();
 
             container.Resolve<Mock<IMockable>>()
-                .Setup(x => x.Do())
+                .Setup(mock => mock.Do())
                 .Returns(expected);
 
             // Act
