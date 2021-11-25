@@ -57,6 +57,7 @@ jobs:
           dotnet-version: 5.0.x
 
       - name: 🔽 Start SonarCloud scan
+        if: ${{ github.actor != 'dependabot[bot]' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -86,6 +87,7 @@ jobs:
           dotnet-version: 5.0.x
 
       - name: 🔼 End SonarCloud scan
+        if: ${{ github.actor != 'dependabot[bot]' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
