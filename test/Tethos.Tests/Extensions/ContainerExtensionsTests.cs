@@ -100,7 +100,7 @@
         public void Flatten_ShouldReturnValueArray(Arguments sut)
         {
             // Arrange
-            var expected = sut.Select(x => x.Value);
+            var expected = sut.Select(argument => argument.Value);
 
             // Act
             var actual = sut.Flatten();

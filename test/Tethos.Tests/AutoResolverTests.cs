@@ -61,7 +61,7 @@
         {
             // Arrange
             var expected = Mock.Of<object>();
-            kernel.Setup(x => x.Resolve(typeof(Mock<object>))).Returns(expected);
+            kernel.Setup(mock => mock.Resolve(typeof(Mock<object>))).Returns(expected);
             var sut = new ConcreteAutoResolver(kernel.Object);
 
             // Act
