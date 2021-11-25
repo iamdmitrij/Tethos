@@ -5,6 +5,8 @@
     using Castle.Core;
     using Castle.MicroKernel;
     using Castle.MicroKernel.Context;
+    using Castle.MicroKernel.Handlers;
+    using Tethos.Extensions;
 
     /// <summary>
     /// Auto mocking resolver abstraction.
@@ -26,9 +28,10 @@
         /// Maps target mock object to mocked object type.
         /// </summary>
         /// <param name="targetType">Target type for object to be converted to destination object.</param>
+        /// <param name="targetObject">Current target object avalaible in container.</param>
         /// <param name="constructorArguments">Constructor arguments for non-abstract target type.</param>
         /// <returns>Auto-mocked object dependending on target type.</returns>
-        public abstract object MapToTarget(Type targetType, Arguments constructorArguments);
+        public abstract object MapToMock(Type targetType, object targetObject, Arguments constructorArguments);
 
         /// <inheritdoc />
         public virtual bool CanResolve(
@@ -53,8 +56,10 @@
                 .Where(_ => !targetType.IsInterface)
                 .Where(argument => GetType(argument.Key) == $"{targetType}");
             var constructorArguments = new Arguments().Add(arguments);
+            var getTargetObject = () => this.Kernel.Resolve(targetType);
+            var currentTargetObject = getTargetObject.SwallowExceptions(typeof(ComponentNotFoundException), typeof(HandlerException));
 
-            return this.MapToTarget(targetType, constructorArguments);
+            return this.MapToMock(targetType, currentTargetObject, constructorArguments);
         }
     }
 }

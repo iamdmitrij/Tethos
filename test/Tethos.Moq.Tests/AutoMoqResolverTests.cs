@@ -12,7 +12,7 @@
         [Theory]
         [AutoMoqData]
         [Trait("Category", "Unit")]
-        public void MapToTarget_ShouldMatchMockedType(Mock<IKernel> kernel, Mock<IMockable> mockable, Arguments constructorArguments)
+        public void MapToMock_ShouldMatchMockedType(Mock<IKernel> kernel, object targetObject, Mock<IMockable> mockable, Arguments constructorArguments)
         {
             // Arrange
             var expected = mockable.Object.GetType();
@@ -20,7 +20,7 @@
             kernel.Setup(x => x.Resolve(mockable.GetType())).Returns(mockable);
 
             // Act
-            var actual = sut.MapToTarget(typeof(IMockable), constructorArguments);
+            var actual = sut.MapToMock(typeof(IMockable), targetObject, constructorArguments);
 
             // Assert
             actual.Should().BeOfType(expected);

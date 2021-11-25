@@ -6,6 +6,7 @@
     using Castle.MicroKernel.Registration;
     using FluentAssertions;
     using global::NSubstitute;
+    using Tethos.Extensions;
     using Tethos.Tests.Common;
     using Xunit;
 
@@ -17,22 +18,6 @@
         {
             // Assert
             this.AutoResolver.Should().BeOfType<AutoNSubstituteResolver>();
-        }
-
-        [Fact]
-        [Trait("Category", "Integration")]
-        public void Test_Idempotency_ShouldMatchMocks()
-        {
-            // Arrange
-            // TODO: What if this can be omitted?
-            this.Container.Resolve<SystemUnderTest>();
-            var expected = this.Container.Resolve<IMockable>();
-
-            // Act
-            var actual = this.Container.Resolve<IMockable>();
-
-            // Assert
-            actual.Should().Be(expected);
         }
 
         [Theory]

@@ -11,8 +11,9 @@
         [Theory]
         [AutoNSubstituteData]
         [Trait("Category", "Unit")]
-        public void MapToTarget_ShouldMatchMockedType(
+        public void MapToMock_ShouldMatchMockedType(
             IMockable mockable,
+            object targetObject,
             IKernel kernel,
             Arguments constructorArguments)
         {
@@ -22,7 +23,7 @@
             var type = typeof(IMockable);
 
             // Act
-            var actual = sut.MapToTarget(type, constructorArguments);
+            var actual = sut.MapToMock(type, targetObject, constructorArguments);
 
             // Assert
             actual.Should().BeOfType(expected);

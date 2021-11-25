@@ -1,13 +1,14 @@
-﻿namespace Tethos.Tests
+﻿namespace Tethos.Tests.Extensions
 {
     using System;
     using System.Linq;
     using AutoFixture.Xunit2;
     using Castle.MicroKernel;
     using FluentAssertions;
+    using Tethos.Extensions;
     using Xunit;
 
-    public class ContainerUtilsTests
+    public class ContainerExtensionsTests
     {
         [Theory]
         [AutoData]

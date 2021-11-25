@@ -1,4 +1,4 @@
-﻿namespace Tethos.Tests
+﻿namespace Tethos.Tests.Extensions
 {
     using System;
     using System.Collections.Generic;
@@ -6,6 +6,7 @@
     using System.Reflection;
     using AutoFixture.Xunit2;
     using FluentAssertions;
+    using Tethos.Extensions;
     using Xunit;
 
     public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
@@ -121,7 +122,7 @@
         [Theory]
         [AutoData]
         [Trait("Category", "Unit")]
-        public void GetPattern_WithSystemAssembly_ShouldThrowArgumentException(FakeAssembly assembly)
+        public void GetPattern_WithSystemAssembly_ShouldThrowArgumentException(AssemblyStub assembly)
         {
             // Arrange
             Action action = () => assembly.FullName.GetPattern();
