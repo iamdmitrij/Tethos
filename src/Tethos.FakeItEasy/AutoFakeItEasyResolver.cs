@@ -37,9 +37,8 @@
                 true => options => _ = options,
             };
             var mock = Create.Fake(targetType, arguments);
-
-            // TODO: Use swallow exception function?
-            if (!Fake.IsFake(targetObject ?? 0))
+            var isPlainObject = !Fake.IsFake(targetObject ?? 0);
+            if (isPlainObject)
             {
                 this.Kernel.Register(Component.For(targetType)
                     .Instance(mock)

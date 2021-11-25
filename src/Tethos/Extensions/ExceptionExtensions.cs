@@ -16,5 +16,24 @@
                 return default;
             }
         }
+
+        internal static bool Throws<T>(this Func<T> func, params Type[] types)
+        {
+            bool wasThrown = false;
+            try
+            {
+                _ = func.Invoke();
+            }
+            catch (Exception ex) when (types.Contains(ex.GetType()))
+            {
+                wasThrown = true;
+            }
+            catch (Exception)
+            {
+                wasThrown = false;
+            }
+
+            return wasThrown;
+        }
     }
 }

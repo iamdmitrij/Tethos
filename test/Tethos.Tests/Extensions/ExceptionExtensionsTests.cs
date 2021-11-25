@@ -55,5 +55,42 @@
             // Assert
             actual.Should().Throw<NullReferenceException>();
         }
+
+        [Theory]
+        [AutoData]
+        [Trait("Category", "Unit")]
+        public void Throws_WhenFuncDoesNotThrow_ShouldBeFalse(object @object)
+        {
+            // Arrange
+            var sut = () => @object;
+
+            // Act
+            var actual = sut.Throws();
+
+            // Assert
+            actual.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineAutoData(false, null)]
+        [InlineAutoData(false, typeof(NotImplementedException))]
+        [InlineAutoData(false, typeof(ArgumentException), typeof(ArgumentException))]
+        [InlineAutoData(false, typeof(NotImplementedException), typeof(Exception), typeof(ArgumentException))]
+        [InlineAutoData(true, typeof(NullReferenceException), typeof(Exception), typeof(ArgumentException))]
+        [InlineAutoData(true, typeof(NullReferenceException))]
+        [InlineAutoData(true, typeof(NullReferenceException), typeof(NullReferenceException))]
+        [InlineAutoData(true, typeof(NullReferenceException), typeof(ArgumentException))]
+        [Trait("Category", "Unit")]
+        public void Throws_WhenTypesDoNotMatch_ShouldThrowSameException(bool expected, params Type[] type)
+        {
+            // Arrange
+            Func<object> sut = () => throw new NullReferenceException();
+
+            // Act
+            var actual = sut.Throws(type);
+
+            // Assert
+            actual.Should().Be(expected);
+        }
     }
 }

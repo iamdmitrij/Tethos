@@ -35,20 +35,10 @@
             var mockType = typeof(Mock<>).MakeGenericType(targetType);
             var arguments = constructorArguments.Select(x => x.Value).ToArray();
             var mock = Activator.CreateInstance(mockType, arguments) as Mock;
+            var getMock = () => Mock.Get(targetObject);
+            var isPlainObject = getMock.Throws(typeof(ArgumentException));
 
-            // TODO: Create function in ExceptionExtensions for this boiler-plate
-            var isMock = false;
-            try
-            {
-                _ = Mock.Get(targetObject);
-                isMock = true;
-            }
-            catch (ArgumentException)
-            {
-                isMock = false;
-            }
-
-            if (!isMock)
+            if (isPlainObject)
             {
                 this.Kernel.Register(Component.For(mockType)
                     .Instance(mock)
