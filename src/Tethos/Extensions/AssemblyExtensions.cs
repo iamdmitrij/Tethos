@@ -16,11 +16,6 @@
                 .LoadAssemblies(rootAssembly)
                 .ToArray();
 
-        internal static IEnumerable<File> GetAssemblyFiles(
-            this string directory) => Directory
-                .EnumerateFiles(directory, "*.*", SearchOption.AllDirectories)
-                .Select(filePath => filePath.GetFile());
-
         internal static IEnumerable<File> FilterAssemblies(
             this IEnumerable<File> assemblies,
             string searchPattern,
