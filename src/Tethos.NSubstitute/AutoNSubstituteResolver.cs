@@ -4,7 +4,6 @@
     using Castle.Core;
     using Castle.MicroKernel;
     using Castle.MicroKernel.Context;
-    using Castle.MicroKernel.Handlers;
     using Castle.MicroKernel.Registration;
     using global::NSubstitute;
     using global::NSubstitute.Core;
@@ -27,7 +26,7 @@
             DependencyModel dependency) => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
-        public override object MapToTarget(Type targetType, Arguments constructorArguments)
+        public override object MapToMock(Type targetType, object targetObject, Arguments constructorArguments)
         {
             var arguments = targetType.IsInterface switch
             {
@@ -35,10 +34,8 @@
                 false => constructorArguments.Flatten(),
             };
             var mock = Substitute.For(new Type[] { targetType }, arguments);
-            var func = () => this.Kernel.Resolve(targetType);
-            var currentObject = func.SwallowExceptions(typeof(ComponentNotFoundException), typeof(HandlerException));
 
-            if (currentObject is not ICallRouterProvider)
+            if (targetObject is not ICallRouterProvider)
             {
                 this.Kernel.Register(Component.For(targetType)
                     .Instance(mock)

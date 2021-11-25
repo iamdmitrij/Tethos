@@ -4,7 +4,6 @@
     using Castle.Core;
     using Castle.MicroKernel;
     using Castle.MicroKernel.Context;
-    using Castle.MicroKernel.Handlers;
     using Castle.MicroKernel.Registration;
     using global::FakeItEasy;
     using global::FakeItEasy.Creation;
@@ -28,7 +27,7 @@
             DependencyModel dependency) => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
-        public override object MapToTarget(Type targetType, Arguments constructorArguments)
+        public override object MapToMock(Type targetType, object targetObject, Arguments constructorArguments)
         {
             Action<IFakeOptions> arguments = targetType.IsInterface switch
             {
@@ -38,10 +37,9 @@
                 true => options => _ = options,
             };
             var mock = Create.Fake(targetType, arguments);
-            var func = () => this.Kernel.Resolve(targetType);
-            var currentObject = func.SwallowExceptions(typeof(ComponentNotFoundException), typeof(HandlerException)) ?? 0;
 
-            if (!Fake.IsFake(currentObject))
+            // TODO: Use swallow exception function?
+            if (!Fake.IsFake(targetObject ?? 0))
             {
                 this.Kernel.Register(Component.For(targetType)
                     .Instance(mock)

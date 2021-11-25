@@ -5,7 +5,6 @@
     using Castle.Core;
     using Castle.MicroKernel;
     using Castle.MicroKernel.Context;
-    using Castle.MicroKernel.Handlers;
     using Castle.MicroKernel.Registration;
     using global::Moq;
     using Tethos.Extensions;
@@ -31,17 +30,15 @@
             || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
-        public override object MapToTarget(Type targetType, Arguments constructorArguments)
+        public override object MapToMock(Type targetType, object targetObject, Arguments constructorArguments)
         {
             var mockType = typeof(Mock<>).MakeGenericType(targetType);
             var arguments = constructorArguments.Select(x => x.Value).ToArray();
             var mock = Activator.CreateInstance(mockType, arguments) as Mock;
-            var func = () => this.Kernel.Resolve(targetType);
-            var currentObject = func.SwallowExceptions(typeof(ComponentNotFoundException), typeof(HandlerException));
             var isMock = false;
             try
             {
-                _ = Mock.Get(currentObject);
+                _ = Mock.Get(targetObject);
                 isMock = true;
             }
             catch (ArgumentException)
