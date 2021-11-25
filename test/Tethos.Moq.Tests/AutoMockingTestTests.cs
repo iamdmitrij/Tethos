@@ -43,7 +43,7 @@
             var sut = this.Container.Resolve<SystemUnderTest>();
 
             this.Container.Resolve<Mock<IMockable>>()
-                .Setup(x => x.Do())
+                .Setup(mock => mock.Do())
                 .Returns(expected);
 
             // Act
@@ -70,7 +70,7 @@
 
             // Assert
             mock.Should().BeOfType(expectedType);
-            mock.Verify(x => x.Do(), Times.Once);
+            mock.Verify(m => m.Do(), Times.Once);
         }
 
         [Theory]

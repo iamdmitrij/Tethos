@@ -82,7 +82,7 @@
             var assembly = Assembly.LoadFrom(assemblyName);
 
             // Act
-            var actual = assembly.GetDependencies().Select(x => x.GetName().Name);
+            var actual = assembly.GetDependencies().Select(dependency => dependency.GetName().Name);
 
             // Assert
             actual.Should().BeEquivalentTo(expectedAssemblyName);
@@ -139,7 +139,7 @@
         public void LoadAssemblies_ShouldLoad(params string[] assemblies)
         {
             // Arrange
-            var files = assemblies.Select(x => x.GetFile());
+            var files = assemblies.Select(assembly => assembly.GetFile());
             var expected = assemblies.Length;
 
             // Act
@@ -155,7 +155,7 @@
         public void LoadAssemblies_ShouldSkip(params string[] assemblies)
         {
             // Arrange
-            var files = assemblies.Select(x => x.GetFile());
+            var files = assemblies.Select(assembly => assembly.GetFile());
 
             // Act
             var actual = files.LoadAssemblies();
@@ -180,7 +180,7 @@
         {
             // Arrange
             var extensions = new[] { ".dll", ".exe" };
-            var files = assemblies.Select(x => x.GetFile());
+            var files = assemblies.Select(assembly => assembly.GetFile());
 
             // Act
             var actual = files.FilterAssemblies(pattern, extensions);
@@ -198,7 +198,7 @@
         public void ExcludeRefDirectory(int expected, params string[] assemblies)
         {
             // Arrange
-            var files = assemblies.Select(x => x.GetFile());
+            var files = assemblies.Select(assembly => assembly.GetFile());
 
             // Act
             var actual = files.ExcludeRefDirectory();
