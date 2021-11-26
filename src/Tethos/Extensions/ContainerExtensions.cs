@@ -44,9 +44,19 @@
         /// <param name="container">Auto-mocking container instance.</param>
         /// <returns>Child type resolved instance.</returns>
         public static TChild ResolveFrom<TParent, TChild>(this IAutoMockingContainer container)
+            => (TChild)container.ResolveFrom(typeof(TParent), typeof(TChild));
+
+        /// <summary>
+        /// Resolve child depedency within parent dependency.
+        /// </summary>
+        /// <param name="container">Auto-mocking container instance.</param>
+        /// <param name="parent">Parent type of an object.</param>
+        /// <param name="child">Child type of an object.</param>
+        /// <returns>Child type resolved object.</returns>
+        public static object ResolveFrom(this IAutoMockingContainer container, Type parent, Type child)
         {
-            container.Resolve<TParent>();
-            return container.Resolve<TChild>();
+            container.Resolve(parent);
+            return container.Resolve(child);
         }
 
         internal static object[] Flatten(this Arguments arguments) =>
