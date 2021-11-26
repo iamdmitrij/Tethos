@@ -1,6 +1,7 @@
 ﻿namespace Tethos.Moq.Tests
 {
     using Castle.MicroKernel;
+    using Castle.MicroKernel.Registration;
     using FluentAssertions;
     using global::Moq;
     using Tethos.Moq.Tests.Attributes;
@@ -12,17 +13,34 @@
         [Theory]
         [AutoMoqData]
         [Trait("Category", "Unit")]
-        public void MapToMock_ShouldMatchMockedType(Mock<IKernel> kernel, object targetObject, Mock<IMockable> mockable, Arguments constructorArguments)
+        public void MapToMock_WithPlainObject_ShouldRegisterMock(Mock<IKernel> kernel, object targetObject, IMockable mockable, Arguments constructorArguments)
         {
             // Arrange
-            var expected = mockable.Object.GetType();
+            var expected = mockable.GetType();
             var sut = new AutoMoqResolver(kernel.Object);
-            kernel.Setup(mock => mock.Resolve(mockable.GetType())).Returns(mockable);
 
             // Act
             var actual = sut.MapToMock(typeof(IMockable), targetObject, constructorArguments);
 
             // Assert
+            kernel.Verify(m => m.Register(It.IsAny<IRegistration>()), Times.Once);
+            actual.Should().BeOfType(expected);
+        }
+
+        [Theory]
+        [AutoMoqData]
+        [Trait("Category", "Unit")]
+        public void MapToMock_WithMockedObject_ShouldNotRegisterMock(Mock<IKernel> kernel, IMockable mockable, Arguments constructorArguments)
+        {
+            // Arrange
+            var expected = mockable.GetType();
+            var sut = new AutoMoqResolver(kernel.Object);
+
+            // Act
+            var actual = sut.MapToMock(typeof(IMockable), mockable, constructorArguments);
+
+            // Assert
+            kernel.Verify(m => m.Register(It.IsAny<IRegistration>()), Times.Never);
             actual.Should().BeOfType(expected);
         }
     }
