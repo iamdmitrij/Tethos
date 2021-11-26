@@ -45,5 +45,26 @@
             kernel.Verify(m => m.Register(It.IsAny<IRegistration>()), Times.Never);
             actual.Should().BeOfType(expected);
         }
+
+        [Theory]
+        [AutoMoqData]
+        [Trait("Category", "Unit")]
+        public void MapToMock_WithConstructorArguments_ShouldMatchMockType(Mock<IKernel> kernel, Mock<Concrete> mockable)
+        {
+            // Arrange
+            var expected = mockable.Object.GetType();
+            var sut = new AutoMoqResolver(kernel.Object);
+            var type = typeof(Concrete);
+            var arguments = new Arguments()
+                .AddNamed("minValue", 100)
+                .AddNamed("maxValue", 200);
+
+            // Act
+            var actual = sut.MapToMock(type, mockable.Object, arguments);
+
+            // Assert
+            kernel.Verify(m => m.Register(It.IsAny<IRegistration>()), Times.Never);
+            actual.Should().BeOfType(expected);
+        }
     }
 }
