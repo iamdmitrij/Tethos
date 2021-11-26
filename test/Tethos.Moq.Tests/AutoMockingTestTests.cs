@@ -198,5 +198,22 @@
             // Assert
             actual.Should().BeOfType(expected);
         }
+
+        [Theory]
+        [AutoMoqData]
+        [Trait("Category", "Integration")]
+        public void Resolve_ProxyObject_ShouldBeMockObject(Mock<IMockable> mock)
+        {
+            // Arrange
+            var expected = mock.Object.GetType();
+            _ = this.Container.Resolve<SystemUnderTest>();
+            var sut = this.Container.Resolve<IMockable>();
+
+            // Act
+            var actual = Mock.Get(sut).Object;
+
+            // Assert
+            actual.Should().BeOfType(expected);
+        }
     }
 }
