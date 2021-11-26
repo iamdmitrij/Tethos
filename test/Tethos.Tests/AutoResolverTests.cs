@@ -54,12 +54,13 @@
         [Trait("Category", "Unit")]
         public void Resolve_Object_ShouldMatch(
             Mock<IKernel> kernel,
+            Mock<object> expected,
             CreationContext resolver,
             string key)
         {
             // Arrange
-            var expected = Mock.Of<object>();
-            kernel.Setup(mock => mock.Resolve(typeof(Mock<object>))).Returns(expected);
+            var type = expected.GetType();
+            kernel.Setup(mock => mock.Resolve(type)).Returns(expected);
             var sut = new ConcreteAutoResolver(kernel.Object);
 
             // Act
@@ -67,7 +68,7 @@
                 resolver,
                 resolver,
                 new ComponentModel(),
-                new DependencyModel(key, expected.GetType(), false));
+                new DependencyModel(key, type, false));
 
             // Assert
             actual.Should().Equals(expected);
