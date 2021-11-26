@@ -24,7 +24,7 @@
             var actual = sut.MapToMock(type, targetObject, constructorArguments);
 
             // Assert
-            kernel.Received().Register(Arg.Any<IRegistration>());
+            kernel.Received(1).Register(Arg.Any<IRegistration>());
             actual.Should().BeOfType(expected);
         }
 
