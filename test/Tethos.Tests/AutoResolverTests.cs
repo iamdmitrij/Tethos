@@ -32,8 +32,7 @@
             Type type,
             bool expected,
             IKernel kernel,
-            ISubDependencyResolver resolver,
-            CreationContext context,
+            CreationContext resolver,
             string key)
         {
             // Arrange
@@ -41,7 +40,7 @@
 
             // Act
             var actual = sut.CanResolve(
-                context,
+                resolver,
                 resolver,
                 new ComponentModel(),
                 new DependencyModel(key, type, false));
@@ -55,8 +54,7 @@
         [Trait("Category", "Unit")]
         public void Resolve_Object_ShouldMatch(
             Mock<IKernel> kernel,
-            ISubDependencyResolver resolver,
-            CreationContext context,
+            CreationContext resolver,
             string key)
         {
             // Arrange
@@ -66,7 +64,7 @@
 
             // Act
             var actual = sut.Resolve(
-                context,
+                resolver,
                 resolver,
                 new ComponentModel(),
                 new DependencyModel(key, expected.GetType(), false));
