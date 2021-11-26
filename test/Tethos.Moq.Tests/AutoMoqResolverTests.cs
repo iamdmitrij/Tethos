@@ -18,9 +18,10 @@
             // Arrange
             var expected = mockable.GetType();
             var sut = new AutoMoqResolver(kernel.Object);
+            var type = typeof(IMockable);
 
             // Act
-            var actual = sut.MapToMock(typeof(IMockable), targetObject, constructorArguments);
+            var actual = sut.MapToMock(type, targetObject, constructorArguments);
 
             // Assert
             kernel.Verify(m => m.Register(It.IsAny<IRegistration>()), Times.Once);
@@ -35,9 +36,10 @@
             // Arrange
             var expected = mockable.GetType();
             var sut = new AutoMoqResolver(kernel.Object);
+            var type = typeof(IMockable);
 
             // Act
-            var actual = sut.MapToMock(typeof(IMockable), mockable, constructorArguments);
+            var actual = sut.MapToMock(type, mockable, constructorArguments);
 
             // Assert
             kernel.Verify(m => m.Register(It.IsAny<IRegistration>()), Times.Never);
