@@ -47,8 +47,7 @@
             ComponentModel model,
             DependencyModel dependency)
         {
-            static string GetType(object argument) =>
-                argument.ToString()
+            static string GetType(object argument) => $"{argument}"
                 .Split(new string[] { "__" }, StringSplitOptions.None)
                 .FirstOrDefault();
             var targetType = dependency.TargetType;
