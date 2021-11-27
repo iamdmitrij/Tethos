@@ -28,12 +28,11 @@
         [InlineAutoMoqData(typeof(Task<int>), false)]
         [InlineAutoMoqData(typeof(int), false)]
         [Trait("Category", "Unit")]
-        public void CanResolve_Interface_ShouldMatch(
+        public void CanResolve_ShouldMatch(
             Type type,
             bool expected,
             IKernel kernel,
-            ISubDependencyResolver resolver,
-            CreationContext context,
+            CreationContext resolver,
             string key)
         {
             // Arrange
@@ -41,7 +40,7 @@
 
             // Act
             var actual = sut.CanResolve(
-                context,
+                resolver,
                 resolver,
                 new ComponentModel(),
                 new DependencyModel(key, type, false));
@@ -53,23 +52,23 @@
         [Theory]
         [AutoMoqData]
         [Trait("Category", "Unit")]
-        public void Resolve_Object_ShouldMatch(
+        public void Resolve_ShouldMatchMockType(
             Mock<IKernel> kernel,
-            ISubDependencyResolver resolver,
-            CreationContext context,
+            Mock<object> expected,
+            CreationContext resolver,
             string key)
         {
             // Arrange
-            var expected = Mock.Of<object>();
-            kernel.Setup(mock => mock.Resolve(typeof(Mock<object>))).Returns(expected);
+            var type = expected.GetType();
+            kernel.Setup(mock => mock.Resolve(type)).Returns(expected);
             var sut = new ConcreteAutoResolver(kernel.Object);
 
             // Act
             var actual = sut.Resolve(
-                context,
+                resolver,
                 resolver,
                 new ComponentModel(),
-                new DependencyModel(key, expected.GetType(), false));
+                new DependencyModel(key, type, false));
 
             // Assert
             actual.Should().Equals(expected);
