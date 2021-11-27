@@ -13,7 +13,7 @@
         [Theory]
         [AutoMoqData]
         [Trait("Category", "Unit")]
-        public void MapToMock_WithPlainObject_ShouldRegisterMock(Mock<IKernel> kernel, object targetObject, IMockable mockable, Arguments constructorArguments)
+        public void MapToMock_ShouldRegisterMock(Mock<IKernel> kernel, object targetObject, IMockable mockable, Arguments constructorArguments)
         {
             // Arrange
             var expected = mockable.GetType();
@@ -31,7 +31,7 @@
         [Theory]
         [AutoMoqData]
         [Trait("Category", "Unit")]
-        public void MapToMock_WithMockedObject_ShouldNotRegisterMock(Mock<IKernel> kernel, IMockable mockable, Arguments constructorArguments)
+        public void MapToMock_ShouldNotRegisterMock(Mock<IKernel> kernel, IMockable mockable, Arguments constructorArguments)
         {
             // Arrange
             var expected = mockable.GetType();
