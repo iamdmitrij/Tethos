@@ -28,7 +28,7 @@
         [InlineAutoMoqData(typeof(Task<int>), false)]
         [InlineAutoMoqData(typeof(int), false)]
         [Trait("Category", "Unit")]
-        public void CanResolve_Interface_ShouldMatch(
+        public void CanResolve_ShouldMatch(
             Type type,
             bool expected,
             IKernel kernel,

@@ -32,7 +32,7 @@
         [InlineAutoMoqData(typeof(Guid), 0, false)]
         [InlineAutoMoqData(typeof(int), 0, false)]
         [Trait("Category", "Unit")]
-        public void CanResolve_Interface_ShouldMatch(
+        public void CanResolve_ShouldMatch(
             Type type,
             int arguments,
             bool expected,
