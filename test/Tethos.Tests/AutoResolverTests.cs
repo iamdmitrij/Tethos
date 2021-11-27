@@ -52,7 +52,7 @@
         [Theory]
         [AutoMoqData]
         [Trait("Category", "Unit")]
-        public void Resolve_Object_ShouldMatch(
+        public void Resolve_ShouldMatchMockType(
             Mock<IKernel> kernel,
             Mock<object> expected,
             CreationContext resolver,
