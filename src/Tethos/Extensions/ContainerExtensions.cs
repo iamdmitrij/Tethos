@@ -5,7 +5,7 @@
     using Castle.MicroKernel;
 
     /// <summary>
-    /// A set of utils function helping to extend <see cref="Castle.Windsor.IWindsorContainer"/> for auto-mocking.
+    /// A set of util functions helping to extend <see cref="Castle.Windsor.IWindsorContainer"/> for auto-mocking.
     /// </summary>
     public static class ContainerExtensions
     {
@@ -35,6 +35,29 @@
                 var parameterName when string.IsNullOrWhiteSpace(parameterName) => throw new ArgumentNullException(nameof(name)),
                 var parameterName => arguments.AddNamed($"{sourceType}__{parameterName}", value),
             };
+
+        /// <summary>
+        /// Resolve child depedency within parent dependency.
+        /// </summary>
+        /// <typeparam name="TParent">Parent type to use.</typeparam>
+        /// <typeparam name="TChild">Child type to resolve.</typeparam>
+        /// <param name="container">Auto-mocking container instance.</param>
+        /// <returns>Child type resolved instance.</returns>
+        public static TChild ResolveFrom<TParent, TChild>(this IAutoMockingContainer container)
+            => (TChild)container.ResolveFrom(typeof(TParent), typeof(TChild));
+
+        /// <summary>
+        /// Resolve child depedency within parent dependency.
+        /// </summary>
+        /// <param name="container">Auto-mocking container instance.</param>
+        /// <param name="parent">Parent type of an object.</param>
+        /// <param name="child">Child type of an object.</param>
+        /// <returns>Child type resolved object.</returns>
+        public static object ResolveFrom(this IAutoMockingContainer container, Type parent, Type child)
+        {
+            container.Resolve(parent);
+            return container.Resolve(child);
+        }
 
         internal static object[] Flatten(this Arguments arguments) =>
             arguments.Select(argument => argument.Value).ToArray();
