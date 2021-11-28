@@ -73,7 +73,7 @@
             var actual = sut.MapToMock(type, targetObject, constructorArguments);
 
             // Assert
-            kernel.Verify(m => m.Register(It.IsAny<IRegistration>()), Times.Once);
+            kernel.Verify(m => m.Register(It.IsAny<IRegistration>()), Times.AtLeastOnce);
             actual.Should().BeOfType(expected);
         }
 
