@@ -43,6 +43,10 @@
                 this.Kernel.Register(Component.For(mockType)
                     .Instance(mock)
                     .OverridesExistingRegistration());
+
+                this.Kernel.Register(Component.For(targetType)
+                  .Instance(mock.Object)
+                  .OverridesExistingRegistration());
             }
 
             return mock.Object;
