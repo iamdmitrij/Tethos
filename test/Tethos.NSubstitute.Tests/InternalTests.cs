@@ -11,7 +11,6 @@
 
     public class InternalTests : AutoMockingTest
     {
-
         [Theory]
         [AutoData]
         [Trait("Category", "Integration")]
