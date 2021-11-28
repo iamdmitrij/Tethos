@@ -5,7 +5,9 @@
     using AutoFixture.Xunit2;
     using Castle.MicroKernel;
     using FluentAssertions;
+    using Moq;
     using Tethos.Extensions;
+    using Tethos.Tests.Attributes;
     using Xunit;
 
     public class ContainerExtensionsTests
@@ -92,6 +94,41 @@
 
             // Assert
             actual.Should().Throw<ArgumentNullException>();
+        }
+
+        [Theory]
+        [AutoMoqData]
+        [Trait("Category", "Unit")]
+        public void ResolveFrom_UsingGenerics_ShouldMatch(int expected, Mock<IAutoMockingContainer> mock)
+        {
+            // Arrange
+            var childType = expected.GetType();
+            var parentType = typeof(string);
+            mock.Setup(m => m.Resolve(childType)).Returns(expected);
+
+            // Act
+            var actual = mock.Object.ResolveFrom<string, int>();
+
+            // Assert
+            mock.Verify(m => m.Resolve(parentType), Times.Once);
+            actual.Should().Be(expected);
+        }
+
+        [Theory]
+        [AutoMoqData]
+        [Trait("Category", "Unit")]
+        public void ResolveFrom_UsingTypeParams_ShouldMatch(int expected, Type parent, Mock<IAutoMockingContainer> mock)
+        {
+            // Arrange
+            var childType = expected.GetType();
+            mock.Setup(m => m.Resolve(childType)).Returns(expected);
+
+            // Act
+            var actual = mock.Object.ResolveFrom(parent, childType);
+
+            // Assert
+            mock.Verify(m => m.Resolve(parent), Times.Once);
+            actual.Should().Be(expected);
         }
 
         [Theory]
