@@ -1,8 +1,8 @@
-﻿namespace Tethos.Moq.Tests.SUT
+﻿namespace Tethos.Moq.Tests.AutoMockingTest.SUT
 {
     using global::Moq;
 
-    public class InheritedAutoMockingTest : AutoMockingTest
+    public class InheritedAutoMockingTest : Moq.AutoMockingTest
     {
         public InheritedAutoMockingTest()
         {

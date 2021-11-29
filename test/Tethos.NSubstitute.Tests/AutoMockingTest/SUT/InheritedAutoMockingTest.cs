@@ -1,8 +1,8 @@
-﻿namespace Tethos.NSubstitute.Tests.SUT
+﻿namespace Tethos.NSubstitute.Tests.AutoMockingTest.SUT
 {
     using global::NSubstitute;
 
-    public class InheritedAutoMockingTest : AutoMockingTest
+    public class InheritedAutoMockingTest : NSubstitute.AutoMockingTest
     {
         public InheritedAutoMockingTest() => this.Proxy = this.Container = Substitute.For<AutoNSubstituteContainer>();
 
