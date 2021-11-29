@@ -5,7 +5,7 @@
     using AutoFixture.Xunit2;
     using Castle.MicroKernel;
     using FluentAssertions;
-    using Moq;
+    using global::Moq;
     using Tethos.Extensions;
     using Tethos.Tests.Attributes;
     using Xunit;

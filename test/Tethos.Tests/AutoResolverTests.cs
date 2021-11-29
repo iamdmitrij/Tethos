@@ -8,7 +8,7 @@
     using Castle.MicroKernel;
     using Castle.MicroKernel.Context;
     using FluentAssertions;
-    using Moq;
+    using global::Moq;
     using Tethos.Tests.Attributes;
     using Tethos.Tests.SUT;
     using Xunit;

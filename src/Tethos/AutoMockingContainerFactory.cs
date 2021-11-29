@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Tethos.Moq
+﻿namespace Tethos.Moq
 {
+    using System;
+
     /// <summary>
     /// Factory for generating <see cref="IAutoMockingContainer"/> containers used for auto-mocking.
     /// </summary>
