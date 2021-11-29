@@ -15,7 +15,7 @@
     using Tethos.Tests.Common;
     using Xunit;
 
-    public class AutoFakeItEasyResolverTests
+    public class AutoResolverTests
     {
         [Theory]
         [InlineAutoFakeItEasyData(typeof(IList), true)]
@@ -23,7 +23,7 @@
         [InlineAutoFakeItEasyData(typeof(Array), true)]
         [InlineAutoFakeItEasyData(typeof(Enumerable), true)]
         [InlineAutoFakeItEasyData(typeof(Type), true)]
-        [InlineAutoFakeItEasyData(typeof(AutoResolver), true)]
+        [InlineAutoFakeItEasyData(typeof(Tethos.AutoResolver), true)]
         [InlineAutoFakeItEasyData(typeof(TimeoutException), true)]
         [InlineAutoFakeItEasyData(typeof(Guid), false)]
         [InlineAutoFakeItEasyData(typeof(Task<>), true)]
@@ -38,7 +38,7 @@
             string key)
         {
             // Arrange
-            var sut = new AutoFakeItEasyResolver(kernel);
+            var sut = new AutoResolver(kernel);
 
             // Act
             var actual = sut.CanResolve(
@@ -58,7 +58,7 @@
         {
             // Arrange
             var expected = mockable.GetType();
-            var sut = new AutoFakeItEasyResolver(kernel);
+            var sut = new AutoResolver(kernel);
             var type = typeof(IMockable);
 
             // Act
@@ -76,7 +76,7 @@
         {
             // Arrange
             var expected = mockable.GetType();
-            var sut = new AutoFakeItEasyResolver(kernel);
+            var sut = new AutoResolver(kernel);
             var type = typeof(IMockable);
 
             // Act

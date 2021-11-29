@@ -8,12 +8,12 @@
     /// <summary>
     /// <see cref="Tethos"/> auto-mocking system using <see cref="Moq"/> to inject mocks.
     /// </summary>
-    public class AutoMockingTest : BaseAutoMockingTest<AutoMoqContainer>
+    public class AutoMockingTest : BaseAutoMockingTest<AutoMockingContainer>
     {
         /// <inheritdoc />
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            this.AutoResolver = new AutoMoqResolver(container.Kernel);
+            this.AutoResolver = new AutoResolver(container.Kernel);
 
             container.Kernel.Resolver.AddSubResolver(
                 this.AutoResolver);

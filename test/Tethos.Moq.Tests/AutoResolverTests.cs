@@ -14,7 +14,7 @@
     using Tethos.Tests.Common;
     using Xunit;
 
-    public class AutoMoqResolverTests
+    public class AutoResolverTests
     {
         [Theory]
         [InlineAutoMoqData(typeof(IList), 1, true)]
@@ -22,7 +22,7 @@
         [InlineAutoMoqData(typeof(Array), 5, true)]
         [InlineAutoMoqData(typeof(Enumerable), 15, true)]
         [InlineAutoMoqData(typeof(Type), 4, true)]
-        [InlineAutoMoqData(typeof(AutoResolver), 8, true)]
+        [InlineAutoMoqData(typeof(Tethos.AutoResolver), 8, true)]
         [InlineAutoMoqData(typeof(TimeoutException), 10, true)]
         [InlineAutoMoqData(typeof(Guid), 2, false)]
         [InlineAutoMoqData(typeof(Task<>), 4, true)]
@@ -46,7 +46,7 @@
                 .Select(_ => new Arguments().AddNamed($"{Guid.NewGuid()}", Guid.NewGuid()))
                 .ToList()
                 .ForEach(argument => resolver.AdditionalArguments.Add(argument));
-            var sut = new AutoMoqResolver(kernel);
+            var sut = new AutoResolver(kernel);
 
             // Act
             var actual = sut.CanResolve(
@@ -66,7 +66,7 @@
         {
             // Arrange
             var expected = mockable.GetType();
-            var sut = new AutoMoqResolver(kernel.Object);
+            var sut = new AutoResolver(kernel.Object);
             var type = typeof(IMockable);
 
             // Act
@@ -84,7 +84,7 @@
         {
             // Arrange
             var expected = mockable.GetType();
-            var sut = new AutoMoqResolver(kernel.Object);
+            var sut = new AutoResolver(kernel.Object);
             var type = typeof(IMockable);
 
             // Act
@@ -102,7 +102,7 @@
         {
             // Arrange
             var expected = mockable.Object.GetType();
-            var sut = new AutoMoqResolver(kernel.Object);
+            var sut = new AutoResolver(kernel.Object);
             var type = typeof(Concrete);
             var arguments = new Arguments()
                 .AddNamed("minValue", 100)
