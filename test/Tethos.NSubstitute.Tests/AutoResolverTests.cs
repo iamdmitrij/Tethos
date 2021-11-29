@@ -15,7 +15,7 @@
     using Tethos.Tests.Common;
     using Xunit;
 
-    public class AutoNSubstituteResolverTests
+    public class AutoResolverTests
     {
         [Theory]
         [InlineAutoNSubstituteData(typeof(IList), true)]
@@ -23,7 +23,7 @@
         [InlineAutoNSubstituteData(typeof(Array), true)]
         [InlineAutoNSubstituteData(typeof(Enumerable), true)]
         [InlineAutoNSubstituteData(typeof(Type), true)]
-        [InlineAutoNSubstituteData(typeof(AutoResolver), true)]
+        [InlineAutoNSubstituteData(typeof(Tethos.AutoResolver), true)]
         [InlineAutoNSubstituteData(typeof(TimeoutException), true)]
         [InlineAutoNSubstituteData(typeof(Guid), false)]
         [InlineAutoNSubstituteData(typeof(Task<>), true)]
@@ -38,7 +38,7 @@
             string key)
         {
             // Arrange
-            var sut = new AutoNSubstituteResolver(kernel);
+            var sut = new AutoResolver(kernel);
 
             // Act
             var actual = sut.CanResolve(
@@ -58,7 +58,7 @@
         {
             // Arrange
             var expected = mockable.GetType();
-            var sut = new AutoNSubstituteResolver(kernel);
+            var sut = new AutoResolver(kernel);
             var type = typeof(IMockable);
 
             // Act
@@ -76,7 +76,7 @@
         {
             // Arrange
             var expected = mockable.GetType();
-            var sut = new AutoNSubstituteResolver(kernel);
+            var sut = new AutoResolver(kernel);
             var type = typeof(IMockable);
 
             // Act
