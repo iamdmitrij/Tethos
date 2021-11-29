@@ -1,9 +1,9 @@
-﻿namespace Tethos.FakeItEasy
+﻿namespace Tethos.Moq
 {
     /// <summary>
     /// Factory for generating <see cref="IAutoMockingContainer"/> containers used for auto-mocking.
     /// </summary>
-    public static class AutoFakeItEasyContainerFactory
+    public static class AutoMockingContainerFactory
     {
         /// <summary>
         /// Creates ready to use auto-mocking container.

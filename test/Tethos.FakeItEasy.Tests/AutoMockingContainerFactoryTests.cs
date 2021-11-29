@@ -1,12 +1,12 @@
-﻿namespace Tethos.NSubstitute.Tests
+﻿namespace Tethos.FakeItEasy.Tests
 {
     using FluentAssertions;
-    using global::NSubstitute;
-    using Tethos.NSubstitute.Tests.Attributes;
+    using global::FakeItEasy;
+    using Tethos.FakeItEasy.Tests.Attributes;
     using Tethos.Tests.Common;
     using Xunit;
 
-    public class AutoNSubstituteContainerFactoryTests
+    public class AutoMockingContainerFactoryTests
     {
         [Theory]
         [FactoryContainerData]
@@ -17,9 +17,8 @@
         {
             // Arrange
             var sut = container.Resolve<SystemUnderTest>();
-            container.Resolve<IMockable>()
-                .Do()
-                .Returns(expected);
+            var mock = container.Resolve<IMockable>();
+            A.CallTo(() => mock.Do()).Returns(expected);
 
             // Act
             var actual = sut.Do();

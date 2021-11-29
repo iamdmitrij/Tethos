@@ -10,7 +10,7 @@
             () =>
             {
                 var fixture = new Fixture();
-                fixture.Register(AutoMoqContainerFactory.Create);
+                fixture.Register(AutoMockingContainerFactory.Create);
                 return fixture;
             })
         {
