@@ -2,8 +2,8 @@
 {
     using Castle.Windsor;
 
-    /// <inheritdoc cref="IAutoNSubstituteContainer" />
-    public class AutoNSubstituteContainer : WindsorContainer, IAutoNSubstituteContainer
+    /// <inheritdoc cref="IAutoMockingContainer" />
+    public class AutoNSubstituteContainer : WindsorContainer, IAutoMockingContainer
     {
     }
 }
