@@ -13,7 +13,7 @@
         [FactoryContainerData]
         [Trait("Category", "Integration")]
         public void Create_SimpleDependency_ShouldMatchValue(
-            IAutoMoqContainer container,
+            IAutoMockingContainer container,
             int expected)
         {
             // Arrange

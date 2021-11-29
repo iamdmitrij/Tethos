@@ -2,8 +2,8 @@
 {
     using Castle.Windsor;
 
-    /// <inheritdoc cref="IAutoMoqContainer" />
-    public class AutoMoqContainer : WindsorContainer, IAutoMoqContainer
+    /// <inheritdoc cref="IAutoMockingContainer" />
+    public class AutoMoqContainer : WindsorContainer, IAutoMockingContainer
     {
     }
 }

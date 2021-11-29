@@ -1,7 +1,7 @@
 ﻿namespace Tethos.Moq
 {
     /// <summary>
-    /// Factory for generating <see cref="IAutoMoqContainer"/> containers used for auto-mocking.
+    /// Factory for generating <see cref="IAutoMockingContainer"/> containers used for auto-mocking.
     /// </summary>
     public static class AutoMoqContainerFactory
     {
@@ -9,6 +9,6 @@
         /// Creates ready to use auto-mocking container.
         /// </summary>
         /// <returns>Auto-mocking container.</returns>
-        public static IAutoMoqContainer Create() => new AutoMockingTest().Container;
+        public static IAutoMockingContainer Create() => new AutoMockingTest().Container;
     }
 }
