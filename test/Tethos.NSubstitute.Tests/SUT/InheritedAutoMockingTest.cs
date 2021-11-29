@@ -4,8 +4,8 @@
 
     public class InheritedAutoMockingTest : AutoMockingTest
     {
-        public InheritedAutoMockingTest() => this.Proxy = this.Container = Substitute.For<AutoNSubstituteContainer>();
+        public InheritedAutoMockingTest() => this.Proxy = this.Container = Substitute.For<AutoMockingContainer>();
 
-        public AutoNSubstituteContainer Proxy { get; }
+        public AutoMockingContainer Proxy { get; }
     }
 }

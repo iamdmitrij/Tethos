@@ -10,10 +10,10 @@
     using Tethos.Extensions;
 
     /// <inheritdoc />
-    internal class AutoNSubstituteResolver : AutoResolver
+    internal class AutoResolver : Tethos.AutoResolver
     {
-        /// <inheritdoc cref="AutoResolver" />
-        public AutoNSubstituteResolver(IKernel kernel)
+        /// <inheritdoc cref="Tethos.AutoResolver" />
+        public AutoResolver(IKernel kernel)
             : base(kernel)
         {
         }
