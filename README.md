@@ -106,7 +106,7 @@ public class ContainerFromBaseClass: AutoMockingTest
 }
 ```
 
-- Inject or initialize `IAutoMoqContainer` dependency using factory method: `AutoMoqContainerFactory.Create()`.
+- Inject or initialize `IAutoMoqContainer` dependency using factory method: `AutoMockingContainerFactory.Create()`.
 
 ```c#
 public class ContainerAsProperty: AutoMockingTest
@@ -115,7 +115,7 @@ public class ContainerAsProperty: AutoMockingTest
 
     public ContainerAsProperty()
     {
-        Container = AutoMoqContainerFactory.Create();
+        Container = AutoMockingContainerFactory.Create();
     }
 
     [Fact]
