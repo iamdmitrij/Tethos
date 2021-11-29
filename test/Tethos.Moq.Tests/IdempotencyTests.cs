@@ -19,7 +19,7 @@
             var actual = this.Container.ResolveFrom<SystemUnderTest, Mock<IMockable>>();
 
             // Assert
-            actual.Should().NotBeSameAs(expected);
+            actual.Should().BeSameAs(expected);
         }
 
         [Fact]
@@ -34,7 +34,7 @@
             var actual = this.Container.ResolveFrom<SystemUnderTest, Mock<IMockable>>();
 
             // Assert
-            actual.Should().NotBeSameAs(expected);
+            actual.Should().BeSameAs(expected);
         }
 
         [Fact]
@@ -77,7 +77,7 @@
             var actual = this.Container.ResolveFrom<SystemUnderTest, IMockable>();
 
             // Assert
-            actual.Should().NotBeSameAs(expected);
+            actual.Should().BeSameAs(expected);
         }
 
         [Fact]
@@ -91,7 +91,7 @@
             var actual = Mock.Get(this.Container.ResolveFrom<SystemUnderTest, IMockable>());
 
             // Assert
-            actual.Should().NotBeSameAs(expected);
+            actual.Should().BeSameAs(expected);
         }
 
         [Fact]
@@ -106,7 +106,7 @@
             var actual = this.Container.ResolveFrom<SystemUnderTest, IMockable>();
 
             // Assert
-            actual.Should().NotBeSameAs(expected);
+            actual.Should().BeSameAs(expected);
         }
 
         [Fact]
@@ -121,7 +121,7 @@
             var actual = Mock.Get(this.Container.ResolveFrom<SystemUnderTest, IMockable>());
 
             // Assert
-            actual.Should().NotBeSameAs(expected);
+            actual.Should().BeSameAs(expected);
         }
 
         [Fact]

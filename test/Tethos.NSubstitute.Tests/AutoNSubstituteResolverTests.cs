@@ -7,7 +7,9 @@
     using Castle.Core;
     using Castle.MicroKernel;
     using Castle.MicroKernel.Context;
+    using Castle.MicroKernel.Registration;
     using FluentAssertions;
+    using global::NSubstitute;
     using Tethos.NSubstitute.Tests.Attributes;
     using Tethos.Tests.Attributes;
     using Tethos.Tests.Common;
@@ -52,21 +54,36 @@
         [Theory]
         [AutoNSubstituteData]
         [Trait("Category", "Unit")]
-        public void MapToMock_ShouldMatchMockedType(
-            IMockable mockable,
-            object targetObject,
-            IKernel kernel,
-            Arguments constructorArguments)
+        public void MapToMock_ShouldRegisterMock(IKernel kernel, object targetObject, IMockable mockable, Arguments constructorArguments)
         {
             // Arrange
-            var sut = new AutoNSubstituteResolver(kernel);
             var expected = mockable.GetType();
+            var sut = new AutoNSubstituteResolver(kernel);
             var type = typeof(IMockable);
 
             // Act
             var actual = sut.MapToMock(type, targetObject, constructorArguments);
 
             // Assert
+            kernel.Received(1).Register(Arg.Any<IRegistration>());
+            actual.Should().BeOfType(expected);
+        }
+
+        [Theory]
+        [AutoNSubstituteData]
+        [Trait("Category", "Unit")]
+        public void MapToMock_ShouldNotRegisterMock(IKernel kernel, IMockable mockable, Arguments constructorArguments)
+        {
+            // Arrange
+            var expected = mockable.GetType();
+            var sut = new AutoNSubstituteResolver(kernel);
+            var type = typeof(IMockable);
+
+            // Act
+            var actual = sut.MapToMock(type, mockable, constructorArguments);
+
+            // Assert
+            kernel.DidNotReceive().Register(Arg.Any<IRegistration>());
             actual.Should().BeOfType(expected);
         }
     }
