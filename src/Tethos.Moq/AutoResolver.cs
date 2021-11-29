@@ -11,10 +11,10 @@
     using Tethos.Extensions;
 
     /// <inheritdoc />
-    internal class AutoMoqResolver : AutoResolver
+    internal class AutoResolver : Tethos.AutoResolver
     {
-        /// <inheritdoc cref="AutoResolver" />
-        public AutoMoqResolver(IKernel kernel)
+        /// <inheritdoc cref="Tethos.AutoResolver" />
+        public AutoResolver(IKernel kernel)
             : base(kernel)
         {
         }
