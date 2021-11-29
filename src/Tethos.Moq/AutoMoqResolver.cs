@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using Castle.Core;
+    using Castle.DynamicProxy;
     using Castle.MicroKernel;
     using Castle.MicroKernel.Context;
     using Castle.MicroKernel.Registration;
@@ -35,8 +36,7 @@
             var mockType = typeof(Mock<>).MakeGenericType(targetType);
             var arguments = constructorArguments.Select(argument => argument.Value).ToArray();
             var mock = Activator.CreateInstance(mockType, arguments) as Mock;
-            var getMock = () => Mock.Get(targetObject);
-            var isPlainObject = getMock.Throws(typeof(ArgumentException));
+            var isPlainObject = !ProxyUtil.IsProxy(targetObject);
 
             if (isPlainObject)
             {
