@@ -3,7 +3,7 @@
     using Castle.Windsor;
 
     /// <inheritdoc cref="IAutoMockingContainer" />
-    public class AutoMoqContainer : WindsorContainer, IAutoMockingContainer
+    public class AutoMockingContainer : WindsorContainer, IAutoMockingContainer
     {
     }
 }

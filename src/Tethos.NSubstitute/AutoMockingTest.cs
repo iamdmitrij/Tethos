@@ -6,7 +6,7 @@
     /// <summary>
     /// <see cref="Tethos"/> auto-mocking system using <see cref="NSubstitute"/> to inject mocks.
     /// </summary>
-    public class AutoMockingTest : BaseAutoMockingTest<AutoNSubstituteContainer>
+    public class AutoMockingTest : BaseAutoMockingTest<AutoMockingContainer>
     {
         /// <inheritdoc />
         public override void Install(IWindsorContainer container, IConfigurationStore store)
