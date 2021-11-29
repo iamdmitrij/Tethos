@@ -6,10 +6,10 @@
     {
         public InheritedAutoMockingTest()
         {
-            this.Container = Mock.Of<AutoMoqContainer>();
+            this.Container = Mock.Of<AutoMockingContainer>();
             this.Proxy = Mock.Get(this.Container);
         }
 
-        public Mock<AutoMoqContainer> Proxy { get; }
+        public Mock<AutoMockingContainer> Proxy { get; }
     }
 }

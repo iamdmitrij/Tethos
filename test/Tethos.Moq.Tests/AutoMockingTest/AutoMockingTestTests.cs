@@ -30,7 +30,7 @@
         public void Container_ShouldHaveAutoResolverInstalled()
         {
             // Assert
-            this.AutoResolver.Should().BeOfType<AutoMoqResolver>();
+            this.AutoResolver.Should().BeOfType<AutoResolver>();
         }
 
         [Theory]

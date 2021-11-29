@@ -4,8 +4,8 @@
 
     public class InheritedAutoMockingTest : FakeItEasy.AutoMockingTest
     {
-        public InheritedAutoMockingTest() => this.Proxy = this.Container = A.Fake<AutoFakeItEasyContainer>();
+        public InheritedAutoMockingTest() => this.Proxy = this.Container = A.Fake<AutoMockingContainer>();
 
-        public AutoFakeItEasyContainer Proxy { get; }
+        public AutoMockingContainer Proxy { get; }
     }
 }

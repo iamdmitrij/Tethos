@@ -2,7 +2,6 @@
 {
     using System;
     using AutoFixture.Xunit2;
-    using Castle.MicroKernel;
     using Castle.MicroKernel.Registration;
     using FluentAssertions;
     using global::NSubstitute;
@@ -17,7 +16,7 @@
         public void Container_ShouldHaveAutoResolverInstalled()
         {
             // Assert
-            this.AutoResolver.Should().BeOfType<AutoNSubstituteResolver>();
+            this.AutoResolver.Should().BeOfType<AutoResolver>();
         }
 
         [Theory]

@@ -10,7 +10,7 @@
             () =>
             {
                 var fixture = new Fixture();
-                fixture.Register(AutoFakeItEasyContainerFactory.Create);
+                fixture.Register(AutoMockingContainerFactory.Create);
                 return fixture;
             })
         {
