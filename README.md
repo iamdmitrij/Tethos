@@ -25,12 +25,12 @@ public class SystemUnderTest
         ...
     }
 
-    public int Do()
+    public int Exercise()
     {
-        MockA.Do();
-        MockB.Do();
-        MockC.Do();
-        MockD.Do();
+        MockA.Get();
+        MockB.Get();
+        MockC.Get();
+        MockD.Get();
     }
 }
 ```
@@ -75,12 +75,12 @@ In this example `Moq` is used:
 
 ```c#
 [Fact]
-public void Do()
+public void Test_Exercise()
 {
     // Arrange
-    var mock = Container.Resolve<Mock<SystemUnderTest>>();
+    var mock = Container.Resolve<Mock<IMockable>>();
 
-    mock.Setup(m => m.Do())
+    mock.Setup(m => m.Get())
         .Returns(expected);
     ...
 }
@@ -180,7 +180,7 @@ Tethos uses [Moq](https://www.moqthis.com/moq4/) to auto-mock incoming dependenc
 public void Test()
 {
     var mock = Container.Resolve<Mock<IMockable>>();
-    mock.Setup(m => m.Do()).Returns(42);
+    mock.Setup(m => m.Get()).Returns(42);
 }
 ```
 
@@ -196,7 +196,7 @@ Tethos uses [NSubstitute](https://nsubstitute.github.io/) to auto-mock incoming 
 public void Test()
 {
     var mock = Container.Resolve<IMockable>(); // <-- This will be mocked
-    mock.Do().Returns(42);
+    mock.Get().Returns(42);
 }
 ```
 
@@ -212,6 +212,6 @@ Tethos uses [FakeItEasy](https://fakeiteasy.github.io/) to auto-mock incoming de
 public void Test()
 {
     var mock = Container.Resolve<IMockable>(); // <-- This will be mocked
-    A.CallTo(() => mock.Do()).Returns(42)
+    A.CallTo(() => mock.Get()).Returns(42)
 }
 ```
