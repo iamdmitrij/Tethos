@@ -2,6 +2,6 @@
 {
     public interface IMockable
     {
-        int Do();
+        int Get();
     }
 }

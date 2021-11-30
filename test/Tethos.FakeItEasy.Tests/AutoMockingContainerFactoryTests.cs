@@ -18,10 +18,10 @@
             // Arrange
             var sut = container.Resolve<SystemUnderTest>();
             var mock = container.Resolve<IMockable>();
-            A.CallTo(() => mock.Do()).Returns(expected);
+            A.CallTo(() => mock.Get()).Returns(expected);
 
             // Act
-            var actual = sut.Do();
+            var actual = sut.Exercise();
 
             // Assert
             actual.Should().Be(expected);

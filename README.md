@@ -5,7 +5,6 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=iamdmitrij_Tethos&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=iamdmitrij_Tethos)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=iamdmitrij_Tethos&metric=ncloc)](https://sonarcloud.io/dashboard?id=iamdmitrij_Tethos)
 
-
 `Tethos` is automated auto-mocking system which utilizes `Castle.Windsor` as backbone for working with mocked dependencies used during unit testing. It is test framework agnostic. `Tethos` supports all popular mocking libraries - `Moq`, `NSubstitute` and `FakeItEasy`:
 
 | Package            | NuGet                                                                                                                                                                                                                                               |
@@ -26,12 +25,12 @@ public class SystemUnderTest
         ...
     }
 
-    public int Do()
+    public int Exercise()
     {
-        MockA.Do();
-        MockB.Do();
-        MockC.Do();
-        MockD.Do();
+        MockA.Get();
+        MockB.Get();
+        MockC.Get();
+        MockD.Get();
     }
 }
 ```
@@ -76,12 +75,12 @@ In this example `Moq` is used:
 
 ```c#
 [Fact]
-public void Do()
+public void Test_Exercise()
 {
     // Arrange
-    var mock = Container.Resolve<Mock<SystemUnderTest>>();
+    var mock = Container.Resolve<Mock<IMockable>>();
 
-    mock.Setup(m => m.Do())
+    mock.Setup(m => m.Get())
         .Returns(expected);
     ...
 }
@@ -98,7 +97,7 @@ within the scope of the test method dependencies, including mock instances will 
 public class ContainerFromBaseClass: AutoMockingTest
 {
     [Fact]
-    public void Do_ShouldReturn42()
+    public void Exercise_ShouldReturn42()
     {
         var sut = Container.Resolve<SystemUnderTest>();
         ...
@@ -119,7 +118,7 @@ public class ContainerAsProperty: AutoMockingTest
     }
 
     [Fact]
-    public void Do_ShouldReturn42()
+    public void Exercise_ShouldReturn42()
     {
         var sut = Container.Resolve<SystemUnderTest>();
         ...
@@ -181,7 +180,7 @@ Tethos uses [Moq](https://www.moqthis.com/moq4/) to auto-mock incoming dependenc
 public void Test()
 {
     var mock = Container.Resolve<Mock<IMockable>>();
-    mock.Setup(m => m.Do()).Returns(42);
+    mock.Setup(m => m.Get()).Returns(42);
 }
 ```
 
@@ -197,7 +196,7 @@ Tethos uses [NSubstitute](https://nsubstitute.github.io/) to auto-mock incoming 
 public void Test()
 {
     var mock = Container.Resolve<IMockable>(); // <-- This will be mocked
-    mock.Do().Returns(42);
+    mock.Get().Returns(42);
 }
 ```
 
@@ -213,6 +212,6 @@ Tethos uses [FakeItEasy](https://fakeiteasy.github.io/) to auto-mock incoming de
 public void Test()
 {
     var mock = Container.Resolve<IMockable>(); // <-- This will be mocked
-    A.CallTo(() => mock.Do()).Returns(42)
+    A.CallTo(() => mock.Get()).Returns(42)
 }
 ```

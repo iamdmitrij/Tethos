@@ -23,11 +23,11 @@
             var mock = this.Container.Resolve<Concrete>();
 
             // Act
-            actual.Do();
+            actual.Exercise();
 
             // Assert
             mock.Should().BeOfType(expectedType);
-            mock.Received().Do();
+            mock.Received().Get();
         }
 
         [Theory]
@@ -48,7 +48,7 @@
             var thresholdMock = this.Container.Resolve<Threshold>();
 
             // Act
-            actual.Do();
+            actual.Exercise();
 
             // Assert
             mock.Should().BeOfType(expectedType);
@@ -67,7 +67,7 @@
                     .AddDependencyTo<AbstractThreshold, bool>("enabled", value));
 
             // Act
-            actual.Do();
+            actual.Exercise();
 
             // Assert
             this.Container.Resolve<AbstractThreshold>().Should().BeOfType(expected);
@@ -85,7 +85,7 @@
                     .AddDependencyTo<PartialThreshold, bool>("enabled", value));
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
             this.Container.Resolve<PartialThreshold>().Should().BeOfType(expected);
@@ -107,7 +107,7 @@
                     .AddDependencyTo<AbstractThreshold, bool>("enabled", false));
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
             this.Container.Resolve<Concrete>().Should().BeOfType(Substitute.For<Concrete>(100, 200).GetType());
