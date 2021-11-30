@@ -44,6 +44,7 @@
             container.Register(
                 this.Assemblies.Select(assembly =>
                     Classes.FromAssembly(assembly)
+                        .IncludeNonPublicTypes()
                         .Pick()
                         .WithServiceBase()
                         .WithServiceAllInterfaces()
