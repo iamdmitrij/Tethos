@@ -10,7 +10,7 @@ namespace Tethos.MSTest.Demo
     {
         [TestMethod]
         [TestCategory("Demo")]
-        public void Do_WithMock_ShouldReturn42()
+        public void Exercise_WithMock_ShouldReturn42()
         {
             // Arrange
             var expected = 42;

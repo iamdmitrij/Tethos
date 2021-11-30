@@ -5,7 +5,6 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=iamdmitrij_Tethos&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=iamdmitrij_Tethos)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=iamdmitrij_Tethos&metric=ncloc)](https://sonarcloud.io/dashboard?id=iamdmitrij_Tethos)
 
-
 `Tethos` is automated auto-mocking system which utilizes `Castle.Windsor` as backbone for working with mocked dependencies used during unit testing. It is test framework agnostic. `Tethos` supports all popular mocking libraries - `Moq`, `NSubstitute` and `FakeItEasy`:
 
 | Package            | NuGet                                                                                                                                                                                                                                               |
@@ -98,7 +97,7 @@ within the scope of the test method dependencies, including mock instances will 
 public class ContainerFromBaseClass: AutoMockingTest
 {
     [Fact]
-    public void Do_ShouldReturn42()
+    public void Exercise_ShouldReturn42()
     {
         var sut = Container.Resolve<SystemUnderTest>();
         ...
@@ -119,7 +118,7 @@ public class ContainerAsProperty: AutoMockingTest
     }
 
     [Fact]
-    public void Do_ShouldReturn42()
+    public void Exercise_ShouldReturn42()
     {
         var sut = Container.Resolve<SystemUnderTest>();
         ...
