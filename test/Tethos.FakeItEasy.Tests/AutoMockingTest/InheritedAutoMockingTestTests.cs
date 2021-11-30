@@ -1,8 +1,8 @@
-﻿namespace Tethos.FakeItEasy.Tests
+﻿namespace Tethos.FakeItEasy.Tests.AutoMockingTest
 {
     using AutoFixture.Xunit2;
     using global::FakeItEasy;
-    using Tethos.FakeItEasy.Tests.SUT;
+    using Tethos.FakeItEasy.Tests.AutoMockingTest.SUT;
     using Xunit;
 
     public class InheritedAutoMockingTestTests
