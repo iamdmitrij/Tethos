@@ -27,10 +27,10 @@
             // Arrange
             var sut = this.Container.Resolve<SystemUnderTest>();
             var mock = this.Container.Resolve<IMockable>();
-            A.CallTo(() => mock.Do()).Returns(expected);
+            A.CallTo(() => mock.Get()).Returns(expected);
 
             // Act
-            var actual = sut.Do();
+            var actual = sut.Exercise();
 
             // Assert
             actual.Should().Be(expected);
@@ -51,8 +51,8 @@
             // Act
             this.Clean();
             var concrete = this.Container.Resolve<SystemUnderTest>();
-            Action action = () => concrete.Do();
-            sut.Do();
+            Action action = () => concrete.Exercise();
+            sut.Exercise();
 
             // Assert
             action.Should().Throw<NotImplementedException>();

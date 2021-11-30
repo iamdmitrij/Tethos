@@ -14,7 +14,7 @@
             var sut = this.Container.Resolve<SystemUnderTest>();
 
             // Act
-            var actual = sut.Do();
+            var actual = sut.Exercise();
 
             // Assert
             actual.Should().BeInRange(0, 10);

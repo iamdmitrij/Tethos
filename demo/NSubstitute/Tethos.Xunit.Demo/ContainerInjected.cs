@@ -24,10 +24,10 @@
             var sut = this.Container.Resolve<SystemUnderTest>();
             var mock = this.Container.Resolve<IMockable>();
 
-            mock.Do().Returns(expected);
+            mock.Get().Returns(expected);
 
             // Act
-            var actual = sut.Do();
+            var actual = sut.Exercise();
 
             // Assert
             Assert.Equal(actual, expected);

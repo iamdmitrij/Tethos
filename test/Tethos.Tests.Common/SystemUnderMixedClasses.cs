@@ -24,6 +24,6 @@
 
         public int Demo { get; set; }
 
-        public int Do() => this.Threshold.Enalbed ? this.Mockable.Do() : 0;
+        public int Exercise() => this.Threshold.Enalbed ? this.Mockable.Get() : 0;
     }
 }
