@@ -1,9 +1,11 @@
 name: 📮 NuGet
 
 on:
-  push:
-    tags:
-      - "v*"
+  workflow_run:
+    workflows: ["🔄 CI"]
+    branches: [main]
+    types:
+      - completed
 
 jobs:
   build:
@@ -22,4 +24,5 @@ jobs:
           dotnet-version: "6.0.x"
 
       - name: 🎁 Push to NuGet
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         run: dotnet nuget push **/Tethos.*.nupkg --source ${{ secrets.NUGET_FEED }} --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
