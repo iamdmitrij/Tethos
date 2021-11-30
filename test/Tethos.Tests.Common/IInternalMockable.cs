@@ -2,6 +2,6 @@
 {
     internal interface IInternalMockable
     {
-        int Do();
+        int Get();
     }
 }

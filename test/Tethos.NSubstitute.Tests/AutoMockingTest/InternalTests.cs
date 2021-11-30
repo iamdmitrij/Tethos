@@ -23,7 +23,7 @@
                 .Returns(expected);
 
             // Act
-            var actual = sut.Do();
+            var actual = sut.Exercise();
 
             // Assert
             actual.Should().Be(expected);
@@ -37,11 +37,11 @@
             // Arrange
             var sut = this.Container.Resolve<SystemUnderTestWithInternal>();
             this.Container.Resolve<IInternalMockable>()
-                .Do()
+                .Get()
                 .Returns(expected);
 
             // Act
-            var actual = sut.Do();
+            var actual = sut.Exercise();
 
             // Assert
             actual.Should().Be(expected);
