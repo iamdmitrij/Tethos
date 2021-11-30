@@ -18,11 +18,11 @@
             // Arrange
             var sut = container.Resolve<SystemUnderTest>();
             container.Resolve<IMockable>()
-                .Do()
+                .Get()
                 .Returns(expected);
 
             // Act
-            var actual = sut.Do();
+            var actual = sut.Exercise();
 
             // Assert
             actual.Should().Be(expected);

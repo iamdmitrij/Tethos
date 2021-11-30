@@ -19,6 +19,6 @@
 
         public int MaxValue { get; set; }
 
-        public virtual int Do() => GetRandomInt(this.MinValue, this.MaxValue);
+        public virtual int Get() => GetRandomInt(this.MinValue, this.MaxValue);
     }
 }

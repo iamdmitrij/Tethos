@@ -20,11 +20,11 @@
             var actual = this.Container.Resolve<Concrete>();
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
             actual.Should().BeOfType(expected);
-            A.CallTo(() => actual.Do()).MustHaveHappened();
+            A.CallTo(() => actual.Get()).MustHaveHappened();
         }
 
         [Theory]
@@ -41,10 +41,10 @@
             var actual = this.Container.Resolve<Concrete>();
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
-            A.CallTo(() => actual.Do()).MustHaveHappened();
+            A.CallTo(() => actual.Get()).MustHaveHappened();
             actual.MinValue.Should().Be(minValue);
             actual.MaxValue.Should().Be(maxValue);
             actual.Should().BeOfType(expected);
@@ -70,7 +70,7 @@
             var thresholdMock = this.Container.Resolve<Threshold>();
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
             mock.Should().BeOfType(expectedType);
@@ -93,7 +93,7 @@
             var actual = this.Container.Resolve<AbstractThreshold>();
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
             actual.Should().BeOfType(expected);
@@ -113,7 +113,7 @@
             var actual = this.Container.Resolve<PartialThreshold>();
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
             actual.Should().BeOfType(expected);
@@ -146,7 +146,7 @@
             var abstractThreshold = this.Container.Resolve<AbstractThreshold>();
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
             concrete.Should().BeOfType(sut.Mockable.GetType());
