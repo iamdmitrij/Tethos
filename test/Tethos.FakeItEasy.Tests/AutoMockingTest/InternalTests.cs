@@ -19,7 +19,7 @@
             // Arrange
             var sut = this.Container.Resolve<InternalSystemUnderTest>();
             var mock = this.Container.Resolve<IMockable>();
-            A.CallTo(() => mock.Do()).Returns(expected);
+            A.CallTo(() => mock.Get()).Returns(expected);
 
             // Act
             var actual = sut.Exercise();

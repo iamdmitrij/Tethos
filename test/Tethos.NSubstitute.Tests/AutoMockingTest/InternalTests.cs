@@ -19,7 +19,7 @@
             // Arrange
             var sut = this.Container.Resolve<InternalSystemUnderTest>();
             this.Container.Resolve<IMockable>()
-                .Do()
+                .Get()
                 .Returns(expected);
 
             // Act

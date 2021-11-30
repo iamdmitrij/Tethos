@@ -19,7 +19,7 @@
             var sut = this.Container.Resolve<InternalSystemUnderTest>();
 
             this.Container.Resolve<Mock<IMockable>>()
-                .Setup(mock => mock.Do())
+                .Setup(mock => mock.Get())
                 .Returns(expected);
 
             // Act
