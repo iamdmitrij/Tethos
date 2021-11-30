@@ -1,11 +1,11 @@
-﻿namespace Tethos.FakeItEasy.Tests
+﻿namespace Tethos.NSubstitute.Tests.AutoMockingTest
 {
     using FluentAssertions;
     using Tethos.Extensions;
     using Tethos.Tests.Common;
     using Xunit;
 
-    public class IdempotencyTests : AutoMockingTest
+    public class IdempotencyTests : NSubstitute.AutoMockingTest
     {
         [Fact]
         [Trait("Category", "Integration")]

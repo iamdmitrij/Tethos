@@ -1,8 +1,8 @@
-﻿namespace Tethos.Moq.Tests
+﻿namespace Tethos.NSubstitute.Tests.AutoMockingTest
 {
     using AutoFixture.Xunit2;
-    using global::Moq;
-    using Tethos.Moq.Tests.SUT;
+    using global::NSubstitute;
+    using Tethos.NSubstitute.Tests.AutoMockingTest.SUT;
     using Xunit;
 
     public class InheritedAutoMockingTestTests
@@ -16,7 +16,7 @@
             sut.Dispose();
 
             // Assert
-            sut.Proxy.Verify(mock => mock.Dispose(), Times.Once);
+            sut.Container.Received().Dispose();
         }
 
         [Theory]
@@ -31,7 +31,7 @@
             sut.Dispose();
 
             // Assert
-            sut.Proxy.Verify(mock => mock.Dispose(), Times.Never);
+            sut.Proxy.DidNotReceive().Dispose();
         }
     }
 }
