@@ -8,6 +8,16 @@
     /// </summary>
     public class AutoMockingTest : BaseAutoMockingTest<AutoMockingContainer>
     {
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        public virtual AutoMockingConfiguration OnConfigurationCreated(AutoMockingConfiguration configuration)
+        {
+            return configuration;
+        }
+
         /// <inheritdoc />
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {

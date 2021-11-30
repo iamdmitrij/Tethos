@@ -6,6 +6,7 @@
     using Castle.MicroKernel.Registration;
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
+    using Tethos.Extensions;
     using Tethos.Extensions.Assembly;
 
     /// <summary>
@@ -34,6 +35,8 @@
         /// </summary>
         public T Container { get; internal set; }
 
+        public AutoMockingConfiguration AutoMockingConfiguration { get; internal set; }
+
         /// <summary>
         /// Gets or sets auto-mocking container.
         /// </summary>
@@ -44,7 +47,7 @@
             container.Register(
                 this.Assemblies.Select(assembly =>
                     Classes.FromAssembly(assembly)
-                        .IncludeNonPublicTypes()
+                        .IncludeNonPublicTypes(new AutoMockingConfiguration())
                         .Pick()
                         .WithServiceBase()
                         .WithServiceAllInterfaces()
