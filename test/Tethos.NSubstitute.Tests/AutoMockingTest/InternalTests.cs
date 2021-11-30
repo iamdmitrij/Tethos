@@ -1,15 +1,15 @@
-﻿namespace Tethos.FakeItEasy.Tests
+﻿namespace Tethos.NSubstitute.Tests.AutoMockingTest
 {
     using AutoFixture.Xunit2;
+    using Castle.DynamicProxy.Generators;
     using Castle.MicroKernel;
     using FluentAssertions;
-    using global::FakeItEasy;
-    using global::FakeItEasy.Core;
+    using global::NSubstitute;
     using Tethos.Extensions;
     using Tethos.Tests.Common;
     using Xunit;
 
-    public class InternalTests : AutoMockingTest
+    public class InternalTests : NSubstitute.AutoMockingTest
     {
         [Theory]
         [AutoData]
@@ -18,8 +18,9 @@
         {
             // Arrange
             var sut = this.Container.Resolve<InternalSystemUnderTest>();
-            var mock = this.Container.Resolve<IMockable>();
-            A.CallTo(() => mock.Do()).Returns(expected);
+            this.Container.Resolve<IMockable>()
+                .Do()
+                .Returns(expected);
 
             // Act
             var actual = sut.Do();
@@ -35,8 +36,9 @@
         {
             // Arrange
             var sut = this.Container.Resolve<SystemUnderTestWithInternal>();
-            var mock = this.Container.Resolve<IInternalMockable>();
-            A.CallTo(() => mock.Do()).Returns(expected);
+            this.Container.Resolve<IInternalMockable>()
+                .Do()
+                .Returns(expected);
 
             // Act
             var actual = sut.Do();
@@ -53,7 +55,7 @@
             var sut = () => this.Container.Resolve<InternalDependency.Tests.SystemUnderTest>();
 
             // Act & Assert
-            sut.Should().Throw<FakeCreationException>();
+            sut.Should().Throw<GeneratorException>();
         }
 
         [Fact]
@@ -64,7 +66,7 @@
             var sut = () => this.Container.ResolveFrom<InternalDependency.Tests.SystemUnderTest, InternalDependency.Tests.IMockable>();
 
             // Act & Assert
-            sut.Should().Throw<FakeCreationException>();
+            sut.Should().Throw<GeneratorException>();
         }
 
         [Fact]

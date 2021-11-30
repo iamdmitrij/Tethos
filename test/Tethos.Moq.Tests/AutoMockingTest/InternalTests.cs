@@ -1,15 +1,14 @@
-﻿namespace Tethos.NSubstitute.Tests
+﻿namespace Tethos.Moq.Tests.AutoMockingTest
 {
     using AutoFixture.Xunit2;
     using Castle.DynamicProxy.Generators;
-    using Castle.MicroKernel;
     using FluentAssertions;
-    using global::NSubstitute;
+    using global::Moq;
     using Tethos.Extensions;
     using Tethos.Tests.Common;
     using Xunit;
 
-    public class InternalTests : AutoMockingTest
+    public class InternalTests : Moq.AutoMockingTest
     {
         [Theory]
         [AutoData]
@@ -18,8 +17,9 @@
         {
             // Arrange
             var sut = this.Container.Resolve<InternalSystemUnderTest>();
-            this.Container.Resolve<IMockable>()
-                .Do()
+
+            this.Container.Resolve<Mock<IMockable>>()
+                .Setup(mock => mock.Do())
                 .Returns(expected);
 
             // Act
@@ -36,8 +36,9 @@
         {
             // Arrange
             var sut = this.Container.Resolve<SystemUnderTestWithInternal>();
-            this.Container.Resolve<IInternalMockable>()
-                .Do()
+
+            this.Container.Resolve<Mock<IInternalMockable>>()
+                .Setup(mock => mock.Do())
                 .Returns(expected);
 
             // Act
@@ -63,7 +64,7 @@
         public void ResolveFrom_LooseInternalDependency_ShouldThrowGeneratorException()
         {
             // Arrange
-            var sut = () => this.Container.ResolveFrom<InternalDependency.Tests.SystemUnderTest, InternalDependency.Tests.IMockable>();
+            var sut = () => this.Container.ResolveFrom<InternalDependency.Tests.SystemUnderTest, Mock<InternalDependency.Tests.IMockable>>();
 
             // Act & Assert
             sut.Should().Throw<GeneratorException>();
@@ -71,13 +72,13 @@
 
         [Fact]
         [Trait("Category", "Integration")]
-        public void Exercise_LooseInternalDependency_ShouldThrowComponentNotFoundException()
+        public void Exercise_LooseInternalDependency_ShouldMatch()
         {
-            // Arrange
-            var sut = () => this.Container.Resolve<InternalDependency.Tests.IMockable>();
+            // Act
+            var sut = this.Container.Resolve<Mock<InternalDependency.Tests.IMockable>>();
 
-            // Act & Assert
-            sut.Should().Throw<ComponentNotFoundException>();
+            // Assert
+            sut.Should().NotBeNull();
         }
     }
 }
