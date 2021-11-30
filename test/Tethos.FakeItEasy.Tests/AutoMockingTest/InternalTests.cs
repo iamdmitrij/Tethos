@@ -50,7 +50,7 @@
         public void Resolve_LooseInternalDependency_ShouldThrowGeneratorException()
         {
             // Arrange
-            var sut = () => this.Container.Resolve<InternalDependency.Tests.SystemUnderTest>();
+            var sut = () => this.Container.Resolve<Tethos.Tests.Common.WeakNamed.SystemUnderTest>();
 
             // Act & Assert
             sut.Should().Throw<FakeCreationException>();
@@ -61,7 +61,7 @@
         public void ResolveFrom_LooseInternalDependency_ShouldThrowGeneratorException()
         {
             // Arrange
-            var sut = () => this.Container.ResolveFrom<InternalDependency.Tests.SystemUnderTest, InternalDependency.Tests.IMockable>();
+            var sut = () => this.Container.ResolveFrom<Tethos.Tests.Common.WeakNamed.SystemUnderTest, Tethos.Tests.Common.WeakNamed.IMockable>();
 
             // Act & Assert
             sut.Should().Throw<FakeCreationException>();
@@ -72,7 +72,7 @@
         public void Exercise_LooseInternalDependency_ShouldThrowComponentNotFoundException()
         {
             // Arrange
-            var sut = () => this.Container.Resolve<InternalDependency.Tests.IMockable>();
+            var sut = () => this.Container.Resolve<Tethos.Tests.Common.WeakNamed.IMockable>();
 
             // Act & Assert
             sut.Should().Throw<ComponentNotFoundException>();
