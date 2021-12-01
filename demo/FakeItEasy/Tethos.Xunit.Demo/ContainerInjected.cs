@@ -8,12 +8,12 @@
 
     public class ContainerInjected : IDisposable
     {
-        public ContainerInjected(IAutoFakeItEasyContainer container)
+        public ContainerInjected(IAutoMockingContainer container)
         {
             this.Container = container;
         }
 
-        public IAutoFakeItEasyContainer Container { get; }
+        public IAutoMockingContainer Container { get; }
 
         [Fact]
         [Trait("", "Demo")]
