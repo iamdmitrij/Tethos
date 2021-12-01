@@ -3,6 +3,7 @@ name: 📮 NuGet
 on:
   workflow_run:
     workflows: ["🔄 CI"]
+    branches: ["v*.*.*"]
     types:
       - completed
 
