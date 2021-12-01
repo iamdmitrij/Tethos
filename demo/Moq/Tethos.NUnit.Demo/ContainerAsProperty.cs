@@ -9,10 +9,10 @@ namespace Tethos.NUnit.Demo
     {
         public ContainerAsProperty()
         {
-            this.Container = AutoMoqContainerFactory.Create();
+            this.Container = AutoMockingContainerFactory.Create();
         }
 
-        public IAutoMoqContainer Container { get; }
+        public IAutoMockingContainer Container { get; }
 
         [Test]
         [Category("Demo")]
