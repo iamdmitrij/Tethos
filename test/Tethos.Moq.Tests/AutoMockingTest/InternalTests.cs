@@ -50,7 +50,7 @@
 
         [Fact]
         [Trait("Category", "Integration")]
-        public void Resolve_LooseInternalDependency_ShouldThrowGeneratorException()
+        public void Resolve_WeakNamedAssembly_ShouldThrowGeneratorException()
         {
             // Arrange
             var sut = () => this.Container.Resolve<Tethos.Tests.Common.WeakNamed.SystemUnderTest>();
@@ -61,7 +61,7 @@
 
         [Fact]
         [Trait("Category", "Integration")]
-        public void ResolveFrom_LooseInternalDependency_ShouldThrowGeneratorException()
+        public void ResolveFrom_WeakNamedAssembly_ShouldThrowGeneratorException()
         {
             // Arrange
             var sut = () => this.Container.ResolveFrom<Tethos.Tests.Common.WeakNamed.SystemUnderTest, Mock<Tethos.Tests.Common.WeakNamed.IMockable>>();

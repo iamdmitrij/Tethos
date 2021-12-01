@@ -36,7 +36,7 @@
         [Theory]
         [AutoData]
         [Trait("Category", "Integration")]
-        public void Test_SimpleDependency_ShouldMatchValue(int expected)
+        public void SystemUnderTest_Exercise_ShouldMatch(int expected)
         {
             // Arrange
             var sut = this.Container.Resolve<SystemUnderTest>();

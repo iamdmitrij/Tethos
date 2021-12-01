@@ -26,7 +26,7 @@
         [Theory]
         [AutoData]
         [Trait("Category", "Unit")]
-        public void OverridesExistingRegistration_ShouldSetNameToGuid(ComponentRegistration sut)
+        public void OverridesExistingRegistration_ShouldHaveGuidInTheNamed(ComponentRegistration sut)
         {
             // Act
             var actual = sut.OverridesExistingRegistration();
