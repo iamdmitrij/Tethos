@@ -43,6 +43,7 @@
         {
             // Arrange
             var sut = this.Container.Resolve<SystemUnderTest>();
+            var action = () => this.Container.Resolve<SystemUnderTest>().Exercise();
 
             this.Container.Register(Component.For<SystemUnderTest>()
                 .OverridesExistingRegistration()
@@ -50,8 +51,6 @@
 
             // Act
             this.Clean();
-            var concrete = this.Container.Resolve<SystemUnderTest>();
-            Action action = () => concrete.Exercise();
             sut.Exercise();
 
             // Assert
