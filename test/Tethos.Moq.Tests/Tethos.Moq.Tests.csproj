@@ -33,6 +33,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Tethos.Moq\Tethos.Moq.csproj" />
+		<ProjectReference Include="..\Tethos.Tests.Common.WeakNamed\Tethos.Tests.Common.WeakNamed.csproj" />
 		<ProjectReference Include="..\Tethos.Tests.Common\Tethos.Tests.Common.csproj" />
 	</ItemGroup>
 
