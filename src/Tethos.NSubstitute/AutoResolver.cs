@@ -33,7 +33,7 @@
                 true => Array.Empty<object>(),
                 false => constructorArguments.Flatten(),
             };
-            var mock = Substitute.For(new Type[] { targetType }, arguments);
+            var mock = Substitute.For(new[] { targetType }, arguments);
 
             if (targetObject is not ICallRouterProvider)
             {
