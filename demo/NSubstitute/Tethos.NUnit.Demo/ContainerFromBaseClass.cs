@@ -22,7 +22,7 @@ namespace Tethos.NUnit.Demo
             var actual = sut.Exercise();
 
             // Assert
-            Assert.That(expected, Is.EqualTo(actual));
+            Assert.That(actual, Is.EqualTo(expected));
         }
     }
 }
