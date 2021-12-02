@@ -16,7 +16,7 @@
         public IAutoMockingContainer Container { get; }
 
         [Fact]
-        [Trait("", "Demo")]
+        [Trait("", "E2E")]
         public void Exercise_WithMock_ShouldReturn42()
         {
             // Arrange

@@ -8,7 +8,7 @@ namespace Tethos.Xunit.EndToEnd
     public class ContainerFromBaseClass : AutoMockingTest
     {
         [Fact]
-        [Trait("", "Demo")]
+        [Trait("", "E2E")]
         public void Exercise_WithMock_ShouldReturn42()
         {
             // Arrange

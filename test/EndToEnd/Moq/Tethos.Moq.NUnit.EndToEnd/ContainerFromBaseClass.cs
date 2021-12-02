@@ -8,7 +8,7 @@ namespace Tethos.NUnit.EndToEnd
     public class ContainerFromBaseClass : AutoMockingTest
     {
         [Test]
-        [Category("Demo")]
+        [Category("E2E")]
         public void Exercise_WithMock_ShouldReturn42()
         {
             // Arrange
