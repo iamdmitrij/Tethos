@@ -27,4 +27,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Tethos.NSubstitute\Tethos.NSubstitute.csproj" />
+    <ProjectReference Include="..\..\..\Tethos.Tests.Common\Tethos.Tests.Common.csproj" />
+  </ItemGroup>
+
 </Project>

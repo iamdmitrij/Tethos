@@ -26,4 +26,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Tethos.FakeItEasy\Tethos.FakeItEasy.csproj" />
+    <ProjectReference Include="..\..\..\Tethos.Tests.Common\Tethos.Tests.Common.csproj" />
+  </ItemGroup>
+
 </Project>
