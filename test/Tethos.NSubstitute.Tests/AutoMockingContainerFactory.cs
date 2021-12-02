@@ -11,7 +11,7 @@
         [Theory]
         [FactoryContainerData]
         [Trait("Category", "Integration")]
-        public void Create_SimpleDependency_ShouldMatchValue(
+        public void SystemUnderTest_Exercise_ShouldMatch(
             IAutoMockingContainer container,
             int expected)
         {

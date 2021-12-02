@@ -42,8 +42,8 @@
             var actual = sut.CanResolve(
                 resolver,
                 resolver,
-                new ComponentModel(),
-                new DependencyModel(key, type, false));
+                new(),
+                new(key, type, false));
 
             // Assert
             actual.Should().Be(expected);
@@ -67,8 +67,8 @@
             var actual = sut.Resolve(
                 resolver,
                 resolver,
-                new ComponentModel(),
-                new DependencyModel(key, type, false));
+                new(),
+                new(key, type, false));
 
             // Assert
             actual.Should().Equals(expected);
