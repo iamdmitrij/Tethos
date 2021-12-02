@@ -15,7 +15,7 @@
         [Theory]
         [AutoData]
         [Trait("Category", "Unit")]
-        public void AddDependencyTo_ShouldMatchArguments(Arguments sut, string name, int expected)
+        public void AddDependencyTo_ShouldMatch(Arguments sut, string name, int expected)
         {
             // Act
             var actual = sut.AddDependencyTo<string, int>(name, expected);
@@ -27,7 +27,7 @@
         [Theory]
         [AutoData]
         [Trait("Category", "Unit")]
-        public void AddDependencyTo_WithNullValue_ShouldBeBull(Arguments sut, string name)
+        public void AddDependencyTo_WithNullValue_ShouldBeNull(Arguments sut, string name)
         {
             // Arrange
             object expected = null;
@@ -57,7 +57,7 @@
         [Theory]
         [AutoData]
         [Trait("Category", "Unit")]
-        public void AddDependencyTo_UsingTypeParam_ShouldMatchArguments(Arguments sut, string name, int expected)
+        public void AddDependencyTo_UsingTypeParam_ShouldMatch(Arguments sut, string name, int expected)
         {
             // Act
             var actual = sut.AddDependencyTo(typeof(string), name, expected);
@@ -69,7 +69,7 @@
         [Theory]
         [AutoData]
         [Trait("Category", "Unit")]
-        public void AddDependencyTo_UsingTypeParam_WithNullValue_ShouldBeBull(Arguments sut, string name)
+        public void AddDependencyTo_UsingTypeParam_WithNullValue_ShouldBeNull(Arguments sut, string name)
         {
             // Arrange
             object expected = null;
@@ -134,7 +134,7 @@
         [Theory]
         [AutoData]
         [Trait("Category", "Unit")]
-        public void Flatten_ShouldReturnValueArray(Arguments sut)
+        public void Flatten_ShouldMatchArgumentsValueArray(Arguments sut)
         {
             // Arrange
             var expected = sut.Select(argument => argument.Value);

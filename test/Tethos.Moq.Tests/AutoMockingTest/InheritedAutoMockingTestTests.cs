@@ -10,7 +10,7 @@
         [Theory]
         [AutoData]
         [Trait("Category", "Unit")]
-        public void Dispose_ShouldDisposeMock(InheritedAutoMockingTest sut)
+        public void Dispose_ShouldDisposeContainer(InheritedAutoMockingTest sut)
         {
             // Act
             sut.Dispose();
@@ -22,7 +22,7 @@
         [Theory]
         [AutoData]
         [Trait("Category", "Unit")]
-        public void Dispose_NullContainer_ShouldNotDisposeMock(InheritedAutoMockingTest sut)
+        public void Dispose_NullContainer_ShouldNotDisposeContainer(InheritedAutoMockingTest sut)
         {
             // Arrange
             sut.Container = null;
