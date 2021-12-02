@@ -1,4 +1,4 @@
-﻿namespace Tethos.Xunit.EndToEnd
+﻿namespace Tethos.FakeItEasy.Xunit.EndToEnd
 {
     using Microsoft.Extensions.DependencyInjection;
     using Tethos.FakeItEasy;

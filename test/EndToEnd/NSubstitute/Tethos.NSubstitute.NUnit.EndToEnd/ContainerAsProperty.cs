@@ -1,4 +1,4 @@
-namespace Tethos.NUnit.EndToEnd
+namespace Tethos.NSubstitute.NUnit.EndToEnd
 {
     using global::NSubstitute;
     using global::NUnit.Framework;

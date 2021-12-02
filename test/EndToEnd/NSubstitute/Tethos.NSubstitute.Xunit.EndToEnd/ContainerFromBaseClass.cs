@@ -1,4 +1,4 @@
-namespace Tethos.Xunit.EndToEnd
+namespace Tethos.NSubstitute.Xunit.EndToEnd
 {
     using global::NSubstitute;
     using global::Xunit;

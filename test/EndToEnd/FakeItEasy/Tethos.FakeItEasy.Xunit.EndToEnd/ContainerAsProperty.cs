@@ -1,4 +1,4 @@
-﻿namespace Tethos.Xunit.EndToEnd
+﻿namespace Tethos.FakeItEasy.Xunit.EndToEnd
 {
     using System;
     using global::FakeItEasy;

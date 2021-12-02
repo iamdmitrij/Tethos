@@ -1,4 +1,4 @@
-namespace Tethos.MSTest.EndToEnd
+namespace Tethos.FakeItEasy.MSTest.EndToEnd
 {
     using global::FakeItEasy;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

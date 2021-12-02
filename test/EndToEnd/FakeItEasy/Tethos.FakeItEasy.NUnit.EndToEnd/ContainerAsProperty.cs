@@ -1,4 +1,4 @@
-namespace Tethos.NUnit.EndToEnd
+namespace Tethos.FakeItEasy.NUnit.EndToEnd
 {
     using global::FakeItEasy;
     using global::NUnit.Framework;

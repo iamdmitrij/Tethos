@@ -1,4 +1,4 @@
-﻿namespace Tethos.Xunit.EndToEnd
+﻿namespace Tethos.Moq.Xunit.EndToEnd
 {
     using Microsoft.Extensions.DependencyInjection;
     using Tethos.Moq;

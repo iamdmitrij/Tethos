@@ -1,4 +1,4 @@
-namespace Tethos.NUnit.EndToEnd
+namespace Tethos.Moq.NUnit.EndToEnd
 {
     using global::Moq;
     using global::NUnit.Framework;

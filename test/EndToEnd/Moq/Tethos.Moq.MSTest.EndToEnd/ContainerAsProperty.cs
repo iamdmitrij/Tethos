@@ -1,4 +1,4 @@
-namespace Tethos.MSTest.EndToEnd
+namespace Tethos.Moq.MSTest.EndToEnd
 {
     using global::Moq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

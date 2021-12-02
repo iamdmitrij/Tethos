@@ -1,4 +1,4 @@
-namespace Tethos.MSTest.EndToEnd
+namespace Tethos.NSubstitute.MSTest.EndToEnd
 {
     using global::NSubstitute;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
