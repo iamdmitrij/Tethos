@@ -1,4 +1,4 @@
-﻿namespace InternalDependency.Tests
+﻿namespace Tethos.Tests.Common.WeakNamed
 {
     internal class SystemUnderTest
     {

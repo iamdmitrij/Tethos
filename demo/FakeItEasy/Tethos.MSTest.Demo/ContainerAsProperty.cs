@@ -10,24 +10,24 @@ namespace Tethos.MSTest.Demo
     {
         public ContainerAsProperty()
         {
-            this.Container = AutoFakeItEasyContainerFactory.Create();
+            this.Container = AutoMockingContainerFactory.Create();
         }
 
-        public IAutoFakeItEasyContainer Container { get; }
+        public IAutoMockingContainer Container { get; }
 
         [TestMethod]
         [TestCategory("Demo")]
-        public void Do_WithMock_ShouldReturn42()
+        public void Exercise_WithMock_ShouldReturn42()
         {
             // Arrange
             var expected = 42;
             var sut = this.Container.Resolve<SystemUnderTest>();
             var mock = this.Container.Resolve<IMockable>();
 
-            A.CallTo(() => mock.Do()).Returns(expected);
+            A.CallTo(() => mock.Get()).Returns(expected);
 
             // Act
-            var actual = sut.Do();
+            var actual = sut.Exercise();
 
             // Assert
             Assert.AreEqual(actual, expected);

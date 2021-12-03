@@ -6,6 +6,6 @@
 
         public IMockable Mockable { get; }
 
-        public int Do() => this.Mockable.Do();
+        public int Exercise() => this.Mockable.Get();
     }
 }

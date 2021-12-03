@@ -9,27 +9,27 @@ namespace Tethos.NUnit.Demo
     {
         public ContainerAsProperty()
         {
-            this.Container = AutoNSubstituteContainerFactory.Create();
+            this.Container = AutoMockingContainerFactory.Create();
         }
 
-        public IAutoNSubstituteContainer Container { get; }
+        public IAutoMockingContainer Container { get; }
 
         [Test]
         [Category("Demo")]
-        public void Do_WithMock_ShouldReturn42()
+        public void Exercise_WithMock_ShouldReturn42()
         {
             // Arrange
             var expected = 42;
             var sut = this.Container.Resolve<SystemUnderTest>();
             var mock = this.Container.Resolve<IMockable>();
 
-            mock.Do().Returns(expected);
+            mock.Get().Returns(expected);
 
             // Act
-            var actual = sut.Do();
+            var actual = sut.Exercise();
 
             // Assert
-            Assert.AreEqual(actual, expected);
+            Assert.That(actual, Is.EqualTo(expected));
         }
     }
 }

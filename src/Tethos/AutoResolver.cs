@@ -48,7 +48,7 @@
             DependencyModel dependency)
         {
             static string GetType(object argument) => $"{argument}"
-                .Split(new string[] { "__" }, StringSplitOptions.None)
+                .Split(new[] { "__" }, StringSplitOptions.None)
                 .FirstOrDefault();
             var targetType = dependency.TargetType;
             var arguments = context.AdditionalArguments
