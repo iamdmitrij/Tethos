@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A7503D75-64C3-4AAC-90C8-F6297B09AB70}"
 EndProject
@@ -39,12 +39,17 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{D99B762A-D2FA-4094-8E91-65E096FB9145}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{8DDA643A-1839-4470-A593-5EE9507FB294}"
+	ProjectSection(SolutionItems) = preProject
+		.github\.codecov.yml = .github\.codecov.yml
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{A4A25CC2-61ED-47F0-B91C-9CB93D90D3CC}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\ci.yml = .github\workflows\ci.yml
 		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
 		.github\workflows\nuget.yml = .github\workflows\nuget.yml
+		.github\workflows\test-report.yml = .github\workflows\test-report.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{AF8AEBBB-412A-423A-8830-3190F48D959F}"
@@ -62,6 +67,17 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.NUnit.Demo", "demo\NSubstitute\Tethos.NUnit.Demo\Tethos.NUnit.Demo.csproj", "{C5FA32C9-46E9-4ACE-95CD-597B8151542A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.xUnit.Demo", "demo\NSubstitute\Tethos.xUnit.Demo\Tethos.xUnit.Demo.csproj", "{FD2DBE23-A8AC-4243-8C02-693ED36FB4FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{CB04DF8C-586D-4B41-87D9-7211A892953C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fake.Net60", "test\Fakes\Fake.Net60\Fake.Net60.csproj", "{CF8E6E9D-A448-48D1-9480-8972542FAFFF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReferencedAssemblies.Tests", "test\ReferencedAssemblies.Tests\ReferencedAssemblies.Tests.csproj", "{B56DFC95-EC50-4C21-984C-2B24EEAA57D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,6 +153,14 @@ Global
 		{FD2DBE23-A8AC-4243-8C02-693ED36FB4FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD2DBE23-A8AC-4243-8C02-693ED36FB4FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD2DBE23-A8AC-4243-8C02-693ED36FB4FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF8E6E9D-A448-48D1-9480-8972542FAFFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF8E6E9D-A448-48D1-9480-8972542FAFFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF8E6E9D-A448-48D1-9480-8972542FAFFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF8E6E9D-A448-48D1-9480-8972542FAFFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B56DFC95-EC50-4C21-984C-2B24EEAA57D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B56DFC95-EC50-4C21-984C-2B24EEAA57D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B56DFC95-EC50-4C21-984C-2B24EEAA57D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B56DFC95-EC50-4C21-984C-2B24EEAA57D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -159,6 +183,8 @@ Global
 		{1A338F36-D517-4F5E-94D9-CED79681953C} = {D99B762A-D2FA-4094-8E91-65E096FB9145}
 		{C5FA32C9-46E9-4ACE-95CD-597B8151542A} = {D99B762A-D2FA-4094-8E91-65E096FB9145}
 		{FD2DBE23-A8AC-4243-8C02-693ED36FB4FD} = {D99B762A-D2FA-4094-8E91-65E096FB9145}
+		{CF8E6E9D-A448-48D1-9480-8972542FAFFF} = {B7C534E1-2D8F-408D-9739-DE6CD4F0A731}
+		{B56DFC95-EC50-4C21-984C-2B24EEAA57D5} = {A7503D75-64C3-4AAC-90C8-F6297B09AB70}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF888DCC-71E7-4562-AA35-5B93FD8DD252}

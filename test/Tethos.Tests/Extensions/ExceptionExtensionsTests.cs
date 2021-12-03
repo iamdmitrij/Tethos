@@ -25,7 +25,7 @@
 
         [Fact]
         [Trait("Category", "Unit")]
-        public void SwallowExceptions_WhenTypeMatchExpected_ShouldReturnDefault()
+        public void SwallowExceptions_WhenTypeMatchExpected_ShouldMatchDefault()
         {
             // Arrange
             var expected = default(object);
@@ -81,7 +81,7 @@
         [InlineAutoData(true, typeof(NullReferenceException), typeof(NullReferenceException))]
         [InlineAutoData(true, typeof(NullReferenceException), typeof(ArgumentException))]
         [Trait("Category", "Unit")]
-        public void Throws_WhenTypesDoNotMatch_ShouldThrowSameException(bool expected, params Type[] type)
+        public void Throws_WhenTypesDoNotMatch_ShouldMatch(bool expected, params Type[] type)
         {
             // Arrange
             Func<object> sut = () => throw new NullReferenceException();

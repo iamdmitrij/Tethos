@@ -4,6 +4,6 @@
 
     public class Mockable : IMockable
     {
-        public int Do() => throw new NotImplementedException();
+        public int Get() => throw new NotImplementedException();
     }
 }

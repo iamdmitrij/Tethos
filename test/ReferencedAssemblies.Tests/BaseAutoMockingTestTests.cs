@@ -9,13 +9,13 @@ namespace ReferencedAssemblies.Tests
     {
         [Fact]
         [Trait("Category", "Integration")]
-        public void SystemUnderTest_Do_ShouldMatchValueRange()
+        public void SystemUnderTest_Exercise_ShouldMatchValueRange()
         {
             // Arrange
             var sut = this.Container.Resolve<SystemUnderTest>();
 
             // Act
-            var actual = sut.Do();
+            var actual = sut.Exercise();
 
             // Assert
             actual.Should().BeInRange(0, 10);

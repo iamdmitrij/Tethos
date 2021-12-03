@@ -1,59 +1,15 @@
-﻿namespace Tethos.Moq.Tests
+﻿namespace Tethos.Moq.Tests.AutoMockingTest
 {
-    using System;
     using AutoFixture.Xunit2;
     using Castle.MicroKernel;
-    using Castle.MicroKernel.Registration;
     using FluentAssertions;
     using global::Moq;
     using Tethos.Extensions;
-    using Tethos.Moq.Tests.Attributes;
     using Tethos.Tests.Common;
     using Xunit;
 
-    public class AutoMockingTestTests : AutoMockingTest
+    public class DependencyTests : Moq.AutoMockingTest
     {
-        [Fact]
-        [Trait("Category", "Integration")]
-        public void Container_ShouldHaveMockInstalled()
-        {
-            // Arrange
-            var expected = typeof(Mock<object>);
-
-            // Act
-            var actual = this.Container.Resolve(expected);
-
-            // Assert
-            actual.Should().BeOfType(expected);
-        }
-
-        [Fact]
-        [Trait("Category", "Integration")]
-        public void Container_ShouldHaveAutoResolverInstalled()
-        {
-            // Assert
-            this.AutoResolver.Should().BeOfType<AutoResolver>();
-        }
-
-        [Theory]
-        [AutoData]
-        [Trait("Category", "Integration")]
-        public void Test_SimpleDependency_ShouldMatchValue(int expected)
-        {
-            // Arrange
-            var sut = this.Container.Resolve<SystemUnderTest>();
-
-            this.Container.Resolve<Mock<IMockable>>()
-                .Setup(mock => mock.Do())
-                .Returns(expected);
-
-            // Act
-            var actual = sut.Do();
-
-            // Assert
-            actual.Should().Be(expected);
-        }
-
         [Fact]
         [Trait("Category", "Integration")]
         public void Container_Resolve_WithClassAndArguments_ShouldMockClass()
@@ -67,11 +23,11 @@
             var mock = this.Container.Resolve<Mock<Concrete>>();
 
             // Act
-            actual.Do();
+            actual.Exercise();
 
             // Assert
             mock.Should().BeOfType(expectedType);
-            mock.Verify(m => m.Do(), Times.Once);
+            mock.Verify(m => m.Get(), Times.Once);
         }
 
         [Theory]
@@ -92,7 +48,7 @@
             var thresholdMock = this.Container.Resolve<Mock<Threshold>>();
 
             // Act
-            actual.Do();
+            actual.Exercise();
 
             // Assert
             mock.Should().BeOfType(expectedType);
@@ -111,7 +67,7 @@
                     .AddDependencyTo<AbstractThreshold, bool>("enabled", value));
 
             // Act
-            actual.Do();
+            actual.Exercise();
 
             // Assert
             this.Container.Resolve<Mock<AbstractThreshold>>().Should().BeOfType(expected);
@@ -129,7 +85,7 @@
                     .AddDependencyTo<PartialThreshold, bool>("enabled", value));
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
             this.Container.Resolve<Mock<PartialThreshold>>().Should().BeOfType(expected);
@@ -151,69 +107,13 @@
                     .AddDependencyTo<AbstractThreshold, bool>("enabled", false));
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
             this.Container.Resolve<Mock<Concrete>>().Should().BeOfType(new Mock<Concrete>(100, 200).GetType()).GetType();
             this.Container.Resolve<Mock<Threshold>>().Should().BeOfType(new Mock<Threshold>(true).GetType()).GetType();
             this.Container.Resolve<Mock<PartialThreshold>>().Should().BeOfType(new Mock<PartialThreshold>(true).GetType()).GetType();
             this.Container.Resolve<Mock<AbstractThreshold>>().Should().BeOfType(new Mock<AbstractThreshold>(true).GetType()).GetType();
-        }
-
-        [Theory]
-        [AutoData]
-        [Trait("Category", "Integration")]
-        public void Clean_ShouldRevertBackToOriginalBehavior(Mockable mockable)
-        {
-            // Arrange
-            var sut = this.Container.Resolve<SystemUnderTest>();
-
-            this.Container.Register(Component.For<SystemUnderTest>()
-                .OverridesExistingRegistration()
-                .DependsOn(Dependency.OnValue<IMockable>(mockable)));
-
-            // Act
-            this.Clean();
-            var concrete = this.Container.Resolve<SystemUnderTest>();
-            Action action = () => concrete.Do();
-            sut.Do();
-
-            // Assert
-            action.Should().Throw<NotImplementedException>();
-        }
-
-        [Theory]
-        [AutoMoqData]
-        [Trait("Category", "Integration")]
-        public void Resolve_ProxyObject_ShouldBeMock(Mock<IMockable> mock)
-        {
-            // Arrange
-            var expected = mock.GetType();
-            _ = this.Container.Resolve<SystemUnderTest>();
-            var sut = this.Container.Resolve<IMockable>();
-
-            // Act
-            var actual = Mock.Get(sut);
-
-            // Assert
-            actual.Should().BeOfType(expected);
-        }
-
-        [Theory]
-        [AutoMoqData]
-        [Trait("Category", "Integration")]
-        public void Resolve_ProxyObject_ShouldBeMockObject(Mock<IMockable> mock)
-        {
-            // Arrange
-            var expected = mock.Object.GetType();
-            _ = this.Container.Resolve<SystemUnderTest>();
-            var sut = this.Container.Resolve<IMockable>();
-
-            // Act
-            var actual = Mock.Get(sut).Object;
-
-            // Assert
-            actual.Should().BeOfType(expected);
         }
     }
 }

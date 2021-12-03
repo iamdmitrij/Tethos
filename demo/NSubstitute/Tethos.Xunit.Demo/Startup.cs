@@ -9,7 +9,7 @@
         public void ConfigureServices(IServiceCollection services)
 #pragma warning restore CA1822 // Mark members as static
         {
-            services.AddScoped(_ => AutoNSubstituteContainerFactory.Create());
+            services.AddScoped(_ => AutoMockingContainerFactory.Create());
         }
     }
 }

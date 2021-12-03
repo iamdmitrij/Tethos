@@ -1,4 +1,4 @@
-﻿namespace Tethos.Moq.Tests
+﻿namespace Tethos.Moq.Tests.AutoMockingTest
 {
     using FluentAssertions;
     using global::Moq;
@@ -6,7 +6,7 @@
     using Tethos.Tests.Common;
     using Xunit;
 
-    public class IdempotencyTests : AutoMockingTest
+    public class IdempotencyTests : Moq.AutoMockingTest
     {
         [Fact]
         [Trait("Category", "Integration")]

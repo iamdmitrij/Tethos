@@ -1,42 +1,15 @@
-﻿namespace Tethos.FakeItEasy.Tests
+﻿namespace Tethos.FakeItEasy.Tests.AutoMockingTest
 {
-    using System;
     using AutoFixture.Xunit2;
     using Castle.MicroKernel;
-    using Castle.MicroKernel.Registration;
     using FluentAssertions;
     using global::FakeItEasy;
     using Tethos.Extensions;
     using Tethos.Tests.Common;
     using Xunit;
 
-    public class AutoMockingTestTests : AutoMockingTest
+    public class DependencyTests : FakeItEasy.AutoMockingTest
     {
-        [Fact]
-        [Trait("Category", "Integration")]
-        public void Container_ShouldHaveAutoResolverInstalled()
-        {
-            // Assert
-            this.AutoResolver.Should().BeOfType<AutoResolver>();
-        }
-
-        [Theory]
-        [AutoData]
-        [Trait("Category", "Integration")]
-        public void Test_SimpleDependency_ShouldMatchValue(int expected)
-        {
-            // Arrange
-            var sut = this.Container.Resolve<SystemUnderTest>();
-            var mock = this.Container.Resolve<IMockable>();
-            A.CallTo(() => mock.Do()).Returns(expected);
-
-            // Act
-            var actual = sut.Do();
-
-            // Assert
-            actual.Should().Be(expected);
-        }
-
         [Fact]
         [Trait("Category", "Integration")]
         public void Container_Resolve_WithClass_ShouldMockClass()
@@ -47,11 +20,11 @@
             var actual = this.Container.Resolve<Concrete>();
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
             actual.Should().BeOfType(expected);
-            A.CallTo(() => actual.Do()).MustHaveHappened();
+            A.CallTo(() => actual.Get()).MustHaveHappened();
         }
 
         [Theory]
@@ -68,10 +41,10 @@
             var actual = this.Container.Resolve<Concrete>();
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
-            A.CallTo(() => actual.Do()).MustHaveHappened();
+            A.CallTo(() => actual.Get()).MustHaveHappened();
             actual.MinValue.Should().Be(minValue);
             actual.MaxValue.Should().Be(maxValue);
             actual.Should().BeOfType(expected);
@@ -97,7 +70,7 @@
             var thresholdMock = this.Container.Resolve<Threshold>();
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
             mock.Should().BeOfType(expectedType);
@@ -120,7 +93,7 @@
             var actual = this.Container.Resolve<AbstractThreshold>();
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
             actual.Should().BeOfType(expected);
@@ -140,7 +113,7 @@
             var actual = this.Container.Resolve<PartialThreshold>();
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
             actual.Should().BeOfType(expected);
@@ -173,7 +146,7 @@
             var abstractThreshold = this.Container.Resolve<AbstractThreshold>();
 
             // Act
-            sut.Do();
+            sut.Exercise();
 
             // Assert
             concrete.Should().BeOfType(sut.Mockable.GetType());
@@ -186,28 +159,6 @@
             threshold.Enalbed.Should().Be(thresholdEnabled);
             partialThreshold.Enalbed.Should().Be(partialThresholdEnabled);
             abstractThreshold.Enalbed.Should().Be(abstractThresholdEnabled);
-        }
-
-        [Theory]
-        [AutoData]
-        [Trait("Category", "Integration")]
-        public void Clean_ShouldRevertBackToOriginalBehavior(Mockable mockable)
-        {
-            // Arrange
-            var sut = this.Container.Resolve<SystemUnderTest>();
-
-            this.Container.Register(Component.For<SystemUnderTest>()
-                .OverridesExistingRegistration()
-                .DependsOn(Dependency.OnValue<IMockable>(mockable)));
-
-            // Act
-            this.Clean();
-            var concrete = this.Container.Resolve<SystemUnderTest>();
-            Action action = () => concrete.Do();
-            sut.Do();
-
-            // Assert
-            action.Should().Throw<NotImplementedException>();
         }
     }
 }

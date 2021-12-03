@@ -11,17 +11,17 @@
         [Theory]
         [FactoryContainerData]
         [Trait("Category", "Integration")]
-        public void Create_SimpleDependency_ShouldMatchValue(
+        public void SystemUnderTest_Exercise_ShouldMatch(
             IAutoMockingContainer container,
             int expected)
         {
             // Arrange
             var sut = container.Resolve<SystemUnderTest>();
             var mock = container.Resolve<IMockable>();
-            A.CallTo(() => mock.Do()).Returns(expected);
+            A.CallTo(() => mock.Get()).Returns(expected);
 
             // Act
-            var actual = sut.Do();
+            var actual = sut.Exercise();
 
             // Assert
             actual.Should().Be(expected);
