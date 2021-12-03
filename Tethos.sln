@@ -107,7 +107,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.Xunit.Demo", "demo\N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.Tests.Common.WeakNamed", "test\Tethos.Tests.Common.WeakNamed\Tethos.Tests.Common.WeakNamed.csproj", "{FF2FB364-07E7-479F-9E21-BCAF6D675619}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "E2E", "E2E", "{4BF89BA3-A0B5-4B41-BAFD-A314192C196E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndToEnd", "EndToEnd", "{4BF89BA3-A0B5-4B41-BAFD-A314192C196E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Moq", "Moq", "{35A3B23B-575C-42A8-97DC-6130C4E50A97}"
 EndProject
@@ -119,19 +119,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.FakeItEasy.Xunit.End
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.Moq.Xunit.EndToEnd", "test\EndToEnd\Moq\Tethos.Moq.Xunit.EndToEnd\Tethos.Moq.Xunit.EndToEnd.csproj", "{235DF46D-51AB-4E14-B1AE-38E2BAE8E4CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tethos.NSubstitute.Xunit.EndToEnd", "test\EndToEnd\NSubstitute\Tethos.NSubstitute.Xunit.EndToEnd\Tethos.NSubstitute.Xunit.EndToEnd.csproj", "{1AE2CF85-6686-4385-82EC-094ABF21F4B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.NSubstitute.Xunit.EndToEnd", "test\EndToEnd\NSubstitute\Tethos.NSubstitute.Xunit.EndToEnd\Tethos.NSubstitute.Xunit.EndToEnd.csproj", "{1AE2CF85-6686-4385-82EC-094ABF21F4B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tethos.FakeItEasy.NUnit.EndToEnd", "test\EndToEnd\FakeItEasy\Tethos.FakeItEasy.NUnit.EndToEnd\Tethos.FakeItEasy.NUnit.EndToEnd.csproj", "{925F2C8C-EDC4-4E19-B666-C494939313AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.FakeItEasy.NUnit.EndToEnd", "test\EndToEnd\FakeItEasy\Tethos.FakeItEasy.NUnit.EndToEnd\Tethos.FakeItEasy.NUnit.EndToEnd.csproj", "{925F2C8C-EDC4-4E19-B666-C494939313AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tethos.Moq.NUnit.EndToEnd", "test\EndToEnd\Moq\Tethos.Moq.NUnit.EndToEnd\Tethos.Moq.NUnit.EndToEnd.csproj", "{72E89CCE-AB01-482F-8F62-071008D9AA21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.Moq.NUnit.EndToEnd", "test\EndToEnd\Moq\Tethos.Moq.NUnit.EndToEnd\Tethos.Moq.NUnit.EndToEnd.csproj", "{72E89CCE-AB01-482F-8F62-071008D9AA21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tethos.NSubstitute.NUnit.EndToEnd", "test\EndToEnd\NSubstitute\Tethos.NSubstitute.NUnit.EndToEnd\Tethos.NSubstitute.NUnit.EndToEnd.csproj", "{9E4897F0-A1BC-4759-8AAE-9007302F84A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.NSubstitute.NUnit.EndToEnd", "test\EndToEnd\NSubstitute\Tethos.NSubstitute.NUnit.EndToEnd\Tethos.NSubstitute.NUnit.EndToEnd.csproj", "{9E4897F0-A1BC-4759-8AAE-9007302F84A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tethos.FakeItEasy.MSTest.EndToEnd", "test\EndToEnd\FakeItEasy\Tethos.FakeItEasy.MSTest.EndToEnd\Tethos.FakeItEasy.MSTest.EndToEnd.csproj", "{B8145CC8-CE67-49D0-A535-7DDED68CFBD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.FakeItEasy.MSTest.EndToEnd", "test\EndToEnd\FakeItEasy\Tethos.FakeItEasy.MSTest.EndToEnd\Tethos.FakeItEasy.MSTest.EndToEnd.csproj", "{B8145CC8-CE67-49D0-A535-7DDED68CFBD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tethos.Moq.MSTest.EndToEnd", "test\EndToEnd\Moq\Tethos.Moq.MSTest.EndToEnd\Tethos.Moq.MSTest.EndToEnd.csproj", "{446D0392-D776-413E-AE79-D5E0BAEB41F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.Moq.MSTest.EndToEnd", "test\EndToEnd\Moq\Tethos.Moq.MSTest.EndToEnd\Tethos.Moq.MSTest.EndToEnd.csproj", "{446D0392-D776-413E-AE79-D5E0BAEB41F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tethos.NSubstitute.MSTest.EndToEnd", "test\EndToEnd\NSubstitute\Tethos.NSubstitute.MSTest.EndToEnd\Tethos.NSubstitute.MSTest.EndToEnd.csproj", "{5105B798-9A3C-4039-B2FE-3E39CE553E27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.NSubstitute.MSTest.EndToEnd", "test\EndToEnd\NSubstitute\Tethos.NSubstitute.MSTest.EndToEnd\Tethos.NSubstitute.MSTest.EndToEnd.csproj", "{5105B798-9A3C-4039-B2FE-3E39CE553E27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
