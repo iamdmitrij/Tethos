@@ -79,6 +79,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fake.Net60", "test\Fakes\Fa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReferencedAssemblies.Tests", "test\ReferencedAssemblies.Tests\ReferencedAssemblies.Tests.csproj", "{B56DFC95-EC50-4C21-984C-2B24EEAA57D5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndToEnd", "EndToEnd", "{0F9981AF-90EF-4656-9636-EA098548A942}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.NSubstitute.MSTest.EndToEnd", "test\EndToEnd\NSubstitute\Tethos.NSubstitute.MSTest.EndToEnd\Tethos.NSubstitute.MSTest.EndToEnd.csproj", "{580E9CE2-1437-4E60-BC0B-5523206A896A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.NSubstitute.NUnit.EndToEnd", "test\EndToEnd\NSubstitute\Tethos.NSubstitute.NUnit.EndToEnd\Tethos.NSubstitute.NUnit.EndToEnd.csproj", "{82286E75-CC8D-46B9-ADEF-48639B136C39}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.NSubstitute.Xunit.EndToEnd", "test\EndToEnd\NSubstitute\Tethos.NSubstitute.Xunit.EndToEnd\Tethos.NSubstitute.Xunit.EndToEnd.csproj", "{CE82140D-4A68-4C21-9CF9-E1247642FB4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -161,6 +169,18 @@ Global
 		{B56DFC95-EC50-4C21-984C-2B24EEAA57D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B56DFC95-EC50-4C21-984C-2B24EEAA57D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B56DFC95-EC50-4C21-984C-2B24EEAA57D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{580E9CE2-1437-4E60-BC0B-5523206A896A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{580E9CE2-1437-4E60-BC0B-5523206A896A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{580E9CE2-1437-4E60-BC0B-5523206A896A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{580E9CE2-1437-4E60-BC0B-5523206A896A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82286E75-CC8D-46B9-ADEF-48639B136C39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82286E75-CC8D-46B9-ADEF-48639B136C39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82286E75-CC8D-46B9-ADEF-48639B136C39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82286E75-CC8D-46B9-ADEF-48639B136C39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE82140D-4A68-4C21-9CF9-E1247642FB4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE82140D-4A68-4C21-9CF9-E1247642FB4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE82140D-4A68-4C21-9CF9-E1247642FB4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE82140D-4A68-4C21-9CF9-E1247642FB4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -185,6 +205,10 @@ Global
 		{FD2DBE23-A8AC-4243-8C02-693ED36FB4FD} = {D99B762A-D2FA-4094-8E91-65E096FB9145}
 		{CF8E6E9D-A448-48D1-9480-8972542FAFFF} = {B7C534E1-2D8F-408D-9739-DE6CD4F0A731}
 		{B56DFC95-EC50-4C21-984C-2B24EEAA57D5} = {A7503D75-64C3-4AAC-90C8-F6297B09AB70}
+		{0F9981AF-90EF-4656-9636-EA098548A942} = {A7503D75-64C3-4AAC-90C8-F6297B09AB70}
+		{580E9CE2-1437-4E60-BC0B-5523206A896A} = {0F9981AF-90EF-4656-9636-EA098548A942}
+		{82286E75-CC8D-46B9-ADEF-48639B136C39} = {0F9981AF-90EF-4656-9636-EA098548A942}
+		{CE82140D-4A68-4C21-9CF9-E1247642FB4D} = {0F9981AF-90EF-4656-9636-EA098548A942}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF888DCC-71E7-4562-AA35-5B93FD8DD252}
