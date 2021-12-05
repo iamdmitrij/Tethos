@@ -23,6 +23,7 @@
         {
             this.Assemblies = Assembly.GetAssembly(this.GetType()).GetDependencies();
             this.Container = (T)new T().Install(this);
+            this.AutoMockingConfiguration = this.OnConfigurationCreated(new AutoMockingConfiguration());
         }
 
         /// <summary>
@@ -35,7 +36,7 @@
         /// </summary>
         public T Container { get; internal set; }
 
-        public AutoMockingConfiguration AutoMockingConfiguration { get; internal set; }
+        public virtual AutoMockingConfiguration AutoMockingConfiguration { get; private set; }
 
         /// <summary>
         /// Gets or sets auto-mocking container.
@@ -54,6 +55,13 @@
                         .WithServiceSelf()
                         .LifestyleTransient())
                 .ToArray());
+
+        /// <summary>
+        /// Method which lets user to configure <see cref="AutoMockingConfiguration"/>.
+        /// </summary>
+        /// <param name="configuration">Container configuration.</param>
+        /// <returns>Final auto-mocking contrainer configuration.</returns>
+        public virtual AutoMockingConfiguration OnConfigurationCreated(AutoMockingConfiguration configuration) => configuration;
 
         /// <summary>
         /// Releases automocking resolver from <see cref="WindsorContainer"/>.

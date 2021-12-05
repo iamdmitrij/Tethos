@@ -11,7 +11,7 @@
 
     public class InternalTests : FakeItEasy.AutoMockingTest
     {
-        public AutoMockingConfiguration Configuration { get; set; } = new AutoMockingConfiguration { IncludeNonPublicTypes = true };
+        public override AutoMockingConfiguration AutoMockingConfiguration => new() { IncludeNonPublicTypes = true };
 
         [Theory]
         [AutoData]
