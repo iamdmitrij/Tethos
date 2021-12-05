@@ -23,7 +23,7 @@
         {
             this.Assemblies = Assembly.GetAssembly(this.GetType()).GetDependencies();
             this.Container = (T)new T().Install(this);
-            this.AutoMockingConfiguration = this.OnConfigurationCreated(new AutoMockingConfiguration());
+            this.AutoMockingConfiguration = this.OnConfigurationCreated(new());
         }
 
         /// <summary>
