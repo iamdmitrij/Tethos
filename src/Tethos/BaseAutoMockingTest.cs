@@ -36,7 +36,7 @@
         /// </summary>
         public T Container { get; internal set; }
 
-        public virtual AutoMockingConfiguration AutoMockingConfiguration { get; private set; }
+        public virtual AutoMockingConfiguration AutoMockingConfiguration { get; }
 
         /// <summary>
         /// Gets or sets auto-mocking container.
