@@ -16,7 +16,7 @@
         public void Container_ShouldHaveAutoResolverInstalled()
         {
             // Assert
-            this.AutoResolver.Should().BeOfType<AutoResolver>();
+            this.AutoResolver.Should().BeOfType<BaseAutoResolver>();
         }
 
         [Theory]

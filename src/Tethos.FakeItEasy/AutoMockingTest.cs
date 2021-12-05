@@ -11,7 +11,7 @@
         /// <inheritdoc />
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            this.AutoResolver = new AutoResolver(container.Kernel);
+            this.AutoResolver = new BaseAutoResolver(container.Kernel);
 
             container.Kernel.Resolver.AddSubResolver(
                 this.AutoResolver);

@@ -38,7 +38,7 @@
             string key)
         {
             // Arrange
-            var sut = new AutoResolver(kernel);
+            var sut = new BaseAutoResolver(kernel);
 
             // Act
             var actual = sut.CanResolve(
@@ -58,7 +58,7 @@
         {
             // Arrange
             var expected = mockable.GetType();
-            var sut = new AutoResolver(kernel);
+            var sut = new BaseAutoResolver(kernel);
             var type = typeof(IMockable);
 
             // Act
@@ -76,7 +76,7 @@
         {
             // Arrange
             var expected = mockable.GetType();
-            var sut = new AutoResolver(kernel);
+            var sut = new BaseAutoResolver(kernel);
             var type = typeof(IMockable);
 
             // Act
