@@ -23,7 +23,6 @@
         {
             this.Assemblies = Assembly.GetAssembly(this.GetType()).GetDependencies();
             this.Container = (T)new T().Install(this);
-            this.AutoMockingConfiguration = this.OnConfigurationCreated(new());
         }
 
         /// <summary>
@@ -36,7 +35,7 @@
         /// </summary>
         public T Container { get; internal set; }
 
-        public virtual AutoMockingConfiguration AutoMockingConfiguration { get; }
+        public virtual AutoMockingConfiguration AutoMockingConfiguration => this.OnConfigurationCreated(new());
 
         /// <summary>
         /// Gets or sets auto-mocking container.
