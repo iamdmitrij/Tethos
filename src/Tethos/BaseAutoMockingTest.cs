@@ -47,7 +47,7 @@
             container.Register(
                 this.Assemblies.Select(assembly =>
                     Classes.FromAssembly(assembly)
-                        .IncludeNonPublicTypes(AutoMockingConfiguration)
+                        .IncludeNonPublicTypes(this.AutoMockingConfiguration)
                         .Pick()
                         .WithServiceBase()
                         .WithServiceAllInterfaces()
