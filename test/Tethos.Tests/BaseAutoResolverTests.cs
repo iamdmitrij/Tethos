@@ -13,7 +13,7 @@
     using Tethos.Tests.SUT;
     using Xunit;
 
-    public class AutoResolverTests
+    public class BaseAutoResolverTests
     {
         [Theory]
         [InlineAutoMoqData(typeof(IList), true)]
@@ -21,7 +21,7 @@
         [InlineAutoMoqData(typeof(Array), false)]
         [InlineAutoMoqData(typeof(Enumerable), false)]
         [InlineAutoMoqData(typeof(Type), false)]
-        [InlineAutoMoqData(typeof(AutoResolver), false)]
+        [InlineAutoMoqData(typeof(BaseAutoResolver), false)]
         [InlineAutoMoqData(typeof(TimeoutException), false)]
         [InlineAutoMoqData(typeof(Guid), false)]
         [InlineAutoMoqData(typeof(Task<>), false)]

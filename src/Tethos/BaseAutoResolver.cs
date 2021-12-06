@@ -11,13 +11,13 @@
     /// <summary>
     /// Auto mocking resolver abstraction.
     /// </summary>
-    internal abstract class AutoResolver : ISubDependencyResolver
+    internal abstract class BaseAutoResolver : ISubDependencyResolver
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AutoResolver"/> class.
+        /// Initializes a new instance of the <see cref="BaseAutoResolver"/> class.
         /// </summary>
         /// <param name="kernel">Reference to Castle Container.</param>
-        protected AutoResolver(IKernel kernel) => this.Kernel = kernel;
+        protected BaseAutoResolver(IKernel kernel) => this.Kernel = kernel;
 
         /// <summary>
         /// Gets <see cref="Castle.Windsor"/> kernel dependency.
