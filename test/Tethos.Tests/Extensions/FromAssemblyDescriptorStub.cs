@@ -6,7 +6,7 @@
     public class FromAssemblyDescriptorStub : FromAssemblyDescriptor
     {
         public FromAssemblyDescriptorStub()
-            : base(new AssemblyStub(), null)
+            : base(new AssemblyStub(), _ => true)
         {
         }
 
