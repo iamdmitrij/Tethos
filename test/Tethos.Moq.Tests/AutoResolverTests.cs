@@ -21,7 +21,7 @@
         [InlineAutoMoqData(typeof(Array), 5, true)]
         [InlineAutoMoqData(typeof(Enumerable), 15, true)]
         [InlineAutoMoqData(typeof(Type), 4, true)]
-        [InlineAutoMoqData(typeof(Tethos.AutoResolver), 8, true)]
+        [InlineAutoMoqData(typeof(BaseAutoResolver), 8, true)]
         [InlineAutoMoqData(typeof(TimeoutException), 10, true)]
         [InlineAutoMoqData(typeof(Guid), 2, false)]
         [InlineAutoMoqData(typeof(Task<>), 4, true)]

@@ -40,7 +40,7 @@
         /// <summary>
         /// Gets or sets auto-mocking container.
         /// </summary>
-        internal AutoResolver AutoResolver { get; set; }
+        internal BaseAutoResolver AutoResolver { get; set; }
 
         /// <inheritdoc />
         public virtual void Install(IWindsorContainer container, IConfigurationStore store) =>

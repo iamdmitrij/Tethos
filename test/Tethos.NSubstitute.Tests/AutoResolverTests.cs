@@ -22,7 +22,7 @@
         [InlineAutoNSubstituteData(typeof(Array), true)]
         [InlineAutoNSubstituteData(typeof(Enumerable), true)]
         [InlineAutoNSubstituteData(typeof(Type), true)]
-        [InlineAutoNSubstituteData(typeof(Tethos.AutoResolver), true)]
+        [InlineAutoNSubstituteData(typeof(BaseAutoResolver), true)]
         [InlineAutoNSubstituteData(typeof(TimeoutException), true)]
         [InlineAutoNSubstituteData(typeof(Guid), false)]
         [InlineAutoNSubstituteData(typeof(Task<>), true)]

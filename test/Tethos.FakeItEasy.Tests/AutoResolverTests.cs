@@ -22,7 +22,7 @@
         [InlineAutoFakeItEasyData(typeof(Array), true)]
         [InlineAutoFakeItEasyData(typeof(Enumerable), true)]
         [InlineAutoFakeItEasyData(typeof(Type), true)]
-        [InlineAutoFakeItEasyData(typeof(Tethos.AutoResolver), true)]
+        [InlineAutoFakeItEasyData(typeof(BaseAutoResolver), true)]
         [InlineAutoFakeItEasyData(typeof(TimeoutException), true)]
         [InlineAutoFakeItEasyData(typeof(Guid), false)]
         [InlineAutoFakeItEasyData(typeof(Task<>), true)]
