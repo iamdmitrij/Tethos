@@ -25,33 +25,35 @@
         [Theory]
         [AutoMoqData]
         [Trait("Category", "Unit")]
-        public void IncludeNonPublicTypes_ExcludeNonPublicTypes_ShouldBeFalse(FromAssemblyDescriptorStub expected, AutoMockingConfiguration configuration)
+        public void IncludeNonPublicTypes_ExcludeNonPublicTypes_ShouldBeFalse(FromAssemblyDescriptorStub descriptor, AutoMockingConfiguration configuration)
         {
             // Arrange
-            configuration.IncludeNonPublicTypes = false;
+            var expected = false;
+            configuration.IncludeNonPublicTypes = expected;
 
             // Act
-            var actual = expected.IncludeNonPublicTypes(configuration) as FromAssemblyDescriptorStub;
+            var actual = descriptor.IncludeNonPublicTypes(configuration) as FromAssemblyDescriptorStub;
 
             // Assert
-            actual.Should().Be(expected);
-            actual.IncludesNonPublicTypes.Should().BeFalse();
+            actual.Should().Be(descriptor);
+            actual.IncludesNonPublicTypes.Should().Be(expected);
         }
 
         [Theory]
         [AutoMoqData]
         [Trait("Category", "Unit")]
-        public void IncludeNonPublicTypes_WithIncludeNonPublicTypes_ShouldBeTrue(FromAssemblyDescriptorStub expected, AutoMockingConfiguration configuration)
+        public void IncludeNonPublicTypes_WithIncludeNonPublicTypes_ShouldBeTrue(FromAssemblyDescriptorStub descriptor, AutoMockingConfiguration configuration)
         {
             // Arrange
-            configuration.IncludeNonPublicTypes = true;
+            var expected = true;
+            configuration.IncludeNonPublicTypes = expected;
 
             // Act
-            var actual = expected.IncludeNonPublicTypes(configuration) as FromAssemblyDescriptorStub;
+            var actual = descriptor.IncludeNonPublicTypes(configuration) as FromAssemblyDescriptorStub;
 
             // Assert
-            actual.Should().Be(expected);
-            actual.IncludesNonPublicTypes.Should().BeTrue();
+            actual.Should().Be(descriptor);
+            actual.IncludesNonPublicTypes.Should().Be(expected);
         }
 
         [Fact]
