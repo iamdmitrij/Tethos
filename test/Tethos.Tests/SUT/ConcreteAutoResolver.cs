@@ -4,7 +4,7 @@
     using Castle.MicroKernel;
     using Moq;
 
-    internal class ConcreteAutoResolver : AutoResolver
+    internal class ConcreteAutoResolver : BaseAutoResolver
     {
         public ConcreteAutoResolver(IKernel kernel)
             : base(kernel)
