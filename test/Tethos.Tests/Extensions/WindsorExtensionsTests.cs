@@ -35,7 +35,6 @@
             var actual = descriptor.IncludeNonPublicTypes(configuration) as FromAssemblyDescriptorStub;
 
             // Assert
-            actual.Should().Be(descriptor);
             actual.IncludesNonPublicTypes.Should().Be(expected);
         }
 
@@ -52,7 +51,6 @@
             var actual = descriptor.IncludeNonPublicTypes(configuration) as FromAssemblyDescriptorStub;
 
             // Assert
-            actual.Should().Be(descriptor);
             actual.IncludesNonPublicTypes.Should().Be(expected);
         }
 
