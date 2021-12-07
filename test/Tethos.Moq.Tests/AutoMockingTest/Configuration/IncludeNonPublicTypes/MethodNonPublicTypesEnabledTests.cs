@@ -17,7 +17,7 @@
         [Theory]
         [AutoData]
         [Trait("Category", "Integration")]
-        public void Resolve_WithIncludeNonPublicTypesEnable_ShouldMatch(int expected)
+        public void Resolve_WithIncludeNonPublicTypesEnabled_ShouldMatch(int expected)
         {
             // Arrange
             var sut = this.Container.Resolve<InternalSystemUnderTest>();
