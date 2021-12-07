@@ -6,6 +6,7 @@
     using Castle.MicroKernel.Registration;
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
+    using Tethos.Extensions;
     using Tethos.Extensions.Assembly;
 
     /// <summary>
@@ -34,6 +35,8 @@
         /// </summary>
         public T Container { get; internal set; }
 
+        public virtual AutoMockingConfiguration AutoMockingConfiguration => this.OnConfigurationCreated(new());
+
         /// <summary>
         /// Gets or sets auto-mocking container.
         /// </summary>
@@ -44,13 +47,20 @@
             container.Register(
                 this.Assemblies.Select(assembly =>
                     Classes.FromAssembly(assembly)
-                        .IncludeNonPublicTypes()
+                        .IncludeNonPublicTypes(this.AutoMockingConfiguration)
                         .Pick()
                         .WithServiceBase()
                         .WithServiceAllInterfaces()
                         .WithServiceSelf()
                         .LifestyleTransient())
                 .ToArray());
+
+        /// <summary>
+        /// Method which lets user to configure <see cref="AutoMockingConfiguration"/>.
+        /// </summary>
+        /// <param name="configuration">Container configuration.</param>
+        /// <returns>Final auto-mocking contrainer configuration.</returns>
+        public virtual AutoMockingConfiguration OnConfigurationCreated(AutoMockingConfiguration configuration) => configuration;
 
         /// <summary>
         /// Releases automocking resolver from <see cref="WindsorContainer"/>.

@@ -4,7 +4,6 @@
     using System.Collections;
     using System.Linq;
     using System.Threading.Tasks;
-    using Castle.Core;
     using Castle.MicroKernel;
     using Castle.MicroKernel.Context;
     using FluentAssertions;

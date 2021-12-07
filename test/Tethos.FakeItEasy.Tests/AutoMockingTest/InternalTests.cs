@@ -11,6 +11,8 @@
 
     public class InternalTests : FakeItEasy.AutoMockingTest
     {
+        public override AutoMockingConfiguration AutoMockingConfiguration => new() { IncludeNonPublicTypes = true };
+
         [Theory]
         [AutoData]
         [Trait("Category", "Integration")]
