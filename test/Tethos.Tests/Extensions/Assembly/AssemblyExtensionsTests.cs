@@ -31,7 +31,7 @@
         [ClassData(typeof(AssemblyTheoryData))]
         [Trait("Category", "Unit")]
         public void GetDependencies_UsingLocalDependencies_ShouldMatchLoaddingAssemblyCount(
-            string assemblyName, IEnumerable<string> expectedAssemblyName)
+            string assemblyName, IEnumerable<string> expected)
         {
             // Arrange
             var assembly = Assembly.LoadFrom(assemblyName);
@@ -40,7 +40,7 @@
             var actual = assembly.GetDependencies().Select(dependency => dependency.GetName().Name);
 
             // Assert
-            actual.Should().BeEquivalentTo(expectedAssemblyName);
+            actual.Should().BeEquivalentTo(expected);
         }
 
         [Fact]
