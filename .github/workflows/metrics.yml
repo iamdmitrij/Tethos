@@ -1,0 +1,19 @@
+name: 🏆 Metrics
+on:
+  pull_request:
+    branches: main
+  push:
+    branches: main
+  schedule:
+    - cron: "0 5 * * *"
+jobs:
+  collect_profile_metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: lowlighter/metrics@latest
+        with:
+          plugin_introduction: yes
+          plugin_introduction_title: no
+          filename: .github/metrics.svg
+          token: ${{ secrets.METRICS_TOKEN }}
