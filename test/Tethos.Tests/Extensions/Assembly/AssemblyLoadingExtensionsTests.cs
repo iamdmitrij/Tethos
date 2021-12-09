@@ -62,14 +62,14 @@
         public void TryToLoadAssembly_UsingAssemblyName_ShouldLoadAssembly()
         {
             // Arrange
-            var assembly = Assembly.GetExecutingAssembly();
-            var assemblyName = assembly.GetName();
+            var expected = Assembly.GetExecutingAssembly();
+            var assemblyName = expected.GetName();
 
             // Act
             var actual = assemblyName.TryToLoadAssembly();
 
             // Assert
-            actual.Should().BeSameAs(assembly);
+            actual.Should().BeSameAs(expected);
         }
 
         [Fact]
