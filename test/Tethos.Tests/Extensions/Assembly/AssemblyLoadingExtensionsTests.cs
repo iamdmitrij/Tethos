@@ -59,7 +59,7 @@
 
         [Fact]
         [Trait("Category", "Unit")]
-        public void TryToLoadAssembly_UsingAssemblyName_ShouldLoadAssembly()
+        public void TryToLoadAssembly_UsingAssemblyName_ShouldLoad()
         {
             // Arrange
             var expected = Assembly.GetExecutingAssembly();
