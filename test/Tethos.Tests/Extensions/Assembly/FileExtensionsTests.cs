@@ -12,8 +12,7 @@
         public void GetFile_FromExecutingAssembly_ShouldMatchLocation()
         {
             // Arrange
-            var assembly = Assembly.GetExecutingAssembly();
-            var expected = assembly.Location;
+            var expected = Assembly.GetExecutingAssembly().Location;
 
             // Act
             var actual = expected.GetFile();
