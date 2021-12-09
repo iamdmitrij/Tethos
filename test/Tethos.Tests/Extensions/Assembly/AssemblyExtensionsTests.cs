@@ -30,8 +30,7 @@
         [Theory]
         [ClassData(typeof(AssemblyTheoryData))]
         [Trait("Category", "Unit")]
-        public void GetDependencies_ShouldLoad(
-            string assemblyName, IEnumerable<string> expected)
+        public void GetDependencies_ShouldLoad(string assemblyName, IEnumerable<string> expected)
         {
             // Arrange
             var assembly = Assembly.LoadFrom(assemblyName);
