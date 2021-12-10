@@ -4,9 +4,9 @@
     {
         protected AbstractThreshold(bool enabled)
         {
-            this.Enalbed = enabled;
+            this.Enabled = enabled;
         }
 
-        public bool Enalbed { get; }
+        public bool Enabled { get; }
     }
 }
