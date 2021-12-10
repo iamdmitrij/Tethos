@@ -13,8 +13,8 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v2
 
-      - name: ✅ Check
-        uses: check-spelling/check-spelling@v0.0.20-alpha3
+      # - name: ✅ Check
+      #   uses: check-spelling/check-spelling@v0.0.20-alpha3
 
       - uses: rojopolis/spellcheck-github-actions@0.18.0
       name: Spellcheck
