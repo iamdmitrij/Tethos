@@ -26,7 +26,7 @@
             ComponentModel model,
             DependencyModel dependency) =>
 
-            // TODO: Add coverage for default ctor
+            // TODO: Add coverage for default constructor
             (dependency.TargetType.IsClass && context.AdditionalArguments.Any())
             || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
