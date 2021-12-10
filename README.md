@@ -188,14 +188,21 @@ var sut = this.Container.Resolve<SystemUnderTest>(
 ```
 
 ### ResolveFrom
+
 TODO: Add ResolveFrom functionality description
 
 ### Demo
-TODO: Describe demo projects
-...
 
+You can find demo projects code in `/demo` folder. There are examples using `Tethos` libraries with:
+
+- xUnit
+- NUnit
+- MSTest
+
+testing frameworks.
 
 ### Working with internal classes
+
 TODO: Describe demo
 ...
 
