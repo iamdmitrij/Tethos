@@ -1,13 +1,5 @@
 # Project
 Tethos
-github
-iamdmitrij
-
-# URL
-codecov
-ncloc
-moqthis
-
 
 # C# libraries
 fakeiteasy
