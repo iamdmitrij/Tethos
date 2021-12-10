@@ -6,7 +6,6 @@ fakeiteasy
 xunit
 moq
 nsubstitute
-nuget
 nunit
 api
 
@@ -17,9 +16,9 @@ seealso
 typeparam
 
 
-func
 
 # C#
+func
 IAuto
 ICall
 IConfiguration
@@ -38,21 +37,18 @@ TChild
 TDestination
 TParent
 TSource
+Linq
 
 C# keywords
 pragma
 
 
 # C# class names
-Linq
 mscorlib
 pdb
-Sdk
-sonarcloud
+deps
 sut
 
-workflow
 TODO
 automocking
-deps
 Utc
