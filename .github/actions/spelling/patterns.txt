@@ -1,4 +1,3 @@
 ://github.com/\w+/\w+
-://www.nuget.org/\w+/\w+
-^(?:https\??|data):\S*[*+]$
-https?://img.shields.io/\w+/\w+
+https://www.nuget.org/\w+/\w+
+https://img.shields.io/\w+/\w+
