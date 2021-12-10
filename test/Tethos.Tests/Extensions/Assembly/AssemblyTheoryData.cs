@@ -24,7 +24,7 @@
             this.Add("Tethos.Tests.Common.dll", GetMatchingAssemblies("Tethos."));
         }
 
-        internal static IEnumerable<string> GetMatchingAssemblies(string pattern) => Directory
+        private static IEnumerable<string> GetMatchingAssemblies(string pattern) => Directory
             .EnumerateFiles(AppDomain.CurrentDomain.BaseDirectory, "*.*", SearchOption.TopDirectoryOnly)
             .Select(file => Path.GetFileName(file))
             .Where(file => file.StartsWith(pattern))

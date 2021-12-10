@@ -59,17 +59,17 @@
 
         [Fact]
         [Trait("Category", "Unit")]
-        public void TryToLoadAssembly_UsingAssemblyName_ShouldLoadAssembly()
+        public void TryToLoadAssembly_UsingAssemblyName_ShouldLoad()
         {
             // Arrange
-            var assembly = Assembly.GetExecutingAssembly();
-            var assemblyName = assembly.GetName();
+            var expected = Assembly.GetExecutingAssembly();
+            var assemblyName = expected.GetName();
 
             // Act
             var actual = assemblyName.TryToLoadAssembly();
 
             // Assert
-            actual.Should().BeSameAs(assembly);
+            actual.Should().BeSameAs(expected);
         }
 
         [Fact]
@@ -91,16 +91,16 @@
         [InlineData("Fake.Framework461.exe")]
         [InlineData("Fake.Core31.dll")]
         [Trait("Category", "Unit")]
-        public void TryToLoadAssembly_ShouldLoadAssembly(string assemblyName)
+        public void TryToLoadAssembly_ShouldLoad(string assemblyName)
         {
             // Arrange
-            var assembly = Assembly.LoadFrom(assemblyName);
+            var expected = Assembly.LoadFrom(assemblyName);
 
             // Act
             var actual = assemblyName.TryToLoadAssembly();
 
             // Assert
-            actual.Should().BeSameAs(assembly);
+            actual.Should().BeSameAs(expected);
         }
     }
 }

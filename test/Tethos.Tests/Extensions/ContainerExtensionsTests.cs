@@ -18,10 +18,11 @@
         public void AddDependencyTo_ShouldMatch(Arguments sut, string name, int expected)
         {
             // Act
-            var actual = sut.AddDependencyTo<string, int>(name, expected);
+            var dependency = sut.AddDependencyTo<string, int>(name, expected);
+            var actual = dependency[$"{typeof(string)}__{name}"];
 
             // Assert
-            actual[$"{typeof(string)}__{name}"].Should().Be(expected);
+            actual.Should().Be(expected);
         }
 
         [Theory]
@@ -33,10 +34,11 @@
             object expected = null;
 
             // Act
-            var actual = sut.AddDependencyTo<string, object>(name, expected);
+            var dependency = sut.AddDependencyTo<string, object>(name, expected);
+            var actual = dependency[$"{typeof(string)}__{name}"];
 
             // Assert
-            actual[$"{typeof(string)}__{name}"].Should().Be(expected);
+            actual.Should().Be(expected);
         }
 
         [Theory]
@@ -48,7 +50,7 @@
             string expected = null;
 
             // Act
-            Action actual = () => sut.AddDependencyTo<string, int>(expected, value);
+            var actual = () => sut.AddDependencyTo<string, int>(expected, value);
 
             // Assert
             actual.Should().Throw<ArgumentNullException>();
@@ -59,11 +61,15 @@
         [Trait("Category", "Unit")]
         public void AddDependencyTo_UsingTypeParam_ShouldMatch(Arguments sut, string name, int expected)
         {
+            // Arrange
+            var type = typeof(string);
+
             // Act
-            var actual = sut.AddDependencyTo(typeof(string), name, expected);
+            var dependency = sut.AddDependencyTo(type, name, expected);
+            var actual = dependency[$"{type}__{name}"];
 
             // Assert
-            actual[$"{typeof(string)}__{name}"].Should().Be(expected);
+            actual.Should().Be(expected);
         }
 
         [Theory]
@@ -73,12 +79,14 @@
         {
             // Arrange
             object expected = null;
+            var type = typeof(string);
 
             // Act
-            var actual = sut.AddDependencyTo(typeof(string), name, expected);
+            var dependency = sut.AddDependencyTo(type, name, expected);
+            var actual = dependency[$"{type}__{name}"];
 
             // Assert
-            actual[$"{typeof(string)}__{name}"].Should().Be(expected);
+            actual.Should().Be(expected);
         }
 
         [Theory]
@@ -90,7 +98,7 @@
             string expected = null;
 
             // Act
-            Action actual = () => sut.AddDependencyTo(typeof(string), expected, value);
+            var actual = () => sut.AddDependencyTo(typeof(string), expected, value);
 
             // Assert
             actual.Should().Throw<ArgumentNullException>();

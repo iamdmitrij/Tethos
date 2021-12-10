@@ -13,7 +13,7 @@
     {
         [Fact]
         [Trait("Category", "Unit")]
-        public void GetDependencies_UsingCoreDependencies_ShouldBeEmpty()
+        public void GetDependencies_UsingMicrosoftCorLib_ShouldLoad()
         {
             // Arrange
             var assemblyName = "mscorlib";
@@ -30,8 +30,7 @@
         [Theory]
         [ClassData(typeof(AssemblyTheoryData))]
         [Trait("Category", "Unit")]
-        public void GetDependencies_UsingLocalDependencies_ShouldMatchLoaddingAssemblyCount(
-            string assemblyName, IEnumerable<string> expectedAssemblyName)
+        public void GetDependencies_ShouldLoad(string assemblyName, IEnumerable<string> expected)
         {
             // Arrange
             var assembly = Assembly.LoadFrom(assemblyName);
@@ -40,12 +39,12 @@
             var actual = assembly.GetDependencies().Select(dependency => dependency.GetName().Name);
 
             // Assert
-            actual.Should().BeEquivalentTo(expectedAssemblyName);
+            actual.Should().BeEquivalentTo(expected);
         }
 
         [Fact]
         [Trait("Category", "Unit")]
-        public void ElseLoadReferencedAssemblies_Empty_ShouldReturnReferenceAssemblied()
+        public void ElseLoadReferencedAssemblies_Empty_ShouldHaveReferencedAssembliesCount()
         {
             // Arrange
             var assembly = Assembly.GetExecutingAssembly();
@@ -62,7 +61,7 @@
         [Theory]
         [AutoData]
         [Trait("Category", "Unit")]
-        internal void ElseLoadReferencedAssemblies_ShouldReturnOriginal(File[] files)
+        internal void ElseLoadReferencedAssemblies_ShouldMatchFileCount(File[] files)
         {
             // Arrange
             var assembly = Assembly.GetExecutingAssembly();

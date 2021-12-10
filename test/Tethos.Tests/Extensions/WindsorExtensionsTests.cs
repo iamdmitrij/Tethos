@@ -74,10 +74,11 @@
         public void OverridesExistingRegistration_ShouldHaveGuidInTheNamed(ComponentRegistration sut)
         {
             // Act
-            var actual = sut.OverridesExistingRegistration();
+            var registration = sut.OverridesExistingRegistration();
+            var actual = Guid.TryParseExact(registration.Name, "D", out _);
 
             // Assert
-            Guid.TryParseExact(actual.Name, "D", out _).Should().BeTrue();
+            actual.Should().BeTrue();
         }
     }
 }
