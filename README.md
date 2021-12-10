@@ -187,9 +187,22 @@ var sut = this.Container.Resolve<SystemUnderTest>(
 );
 ```
 
-### ResolveFrom
+### ResolveFrom functionality
 
-TODO: Add ResolveFrom functionality description
+There are use cases when you can need to resolve parent dependency first before you can get to auto-mocked dependency. For this case, `Tethos` has `ResolveFrom<TParent, TChild>` extension method which will basically resolve mocked dependency in one go.
+
+```c#
+// Arrange
+var mock = this.Container.ResolveFrom<SystemUnderTest, IMockable>();
+```
+
+vs.
+
+```c#
+// Arrange
+_ = this.Container.Resolve<SystemUnderTest>();
+var mock = this.Container.Resolve<IMockable>();
+```
 
 ### Demo
 
