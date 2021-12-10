@@ -1,5 +1,7 @@
 # Software
 sdk
+linq
+func
 
 # CSharp libraries
 tethos
@@ -17,26 +19,3 @@ cref
 inheritdoc
 seealso
 typeparam
-
-# CSharp
-func
-IAuto
-ICall
-IConfiguration
-IDependency
-IDisposable
-IFake
-IInternal
-IKernel
-IMock
-IMockable
-IRegistration
-IService
-ISub
-IWindsor
-TChild
-TDestination
-TParent
-TSource
-Linq
-
