@@ -31,13 +31,12 @@
         {
             Action<IFakeOptions> arguments = targetType.IsInterface switch
             {
-                false => options => options.WithArgumentsForConstructor(constructorArguments.Flatten()),
-
-                // TODO: Visual Studio formatter goes nuts with the comma when using options => {},
                 true => options => _ = options,
+                false => options => options.WithArgumentsForConstructor(constructorArguments.Flatten()),
             };
             var mock = Create.Fake(targetType, arguments);
             var isPlainObject = !Fake.IsFake(targetObject ?? 0);
+
             if (isPlainObject)
             {
                 this.Kernel.Register(Component.For(targetType)
