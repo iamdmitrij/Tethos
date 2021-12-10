@@ -16,9 +16,10 @@ jobs:
       - name: ✅ Check spelling
         uses: check-spelling/check-spelling@v0.0.20-alpha3
         with:
-          extra_dictionaries: cspell:filetypes/filetypes.txt
-            cspell:csharp/csharp.txt
+          extra_dictionaries: cspell:csharp/csharp.txt
             cspell:companies/companies.txt
             cspell:dotnet/dotnet.txt
-            cspell:software-terms/software-terms.txt
+            cspell:filetypes/filetypes.txt
+            cspell:fullstack/fullstack.txt
             cspell:html/html.txt
+            cspell:software-terms/software-terms.txt
