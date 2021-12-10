@@ -16,5 +16,5 @@ jobs:
       # - name: ✅ Check
       #   uses: check-spelling/check-spelling@v0.0.20-alpha3
 
-      - uses: rojopolis/spellcheck-github-actions@0.18.0
-      name: Spellcheck
+      - name: Spellcheck
+      uses: rojopolis/spellcheck-github-actions@0.18.0
