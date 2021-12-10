@@ -1,6 +1,1 @@
-://github.com/\w+/\w+
-https://www.nuget.org/\w+/\w+
-https://img.shields.io/\w+/\w+
-https://www.moqthis.com/\w+/\w+
-https://codecov.io/\w+/\w+
-https://sonarcloud.io/\w+/\w+
+https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
