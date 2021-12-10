@@ -51,7 +51,7 @@
         [Theory]
         [AutoMoqData]
         [Trait("Category", "Unit")]
-        public void Resolve_ShouldMatchMockType(
+        public void Resolve_ShouldMatch(
             Mock<IKernel> kernel,
             Mock<object> expected,
             CreationContext resolver,
@@ -70,7 +70,7 @@
                 new(key, type, false));
 
             // Assert
-            actual.Should().Equals(expected);
+            actual.Should().BeSameAs(expected);
         }
     }
 }

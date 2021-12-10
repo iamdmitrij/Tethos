@@ -1,85 +1,35 @@
 ﻿namespace Tethos.Tests.Extensions.Assembly
 {
+    using System;
     using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
     using Xunit;
 
     public class AssemblyTheoryData : TheoryData<string, IEnumerable<string>>
     {
         public AssemblyTheoryData()
         {
-            var fakeCore21 = new[]
-            {
-                "Fake.Core21",
-                "Fake.Core22",
-                "Fake.Core30",
-                "Fake.Core31",
-                "Fake.Net50",
-                "Fake.Net60",
-                "Fake.Framework461",
-                "Fake.Framework472",
-                "Fake.Standard20",
-                "Fake.Standard21",
-            };
-
-            this.Add("Fake.Core21.dll", fakeCore21);
-
-            var fakeCore31 = new[]
-            {
-                "Fake.Core21",
-                "Fake.Core22",
-                "Fake.Core30",
-                "Fake.Core31",
-                "Fake.Net50",
-                "Fake.Net60",
-                "Fake.Framework461",
-                "Fake.Framework472",
-                "Fake.Standard20",
-                "Fake.Standard21",
-            };
-
-            this.Add("Fake.Core31.dll", fakeCore31);
-
-            var fakeCore50 = new[]
-            {
-                "Fake.Core21",
-                "Fake.Core22",
-                "Fake.Core30",
-                "Fake.Core31",
-                "Fake.Net50",
-                "Fake.Net60",
-                "Fake.Framework461",
-                "Fake.Framework472",
-                "Fake.Standard20",
-                "Fake.Standard21",
-            };
-
-            this.Add("Fake.Net50.dll", fakeCore50);
-
-            var tethos = new[]
-            {
-                "Tethos",
-                "Tethos.Tests",
-                "Tethos.Tests.Common",
-            };
-
-            this.Add("Tethos.dll", tethos);
-
-            var tethosTests = new[]
-            {
-                "Tethos",
-                "Tethos.Tests",
-                "Tethos.Tests.Common",
-            };
-
-            this.Add("Tethos.Tests.dll", tethosTests);
-
-            var tethosTestsCommon = new[]
-            {
-                "Tethos",
-                "Tethos.Tests",
-                "Tethos.Tests.Common",
-            };
-            this.Add("Tethos.Tests.Common.dll", tethosTestsCommon);
+            this.Add("Fake.Core21.dll", GetMatchingAssemblies("Fake."));
+            this.Add("Fake.Core22.dll", GetMatchingAssemblies("Fake."));
+            this.Add("Fake.Core31.dll", GetMatchingAssemblies("Fake."));
+            this.Add("Fake.Framework461.exe", GetMatchingAssemblies("Fake."));
+            this.Add("Fake.Framework472.exe", GetMatchingAssemblies("Fake."));
+            this.Add("Fake.Net50.dll", GetMatchingAssemblies("Fake."));
+            this.Add("Fake.Net60.dll", GetMatchingAssemblies("Fake."));
+            this.Add("Fake.Standard20.dll", GetMatchingAssemblies("Fake."));
+            this.Add("Fake.Standard21.dll", GetMatchingAssemblies("Fake."));
+            this.Add("Tethos.dll", GetMatchingAssemblies("Tethos."));
+            this.Add("Tethos.Tests.dll", GetMatchingAssemblies("Tethos."));
+            this.Add("Tethos.Tests.Common.dll", GetMatchingAssemblies("Tethos."));
         }
+
+        private static IEnumerable<string> GetMatchingAssemblies(string pattern) => Directory
+            .EnumerateFiles(AppDomain.CurrentDomain.BaseDirectory, "*.*", SearchOption.TopDirectoryOnly)
+            .Select(file => Path.GetFileName(file))
+            .Where(file => file.StartsWith(pattern))
+            .Where(file => new[] { ".exe", ".dll" }.Contains(Path.GetExtension(file)))
+            .Select(file => Path.GetFileNameWithoutExtension(file))
+            .Distinct();
     }
 }

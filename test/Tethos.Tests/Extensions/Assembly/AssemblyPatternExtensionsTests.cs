@@ -30,7 +30,7 @@
         public void GetPattern_WithSystemAssembly_ShouldThrowArgumentException(AssemblyStub assembly)
         {
             // Arrange
-            Action action = () => assembly.FullName.GetPattern();
+            var action = () => assembly.FullName.GetPattern();
 
             // Act & Assert
             action.Should().Throw<ArgumentException>();
