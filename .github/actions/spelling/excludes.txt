@@ -15,4 +15,3 @@ ignore$
 \.png$
 \.wav$
 ^\.github/
-Tethos
