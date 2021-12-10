@@ -187,6 +187,9 @@ var sut = this.Container.Resolve<SystemUnderTest>(
 );
 ```
 
+### ResolveFrom
+TODO: Add ResolveFrom functionality description
+
 ### Demo
 TODO: Describe demo projects
 ...
