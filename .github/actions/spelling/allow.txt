@@ -7,7 +7,7 @@ iamdmitrij
 codecov
 ncloc
 moqthis
-vpre
+
 
 # C# libraries
 fakeiteasy
