@@ -9,7 +9,6 @@ moq
 nsubstitute
 nunit
 
-
 # CSharp reserved words
 pragma
 
@@ -41,14 +40,3 @@ TParent
 TSource
 Linq
 
-
-
-# C# class names
-mscorlib
-pdb
-deps
-sut
-
-TODO
-automocking
-Utc
