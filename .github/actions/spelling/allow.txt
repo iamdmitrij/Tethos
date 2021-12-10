@@ -1,23 +1,25 @@
-# Project
-Tethos
+# Software
+sdk
 
-# C# libraries
+# CSharp libraries
+tethos
 fakeiteasy
 xunit
 moq
 nsubstitute
 nunit
-api
 
-# C# summary
+
+# CSharp reserved words
+pragma
+
+# CSharp summary comments
 cref
 inheritdoc
 seealso
 typeparam
 
-
-
-# C#
+# CSharp
 func
 IAuto
 ICall
@@ -39,8 +41,6 @@ TParent
 TSource
 Linq
 
-C# keywords
-pragma
 
 
 # C# class names
