@@ -1,17 +1,33 @@
+# Project
 Tethos
+github
+iamdmitrij
+
+# URL
 codecov
+ncloc
+moqthis
+vpre
+
+# C# libraries
 fakeiteasy
 xunit
 moq
 nsubstitute
 nuget
-NUnit
+nunit
 api
+
+# C# summary
 cref
 inheritdoc
+seealso
+typeparam
+
+
 func
-github
-iamdmitrij
+
+# C# interfaces
 IAuto
 ICall
 IConfiguration
@@ -26,25 +42,24 @@ IRegistration
 IService
 ISub
 IWindsor
+
+C# keywords
+pragma
+
+
+# C# class names
 Linq
 mscorlib
-ncloc
 pdb
-pragma
 Sdk
-seealso
 sonarcloud
 sut
 TChild
 TDestination
 TParent
 TSource
-typeparam
 workflow
-www
 TODO
 automocking
 deps
-moqthis
 Utc
-vpre
