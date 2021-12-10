@@ -2,6 +2,8 @@
 sdk
 linq
 func
+sut
+deps
 
 # CSharp libraries
 tethos
@@ -13,6 +15,8 @@ nunit
 
 # CSharp reserved words
 pragma
+pdb
+mscorlib
 
 # CSharp summary comments
 cref
