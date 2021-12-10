@@ -1,9 +1,9 @@
 # Software
 sdk
-linq
-func
+utc
 sut
 deps
+automocking
 
 # CSharp libraries
 tethos
@@ -13,7 +13,9 @@ moq
 nsubstitute
 nunit
 
-# CSharp reserved words
+# CSharp common terms
+linq
+func
 pragma
 pdb
 mscorlib
