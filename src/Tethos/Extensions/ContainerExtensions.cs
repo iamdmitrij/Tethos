@@ -47,7 +47,7 @@
             => (TChild)container.ResolveFrom(typeof(TParent), typeof(TChild));
 
         /// <summary>
-        /// Resolve child depedency within parent dependency.
+        /// Resolve child dependency within parent dependency.
         /// </summary>
         /// <param name="container">Auto-mocking container instance.</param>
         /// <param name="parent">Parent type of an object.</param>
