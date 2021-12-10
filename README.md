@@ -184,6 +184,17 @@ public void Test()
 }
 ```
 
+alternatively, Moq's proxy objects can be resolved as well
+
+```c#
+[Fact]
+public void Test()
+{
+    var mock = Container.Resolve<IMockable>();
+    Mock.Get(mock).Setup(m => m.Get()).Returns(42);
+}
+```
+
 #### Tethos.NSubstitute
 
 [![Version](https://img.shields.io/nuget/vpre/Tethos.NSubstitute.svg)](https://www.nuget.org/packages/Tethos.NSubstitute)
