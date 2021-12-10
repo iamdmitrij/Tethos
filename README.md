@@ -222,7 +222,9 @@ Internal dependencies can loaded into auto-mocking container. But due to possibl
 
 `Tethos` can behavior be configured using `AutoMockingConfiguration` class instance.
 
-TODO: List what can be configured
+| Item                  | Description                                                     | Default value |
+| --------------------- | --------------------------------------------------------------- | ------------- |
+| IncludeNonPublicTypes | Enables internal types to be loaded into auto-mocking container | `False`       |
 
 Since `AutoMockingConfiguration` is virtual you can override in the child class:
 
@@ -233,7 +235,7 @@ public class Test : AutoMockingTest
 }
 ```
 
-alternatically, you can override `OnConfigurationCreated` method which allow you can edit configuration instance directly.
+alternatively, you can override `OnConfigurationCreated` method which allow you can edit configuration instance directly.
 
 ```c#
 public class Test : AutoMockingTest
