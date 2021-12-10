@@ -16,3 +16,6 @@ ignore$
 \.wav$
 ^\.github/
 \.csproj$
+\.sln$
+\.editorconfig$
+\.gitattributes$
