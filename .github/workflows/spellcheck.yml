@@ -13,7 +13,7 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v2
 
-      - name: ✅ Check
+      - name: ✅ Perform spellcheck
         uses: check-spelling/check-spelling@v0.0.20-alpha3
         with:
           extra_dictionaries: cspell:csharp/csharp.txt
