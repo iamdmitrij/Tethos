@@ -134,6 +134,8 @@ public class ContainerAsProperty: AutoMockingTest
 
 Assemblies are selected according to prefix in the name. I.e, if you test assembly is named Project.Tests, then `Tethos` will load every single `Project.*` assembly into auto-mocking container.
 
+Else, `Tethos` will load project referenced assemblies into container.
+
 ### Auto-mocking pattern
 
 Every single incoming dependency will be mocked if such dependency is an interface.
@@ -163,6 +165,25 @@ var sut = Container.Resolve<SystemUnderTest>(
     new Arguments()
         .AddTyped(42)
         .AddTyped("foo")
+);
+```
+
+in case there multiple dependencies with same or different types 
+
+```c#
+public SystemUnderTest(int minValue, int maxValue)
+{
+    ...
+}
+```
+
+You can use `AddDependencyTo` extension method to add dependency to certain parameter in the constructor.
+
+```c#
+var sut = this.Container.Resolve<SystemUnderTest>(
+    new Arguments()
+        .AddDependencyTo<Concrete, int>(nameof(minValue), minValue)
+        .AddDependencyTo<Concrete, int>(nameof(maxValue), maxValue));
 );
 ```
 
