@@ -168,7 +168,7 @@ var sut = Container.Resolve<SystemUnderTest>(
 );
 ```
 
-in case there multiple dependencies with same or different types 
+in case there multiple dependencies with same or different types
 
 ```c#
 public SystemUnderTest(int minValue, int maxValue)
@@ -185,6 +185,43 @@ var sut = this.Container.Resolve<SystemUnderTest>(
         .AddDependencyTo<Concrete, int>(nameof(minValue), minValue)
         .AddDependencyTo<Concrete, int>(nameof(maxValue), maxValue));
 );
+```
+
+### Demo
+TODO: Describe demo projects
+...
+
+
+### Working with internal classes
+TODO: Describe demo
+...
+
+### Configuration
+
+`Tethos` can behavior be configured using `AutoMockingConfiguration` class instance.
+
+TODO: List what can be configured
+
+Since `AutoMockingConfiguration` is virtual you can override in the child class:
+
+```c#
+public class Test : AutoMockingTest
+{
+    public override AutoMockingConfiguration AutoMockingConfiguration => new() { IncludeNonPublicTypes = false };
+}
+```
+
+alternatically, you can override `OnConfigurationCreated` method which allow you can edit configuration instance directly.
+
+```c#
+public class Test : AutoMockingTest
+{
+    public override AutoMockingConfiguration OnConfigurationCreated(AutoMockingConfiguration configuration)
+    {
+        configuration.IncludeNonPublicTypes = true;
+        return base.OnConfigurationCreated(configuration);
+    }
+}
 ```
 
 ### Mocking implementations
