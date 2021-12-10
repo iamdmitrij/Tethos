@@ -1,4 +1,4 @@
 ://github.com/\w+/\w+
 ://www.nuget.org/\w+/\w+
 ^(?:https\??|data):\S*[*+]$
-
+https?://(?:(?:www\.|)img.shields.io)/[-a-zA-Z0-9?&=_]*

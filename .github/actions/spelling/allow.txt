@@ -27,7 +27,7 @@ typeparam
 
 func
 
-# C# interfaces
+# C#
 IAuto
 ICall
 IConfiguration
@@ -42,6 +42,10 @@ IRegistration
 IService
 ISub
 IWindsor
+TChild
+TDestination
+TParent
+TSource
 
 C# keywords
 pragma
@@ -54,10 +58,7 @@ pdb
 Sdk
 sonarcloud
 sut
-TChild
-TDestination
-TParent
-TSource
+
 workflow
 TODO
 automocking
