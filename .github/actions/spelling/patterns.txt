@@ -1,2 +1,4 @@
 ://github.com/\w+/\w+
+://www.nuget.org/\w+/\w+
 ^(?:https\??|data):\S*[*+]$
+
