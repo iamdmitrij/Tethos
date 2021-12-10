@@ -14,7 +14,7 @@
         /// </summary>
         /// <typeparam name="TSource">Type for source object to be created.</typeparam>
         /// <typeparam name="TDestination">Destination object type.</typeparam>
-        /// <param name="arguments">Arguments used to contruct destination object.</param>
+        /// <param name="arguments">Arguments used to construct destination object.</param>
         /// <param name="name">Name of injected parameter.</param>
         /// <param name="value">Value of injected parameter.</param>
         /// <returns>Enriched arguments.</returns>
@@ -24,7 +24,7 @@
         /// <summary>
         /// Add type for container mapping.
         /// </summary>
-        /// <param name="arguments">Arguments used to contruct destination object.</param>
+        /// <param name="arguments">Arguments used to construct destination object.</param>
         /// <param name="sourceType">Type of source object.</param>
         /// <param name="name">Name of injected parameter.</param>
         /// <param name="value">Value of injected parameter.</param>
