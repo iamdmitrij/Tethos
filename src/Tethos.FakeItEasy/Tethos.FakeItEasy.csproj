@@ -14,7 +14,7 @@
 		<PackageProjectUrl>https://github.com/iamdmitrij/Tethos</PackageProjectUrl>
 		<PackageTags>auto-mocking container test FakeItEasy</PackageTags>
 		<PackageIconUrl></PackageIconUrl>
-		<Copyright>Copyright © 2021</Copyright>
+		<Copyright>Copyright © 2022</Copyright>
 		<PackageIcon>logo.png</PackageIcon>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<IncludeSymbols>true</IncludeSymbols>
