@@ -37,7 +37,7 @@
             };
 
         /// <summary>
-        /// Resolve child depedency within parent dependency.
+        /// Resolve child dependency within parent dependency.
         /// </summary>
         /// <typeparam name="TParent">Parent type to use.</typeparam>
         /// <typeparam name="TChild">Child type to resolve.</typeparam>
