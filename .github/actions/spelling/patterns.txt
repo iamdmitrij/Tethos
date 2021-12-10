@@ -1,6 +1,8 @@
 # URL
 https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
+
 # CSharp interface
 (?-i)[I]{1}[A-Z]{1}.*
+
 # CSharp generic type parameter
 (?-i)[T]{1}[A-Z]{1}.*

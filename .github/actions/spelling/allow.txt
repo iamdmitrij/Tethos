@@ -16,7 +16,6 @@ nunit
 # CSharp common terms
 linq
 func
-pragma
 pdb
 mscorlib
 
