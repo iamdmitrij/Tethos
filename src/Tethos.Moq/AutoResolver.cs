@@ -25,8 +25,6 @@
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
             DependencyModel dependency) =>
-
-            // TODO: Add coverage for default ctor
             (dependency.TargetType.IsClass && context.AdditionalArguments.Any())
             || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
