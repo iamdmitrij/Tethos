@@ -18,10 +18,7 @@ jobs:
         with:
           extra_dictionaries: cspell:csharp/csharp.txt
             cspell:filetypes/filetypes.txt
-            cspell:django/django.txt
-            cspell:css/css.txt
-            cspell:aws/aws.txt
+            cspell:companies/companies.txt
+            cspell:dotnet/dotnet.txt
+            cspell:software-terms/software-terms.txt
             cspell:html/html.txt
-            cspell:golang/go.txt
-            cspell:npm/npm.txt
-            cspell:ada/ada.txt
