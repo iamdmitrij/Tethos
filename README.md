@@ -214,10 +214,9 @@ You can find demo projects code in `/demo` folder. There are examples using `Tet
 
 testing frameworks.
 
-### Working with internal classes
+### Working with internal types
 
-TODO: Describe demo
-...
+Internal dependencies can loaded into auto-mocking container. But due to possible performance caveats it's disabled by default. Check out Configuration section to figure our how to enable it.
 
 ### Configuration
 
