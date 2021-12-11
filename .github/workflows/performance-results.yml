@@ -28,7 +28,7 @@ jobs:
           path: pr_number.txt
 
       - name: 🏅 Read results
-        uses: pCYSl5EDgo/cat@master
+        uses: pCYSl5EDgo/cat@master # TODO: Replace this action with juliangruber/read-file-action@v1.0.0
         id: benchmark
         with:
           path: results.md
