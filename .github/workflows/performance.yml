@@ -31,9 +31,13 @@ jobs:
         id: benchmark
         run: echo "::set-output name=comment::$(cat BenchmarkDotNet.Artifacts/results/Tethos.Tests.Benchmarks.FactoryBenchmark-report-github.md)"
       - name: 📝 Create comment
-        uses: peter-evans/commit-comment@v1
+        uses: peter-evans/create-or-update-comment@v1
         with:
-          body: ${{ steps.benchmark.outputs.comment }}
+          body: |
+            Build output
+            ${{ steps.benchmark.outputs.comment }}
+          edit-mode: 'replace'
+          reactions: '+1'
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
