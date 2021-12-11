@@ -1,0 +1,37 @@
+name: 🏅 Performance Report
+
+on:
+  workflow_run:
+    workflows: ["🏄 Performance"]
+    types:
+      - completed
+jobs:
+  report:
+    runs-on: windows-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: performance.yml
+          name: performance-test-results
+
+      - name: 📑 Aggregate results
+        run: Get-ChildItem .\BenchmarkDotNet.Artifacts\results\ -include *.md -rec | ForEach-Object {gc $_; ""} | out-file .\BenchmarkDotNet.Artifacts\results\results.md
+
+      - name: 🏅 Read results
+        uses: pCYSl5EDgo/cat@master
+        id: benchmark
+        with:
+          path: BenchmarkDotNet.Artifacts/results/results.md
+
+      - name: 📝 Create comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          body: |
+            🏅 Performance test results are here:
+            ${{ steps.benchmark.outputs.text }}
+          issue-number: ${{ github.event.pull_request.number }}
+          edit-mode: "replace"
