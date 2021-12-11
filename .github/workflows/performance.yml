@@ -25,12 +25,6 @@ jobs:
         shell: bash
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: echo $PR_NUMBER > pr_number.txt
-
-      - name: 🔟 Save Pull Request Number
-        shell: bash
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: echo $PR_NUMBER > BenchmarkDotNet.Artifacts/results/pr_number.txt
 
       - name: 📚 Artifact Test Results
