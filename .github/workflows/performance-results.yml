@@ -33,5 +33,5 @@ jobs:
           body: |
             🏅 Performance test results are here:
             ${{ steps.benchmark.outputs.text }}
-          # issue-number: ${{ github.event.pull_request.number }}
+          issue-number: ${{ github.event.pull_request.number }}
           edit-mode: "replace"
