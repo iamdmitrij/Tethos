@@ -31,13 +31,7 @@ jobs:
         shell: bash
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: echo $PR_NUMBER > pr_number.txt
-
-      - run: cat pr_number.txt
-
-      - run: echo $PR_NUMBER
-
-      - run: ${{ github.event.pull_request.number }}
+        run: echo $PR_NUMBER > BenchmarkDotNet.Artifacts/results/pr_number.txt
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
@@ -45,10 +39,3 @@ jobs:
         with:
           name: performance-test-results
           path: BenchmarkDotNet.Artifacts/results/**
-
-      - name: 📚 Artifact Pull Request Reference
-        uses: actions/upload-artifact@v2
-        if: success()
-        with:
-          name: pull-request-reference
-          path: pr_number.txt
