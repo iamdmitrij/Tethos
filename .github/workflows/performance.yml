@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: 🏇 Run tests
+    name: 🏇 Performance tests
     runs-on: windows-latest
     steps:
       - name: 📥 Checkout
@@ -21,10 +21,16 @@ jobs:
       - name: 🔬 Test
         run: dotnet run --project ./test/Tethos.Tests.Benchmarks/Tethos.Tests.Benchmarks.csproj --configuration Release --verbosity normal
 
-      - uses: pCYSl5EDgo/cat@master
+
+      - name: 📑 Aggregate results
+        run: copy BenchmarkDotNet.Artifacts/results/*.md results.md
+
+      - name: 🏅 Read results
+        uses: pCYSl5EDgo/cat@master
         id: benchmark
         with:
-          path: BenchmarkDotNet.Artifacts/results/Tethos.Tests.Benchmarks.FactoryBenchmark-report-github.md
+          path: BenchmarkDotNet.Artifacts/results/results.md
+
 
       - name: 📝 Create comment
         uses: peter-evans/create-or-update-comment@v1
