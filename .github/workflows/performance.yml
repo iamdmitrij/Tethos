@@ -21,24 +21,6 @@ jobs:
       - name: 🔬 Test
         run: dotnet run --project ./test/Tethos.Tests.Benchmarks/Tethos.Tests.Benchmarks.csproj --configuration Release --verbosity normal
 
-      - name: 📑 Aggregate results
-        run: Get-ChildItem .\BenchmarkDotNet.Artifacts\results\ -include *.md -rec | ForEach-Object {gc $_; ""} | out-file .\BenchmarkDotNet.Artifacts\results\results.md
-
-      - name: 🏅 Read results
-        uses: pCYSl5EDgo/cat@master
-        id: benchmark
-        with:
-          path: BenchmarkDotNet.Artifacts/results/results.md
-
-      - name: 📝 Create comment
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          body: |
-            🏅 Performance test results are here:
-            ${{ steps.benchmark.outputs.text }}
-          issue-number: ${{ github.event.pull_request.number }}
-          edit-mode: "replace"
-
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
         if: success() || failure()
