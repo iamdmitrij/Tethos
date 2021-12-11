@@ -21,16 +21,14 @@ jobs:
       - name: 🔬 Test
         run: dotnet run --project ./test/Tethos.Tests.Benchmarks/Tethos.Tests.Benchmarks.csproj --configuration Release --verbosity normal
 
-
       - name: 📑 Aggregate results
-        run: copy BenchmarkDotNet.Artifacts/results/*.md results.md
+        run: paste BenchmarkDotNet.Artifacts/results/*.md > BenchmarkDotNet.Artifacts/results.md
 
       - name: 🏅 Read results
         uses: pCYSl5EDgo/cat@master
         id: benchmark
         with:
           path: BenchmarkDotNet.Artifacts/results/results.md
-
 
       - name: 📝 Create comment
         uses: peter-evans/create-or-update-comment@v1
