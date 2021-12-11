@@ -5,7 +5,6 @@ namespace Tethos.Tests.Benchmarks
     using global::Moq;
     using Tethos.Tests.Common;
 
-    [MemoryDiagnoser]
     [RankColumn]
     [MinColumn]
     [MaxColumn]
