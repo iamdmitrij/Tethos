@@ -27,6 +27,18 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: echo $PR_NUMBER > pr_number.txt
 
+      - name: 🔟 Save Pull Request Number
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: echo $PR_NUMBER > pr_number.txt
+
+      - run: cat pr_number.txt
+
+      - run: echo $PR_NUMBER
+
+      - run: ${{ github.event.pull_request.number }}
+
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
         if: success()
