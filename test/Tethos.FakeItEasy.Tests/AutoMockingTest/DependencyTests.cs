@@ -77,7 +77,7 @@
             mock.MinValue.Should().Be(minValue);
             mock.MaxValue.Should().Be(maxValue);
             thresholdMock.Should().BeOfType(expectedThresholdType);
-            thresholdMock.Enalbed.Should().Be(enabled);
+            thresholdMock.Enabled.Should().Be(enabled);
         }
 
         [Theory]
@@ -97,7 +97,7 @@
 
             // Assert
             actual.Should().BeOfType(expected);
-            actual.Enalbed.Should().Be(enabled);
+            actual.Enabled.Should().Be(enabled);
         }
 
         [Theory]
@@ -117,7 +117,7 @@
 
             // Assert
             actual.Should().BeOfType(expected);
-            actual.Enalbed.Should().Be(enabled);
+            actual.Enabled.Should().Be(enabled);
         }
 
         [Theory]
@@ -156,9 +156,9 @@
 
             concrete.MinValue.Should().Be(minValue);
             concrete.MaxValue.Should().Be(maxValue);
-            threshold.Enalbed.Should().Be(thresholdEnabled);
-            partialThreshold.Enalbed.Should().Be(partialThresholdEnabled);
-            abstractThreshold.Enalbed.Should().Be(abstractThresholdEnabled);
+            threshold.Enabled.Should().Be(thresholdEnabled);
+            partialThreshold.Enabled.Should().Be(partialThresholdEnabled);
+            abstractThreshold.Enabled.Should().Be(abstractThresholdEnabled);
         }
     }
 }

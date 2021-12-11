@@ -28,9 +28,9 @@
         /// Maps target mock object to mocked object type.
         /// </summary>
         /// <param name="targetType">Target type for object to be converted to destination object.</param>
-        /// <param name="targetObject">Current target object avalaible in container.</param>
+        /// <param name="targetObject">Current target object available in container.</param>
         /// <param name="constructorArguments">Constructor arguments for non-abstract target type.</param>
-        /// <returns>Auto-mocked object dependending on target type.</returns>
+        /// <returns>Auto-mocked object depending on target type.</returns>
         public abstract object MapToMock(Type targetType, object targetObject, Arguments constructorArguments);
 
         /// <inheritdoc />

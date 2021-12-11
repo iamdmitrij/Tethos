@@ -9,6 +9,6 @@
 
         public AbstractThreshold Threshold { get; }
 
-        public int Exercise() => this.Threshold.Enalbed ? 1 : 0;
+        public int Exercise() => this.Threshold.Enabled ? 1 : 0;
     }
 }

@@ -14,7 +14,7 @@
         /// </summary>
         /// <typeparam name="TSource">Type for source object to be created.</typeparam>
         /// <typeparam name="TDestination">Destination object type.</typeparam>
-        /// <param name="arguments">Arguments used to contruct destination object.</param>
+        /// <param name="arguments">Arguments used to construct destination object.</param>
         /// <param name="name">Name of injected parameter.</param>
         /// <param name="value">Value of injected parameter.</param>
         /// <returns>Enriched arguments.</returns>
@@ -24,7 +24,7 @@
         /// <summary>
         /// Add type for container mapping.
         /// </summary>
-        /// <param name="arguments">Arguments used to contruct destination object.</param>
+        /// <param name="arguments">Arguments used to construct destination object.</param>
         /// <param name="sourceType">Type of source object.</param>
         /// <param name="name">Name of injected parameter.</param>
         /// <param name="value">Value of injected parameter.</param>
@@ -37,7 +37,7 @@
             };
 
         /// <summary>
-        /// Resolve child depedency within parent dependency.
+        /// Resolve child dependency within parent dependency.
         /// </summary>
         /// <typeparam name="TParent">Parent type to use.</typeparam>
         /// <typeparam name="TChild">Child type to resolve.</typeparam>
@@ -47,7 +47,7 @@
             => (TChild)container.ResolveFrom(typeof(TParent), typeof(TChild));
 
         /// <summary>
-        /// Resolve child depedency within parent dependency.
+        /// Resolve child dependency within parent dependency.
         /// </summary>
         /// <param name="container">Auto-mocking container instance.</param>
         /// <param name="parent">Parent type of an object.</param>

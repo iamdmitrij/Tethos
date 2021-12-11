@@ -1,0 +1,27 @@
+# Software
+sdk
+utc
+sut
+deps
+automocking
+
+# CSharp libraries
+tethos
+fakeiteasy
+xunit
+moq
+nsubstitute
+nunit
+
+# CSharp common terms
+linq
+func
+pragma
+pdb
+mscorlib
+
+# CSharp summary comments
+cref
+inheritdoc
+seealso
+typeparam

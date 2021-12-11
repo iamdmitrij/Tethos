@@ -12,6 +12,6 @@
 
         public Threshold Threshold { get; }
 
-        public int Exercise() => this.Threshold.Enalbed ? this.Mockable.Get() : 0;
+        public int Exercise() => this.Threshold.Enabled ? this.Mockable.Get() : 0;
     }
 }

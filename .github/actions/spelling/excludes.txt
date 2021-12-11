@@ -1,0 +1,7 @@
+(?:^|/)(?i)LICEN[CS]E
+\.png$
+^\.github/
+\.csproj$
+\.sln$
+\.editorconfig$
+\.git(?:attributes|ignore)$

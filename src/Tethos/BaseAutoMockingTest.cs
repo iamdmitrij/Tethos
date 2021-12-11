@@ -59,7 +59,7 @@
         /// Method which lets user to configure <see cref="AutoMockingConfiguration"/>.
         /// </summary>
         /// <param name="configuration">Container configuration.</param>
-        /// <returns>Final auto-mocking contrainer configuration.</returns>
+        /// <returns>Final auto-mocking container configuration.</returns>
         public virtual AutoMockingConfiguration OnConfigurationCreated(AutoMockingConfiguration configuration) => configuration;
 
         /// <summary>
