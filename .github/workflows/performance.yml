@@ -7,7 +7,7 @@ on:
 
 jobs:
   test-moq:
-    name: 🏇 Performance tests (Moq)
+    name: 🏇 Moq
     runs-on: windows-latest
     steps:
       - name: 📥 Checkout
