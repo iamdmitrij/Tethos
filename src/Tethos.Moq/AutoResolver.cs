@@ -25,8 +25,6 @@
             ISubDependencyResolver contextHandlerResolver,
             ComponentModel model,
             DependencyModel dependency) =>
-
-            // TODO: Add coverage for default constructor
             (dependency.TargetType.IsClass && context.AdditionalArguments.Any())
             || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
@@ -34,7 +32,9 @@
         public override object MapToMock(Type targetType, object targetObject, Arguments constructorArguments)
         {
             var mockType = typeof(Mock<>).MakeGenericType(targetType);
-            var arguments = constructorArguments.Select(argument => argument.Value).ToArray();
+            var arguments = constructorArguments
+                .Select(argument => argument.Value)
+                .ToArray();
             var mock = Activator.CreateInstance(mockType, arguments) as Mock;
             var isPlainObject = !ProxyUtil.IsProxy(targetObject);
 
