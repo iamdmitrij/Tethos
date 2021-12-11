@@ -2,8 +2,7 @@ name: 🏅 Performance Report
 
 on:
   workflow_run:
-    workflows:
-      - 🏄 Performance
+    workflows: ["🏄 Performance"]
     types:
       - completed
 jobs:
