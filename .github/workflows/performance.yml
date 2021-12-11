@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v2
         if: success()
         with:
-          name: moq-performance-test-results
+          name: moq-performance-test-results # TODO: Check if same artifact name can be reused
           path: BenchmarkDotNet.Artifacts/results/**
   test-fakeiteasy:
     name: 🏇 FakeItEasy
