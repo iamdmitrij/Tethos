@@ -1,4 +1,4 @@
-name: 🏅 Performance results
+name: 🏅 Performance Report
 
 on:
   workflow_run:
@@ -7,8 +7,8 @@ on:
     types:
       - completed
 jobs:
-  build:
-    name: 🏇 Performance tests
+  report:
+    name: 🏇 Performance results
     runs-on: windows-latest
     steps:
       - name: 📥 Checkout
@@ -36,10 +36,3 @@ jobs:
             ${{ steps.benchmark.outputs.text }}
           issue-number: ${{ github.event.pull_request.number }}
           edit-mode: "replace"
-
-      - name: 📚 Artifact Test Results
-        uses: actions/upload-artifact@v2
-        if: success() || failure()
-        with:
-          name: performance-test-results
-          path: BenchmarkDotNet.Artifacts/results/*.html

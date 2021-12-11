@@ -6,8 +6,8 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  build:
-    name: 🏇 Performance tests
+  test-moq:
+    name: 🏇 Performance tests (Moq)
     runs-on: windows-latest
     steps:
       - name: 📥 Checkout
