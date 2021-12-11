@@ -23,7 +23,7 @@ jobs:
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
-        if: success() || failure()
+        if: success()
         with:
           name: performance-test-results
           path: BenchmarkDotNet.Artifacts/results/*.html

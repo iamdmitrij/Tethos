@@ -8,7 +8,6 @@ on:
       - completed
 jobs:
   report:
-    name: 🏇 Performance results
     runs-on: windows-latest
     steps:
       - name: 📥 Checkout
