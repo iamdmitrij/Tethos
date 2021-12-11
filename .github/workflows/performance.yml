@@ -34,7 +34,7 @@ jobs:
         uses: peter-evans/create-or-update-comment@v1
         with:
           body: |
-            🏅 Test results are here:
+            🏅 Performance test results are here:
             ${{ steps.benchmark.outputs.text }}
           issue-number: ${{ github.event.pull_request.number }}
           edit-mode: "replace"
