@@ -8,6 +8,7 @@ on:
 jobs:
   report:
     runs-on: windows-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
