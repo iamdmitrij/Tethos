@@ -54,6 +54,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\ci.yml = .github\workflows\ci.yml
 		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
 		.github\workflows\nuget.yml = .github\workflows\nuget.yml
+		.github\workflows\performance.yml = .github\workflows\performance.yml
 		.github\workflows\spellcheck.yml = .github\workflows\spellcheck.yml
 		.github\workflows\test-report.yml = .github\workflows\test-report.yml
 	EndProjectSection
@@ -107,7 +108,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.Xunit.Demo", "demo\M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.Xunit.Demo", "demo\NSubstitute\Tethos.Xunit.Demo\Tethos.Xunit.Demo.csproj", "{FC524F10-8764-405B-9C67-0C0D1C30FDD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tethos.Tests.Benchmarks", "test\Tethos.Tests.Benchmarks\Tethos.Tests.Benchmarks.csproj", "{C805B643-F33C-4B8B-A52B-257927DEE8BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.Tests.Benchmarks", "test\Tethos.Tests.Benchmarks\Tethos.Tests.Benchmarks.csproj", "{C805B643-F33C-4B8B-A52B-257927DEE8BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.Tests.Common.WeakNamed", "test\Tethos.Tests.Common.WeakNamed\Tethos.Tests.Common.WeakNamed.csproj", "{FF2FB364-07E7-479F-9E21-BCAF6D675619}"
 EndProject

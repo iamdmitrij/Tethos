@@ -54,6 +54,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\ci.yml = .github\workflows\ci.yml
 		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
 		.github\workflows\nuget.yml = .github\workflows\nuget.yml
+		.github\workflows\performance.yml = .github\workflows\performance.yml
 		.github\workflows\spellcheck.yml = .github\workflows\spellcheck.yml
 		.github\workflows\test-report.yml = .github\workflows\test-report.yml
 	EndProjectSection
@@ -220,7 +221,7 @@ Global
 		{2CD94F64-DC02-4152-B753-F673039981B9} = {81E9AC8F-452A-41A8-A74A-C8D319D6AA1D}
 		{A45CE140-929B-4F55-B4E2-3DD5B68347E6} = {81E9AC8F-452A-41A8-A74A-C8D319D6AA1D}
 		{48CFC8FC-C8CF-45D7-956A-B36074C2D04B} = {81E9AC8F-452A-41A8-A74A-C8D319D6AA1D}
-		{2900FFB0-E89C-40F6-BC58-0DD90605260C} = {A4A25CC2-61ED-47F0-B91C-9CB93D90D3CC}
+		{2900FFB0-E89C-40F6-BC58-0DD90605260C} = {8DDA643A-1839-4470-A593-5EE9507FB294}
 		{9B07974D-6312-48EA-93E1-0A1DF896B46C} = {2900FFB0-E89C-40F6-BC58-0DD90605260C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
