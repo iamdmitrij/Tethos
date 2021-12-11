@@ -7,6 +7,9 @@
 
     internal static class AssemblyExtensions
     {
+        internal static Assembly[] GetRelatedAssemblies(this Type type) =>
+            Assembly.GetAssembly(type).GetDependencies();
+
         internal static Assembly[] GetDependencies(
             this Assembly rootAssembly) => AppDomain.CurrentDomain.BaseDirectory.GetAssemblyFiles()
                 .FilterAssemblies(rootAssembly.FullName.GetPattern(), new[] { ".dll", ".exe" }, rootAssembly)
