@@ -34,8 +34,9 @@
                 false => constructorArguments.Flatten(),
             };
             var mock = Substitute.For(new[] { targetType }, arguments);
+            var isPlainObject = targetObject is not ICallRouterProvider;
 
-            if (targetObject is not ICallRouterProvider)
+            if (isPlainObject)
             {
                 this.Kernel.Register(Component.For(targetType)
                     .Instance(mock)
