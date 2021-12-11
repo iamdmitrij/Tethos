@@ -37,7 +37,6 @@ jobs:
             ${{ steps.benchmark.outputs.text }}
           issue-number: ${{ github.event.pull_request.number }}
           edit-mode: "replace"
-          reactions: "+1"
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
