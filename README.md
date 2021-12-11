@@ -1,7 +1,7 @@
 # Tethos
 
 ![CI](https://img.shields.io/github/workflow/status/iamdmitrij/Tethos/ci?style=flat&logo=github)
-[![codecov](https://codecov.io/gh/iamdmitrij/Tethos/branch/main/graph/badge.svg?token=F4IE0T79QP)](https://codecov.io/gh/iamdmitrij/Tethos)
+[![Coverage](https://codecov.io/gh/iamdmitrij/Tethos/branch/main/graph/badge.svg?token=F4IE0T79QP)](https://codecov.io/gh/iamdmitrij/Tethos)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=iamdmitrij_Tethos&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=iamdmitrij_Tethos)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=iamdmitrij_Tethos&metric=ncloc)](https://sonarcloud.io/dashboard?id=iamdmitrij_Tethos)
 
@@ -134,6 +134,8 @@ public class ContainerAsProperty: AutoMockingTest
 
 Assemblies are selected according to prefix in the name. I.e, if you test assembly is named Project.Tests, then `Tethos` will load every single `Project.*` assembly into auto-mocking container.
 
+Else, `Tethos` will load project referenced assemblies into container.
+
 ### Auto-mocking pattern
 
 Every single incoming dependency will be mocked if such dependency is an interface.
@@ -166,6 +168,86 @@ var sut = Container.Resolve<SystemUnderTest>(
 );
 ```
 
+in case there multiple dependencies with same or different types
+
+```c#
+public SystemUnderTest(int minValue, int maxValue)
+{
+    ...
+}
+```
+
+You can use `AddDependencyTo` extension method to add dependency to certain parameter in the constructor.
+
+```c#
+var sut = this.Container.Resolve<SystemUnderTest>(
+    new Arguments()
+        .AddDependencyTo<Concrete, int>(nameof(minValue), minValue)
+        .AddDependencyTo<Concrete, int>(nameof(maxValue), maxValue));
+);
+```
+
+### ResolveFrom functionality
+
+There are use cases when you can need to resolve parent dependency first before you can get to auto-mocked dependency. For this case, `Tethos` has `ResolveFrom<TParent, TChild>` extension method which will basically resolve mocked dependency in one go.
+
+```c#
+// Arrange
+var mock = this.Container.ResolveFrom<SystemUnderTest, IMockable>();
+```
+
+vs.
+
+```c#
+// Arrange
+_ = this.Container.Resolve<SystemUnderTest>();
+var mock = this.Container.Resolve<IMockable>();
+```
+
+### Demo
+
+You can find demo projects code in `/demo` folder. There are examples using `Tethos` libraries with:
+
+- xUnit
+- NUnit
+- MSTest
+
+testing frameworks.
+
+### Working with internal types
+
+Internal dependencies can loaded into auto-mocking container. But due to possible performance caveats it's disabled by default. Check out Configuration section to figure our how to enable it.
+
+### Configuration
+
+`Tethos` can behavior be configured using `AutoMockingConfiguration` class instance.
+
+| Item                  | Description                                                     | Default value |
+| --------------------- | --------------------------------------------------------------- | ------------- |
+| IncludeNonPublicTypes | Enables internal types to be loaded into auto-mocking container | `False`       |
+
+Since `AutoMockingConfiguration` is virtual you can override in the child class:
+
+```c#
+public class Test : AutoMockingTest
+{
+    public override AutoMockingConfiguration AutoMockingConfiguration => new() { IncludeNonPublicTypes = false };
+}
+```
+
+alternatively, you can override `OnConfigurationCreated` method which allow you can edit configuration instance directly.
+
+```c#
+public class Test : AutoMockingTest
+{
+    public override AutoMockingConfiguration OnConfigurationCreated(AutoMockingConfiguration configuration)
+    {
+        configuration.IncludeNonPublicTypes = true;
+        return base.OnConfigurationCreated(configuration);
+    }
+}
+```
+
 ### Mocking implementations
 
 #### Tethos.Moq
@@ -181,6 +263,17 @@ public void Test()
 {
     var mock = Container.Resolve<Mock<IMockable>>();
     mock.Setup(m => m.Get()).Returns(42);
+}
+```
+
+alternatively, Moq's proxy objects can be resolved as well
+
+```c#
+[Fact]
+public void Test()
+{
+    var mock = Container.Resolve<IMockable>();
+    Mock.Get(mock).Setup(m => m.Get()).Returns(42);
 }
 ```
 

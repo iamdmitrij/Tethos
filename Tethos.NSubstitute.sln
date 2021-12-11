@@ -41,6 +41,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{8DDA643A-1839-4470-A593-5EE9507FB294}"
 	ProjectSection(SolutionItems) = preProject
 		.github\.codecov.yml = .github\.codecov.yml
+		.github\config.yml = .github\config.yml
 		.github\dependabot.yml = .github\dependabot.yml
 	EndProjectSection
 EndProject
@@ -49,6 +50,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\ci.yml = .github\workflows\ci.yml
 		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
 		.github\workflows\nuget.yml = .github\workflows\nuget.yml
+		.github\workflows\spellcheck.yml = .github\workflows\spellcheck.yml
 		.github\workflows\test-report.yml = .github\workflows\test-report.yml
 	EndProjectSection
 EndProject
@@ -86,6 +88,15 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.NSubstitute.NUnit.EndToEnd", "test\EndToEnd\NSubstitute\Tethos.NSubstitute.NUnit.EndToEnd\Tethos.NSubstitute.NUnit.EndToEnd.csproj", "{82286E75-CC8D-46B9-ADEF-48639B136C39}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.NSubstitute.Xunit.EndToEnd", "test\EndToEnd\NSubstitute\Tethos.NSubstitute.Xunit.EndToEnd\Tethos.NSubstitute.Xunit.EndToEnd.csproj", "{CE82140D-4A68-4C21-9CF9-E1247642FB4D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "actions", "actions", "{046FF445-DB76-4093-B4B0-EA7A87BB4A70}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "spelling", "spelling", "{A5B3F180-4839-4559-B15C-1F2ADAE49641}"
+	ProjectSection(SolutionItems) = preProject
+		.github\actions\spelling\allow.txt = .github\actions\spelling\allow.txt
+		.github\actions\spelling\excludes.txt = .github\actions\spelling\excludes.txt
+		.github\actions\spelling\patterns.txt = .github\actions\spelling\patterns.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -209,6 +220,8 @@ Global
 		{580E9CE2-1437-4E60-BC0B-5523206A896A} = {0F9981AF-90EF-4656-9636-EA098548A942}
 		{82286E75-CC8D-46B9-ADEF-48639B136C39} = {0F9981AF-90EF-4656-9636-EA098548A942}
 		{CE82140D-4A68-4C21-9CF9-E1247642FB4D} = {0F9981AF-90EF-4656-9636-EA098548A942}
+		{046FF445-DB76-4093-B4B0-EA7A87BB4A70} = {8DDA643A-1839-4470-A593-5EE9507FB294}
+		{A5B3F180-4839-4559-B15C-1F2ADAE49641} = {046FF445-DB76-4093-B4B0-EA7A87BB4A70}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF888DCC-71E7-4562-AA35-5B93FD8DD252}
