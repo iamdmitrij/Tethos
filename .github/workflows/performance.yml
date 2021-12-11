@@ -24,7 +24,7 @@ jobs:
       - name: Save Pull Request Number
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: echo $PR_NUMBER > pr_number.txt
+        run: echo $PR_NUMBER > BenchmarkDotNet.Artifacts/results/pr_number.txt
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
