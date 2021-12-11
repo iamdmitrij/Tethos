@@ -24,21 +24,21 @@ namespace Tethos.Tests.Benchmarks
         [Benchmark]
         public void GetMockable()
         {
-            var sut = this.Container.Resolve<SystemUnderTest>();
-            var mock = this.Container.Resolve<Mock<IMockable>>();
-            mock.Setup(m => m.Get()).Returns(0);
-            sut.Exercise();
-            mock.Verify();
+            //var sut = this.Container.Resolve<SystemUnderTest>();
+            //var mock = this.Container.Resolve<Mock<IMockable>>();
+            //mock.Setup(m => m.Get()).Returns(0);
+            //sut.Exercise();
+            //mock.Verify();
         }
 
         [Benchmark]
         public void GetMockableProxy()
         {
-            var sut = this.Container.Resolve<SystemUnderTest>();
-            var mock = Mock.Get(this.Container.Resolve<IMockable>());
-            mock.Setup(m => m.Get()).Returns(0);
-            sut.Exercise();
-            mock.Verify();
+            //var sut = this.Container.Resolve<SystemUnderTest>();
+            //var mock = Mock.Get(this.Container.Resolve<IMockable>());
+            //mock.Setup(m => m.Get()).Returns(0);
+            //sut.Exercise();
+            //mock.Verify();
         }
     }
 }
