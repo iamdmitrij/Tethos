@@ -1,4 +1,4 @@
-name: Performance
+name: 🏄 Performance
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Performance tests
+    name: 🏇 Run tests
     runs-on: windows-latest
     steps:
       - name: 📥 Checkout
@@ -27,10 +27,10 @@ jobs:
       - name: 🔬 Test
         run: dotnet run --project ./test/Tethos.Tests.Benchmarks/Tethos.Tests.Benchmarks.csproj --configuration Release --verbosity normal
 
-      - name: Read results
+      - name: 🏅 Read results
         id: benchmark
         run: echo "::set-output name=comment::$(cat ./test/Tethos.Tests.Benchmarks/bin/Release/net6.0/BenchmarkDotNet.Artifacts/results/Tethos.Tests.Benchmarks.FactoryBenchmark-report-github.md)"
-      - name: Create comment
+      - name: 📝 Create comment
         uses: peter-evans/commit-comment@v1
         with:
           body: ${{ steps.benchmark.outputs.comment }}
