@@ -21,9 +21,9 @@ jobs:
       - name: 🔬 Test
         run: dotnet run --project ./test/Tethos.Tests.Benchmarks/Tethos.Tests.Benchmarks.csproj --configuration Release --verbosity normal
 
-      - name: 🏅 Read results
-        id: benchmark
-        run: echo "::set-output name=comment::$(cat BenchmarkDotNet.Artifacts/results/Tethos.Tests.Benchmarks.FactoryBenchmark-report-github.md)"
+      # - name: 🏅 Read results
+      #   id: benchmark
+      #   run: echo "::set-output name=comment::$(cat BenchmarkDotNet.Artifacts/results/Tethos.Tests.Benchmarks.FactoryBenchmark-report-github.md)"
       - uses: pCYSl5EDgo/cat@master
         id: benchmark
         with:
