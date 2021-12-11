@@ -25,7 +25,7 @@ jobs:
       #   run: dotnet build ./Tethos.sln --configuration Release --no-restore -p:Version=$(echo ${{ steps.previoustag.outputs.tag }} | tr -d 'v')
 
       - name: 🔬 Test
-        run: dotnet run --project ./test/Tethos.Tests.Benchmarks/Tethos.Tests.Benchmarks.csproj --configuration Release --no-build --verbosity normal
+        run: dotnet run --project ./test/Tethos.Tests.Benchmarks/Tethos.Tests.Benchmarks.csproj --configuration Release --verbosity normal
 
       - name: Read results
         id: benchmark
