@@ -4,6 +4,13 @@ namespace Tethos.Tests.Benchmarks
     using global::Moq;
     using Tethos.Tests.Common;
 
+    [MemoryDiagnoser]
+    [RankColumn]
+    [MinColumn]
+    [MaxColumn]
+    [Q1Column]
+    [Q3Column]
+    [AllStatisticsColumn]
     public class FactoryBenchmark
     {
         public FactoryBenchmark()
@@ -18,5 +25,8 @@ namespace Tethos.Tests.Benchmarks
 
         [Benchmark]
         public Mock<IMockable> GetMockOfMockable() => this.Container.Resolve<Mock<IMockable>>();
+
+        //[Benchmark]
+        //public IAutoMockingContainer GetFactory() => Moq.AutoMockingContainerFactory.Create();
     }
 }

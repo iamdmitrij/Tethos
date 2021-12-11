@@ -1,3 +1,12 @@
-using BenchmarkDotNet.Running;
+namespace Tethos.Tests.Benchmarks
+{
+    using BenchmarkDotNet.Running;
 
-_ = BenchmarkRunner.Run(typeof(Program).Assembly);
+    internal static class Program
+    {
+        private static void Main()
+        {
+            _ = BenchmarkRunner.Run(typeof(Program).Assembly);
+        }
+    }
+}

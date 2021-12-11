@@ -1,0 +1,36 @@
+name: Performance
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build:
+    name: Performance tests
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET Core 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      # - name: 🔩 Restore dependencies
+      #   run: dotnet restore ./Tethos.sln
+
+      # - name: 🔨 Build
+      #   run: dotnet build ./Tethos.sln --configuration Release --no-restore -p:Version=$(echo ${{ steps.previoustag.outputs.tag }} | tr -d 'v')
+
+      - name: 🔬 Test
+        run: dotnet run --project ./test/Tethos.Tests.Benchmarks.csproj --configuration Release --no-build --verbosity normal
+
+      - name: Read results
+        id: benchmark
+        run: echo "::set-output name=comment::$(cat ./test/Tethos.Tests.Benchmarks/bin/Release/net6.0/BenchmarkDotNet.Artifacts/results/Tethos.Tests.Benchmarks.FactoryBenchmark-report-github.md)"
+      - name: Create comment
+        uses: peter-evans/commit-comment@v1
+        with:
+          body: ${{ steps.benchmark.outputs.comment }}
