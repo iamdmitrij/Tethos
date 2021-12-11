@@ -19,13 +19,13 @@ jobs:
           name: performance-test-results
 
       - name: 📑 Aggregate results
-        run: Get-ChildItem .\BenchmarkDotNet.Artifacts\results\ -include *.md -rec | ForEach-Object {gc $_; ""} | out-file .\BenchmarkDotNet.Artifacts\results\results.md
+        run: Get-ChildItem -include Tethos.Tests.Benchmarks.*.md -rec | ForEach-Object {gc $_; ""} | out-file results.md
 
       - name: 🏅 Read results
         uses: pCYSl5EDgo/cat@master
         id: benchmark
         with:
-          path: BenchmarkDotNet.Artifacts/results/results.md
+          path: results.md
 
       - name: 📝 Create comment
         uses: peter-evans/create-or-update-comment@v1
