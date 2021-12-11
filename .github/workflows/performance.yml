@@ -36,12 +36,12 @@ jobs:
           body: |
             Build output
             ${{ steps.benchmark.outputs.comment }}
-          edit-mode: 'replace'
-          reactions: '+1'
+          edit-mode: "replace"
+          reactions: "+1"
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
           name: performance-test-results
-          path: BenchmarkDotNet.Artifacts/results/**
+          path: BenchmarkDotNet.Artifacts/results/*.html
