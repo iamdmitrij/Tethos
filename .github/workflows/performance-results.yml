@@ -1,10 +1,10 @@
 name: 🏅 Performance Report
 
-# on:
-#   workflow_run:
-#     workflows: ["🏄 Performance"]
-#     types:
-#       - completed
+on:
+  workflow_run:
+    workflows: ["🏄 Performance"]
+    types:
+      - completed
 jobs:
   report:
     runs-on: windows-latest
