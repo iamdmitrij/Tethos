@@ -21,11 +21,10 @@ jobs:
       - name: 🔬 Test
         run: dotnet run --project ./test/Tethos.Tests.Benchmarks/Tethos.Tests.Benchmarks.csproj --configuration Release --verbosity normal
 
-      - name: Save the PR number in an artifact
-        shell: bash
+      - name: Save Pull Request Number
         env:
-          PR_NUM: ${{ github.event.pull_request.number }}
-        run: echo $PR_NUM > pr_num.txt
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: echo $PR_NUMBER > pr_number.txt
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
