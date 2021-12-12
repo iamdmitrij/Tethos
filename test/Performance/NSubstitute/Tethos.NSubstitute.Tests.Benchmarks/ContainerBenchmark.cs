@@ -4,7 +4,6 @@ namespace Tethos.NSubstitute.Tests.Benchmarks
     using Tethos.Extensions;
     using Tethos.Tests.Common;
 
-    [BenchmarkCategory("NSubstitute")]
     public class ContainerBenchmark
     {
         public ContainerBenchmark()
@@ -14,13 +13,13 @@ namespace Tethos.NSubstitute.Tests.Benchmarks
 
         public IAutoMockingContainer Container { get; }
 
-        [Benchmark(Description = "NSubstitute")]
+        [Benchmark(Description = "NSubstitute.GetMockableViaProxy")]
         public IMockable GetMockableViaProxy() => this.Container.Resolve<IMockable>();
 
-        [Benchmark(Description = "NSubstitute")]
+        [Benchmark(Description = "NSubstitute.ResolveFromSut")]
         public IMockable ResolveFromSut() => this.Container.ResolveFrom<SystemUnderTest, IMockable>();
 
-        [Benchmark(Description = "NSubstitute")]
+        [Benchmark(Description = "NSubstitute.ResolveSut")]
         public SystemUnderTest ResolveSut() => this.Container.Resolve<SystemUnderTest>();
     }
 }

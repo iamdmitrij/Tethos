@@ -4,7 +4,6 @@ namespace Tethos.FakeItEasy.Tests.Benchmarks
     using Tethos.Extensions;
     using Tethos.Tests.Common;
 
-    [BenchmarkCategory("FakeItEasy")]
     public class ContainerBenchmark
     {
         public ContainerBenchmark()
@@ -14,13 +13,13 @@ namespace Tethos.FakeItEasy.Tests.Benchmarks
 
         public IAutoMockingContainer Container { get; }
 
-        [Benchmark(Description = "FakeItEasy")]
+        [Benchmark(Description = "FakeItEasy.GetMockableViaProxy")]
         public IMockable GetMockableViaProxy() => this.Container.Resolve<IMockable>();
 
-        [Benchmark(Description = "FakeItEasy")]
+        [Benchmark(Description = "FakeItEasy.ResolveFromSut")]
         public IMockable ResolveFromSut() => this.Container.ResolveFrom<SystemUnderTest, IMockable>();
 
-        [Benchmark(Description = "FakeItEasy")]
+        [Benchmark(Description = "FakeItEasy.ResolveSut")]
         public SystemUnderTest ResolveSut() => this.Container.Resolve<SystemUnderTest>();
     }
 }
