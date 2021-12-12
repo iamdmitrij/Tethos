@@ -1,4 +1,4 @@
-namespace Tethos.Tests.Benchmarks
+namespace Tethos.Moq.Tests.Benchmarks
 {
     using BenchmarkDotNet.Attributes;
     using global::Moq;
@@ -9,10 +9,10 @@ namespace Tethos.Tests.Benchmarks
     {
         public ContainerBenchmark()
         {
-            this.Container = Moq.AutoMockingContainerFactory.Create();
+            this.Container = AutoMockingContainerFactory.Create();
         }
 
-        public Moq.IAutoMockingContainer Container { get; }
+        public IAutoMockingContainer Container { get; }
 
         [Benchmark]
         public IMockable GetMockableViaProxy() => this.Container.Resolve<IMockable>();

@@ -1,4 +1,4 @@
-namespace Tethos.Tests.Benchmarks
+namespace Tethos.NSubstitute.Tests.Benchmarks
 {
     using BenchmarkDotNet.Attributes;
 
@@ -6,6 +6,6 @@ namespace Tethos.Tests.Benchmarks
     public class FactoryBenchmark
     {
         [Benchmark]
-        public void MakeFactory() => Moq.AutoMockingContainerFactory.Create();
+        public void MakeFactory() => AutoMockingContainerFactory.Create();
     }
 }
