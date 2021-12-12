@@ -4,6 +4,7 @@ namespace Tethos.NSubstitute.Tests.Benchmarks
     using Tethos.Extensions;
     using Tethos.Tests.Common;
 
+    [BenchmarkCategory("NSubstitute")]
     public class ContainerBenchmark
     {
         public ContainerBenchmark()

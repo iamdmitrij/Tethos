@@ -2,6 +2,7 @@ namespace Tethos.NSubstitute.Tests.Benchmarks
 {
     using BenchmarkDotNet.Attributes;
 
+    [BenchmarkCategory("NSubstitute")]
     [ShortRunJob]
     public class FactoryBenchmark
     {

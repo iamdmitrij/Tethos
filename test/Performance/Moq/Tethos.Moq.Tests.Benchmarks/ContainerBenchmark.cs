@@ -5,6 +5,7 @@ namespace Tethos.Moq.Tests.Benchmarks
     using Tethos.Extensions;
     using Tethos.Tests.Common;
 
+    [BenchmarkCategory("Moq")]
     public class ContainerBenchmark
     {
         public ContainerBenchmark()
