@@ -7,6 +7,6 @@ namespace Tethos.FakeItEasy.Tests.Benchmarks
     public class FactoryBenchmark
     {
         [Benchmark(Description = "FakeItEasy")]
-        public static void MakeFactory() => AutoMockingContainerFactory.Create();
+        public void MakeFactory() => AutoMockingContainerFactory.Create();
     }
 }
