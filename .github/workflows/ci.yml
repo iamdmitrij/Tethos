@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: 🔨 Build & 🔬 Test
+    name: 🔨 Build
     runs-on: windows-latest
     steps:
       - name: 📥 Checkout
@@ -50,7 +50,7 @@ jobs:
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
 
         # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
-      - name: 🔧 Use .NET Core 5.0 SDK
+      - name: 🔧 Use .NET 5.0 SDK
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
@@ -65,22 +65,16 @@ jobs:
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"iamdmitrij_Tethos" /o:"iamdmitrij" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /d:sonar.cs.vstest.reportsPaths="coverage/*.trx" /d:sonar.coverage.exclusions="test/**, demo/**"
 
         # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
-      - name: 🔧 Use .NET Core 6.0 SDK
+      - name: 🔧 Use .NET 6.0 SDK
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.0.x
 
-      - name: 🔩 Restore dependencies
-        run: dotnet restore ./Tethos.sln
-
       - name: 🔨 Build
-        run: dotnet build ./Tethos.sln --configuration Release --no-restore -p:Version=$(echo ${{ steps.previoustag.outputs.tag }} | tr -d 'v')
-
-      - name: 🔬 Test
-        run: dotnet test ./Tethos.sln --configuration Release --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory ./coverage
+        run: dotnet build ./Tethos.sln --configuration Release -p:Version=$(echo ${{ steps.previoustag.outputs.tag }} | tr -d 'v')
 
         # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
-      - name: 🔧 Use .NET Core 5.0 SDK
+      - name: 🔧 Use .NET 5.0 SDK
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
@@ -94,6 +88,30 @@ jobs:
         run: |
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
+      - name: 📚 Artifact NuGet
+        uses: actions/upload-artifact@v2
+        if: success()
+        with:
+          name: nuget-packages
+          path: |
+            src/**/Tethos*.nupkg
+            src/**/Tethos*.snupkg
+
+  test:
+    name: 🔬 Test
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔬 Test
+        run: dotnet test ./Tethos.sln --configuration Release --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory ./coverage
+
       - name: 🔍 Coverage
         uses: codecov/codecov-action@v2
         with:
@@ -106,14 +124,6 @@ jobs:
           name: test-results
           path: coverage/*.trx
 
-      - name: 📚 Artifact NuGet
-        uses: actions/upload-artifact@v2
-        if: success()
-        with:
-          name: nuget-packages
-          path: |
-            src/**/Tethos*.nupkg
-            src/**/Tethos*.snupkg
   spellcheck:
     name: 🔦 Spellcheck
     runs-on: ubuntu-latest
