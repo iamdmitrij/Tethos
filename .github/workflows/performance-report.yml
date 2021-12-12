@@ -48,7 +48,7 @@ jobs:
         id: fc
         with:
           issue-number: ${{ steps.pr_number.outputs.content }}
-          comment-author: 'github-actions[bot]'
+          comment-author: "github-actions[bot]"
           body-includes: 🏅 Performance test results are here
           direction: last
 
@@ -57,7 +57,12 @@ jobs:
         with:
           body: |
             🏅 Performance test results are here:
+
+            <details closed><summary>Expand</summary>
+
             ${{ steps.benchmark.outputs.text }}
+
+            </details>
           issue-number: ${{ steps.pr_number.outputs.content }}
           comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: "replace"
