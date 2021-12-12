@@ -38,8 +38,8 @@ jobs:
           path: pr_number.txt
 
       - name: 🏅 Read test results
+        uses: pCYSl5EDgo/cat@master
         id: benchmark
-        uses: juliangruber/read-file-action@v1.0.0
         with:
           path: results.md
 
