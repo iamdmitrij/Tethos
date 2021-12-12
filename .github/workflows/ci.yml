@@ -70,11 +70,8 @@ jobs:
         with:
           dotnet-version: 6.0.x
 
-      - name: 🔩 Restore dependencies
-        run: dotnet restore ./Tethos.sln
-
       - name: 🔨 Build
-        run: dotnet build ./Tethos.sln --configuration Release --no-restore -p:Version=$(echo ${{ steps.previoustag.outputs.tag }} | tr -d 'v')
+        run: dotnet build ./Tethos.sln --configuration Release -p:Version=$(echo ${{ steps.previoustag.outputs.tag }} | tr -d 'v')
 
         # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
       - name: 🔧 Use .NET Core 5.0 SDK
