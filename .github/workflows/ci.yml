@@ -1,12 +1,11 @@
-﻿name: 🔄 CI
+﻿name: "🔄 CI"
 
 on:
   push:
-    tags:
-      - "v*"
+    tags: ["v*"]
   pull_request:
-    branches: [main]
-    types: [opened, synchronize, reopened]
+    branches: ["main"]
+    types: ["opened", "synchronize", "reopened"]
 
 jobs:
   build:
