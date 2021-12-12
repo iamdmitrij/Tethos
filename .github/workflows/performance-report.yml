@@ -37,9 +37,9 @@ jobs:
         with:
           path: pr_number.txt
 
-      - name: 🏅 Read results
-        uses: pCYSl5EDgo/cat@master # TODO: Replace this action with juliangruber/read-file-action@v1.0.0
+      - name: 🏅 Read test results
         id: benchmark
+        uses: juliangruber/read-file-action@v1.0.0
         with:
           path: results.md
 
@@ -48,7 +48,7 @@ jobs:
         id: fc
         with:
           issue-number: ${{ steps.pr_number.outputs.content }}
-          comment-author: github-actions
+          comment-author: 'github-actions[bot]'
           body-includes: 🏅 Performance test results are here
           direction: last
 
