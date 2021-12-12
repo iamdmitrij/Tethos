@@ -43,7 +43,7 @@ jobs:
         with:
           path: results.md
 
-      - name: Find Comment
+      - name: 📬 Find Comment
         uses: peter-evans/find-comment@v1
         id: fc
         with:
@@ -58,7 +58,7 @@ jobs:
           body: |
             🏅 Performance test results are here:
 
-            <details closed><summary>Expand</summary>
+            <details closed><summary>Expand to see</summary>
 
             ${{ steps.benchmark.outputs.text }}
 
