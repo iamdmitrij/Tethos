@@ -21,6 +21,11 @@ jobs:
       - name: 🔙 Get Previous Version
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
+      - name: 🔧 Use .NET Core 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
 
       - name: 🔧 Set up JDK 11
         uses: actions/setup-java@v1
@@ -49,11 +54,11 @@ jobs:
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
 
-        # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
-      - name: 🔧 Use .NET Core 5.0 SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 5.0.x
+      #   # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
+      # - name: 🔧 Use .NET Core 5.0 SDK
+      #   uses: actions/setup-dotnet@v1
+      #   with:
+      #     dotnet-version: 5.0.x
 
       - name: 🔽 Start SonarCloud scan
         if: ${{ github.actor != 'dependabot[bot]' }}
@@ -64,20 +69,15 @@ jobs:
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"iamdmitrij_Tethos" /o:"iamdmitrij" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /d:sonar.cs.vstest.reportsPaths="coverage/*.trx" /d:sonar.coverage.exclusions="test/**, demo/**"
 
-        # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
-      - name: 🔧 Use .NET Core 6.0 SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 6.0.x
 
       - name: 🔨 Build
         run: dotnet build ./Tethos.sln --configuration Release -p:Version=$(echo ${{ steps.previoustag.outputs.tag }} | tr -d 'v')
 
-        # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
-      - name: 🔧 Use .NET Core 5.0 SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 5.0.x
+      #   # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
+      # - name: 🔧 Use .NET Core 5.0 SDK
+      #   uses: actions/setup-dotnet@v1
+      #   with:
+      #     dotnet-version: 5.0.x
 
       - name: 🔼 End SonarCloud scan
         if: ${{ github.actor != 'dependabot[bot]' }}
