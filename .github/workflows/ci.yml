@@ -114,3 +114,20 @@ jobs:
           path: |
             src/**/Tethos*.nupkg
             src/**/Tethos*.snupkg
+  spellcheck:
+    name: 🔦 Spellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: ✅ Check spelling
+        uses: check-spelling/check-spelling@v0.0.20-alpha3
+        with:
+          extra_dictionaries: cspell:csharp/csharp.txt
+            cspell:companies/companies.txt
+            cspell:dotnet/dotnet.txt
+            cspell:filetypes/filetypes.txt
+            cspell:fullstack/fullstack.txt
+            cspell:html/html.txt
+            cspell:software-terms/software-terms.txt
