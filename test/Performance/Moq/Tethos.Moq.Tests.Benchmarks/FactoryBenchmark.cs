@@ -7,6 +7,6 @@ namespace Tethos.Moq.Tests.Benchmarks
     public class FactoryBenchmark
     {
         [Benchmark(Description = "Moq")]
-        public void MakeFactory() => AutoMockingContainerFactory.Create();
+        public static void MakeFactory() => AutoMockingContainerFactory.Create();
     }
 }
