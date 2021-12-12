@@ -29,7 +29,7 @@ jobs:
           name: nsubstitute-performance-test-results
 
       - name: 📑 Aggregate results
-        run: Get-ChildItem -include Tethos.Tests.Benchmarks.*.md -rec | ForEach-Object {gc $_; ""} | out-file results.md
+        run: Get-ChildItem -include Tethos.*.Tests.Benchmarks.*.md -rec | ForEach-Object {gc $_; ""} | out-file results.md
 
       - name: 🔟 Resolve Pull Request Reference
         id: pr_number
@@ -43,6 +43,15 @@ jobs:
         with:
           path: results.md
 
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ steps.pr_number.outputs.content }}
+          comment-author: github-actions
+          body-includes: 🏅 Performance test results are here
+          direction: last
+
       - name: 📝 Create comment
         uses: peter-evans/create-or-update-comment@v1
         with:
@@ -50,4 +59,5 @@ jobs:
             🏅 Performance test results are here:
             ${{ steps.benchmark.outputs.text }}
           issue-number: ${{ steps.pr_number.outputs.content }}
+          comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: "replace"
