@@ -6,7 +6,7 @@ namespace Tethos.NSubstitute.Tests.Benchmarks
     [ShortRunJob]
     public class FactoryBenchmark
     {
-        [Benchmark]
+        [Benchmark(Description = "NSubstitute")]
         public void MakeFactory() => AutoMockingContainerFactory.Create();
     }
 }

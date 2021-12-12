@@ -15,16 +15,16 @@ namespace Tethos.Moq.Tests.Benchmarks
 
         public IAutoMockingContainer Container { get; }
 
-        [Benchmark]
+        [Benchmark(Description = "Moq")]
         public IMockable GetMockableViaProxy() => this.Container.Resolve<IMockable>();
 
-        [Benchmark]
+        [Benchmark(Description = "Moq")]
         public IMockable GetMockableViaMock() => this.Container.Resolve<Mock<IMockable>>().Object;
 
-        [Benchmark]
+        [Benchmark(Description = "Moq")]
         public IMockable ResolveFromSut() => this.Container.ResolveFrom<SystemUnderTest, IMockable>();
 
-        [Benchmark]
+        [Benchmark(Description = "Moq")]
         public SystemUnderTest ResolveSut() => this.Container.Resolve<SystemUnderTest>();
     }
 }

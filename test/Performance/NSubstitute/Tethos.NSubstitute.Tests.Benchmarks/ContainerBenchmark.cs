@@ -14,13 +14,13 @@ namespace Tethos.NSubstitute.Tests.Benchmarks
 
         public IAutoMockingContainer Container { get; }
 
-        [Benchmark]
+        [Benchmark(Description = "NSubstitute")]
         public IMockable GetMockableViaProxy() => this.Container.Resolve<IMockable>();
 
-        [Benchmark]
+        [Benchmark(Description = "NSubstitute")]
         public IMockable ResolveFromSut() => this.Container.ResolveFrom<SystemUnderTest, IMockable>();
 
-        [Benchmark]
+        [Benchmark(Description = "NSubstitute")]
         public SystemUnderTest ResolveSut() => this.Container.Resolve<SystemUnderTest>();
     }
 }
