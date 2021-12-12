@@ -8,7 +8,7 @@ on:
       - completed
 
 jobs:
-  build:
+  publish:
     name: 📦 Publish to NuGet
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: windows-latest
