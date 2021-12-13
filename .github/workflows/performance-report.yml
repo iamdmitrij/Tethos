@@ -1,10 +1,9 @@
-name: 🏅 Performance Report
+name: "🏅 Performance Report"
 
 on:
   workflow_run:
     workflows: ["🏄 Performance"]
-    types:
-      - completed
+    types: ["completed"]
 jobs:
   report:
     runs-on: windows-latest
@@ -16,21 +15,10 @@ jobs:
       - uses: dawidd6/action-download-artifact@v2
         with:
           workflow: performance.yml
-          name: moq-performance-test-results
-
-      - uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow: performance.yml
-          name: fakeiteasy-performance-test-results
-
-      - uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow: performance.yml
-          name: nsubstitute-performance-test-results
+          name: performance-test-results
 
       - name: 📑 Aggregate results
         run: Get-ChildItem -include Tethos.*.Tests.Benchmarks.*.md -rec | ForEach-Object {gc $_; ""} | out-file results.md
-
       - name: 🔟 Resolve Pull Request Reference
         id: pr_number
         uses: juliangruber/read-file-action@v1.0.0
