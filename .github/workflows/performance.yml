@@ -1,0 +1,89 @@
+name: "🏄 Performance"
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: ["opened", "synchronize", "reopened"]
+
+jobs:
+  test-moq:
+    name: 🏇 Moq
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET Core 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔬 Test
+        run: dotnet run --project ./test/Performance/Moq/Tethos.Moq.Tests.Benchmarks/Tethos.Moq.Tests.Benchmarks.csproj --configuration Release
+
+      - name: 🔟 Save Pull Request Number
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: echo $PR_NUMBER > BenchmarkDotNet.Artifacts/results/pr_number.txt
+
+      - name: 📚 Artifact Test Results
+        uses: actions/upload-artifact@v2
+        if: success()
+        with:
+          name: performance-test-results
+          path: BenchmarkDotNet.Artifacts/results/**
+  test-fakeiteasy:
+    name: 🏇 FakeItEasy
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET Core 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔬 Test
+        run: dotnet run --project ./test/Performance/FakeItEasy/Tethos.FakeItEasy.Tests.Benchmarks/Tethos.FakeItEasy.Tests.Benchmarks.csproj --configuration Release
+
+      - name: 🔟 Save Pull Request Number
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: echo $PR_NUMBER > BenchmarkDotNet.Artifacts/results/pr_number.txt
+
+      - name: 📚 Artifact Test Results
+        uses: actions/upload-artifact@v2
+        if: success()
+        with:
+          name: performance-test-results
+          path: BenchmarkDotNet.Artifacts/results/**
+  test-nsubstitute:
+    name: 🏇 NSubstitute
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET Core 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔬 Test
+        run: dotnet run --project ./test/Performance/NSubstitute/Tethos.NSubstitute.Tests.Benchmarks/Tethos.NSubstitute.Tests.Benchmarks.csproj --configuration Release
+
+      - name: 🔟 Save Pull Request Number
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: echo $PR_NUMBER > BenchmarkDotNet.Artifacts/results/pr_number.txt
+
+      - name: 📚 Artifact Test Results
+        uses: actions/upload-artifact@v2
+        if: success()
+        with:
+          name: performance-test-results
+          path: BenchmarkDotNet.Artifacts/results/**

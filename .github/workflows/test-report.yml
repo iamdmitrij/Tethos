@@ -1,11 +1,9 @@
-name: 📊 Test Report
+name: "📊 Test Report"
 
 on:
   workflow_run:
-    workflows:
-      - 🔄 CI
-    types:
-      - completed
+    workflows: ["🔄 CI"]
+    types: ["completed"]
 jobs:
   report:
     runs-on: ubuntu-latest

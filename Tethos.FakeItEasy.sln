@@ -50,6 +50,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\ci.yml = .github\workflows\ci.yml
 		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
 		.github\workflows\nuget.yml = .github\workflows\nuget.yml
+		.github\workflows\performance-report.yml = .github\workflows\performance-report.yml
+		.github\workflows\performance.yml = .github\workflows\performance.yml
 		.github\workflows\test-report.yml = .github\workflows\test-report.yml
 	EndProjectSection
 EndProject
@@ -96,6 +98,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "spelling", "spelling", "{9A
 		.github\actions\spelling\excludes.txt = .github\actions\spelling\excludes.txt
 		.github\actions\spelling\patterns.txt = .github\actions\spelling\patterns.txt
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Performance", "Performance", "{BDA63C83-DCF9-4F16-9267-C43811D27775}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.FakeItEasy.Tests.Benchmarks", "test\Performance\FakeItEasy\Tethos.FakeItEasy.Tests.Benchmarks\Tethos.FakeItEasy.Tests.Benchmarks.csproj", "{9BDCD92E-C260-4213-A088-C438DECBB6D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -191,6 +197,10 @@ Global
 		{20CDC992-F8EA-402D-A245-FAD46C73627F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20CDC992-F8EA-402D-A245-FAD46C73627F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20CDC992-F8EA-402D-A245-FAD46C73627F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BDCD92E-C260-4213-A088-C438DECBB6D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BDCD92E-C260-4213-A088-C438DECBB6D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BDCD92E-C260-4213-A088-C438DECBB6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BDCD92E-C260-4213-A088-C438DECBB6D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -221,6 +231,8 @@ Global
 		{20CDC992-F8EA-402D-A245-FAD46C73627F} = {15109762-FA0F-4B94-B2A1-0E16850FD44F}
 		{27803142-699E-469D-A50D-8897B394E18E} = {8DDA643A-1839-4470-A593-5EE9507FB294}
 		{9A2CAF49-5E0C-4821-8107-E8C25AAA3878} = {27803142-699E-469D-A50D-8897B394E18E}
+		{BDA63C83-DCF9-4F16-9267-C43811D27775} = {A7503D75-64C3-4AAC-90C8-F6297B09AB70}
+		{9BDCD92E-C260-4213-A088-C438DECBB6D6} = {BDA63C83-DCF9-4F16-9267-C43811D27775}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF888DCC-71E7-4562-AA35-5B93FD8DD252}

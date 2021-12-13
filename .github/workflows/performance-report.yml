@@ -1,10 +1,9 @@
-name: 🏅 Performance Report
+name: "🏅 Performance Report"
 
 on:
   workflow_run:
     workflows: ["🏄 Performance"]
-    types:
-      - completed
+    types: ["completed"]
 jobs:
   report:
     runs-on: windows-latest
@@ -16,38 +15,42 @@ jobs:
       - uses: dawidd6/action-download-artifact@v2
         with:
           workflow: performance.yml
-          name: moq-performance-test-results
-
-      - uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow: performance.yml
-          name: fakeiteasy-performance-test-results
-
-      - uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow: performance.yml
-          name: nsubstitute-performance-test-results
+          name: performance-test-results
 
       - name: 📑 Aggregate results
-        run: Get-ChildItem -include Tethos.Tests.Benchmarks.*.md -rec | ForEach-Object {gc $_; ""} | out-file results.md
-
+        run: Get-ChildItem -include Tethos.*.Tests.Benchmarks.*.md -rec | ForEach-Object {gc $_; ""} | out-file results.md
       - name: 🔟 Resolve Pull Request Reference
         id: pr_number
         uses: juliangruber/read-file-action@v1.0.0
         with:
           path: pr_number.txt
 
-      - name: 🏅 Read results
-        uses: pCYSl5EDgo/cat@master # TODO: Replace this action with juliangruber/read-file-action@v1.0.0
+      - name: 🏅 Read test results
+        uses: pCYSl5EDgo/cat@master
         id: benchmark
         with:
           path: results.md
+
+      - name: 📬 Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ steps.pr_number.outputs.content }}
+          comment-author: "github-actions[bot]"
+          body-includes: 🏅 Performance test results are here
+          direction: last
 
       - name: 📝 Create comment
         uses: peter-evans/create-or-update-comment@v1
         with:
           body: |
             🏅 Performance test results are here:
+
+            <details closed><summary>Expand to see</summary>
+
             ${{ steps.benchmark.outputs.text }}
+
+            </details>
           issue-number: ${{ steps.pr_number.outputs.content }}
+          comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: "replace"
