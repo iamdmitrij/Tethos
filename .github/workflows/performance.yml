@@ -1,9 +1,9 @@
-name: 🏄 Performance
+name: "🏄 Performance"
 
 on:
   pull_request:
-    branches: [main]
-    types: [opened, synchronize, reopened]
+    branches: ["main"]
+    types: ["opened", "synchronize", "reopened"]
 
 jobs:
   test-moq:
@@ -19,7 +19,7 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: 🔬 Test
-        run: dotnet run --project ./test/Performance/Moq/Tethos.Moq.Tests.Benchmarks/Tethos.Moq.Tests.Benchmarks.csproj --configuration Release --verbosity normal
+        run: dotnet run --project ./test/Performance/Moq/Tethos.Moq.Tests.Benchmarks/Tethos.Moq.Tests.Benchmarks.csproj --configuration Release
 
       - name: 🔟 Save Pull Request Number
         shell: bash
@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v2
         if: success()
         with:
-          name: moq-performance-test-results # TODO: Check if same artifact name can be reused
+          name: performance-test-results
           path: BenchmarkDotNet.Artifacts/results/**
   test-fakeiteasy:
     name: 🏇 FakeItEasy
@@ -46,7 +46,7 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: 🔬 Test
-        run: dotnet run --project ./test/Performance/FakeItEasy/Tethos.FakeItEasy.Tests.Benchmarks/Tethos.FakeItEasy.Tests.Benchmarks.csproj --configuration Release --verbosity normal
+        run: dotnet run --project ./test/Performance/FakeItEasy/Tethos.FakeItEasy.Tests.Benchmarks/Tethos.FakeItEasy.Tests.Benchmarks.csproj --configuration Release
 
       - name: 🔟 Save Pull Request Number
         shell: bash
@@ -58,7 +58,7 @@ jobs:
         uses: actions/upload-artifact@v2
         if: success()
         with:
-          name: fakeiteasy-performance-test-results
+          name: performance-test-results
           path: BenchmarkDotNet.Artifacts/results/**
   test-nsubstitute:
     name: 🏇 NSubstitute
@@ -73,7 +73,7 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: 🔬 Test
-        run: dotnet run --project ./test/Performance/NSubstitute/Tethos.NSubstitute.Tests.Benchmarks/Tethos.NSubstitute.Tests.Benchmarks.csproj --configuration Release --verbosity normal
+        run: dotnet run --project ./test/Performance/NSubstitute/Tethos.NSubstitute.Tests.Benchmarks/Tethos.NSubstitute.Tests.Benchmarks.csproj --configuration Release
 
       - name: 🔟 Save Pull Request Number
         shell: bash
@@ -85,5 +85,5 @@ jobs:
         uses: actions/upload-artifact@v2
         if: success()
         with:
-          name: nsubstitute-performance-test-results
+          name: performance-test-results
           path: BenchmarkDotNet.Artifacts/results/**

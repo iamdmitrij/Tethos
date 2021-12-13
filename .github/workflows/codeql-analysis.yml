@@ -1,8 +1,8 @@
-name: 🔐 CodeQL
+name: "🔐 CodeQL"
 
 on:
   pull_request:
-    branches: [main]
+    branches: ["main"]
 
 jobs:
   analyze:
