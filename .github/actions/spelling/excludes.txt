@@ -1,4 +1,5 @@
 (?:^|/)(?i)LICEN[CS]E
+(?:^|/)(?i)CODE_OF_CONDUCT
 \.png$
 ^\.github/
 \.csproj$
