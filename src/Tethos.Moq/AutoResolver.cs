@@ -38,7 +38,6 @@
             var mock = Activator.CreateInstance(mockType, arguments) as Mock;
             var isPlainObject = !typeof(IMocked).IsAssignableFrom(targetObject?.GetType());
 
-
             if (isPlainObject)
             {
                 this.Kernel.Register(Component.For(mockType)
