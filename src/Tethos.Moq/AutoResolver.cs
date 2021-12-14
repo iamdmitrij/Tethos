@@ -36,7 +36,8 @@
                 .Select(argument => argument.Value)
                 .ToArray();
             var mock = Activator.CreateInstance(mockType, arguments) as Mock;
-            var isPlainObject = !ProxyUtil.IsProxy(targetObject);
+            var isPlainObject = !typeof(IMocked).IsAssignableFrom(targetObject?.GetType());
+
 
             if (isPlainObject)
             {
