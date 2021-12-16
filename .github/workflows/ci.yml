@@ -135,7 +135,8 @@ jobs:
         with:
           dotnet-version: 6.0.x
 
-      - run: dotnet tool restore
+      - name: 🔦 Restore tools
+        run: dotnet tool restore
 
       - name: 💀 Mutation (Tethos)
         run: dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --project Tethos.csproj
