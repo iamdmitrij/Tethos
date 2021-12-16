@@ -4,9 +4,7 @@
   "tools": {
     "dotnet-stryker": {
       "version": "1.2.1",
-      "commands": [
-        "dotnet-stryker"
-      ]
+      "commands": ["dotnet-stryker"]
     }
   }
 }
