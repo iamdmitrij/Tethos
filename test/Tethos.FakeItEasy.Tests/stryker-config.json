@@ -5,6 +5,6 @@
       "test/Tethos.FakeItEasy.Tests/Tethos.FakeItEasy.Tests.csproj"
     ],
     "project": "Tethos.FakeItEasy.csproj",
-    "project-info": { "module": "Tethos-FakeItEasy" }
+    "project-info": { "module": "FakeItEasy" }
   }
 }
