@@ -6,3 +6,5 @@
 \.sln$
 \.editorconfig$
 \.git(?:attributes|ignore)$
+\dotnet-tools.json$
+\stryker-config.json$
