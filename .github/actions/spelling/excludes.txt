@@ -7,4 +7,4 @@
 \.sln$
 \.editorconfig$
 \.git(?:attributes|ignore)$
-\stryker-config.json$
+\.json$
