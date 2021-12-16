@@ -123,40 +123,6 @@ jobs:
           name: test-results
           path: coverage/*.trx
 
-  stryker:
-    name: 🎳 Stryker
-    runs-on: windows-latest
-    steps:
-      - name: 📥 Checkout
-        uses: actions/checkout@v2
-
-      - name: 🔧 Use .NET 6.0 SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 6.0.x
-
-      - name: 🔦 Restore tools
-        run: dotnet tool restore
-
-      - name: 💀 Mutation (Tethos)
-        run: dotnet stryker --config-file test/Tethos.Tests/stryker-config.json
-
-      - name: 💀 Mutation (Moq)
-        run: dotnet stryker --config-file test/Tethos.Moq.Tests/stryker-config.json
-
-      - name: 💀 Mutation (FakeItEasy)
-        run: dotnet stryker --config-file test/Tethos.FakeItEasy.Tests/stryker-config.json
-
-      - name: 💀 Mutation (NSubstitute)
-        run: dotnet stryker --config-file test/Tethos.NSubstitute.Tests/stryker-config.json
-
-      - name: 📚 Artifact Stryker Results
-        uses: actions/upload-artifact@v2
-        if: success() || failure()
-        with:
-          name: stryker-results
-          path: "**/reports/mutation-report.html"
-
   spellcheck:
     name: 🔦 Spellcheck
     runs-on: ubuntu-latest

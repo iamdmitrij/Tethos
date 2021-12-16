@@ -1,0 +1,109 @@
+name: "🎳 Stryker"
+
+on:
+  push:
+    tags: ["v[1-9]+.[0-9]+.[0-9]"]
+  pull_request:
+    branches: ["main"]
+    types: ["opened", "synchronize", "reopened"]
+
+jobs:
+  mutation-tests:
+    name: 💀 Mutation tests
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔦 Restore tools
+        run: dotnet tool restore
+
+      - name: 💀 Run mutation tests
+        run: dotnet stryker --config-file test/Tethos.Tests/stryker-config.json
+
+      - name: 📚 Artifact Stryker Results
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: stryker-results
+          path: "**/reports/mutation-report.html"
+
+  mutation-tests-moq:
+    name: 💀 Mutation tests (Moq)
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔦 Restore tools
+        run: dotnet tool restore
+
+      - name: 💀 Run mutation tests
+        run: dotnet stryker --config-file test/Tethos.Moq.Tests/stryker-config.json
+
+      - name: 📚 Artifact Stryker Results
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: stryker-results
+          path: "**/reports/mutation-report.html"
+
+  mutation-tests-fakeiteasy:
+    name: 💀 Mutation tests (FakeItEasy)
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔦 Restore tools
+        run: dotnet tool restore
+
+      - name: 💀 Mutation tests
+        run: dotnet stryker --config-file test/Tethos.FakeItEasy.Tests/stryker-config.json
+
+      - name: 📚 Artifact Stryker Results
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: stryker-results
+          path: "**/reports/mutation-report.html"
+
+  mutation-tests-nsubstitute:
+    name: 💀 Mutation tests (NSubstitute)
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔦 Restore tools
+        run: dotnet tool restore
+
+      - name: 💀 Run mutation tests
+        run: dotnet stryker --config-file test/Tethos.NSubstitute.Tests/stryker-config.json
+
+      - name: 📚 Artifact Stryker Results
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: stryker-results
+          path: "**/reports/mutation-report.html"
