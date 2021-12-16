@@ -30,12 +30,13 @@ jobs:
       - name: 🔦 Restore tools
         run: dotnet tool restore
 
-      - name: Get branch name
-        uses: nelonoel/branch-name@v1.0.1
+      - name: Fetch branch name
+        id: vars
+        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
 
       - name: 💀 Run mutation tests
         if: ${{ github.actor != 'dependabot[bot]' }}
-        run: dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --version ${BRANCH_NAME}
+        run: dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --version ${{ steps.vars.outputs.short_ref }}
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
@@ -67,12 +68,13 @@ jobs:
       - name: 🔦 Restore tools
         run: dotnet tool restore
 
-      - name: Get branch name
-        uses: nelonoel/branch-name@v1.0.1
+      - name: Fetch branch name
+        id: vars
+        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
 
       - name: 💀 Run mutation tests
         if: ${{ github.actor != 'dependabot[bot]' }}
-        run: dotnet stryker --config-file test/Tethos.Moq.Tests/stryker-config.json --version ${BRANCH_NAME}
+        run: dotnet stryker --config-file test/Tethos.Moq.Tests/stryker-config.json --version ${{ steps.vars.outputs.short_ref }}
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
@@ -104,12 +106,13 @@ jobs:
       - name: 🔦 Restore tools
         run: dotnet tool restore
 
-      - name: Get branch name
-        uses: nelonoel/branch-name@v1.0.1
+      - name: Fetch branch name
+        id: vars
+        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
 
       - name: 💀 Mutation tests
         if: ${{ github.actor != 'dependabot[bot]' }}
-        run: dotnet stryker --config-file test/Tethos.FakeItEasy.Tests/stryker-config.json --version ${BRANCH_NAME}
+        run: dotnet stryker --config-file test/Tethos.FakeItEasy.Tests/stryker-config.json --version ${{ steps.vars.outputs.short_ref }}
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
@@ -141,12 +144,13 @@ jobs:
       - name: 🔦 Restore tools
         run: dotnet tool restore
 
-      - name: Get branch name
-        uses: nelonoel/branch-name@v1.0.1
+      - name: Fetch branch name
+        id: vars
+        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
 
       - name: 💀 Run mutation tests
         if: ${{ github.actor != 'dependabot[bot]' }}
-        run: dotnet stryker --config-file test/Tethos.NSubstitute.Tests/stryker-config.json --version ${BRANCH_NAME}
+        run: dotnet stryker --config-file test/Tethos.NSubstitute.Tests/stryker-config.json --version ${{ steps.vars.outputs.short_ref }}
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
