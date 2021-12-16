@@ -111,6 +111,8 @@ jobs:
       - name: 🔬 Test
         run: dotnet test ./Tethos.sln --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory ./coverage
 
+      - run: dotnet tool restore
+
       - name: Stryker
         run: dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --project Tethos.csproj
 
