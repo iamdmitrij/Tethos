@@ -122,7 +122,7 @@ jobs:
         uses: tj-actions/branch-names@v5
 
       - name: 💀 Run mutation tests
-        if: ${{ github.actor != 'dependabot[bot]' }}
+        if: ${{ github.actor != 'dependabot[bot]' }} # TODO: Remove dashboard reporter
         run: dotnet stryker --config-file test/Tethos.NSubstitute.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
