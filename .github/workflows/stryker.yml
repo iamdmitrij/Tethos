@@ -36,7 +36,7 @@ jobs:
 
       - name: 💀 Run mutation tests
         if: ${{ github.actor != 'dependabot[bot]' }}
-        run: dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}""
+        run: dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
@@ -74,7 +74,7 @@ jobs:
 
       - name: 💀 Run mutation tests
         if: ${{ github.actor != 'dependabot[bot]' }}
-        run: dotnet stryker --config-file test/Tethos.Moq.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}""
+        run: dotnet stryker --config-file test/Tethos.Moq.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
@@ -112,7 +112,7 @@ jobs:
 
       - name: 💀 Mutation tests
         if: ${{ github.actor != 'dependabot[bot]' }}
-        run: dotnet stryker --config-file test/Tethos.FakeItEasy.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}""
+        run: dotnet stryker --config-file test/Tethos.FakeItEasy.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
@@ -150,7 +150,7 @@ jobs:
 
       - name: 💀 Run mutation tests
         if: ${{ github.actor != 'dependabot[bot]' }}
-        run: dotnet stryker --config-file test/Tethos.NSubstitute.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}""
+        run: dotnet stryker --config-file test/Tethos.NSubstitute.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
