@@ -111,20 +111,6 @@ jobs:
       - name: 🔬 Test
         run: dotnet test ./Tethos.sln --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory ./coverage
 
-      - run: dotnet tool restore
-
-      - name: Stryker
-        run: dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --project Tethos.csproj
-
-      - name: Stryker (Moq)
-        run: dotnet stryker --config-file test/Tethos.Moq.Tests/stryker-config.json --project Tethos.Moq.csproj
-
-      - name: Stryker (FakeItEasy)
-        run: dotnet stryker --config-file test/Tethos.FakeItEasy.Tests/stryker-config.json --project Tethos.FakeItEasy.csproj
-
-      - name: Stryker (NSubstitute)
-        run: dotnet stryker --config-file test/Tethos.NSubstitute.Tests/stryker-config.json --project Tethos.NSubstitute.csproj
-
       - name: 🔍 Coverage
         uses: codecov/codecov-action@v2
         with:
@@ -136,6 +122,32 @@ jobs:
         with:
           name: test-results
           path: coverage/*.trx
+
+  stryker:
+    name: 🎳 Stryker
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - run: dotnet tool restore
+
+      - name: 💀 Mutation (Tethos)
+        run: dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --project Tethos.csproj
+
+      - name: 💀 Mutation (Moq)
+        run: dotnet stryker --config-file test/Tethos.Moq.Tests/stryker-config.json --project Tethos.Moq.csproj
+
+      - name: 💀 Mutation (FakeItEasy)
+        run: dotnet stryker --config-file test/Tethos.FakeItEasy.Tests/stryker-config.json --project Tethos.FakeItEasy.csproj
+
+      - name: 💀 Mutation (NSubstitute)
+        run: dotnet stryker --config-file test/Tethos.NSubstitute.Tests/stryker-config.json --project Tethos.NSubstitute.csproj
 
       - name: 📚 Artifact Stryker Results
         uses: actions/upload-artifact@v2
