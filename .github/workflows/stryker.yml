@@ -36,7 +36,6 @@ jobs:
 
       - name: 📚 Test results
         uses: actions/upload-artifact@v2
-        if: success() || failure()
         with:
           name: stryker-results
           path: "**/reports/mutation-report.html"
@@ -68,7 +67,6 @@ jobs:
 
       - name: 📚 Test results
         uses: actions/upload-artifact@v2
-        if: success() || failure()
         with:
           name: stryker-results
           path: "**/reports/mutation-report.html"
@@ -100,7 +98,6 @@ jobs:
 
       - name: 📚 Test results
         uses: actions/upload-artifact@v2
-        if: success() || failure()
         with:
           name: stryker-results
           path: "**/reports/mutation-report.html"
@@ -132,7 +129,6 @@ jobs:
 
       - name: 📚 Test results
         uses: actions/upload-artifact@v2
-        if: success() || failure()
         with:
           name: stryker-results
           path: "**/reports/mutation-report.html"
