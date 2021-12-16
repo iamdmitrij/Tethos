@@ -5,6 +5,6 @@
       "test/Tethos.NSubstitute.Tests/Tethos.NSubstitute.Tests.csproj"
     ],
     "project": "Tethos.NSubstitute.csproj",
-    "project-info": { "module": "NSubstitute" }
+    "project-info": { "module": "Tethos.NSubstitute" }
   }
 }
