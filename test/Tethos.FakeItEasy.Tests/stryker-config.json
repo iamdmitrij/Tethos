@@ -1,6 +1,9 @@
 {
   "stryker-config": {
-    "reporters": ["progress", "html"],
-    "test-projects": ["test/Tethos.FakeItEasy.Tests/Tethos.FakeItEasy.Tests.csproj"]
+    "reporters": ["progress", "html", "json", "cleartext"],
+    "test-projects": [
+      "test/Tethos.FakeItEasy.Tests/Tethos.FakeItEasy.Tests.csproj"
+    ],
+    "project": "Tethos.FakeItEasy.csproj"
   }
 }

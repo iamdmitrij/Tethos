@@ -1,8 +1,9 @@
 {
   "stryker-config": {
-    "reporters": ["progress", "html"],
+    "reporters": ["progress", "html", "json", "cleartext"],
     "test-projects": [
       "test/Tethos.NSubstitute.Tests/Tethos.NSubstitute.Tests.csproj"
-    ]
+    ],
+    "project": "Tethos.NSubstitute.csproj"
   }
 }
