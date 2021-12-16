@@ -9,7 +9,7 @@ on:
 
 jobs:
   mutation-tests:
-    name: 💀 Mutation tests
+    name: 💀 Core
     runs-on: windows-latest
     steps:
       - name: 📥 Checkout
@@ -34,7 +34,7 @@ jobs:
           path: "**/reports/mutation-report.html"
 
   mutation-tests-moq:
-    name: 💀 Mutation tests (Moq)
+    name: 💀 Moq
     runs-on: windows-latest
     steps:
       - name: 📥 Checkout
@@ -59,7 +59,7 @@ jobs:
           path: "**/reports/mutation-report.html"
 
   mutation-tests-fakeiteasy:
-    name: 💀 Mutation tests (FakeItEasy)
+    name: 💀 FakeItEasy
     runs-on: windows-latest
     steps:
       - name: 📥 Checkout
@@ -84,7 +84,7 @@ jobs:
           path: "**/reports/mutation-report.html"
 
   mutation-tests-nsubstitute:
-    name: 💀 Mutation tests (NSubstitute)
+    name: 💀 NSubstitute
     runs-on: windows-latest
     steps:
       - name: 📥 Checkout
