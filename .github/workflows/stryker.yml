@@ -26,7 +26,7 @@ jobs:
       - name: 💀 Run mutation tests
         run: dotnet stryker --config-file test/Tethos.Tests/stryker-config.json
 
-      - name: 📚 Artifact Stryker Results
+      - name: 📚 Test results
         uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
@@ -51,7 +51,7 @@ jobs:
       - name: 💀 Run mutation tests
         run: dotnet stryker --config-file test/Tethos.Moq.Tests/stryker-config.json
 
-      - name: 📚 Artifact Stryker Results
+      - name: 📚 Test results
         uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
@@ -76,7 +76,7 @@ jobs:
       - name: 💀 Mutation tests
         run: dotnet stryker --config-file test/Tethos.FakeItEasy.Tests/stryker-config.json
 
-      - name: 📚 Artifact Stryker Results
+      - name: 📚 Test results
         uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
@@ -101,7 +101,7 @@ jobs:
       - name: 💀 Run mutation tests
         run: dotnet stryker --config-file test/Tethos.NSubstitute.Tests/stryker-config.json
 
-      - name: 📚 Artifact Stryker Results
+      - name: 📚 Test results
         uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
