@@ -2,9 +2,9 @@
 (?:^|/)(?i)CODE_OF_CONDUCT
 \.png$
 ^\.github/
+^\.config/
 \.csproj$
 \.sln$
 \.editorconfig$
 \.git(?:attributes|ignore)$
-\dotnet-tools.json$
 \stryker-config.json$
