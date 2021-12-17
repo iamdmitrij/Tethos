@@ -21,13 +21,13 @@ jobs:
         id: pr_number
         uses: juliangruber/read-file-action@v1.0.0
         with:
-          path: StrykerOutput/pr_number.txt
+          path: pr_number.meta
 
       - name: 🔟 Resolve Branch Name
         id: branch
         uses: juliangruber/read-file-action@v1.0.0
         with:
-          path: StrykerOutput/branch.txt
+          path: branch.meta
 
       - name: 📬 Find Comment
         uses: peter-evans/find-comment@v1
