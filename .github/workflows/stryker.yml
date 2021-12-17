@@ -24,17 +24,17 @@ jobs:
         shell: bash
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: echo $PR_NUMBER > StrykerOutput/pr_number.txt
+        run: echo $PR_NUMBER > pr_number.meta
 
       - name: 🔟 Save Branch Name
         shell: bash
-        run: echo ${{ steps.branch-name.outputs.current_branch }} > StrykerOutput/branch.txt
+        run: echo ${{ steps.branch-name.outputs.current_branch }} > branch.meta
 
       - name: 📚 Test results
         uses: actions/upload-artifact@v2
         with:
           name: stryker-results
-          path: "StrykerOutput/**"
+          path: "**/*.meta"
 
   mutation-tests:
     name: 💀 Tethos
