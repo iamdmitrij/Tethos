@@ -1,0 +1,10 @@
+{
+  "stryker-config": {
+    "reporters": ["progress", "html", "json", "cleartext", "dashboard"],
+    "test-projects": [
+      "test/Tethos.NSubstitute.Tests/Tethos.NSubstitute.Tests.csproj"
+    ],
+    "project": "Tethos.NSubstitute.csproj",
+    "project-info": { "module": "Tethos.NSubstitute" }
+  }
+}
