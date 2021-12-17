@@ -1,0 +1,57 @@
+name: "🏅 Stryker Report"
+
+on:
+  workflow_run:
+    workflows: ["🎳 Stryker"]
+    types: ["completed"]
+jobs:
+  report:
+    runs-on: windows-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: stryker.yml
+          name: stryker-results
+
+      - name: 🔟 Resolve Pull Request Reference
+        id: pr_number
+        uses: juliangruber/read-file-action@v1.0.0
+        with:
+          path: pr_number.txt
+
+      - name: 🔟 Resolve Branch Name
+        id: branch
+        uses: juliangruber/read-file-action@v1.0.0
+        with:
+          path: branch.txt
+
+      - name: 📬 Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ steps.pr_number.outputs.content }}
+          comment-author: "github-actions[bot]"
+          body-includes: 🏅 Stryker mutation test results are here
+          direction: last
+
+      - name: 📝 Create comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          body: |
+            🏅 Stryker mutation test results are here:
+
+            [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fiamdmitrij%2FTethos%2F${{ steps.branch.outputs.text }})](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.text }})
+
+            <details closed><summary>Expand to see</summary>
+              <li>Tethos</li>
+              <li>Tethos.Moq</li>
+              <li>Tethos.FakeItEasy</li>
+              <li>Tethos.NSubstitute</li>
+            </details>
+          issue-number: ${{ steps.pr_number.outputs.content }}
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: "replace"
