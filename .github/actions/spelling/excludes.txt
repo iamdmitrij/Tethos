@@ -2,7 +2,9 @@
 (?:^|/)(?i)CODE_OF_CONDUCT
 \.png$
 ^\.github/
+^\.config/
 \.csproj$
 \.sln$
 \.editorconfig$
 \.git(?:attributes|ignore)$
+\.json$
