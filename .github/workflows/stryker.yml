@@ -1,0 +1,134 @@
+name: "🎳 Stryker"
+
+on:
+  push:
+    tags: ["v[1-9]+.[0-9]+.[0-9]"]
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+    types: ["opened", "synchronize", "reopened"]
+
+jobs:
+  mutation-tests:
+    name: 💀 Tethos
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔦 Restore tools
+        run: dotnet tool restore
+
+      - name: 🔖 Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5
+
+      - name: 💀 Run mutation tests
+        if: ${{ github.actor != 'dependabot[bot]' }}
+        run: dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}"
+        env:
+          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+
+      - name: 📚 Test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: stryker-results
+          path: "**/reports/mutation-report.html"
+
+  mutation-tests-moq:
+    name: 💀 Tethos.Moq
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔦 Restore tools
+        run: dotnet tool restore
+
+      - name: 🔖 Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5
+
+      - name: 💀 Run mutation tests
+        if: ${{ github.actor != 'dependabot[bot]' }}
+        run: dotnet stryker --config-file test/Tethos.Moq.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}"
+        env:
+          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+
+      - name: 📚 Test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: stryker-results
+          path: "**/reports/mutation-report.html"
+
+  mutation-tests-fakeiteasy:
+    name: 💀 Tethos.FakeItEasy
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔦 Restore tools
+        run: dotnet tool restore
+
+      - name: 🔖 Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5
+
+      - name: 💀 Mutation tests
+        if: ${{ github.actor != 'dependabot[bot]' }}
+        run: dotnet stryker --config-file test/Tethos.FakeItEasy.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}"
+        env:
+          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+
+      - name: 📚 Test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: stryker-results
+          path: "**/reports/mutation-report.html"
+
+  mutation-tests-nsubstitute:
+    name: 💀 Tethos.NSubstitute
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔦 Restore tools
+        run: dotnet tool restore
+
+      - name: 🔖 Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5
+
+      - name: 💀 Run mutation tests
+        if: ${{ github.actor != 'dependabot[bot]' }} # TODO: Remove dashboard reporter
+        run: dotnet stryker --config-file test/Tethos.NSubstitute.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}"
+        env:
+          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+
+      - name: 📚 Test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: stryker-results
+          path: "**/reports/mutation-report.html"
