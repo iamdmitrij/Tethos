@@ -9,6 +9,33 @@ on:
     types: ["opened", "synchronize", "reopened"]
 
 jobs:
+  save-metadata:
+    name: 🔽 Save metadata
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔖 Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5
+
+      - name: 🔟 Save Pull Request Number
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: echo $PR_NUMBER > StrykerOutput/pr_number.txt
+
+      - name: 🔟 Save Branch Name
+        shell: bash
+        run: echo ${{ steps.branch-name.outputs.current_branch }} > StrykerOutput/branch.txt
+
+      - name: 📚 Test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: stryker-results
+          path: "StrykerOutput/**"
+
   mutation-tests:
     name: 💀 Tethos
     runs-on: windows-latest
@@ -33,16 +60,6 @@ jobs:
         run: dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
-
-      - name: 🔟 Save Pull Request Number
-        shell: bash
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: echo $PR_NUMBER > StrykerOutput/pr_number.txt
-
-      - name: 🔟 Save Branch Name
-        shell: bash
-        run: echo ${{ steps.branch-name.outputs.current_branch }} > StrykerOutput/branch.txt
 
       - name: 📚 Test results
         uses: actions/upload-artifact@v2
