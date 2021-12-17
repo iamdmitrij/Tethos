@@ -21,13 +21,13 @@ jobs:
         id: pr_number
         uses: juliangruber/read-file-action@v1.0.0
         with:
-          path: pr_number.txt
+          path: StrykerOutput/pr_number.txt
 
       - name: 🔟 Resolve Branch Name
         id: branch
         uses: juliangruber/read-file-action@v1.0.0
         with:
-          path: branch.txt
+          path: StrykerOutput/branch.txt
 
       - name: 📬 Find Comment
         uses: peter-evans/find-comment@v1
@@ -44,13 +44,13 @@ jobs:
           body: |
             🏅 Stryker mutation test results are here:
 
-            [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fiamdmitrij%2FTethos%2F${{ steps.branch.outputs.text }})](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.text }})
+            [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fiamdmitrij%2FTethos%2F${{ steps.branch.outputs.content }})](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }})
 
             <details closed><summary>Expand to see</summary>
-              <li>Tethos</li>
-              <li>Tethos.Moq</li>
-              <li>Tethos.FakeItEasy</li>
-              <li>Tethos.NSubstitute</li>
+              <li><a href="https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos">Tethos</a></li>
+              <li><a href="https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos.Moq">Tethos.Moq</a></li>
+              <li><a href="https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos.FakeItEasy">Tethos.FakeItEasy</a>
+              <li><a href="https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos.NSubstitute">Tethos.NSubstitute</a>
             </details>
           issue-number: ${{ steps.pr_number.outputs.content }}
           comment-id: ${{ steps.fc.outputs.comment-id }}
