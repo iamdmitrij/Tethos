@@ -7,7 +7,7 @@ on:
 
 jobs:
   test-moq:
-    name: 🏇 Moq
+    name: 🏇 Tethos.Moq
     runs-on: windows-latest
     steps:
       - name: 📥 Checkout
@@ -34,7 +34,7 @@ jobs:
           name: performance-test-results
           path: BenchmarkDotNet.Artifacts/results/**
   test-fakeiteasy:
-    name: 🏇 FakeItEasy
+    name: 🏇 Tethos.FakeItEasy
     runs-on: windows-latest
     steps:
       - name: 📥 Checkout
@@ -61,7 +61,7 @@ jobs:
           name: performance-test-results
           path: BenchmarkDotNet.Artifacts/results/**
   test-nsubstitute:
-    name: 🏇 NSubstitute
+    name: 🏇 Tethos.NSubstitute
     runs-on: windows-latest
     steps:
       - name: 📥 Checkout
