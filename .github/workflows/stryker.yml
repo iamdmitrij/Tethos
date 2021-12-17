@@ -28,15 +28,15 @@ jobs:
         id: branch-name
         uses: tj-actions/branch-names@v5
 
-      - name: 🔟 Save Branch Name
-        shell: bash
-        run: echo ${{ steps.branch-name.outputs.current_branch }} > StrykerOutput/branch.txt
-
       - name: 💀 Run mutation tests
         if: ${{ github.actor != 'dependabot[bot]' }}
         run: dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+
+      - name: 🔟 Save Branch Name
+        shell: bash
+        run: echo ${{ steps.branch-name.outputs.current_branch }} > StrykerOutput/branch.txt
 
       - name: 📚 Test results
         uses: actions/upload-artifact@v2
