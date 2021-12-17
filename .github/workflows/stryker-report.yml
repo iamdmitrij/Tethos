@@ -47,10 +47,10 @@ jobs:
 
             ## 📊 Reports
 
-            - [Tethos](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos)
-            - [Tethos.Moq](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos.Moq)
-            - [Tethos.FakeItEasy](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos.FakeItEasy) 
-            - [Tethos.NSubstitute](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos.NSubstitute)
+            - [Tethos](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }}?module=Tethos)
+            - [Tethos.Moq](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }}?module=Tethos.Moq)
+            - [Tethos.FakeItEasy](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }}?module=Tethos.FakeItEasy) 
+            - [Tethos.NSubstitute](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }}?module=Tethos.NSubstitute)
           issue-number: ${{ steps.pr_number.outputs.content }}
           comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: "replace"
