@@ -30,10 +30,13 @@
         public void GetPattern_WithSystemAssembly_ShouldThrowArgumentException(AssemblyStub assembly)
         {
             // Arrange
-            var action = () => assembly.FullName.GetPattern();
+            var assemblyName = assembly.FullName;
+            var expected = "Could not determine application name " +
+                    $"for assembly {assemblyName}. Please use a different method for obtaining assemblies.";
+            var action = () => assemblyName.GetPattern();
 
             // Act & Assert
-            action.Should().Throw<ArgumentException>();
+            action.Should().Throw<ArgumentException>().And.Message.Should().Be(expected);
         }
     }
 }
