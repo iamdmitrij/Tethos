@@ -1,0 +1,8 @@
+{
+  "stryker-config": {
+    "reporters": ["progress", "html", "json", "cleartext", "dashboard"],
+    "test-projects": ["test/Tethos.Moq.Tests/Tethos.Moq.Tests.csproj"],
+    "project": "Tethos.Moq.csproj",
+    "project-info": { "module": "Tethos.Moq" }
+  }
+}
