@@ -34,6 +34,12 @@ jobs:
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
+      - name: 🔟 Save Pull Request Number
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: echo $PR_NUMBER > StrykerOutput/pr_number.txt
+
       - name: 🔟 Save Branch Name
         shell: bash
         run: echo ${{ steps.branch-name.outputs.current_branch }} > StrykerOutput/branch.txt
