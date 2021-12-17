@@ -35,23 +35,22 @@ jobs:
         with:
           issue-number: ${{ steps.pr_number.outputs.content }}
           comment-author: "github-actions[bot]"
-          body-includes: 🏅 Stryker mutation test results are here
+          body-includes: 🎳 Stryker mutation test results
           direction: last
 
       - name: 📝 Create comment
         uses: peter-evans/create-or-update-comment@v1
         with:
           body: |
-            🏅 Stryker mutation test results are here:
-
+            # 🎳 Stryker mutation test results
             [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fiamdmitrij%2FTethos%2F${{ steps.branch.outputs.content }})](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }})
 
-            <details closed><summary>Expand to see</summary>
-              <li><a href="https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos">Tethos</a></li>
-              <li><a href="https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos.Moq">Tethos.Moq</a></li>
-              <li><a href="https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos.FakeItEasy">Tethos.FakeItEasy</a>
-              <li><a href="https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos.NSubstitute">Tethos.NSubstitute</a>
-            </details>
+            ## 📊 Reports
+
+            - [Tethos](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos)
+            - [Tethos.Moq](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos.Moq)
+            - [Tethos.FakeItEasy](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos.FakeItEasy) 
+            - [Tethos.NSubstitute](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/{{ steps.branch.outputs.content }}?module=Tethos.NSubstitute)
           issue-number: ${{ steps.pr_number.outputs.content }}
           comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: "replace"
