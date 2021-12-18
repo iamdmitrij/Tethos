@@ -28,7 +28,7 @@ jobs:
 
       - name: 🔟 Save Branch Name
         shell: bash
-        run: echo ${{ steps.branch-name.outputs.current_branch }} > branch.meta
+        run: echo ${{ steps.branch-name.outputs.current_branch }} | tr -d '\n' > branch.meta
 
       - name: 📚 Test results
         uses: actions/upload-artifact@v2
