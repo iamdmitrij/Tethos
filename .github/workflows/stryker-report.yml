@@ -1,8 +1,6 @@
 name: "🏅 Stryker Report"
 
 on:
-  pull_request:
-    branches: ["main"]
   workflow_run:
     workflows: ["🎳 Stryker"]
     types: ["completed"]
