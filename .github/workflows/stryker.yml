@@ -1,9 +1,6 @@
 name: "🎳 Stryker"
 
 on:
-  push:
-    tags: ["v[1-9]+.[0-9]+.[0-9]"]
-    branches: ["main"]
   pull_request:
     branches: ["main"]
     types: ["opened", "synchronize", "reopened"]
