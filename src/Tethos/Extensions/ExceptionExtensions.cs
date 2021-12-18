@@ -11,7 +11,7 @@
             {
                 return func.Invoke();
             }
-            catch (Exception ex) when (types.Contains(ex.GetType()))
+            catch (Exception exception) when (types?.Contains(exception.GetType()) ?? false)
             {
                 return default;
             }
