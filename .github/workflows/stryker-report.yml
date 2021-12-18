@@ -35,14 +35,14 @@ jobs:
         with:
           issue-number: ${{ steps.pr_number.outputs.content }}
           comment-author: "github-actions[bot]"
-          body-includes: 🎳 Stryker report
+          body-includes: 🎳 [Stryker](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }}) Report
           direction: last
 
       - name: 📝 Create comment
         uses: peter-evans/create-or-update-comment@v1
         with:
           body: |
-            # 🎳 [Stryker](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }}) report
+            # 🎳 [Stryker](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }}) Report
             [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fiamdmitrij%2FTethos%2F${{ steps.branch.outputs.content }})](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }})
 
             ## 📊 Reports
