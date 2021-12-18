@@ -1,13 +1,15 @@
 name: "🏅 Stryker Report"
 
 on:
+  pull_request:
+    branches: ["main"]
   workflow_run:
     workflows: ["🎳 Stryker"]
     types: ["completed"]
 jobs:
   report:
     runs-on: windows-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.ref != 'refs/heads/main' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
