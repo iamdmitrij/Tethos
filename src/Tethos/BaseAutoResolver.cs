@@ -47,6 +47,7 @@
             ComponentModel model,
             DependencyModel dependency)
         {
+            // TODO: Cover this logic with unit tests, coverage is missing
             static string GetType(object argument) => $"{argument}"
                 .Split(new[] { "__" }, StringSplitOptions.None)
                 .FirstOrDefault();
