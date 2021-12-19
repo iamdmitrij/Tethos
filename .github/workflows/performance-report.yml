@@ -23,7 +23,7 @@ jobs:
         id: pr_number
         uses: juliangruber/read-file-action@v1.0.0
         with:
-          path: pr_number.txt
+          path: pr_number.meta
 
       - name: 🏅 Read test results
         uses: pCYSl5EDgo/cat@master
