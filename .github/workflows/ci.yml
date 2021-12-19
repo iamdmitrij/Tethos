@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          
+
       - name: 🔧 Use .NET 6.0 SDK
         uses: actions/setup-dotnet@v1
         with:
@@ -45,72 +45,27 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v2
 
-      - name: 🔧 Set up JDK 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.11
-
-      - name: 📦 Cache SonarCloud packages
-        uses: actions/cache@v1
-        with:
-          path: ~\sonar\cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
-      - name: 📦 Cache SonarCloud scanner
-        id: cache-sonar-scanner
-        uses: actions/cache@v1
-        with:
-          path: .\.sonar\scanner
-          key: ${{ runner.os }}-sonar-scanner
-          restore-keys: ${{ runner.os }}-sonar-scanner
-
-      - name: 📡 Install SonarCloud scanner
-        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-        shell: powershell
-        run: |
-          New-Item -Path .\.sonar\scanner -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
-
-        # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
-      - name: 🔧 Use .NET 5.0 SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 5.0.x
-
-      - name: 🔽 Start SonarCloud scan
-        if: ${{ github.actor != 'dependabot[bot]' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        shell: powershell
-        run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"iamdmitrij_Tethos" /o:"iamdmitrij" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /d:sonar.cs.vstest.reportsPaths="coverage/*.trx" /d:sonar.coverage.exclusions="test/**, demo/**"
-
-        # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
       - name: 🔧 Use .NET 6.0 SDK
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.0.x
-      - name: 🔬 Test
-        run: dotnet test ./Tethos.sln --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory ./coverage
 
-        # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
-      - name: 🔧 Use .NET 5.0 SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 5.0.x
-
-      - name: 🔼 End SonarCloud scan
+      - name: 🔬 Test with SonarCloud
         if: ${{ github.actor != 'dependabot[bot]' }}
+        uses: highbyte/sonarscan-dotnet@v2.1.2
+        with:
+          sonarProjectKey: iamdmitrij_Tethos
+          sonarProjectName: Tethos
+          sonarOrganization: iamdmitrij
+          dotnetBuildArguments: ./Tethos.sln --configuration Release
+          dotnetTestArguments: ./Tethos.sln --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory ./coverage
+          sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /d:sonar.cs.vstest.reportsPaths="coverage/*.trx" /d:sonar.coverage.exclusions="test/**, demo/**"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        shell: powershell
-        run: |
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 🔍 Coverage
+        if: ${{ github.actor != 'dependabot[bot]' }}
         uses: codecov/codecov-action@v2
         with:
           verbose: true
