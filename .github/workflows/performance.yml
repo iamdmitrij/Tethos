@@ -6,6 +6,26 @@ on:
     types: ["opened", "synchronize", "reopened"]
 
 jobs:
+  save-metadata:
+    name: 🔽 Save metadata
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔟 Save Pull Request Number
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: echo $PR_NUMBER > pr_number.meta
+
+      - name: 📚 Artifact Test Results
+        uses: actions/upload-artifact@v2
+        if: success()
+        with:
+          name: performance-test-results
+          path: "**/*.meta"
+
   test-moq:
     name: 🏇 Tethos.Moq
     runs-on: windows-latest
@@ -21,18 +41,13 @@ jobs:
       - name: 🔬 Test
         run: dotnet run --project ./test/Performance/Moq/Tethos.Moq.Tests.Benchmarks/Tethos.Moq.Tests.Benchmarks.csproj --configuration Release
 
-      - name: 🔟 Save Pull Request Number
-        shell: bash
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: echo $PR_NUMBER > BenchmarkDotNet.Artifacts/results/pr_number.txt
-
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
         if: success()
         with:
           name: performance-test-results
           path: BenchmarkDotNet.Artifacts/results/**
+
   test-fakeiteasy:
     name: 🏇 Tethos.FakeItEasy
     runs-on: windows-latest
@@ -48,18 +63,13 @@ jobs:
       - name: 🔬 Test
         run: dotnet run --project ./test/Performance/FakeItEasy/Tethos.FakeItEasy.Tests.Benchmarks/Tethos.FakeItEasy.Tests.Benchmarks.csproj --configuration Release
 
-      - name: 🔟 Save Pull Request Number
-        shell: bash
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: echo $PR_NUMBER > BenchmarkDotNet.Artifacts/results/pr_number.txt
-
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
         if: success()
         with:
           name: performance-test-results
           path: BenchmarkDotNet.Artifacts/results/**
+
   test-nsubstitute:
     name: 🏇 Tethos.NSubstitute
     runs-on: windows-latest
@@ -74,12 +84,6 @@ jobs:
 
       - name: 🔬 Test
         run: dotnet run --project ./test/Performance/NSubstitute/Tethos.NSubstitute.Tests.Benchmarks/Tethos.NSubstitute.Tests.Benchmarks.csproj --configuration Release
-
-      - name: 🔟 Save Pull Request Number
-        shell: bash
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: echo $PR_NUMBER > BenchmarkDotNet.Artifacts/results/pr_number.txt
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
