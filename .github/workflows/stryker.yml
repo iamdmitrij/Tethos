@@ -1,14 +1,38 @@
 name: "🎳 Stryker"
 
 on:
-  push:
-    tags: ["v[1-9]+.[0-9]+.[0-9]"]
-    branches: ["main"]
   pull_request:
     branches: ["main"]
     types: ["opened", "synchronize", "reopened"]
 
 jobs:
+  save-metadata:
+    name: 🔽 Save metadata
+    runs-on: windows-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔖 Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5
+
+      - name: 🔟 Save Pull Request Number
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: echo $PR_NUMBER > pr_number.meta
+
+      - name: 🔟 Save Branch Name
+        shell: bash
+        run: echo ${{ steps.branch-name.outputs.current_branch }} | tr -d '\n' > branch.meta
+
+      - name: 📚 Test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: stryker-results
+          path: "**/*.meta"
+
   mutation-tests:
     name: 💀 Tethos
     runs-on: windows-latest
@@ -38,7 +62,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: stryker-results
-          path: "**/reports/mutation-report.html"
+          path: "**/StrykerOutput/**"
 
   mutation-tests-moq:
     name: 💀 Tethos.Moq
@@ -69,7 +93,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: stryker-results
-          path: "**/reports/mutation-report.html"
+          path: "**/StrykerOutput/**"
 
   mutation-tests-fakeiteasy:
     name: 💀 Tethos.FakeItEasy
@@ -100,7 +124,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: stryker-results
-          path: "**/reports/mutation-report.html"
+          path: "**/StrykerOutput/**"
 
   mutation-tests-nsubstitute:
     name: 💀 Tethos.NSubstitute
@@ -131,4 +155,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: stryker-results
-          path: "**/reports/mutation-report.html"
+          path: "**/StrykerOutput/**"
