@@ -23,7 +23,7 @@ jobs:
         id: pr_number
         uses: juliangruber/read-file-action@v1.0.0
         with:
-          path: pr_number.txt
+          path: pr_number.meta
 
       - name: 🏅 Read test results
         uses: pCYSl5EDgo/cat@master
@@ -37,16 +37,16 @@ jobs:
         with:
           issue-number: ${{ steps.pr_number.outputs.content }}
           comment-author: "github-actions[bot]"
-          body-includes: 🏅 Performance test results are here
+          body-includes: 🏅 Performance test report
           direction: last
 
       - name: 📝 Create comment
         uses: peter-evans/create-or-update-comment@v1
         with:
           body: |
-            🏅 Performance test results are here:
+            # 🏅 Performance test report
 
-            <details closed><summary>Expand to see</summary>
+            <details closed><summary>Expand to see results 🔽</summary>
 
             ${{ steps.benchmark.outputs.text }}
 
