@@ -72,5 +72,36 @@
             // Assert
             actual.Should().BeSameAs(expected);
         }
+
+        [Theory]
+        [InlineAutoMoqData("pattern")]
+        [Trait("Category", "Unit")]
+        public void Resolve_Arguments_ShouldMatch(
+            string pattern,
+            Mock<IKernel> kernel,
+            Mock<object> expected,
+            CreationContext resolver,
+            string key)
+        {
+            // Arrange
+            var type = expected.GetType();
+            kernel.Setup(mock => mock.Resolve(type)).Returns(expected);
+            var sut = new MockedAutoResolver(kernel.Object);
+
+            resolver.AdditionalArguments.Add(new Arguments().AddNamed($"{type}__name", "foo"));
+
+            // Act
+            var actual = sut.Resolve(
+                resolver,
+                resolver,
+                new(),
+                new(key, type, false));
+
+            // Assert
+            (actual as MapToMockArgs).ConstructorArguments.Should().HaveSameCount(resolver.AdditionalArguments);
+            (actual as MapToMockArgs).TargetType.Should().Be(type);
+            (actual as MapToMockArgs).TargetObject.Should().Be(expected);
+
+        }
     }
 }
