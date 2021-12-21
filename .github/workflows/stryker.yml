@@ -53,6 +53,7 @@ jobs:
         uses: tj-actions/branch-names@v5
 
       - name: 💀 Run mutation tests
+        shell: bash
         run: |
           if [[ "$GITHUB_ACTOR" != "dependabot[bot]" ]]; then
             dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}" --reporter "cleartext" --reporter "html" --reporter dashboard
@@ -88,6 +89,7 @@ jobs:
         uses: tj-actions/branch-names@v5
 
       - name: 💀 Run mutation tests
+        shell: bash
         run: |
           if [[ "$GITHUB_ACTOR" != "dependabot[bot]" ]]; then
             dotnet stryker --config-file test/Tethos.Moq.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}" --reporter "cleartext" --reporter "html" --reporter dashboard
@@ -123,6 +125,7 @@ jobs:
         uses: tj-actions/branch-names@v5
 
       - name: 💀 Run mutation tests
+        shell: bash
         run: |
           if [[ "$GITHUB_ACTOR" != "dependabot[bot]" ]]; then
             dotnet stryker --config-file test/Tethos.FakeItEasy.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}" --reporter "cleartext" --reporter "html" --reporter dashboard
@@ -158,9 +161,10 @@ jobs:
         uses: tj-actions/branch-names@v5
 
       - name: 💀 Run mutation tests
+        shell: bash
         run: |
           if [[ "$GITHUB_ACTOR" != "dependabot[bot]" ]]; then
-            dotnet stryker --config-file test/Tethos.NSubstitute.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}" --reporter "cleartext" --reporter "html" --reporter dashboard
+            dotnet stryker --config-file test/Tethos.NSubstitute.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}" --reporter "cleartext" --reporter "html" --reporter "dashboard"
           else
             dotnet stryker --config-file test/Tethos.NSubstitute.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}" --reporter "cleartext" --reporter "html"
           fi
