@@ -4,6 +4,9 @@
       "test/Tethos.FakeItEasy.Tests/Tethos.FakeItEasy.Tests.csproj"
     ],
     "project": "Tethos.FakeItEasy.csproj",
-    "project-info": { "module": "Tethos.FakeItEasy" }
+    "project-info": { "module": "Tethos.FakeItEasy" },
+    "threshold-high": 90,
+    "threshold-low": 75,
+    "threshold-break": 60
   }
 }

@@ -4,6 +4,9 @@
       "test/Tethos.NSubstitute.Tests/Tethos.NSubstitute.Tests.csproj"
     ],
     "project": "Tethos.NSubstitute.csproj",
-    "project-info": { "module": "Tethos.NSubstitute" }
+    "project-info": { "module": "Tethos.NSubstitute" },
+    "threshold-high": 90,
+    "threshold-low": 75,
+    "threshold-break": 60
   }
 }
