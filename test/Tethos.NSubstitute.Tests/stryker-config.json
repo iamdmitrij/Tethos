@@ -5,8 +5,8 @@
     ],
     "project": "Tethos.NSubstitute.csproj",
     "project-info": { "module": "Tethos.NSubstitute" },
-    "threshold-high": 90,
-    "threshold-low": 75,
-    "threshold-break": 60
+    "threshold-high": 95,
+    "threshold-low": 85,
+    "threshold-break": 80
   }
 }
