@@ -3,8 +3,6 @@
     "test-projects": ["test/Tethos.Moq.Tests/Tethos.Moq.Tests.csproj"],
     "project": "Tethos.Moq.csproj",
     "project-info": { "module": "Tethos.Moq" },
-    "threshold-high": 95,
-    "threshold-low": 85,
-    "threshold-break": 80
+    "thresholds": { "high": 95, "low": 85, "break": 80 }
   }
 }

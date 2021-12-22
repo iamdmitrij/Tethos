@@ -3,8 +3,6 @@
     "test-projects": ["test/Tethos.Tests/Tethos.Tests.csproj"],
     "project": "Tethos.csproj",
     "project-info": { "module": "Tethos" },
-    "threshold-high": 95,
-    "threshold-low": 85,
-    "threshold-break": 80
+    "thresholds": { "high": 95, "low": 85, "break": 80 }
   }
 }
