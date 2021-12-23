@@ -69,7 +69,7 @@
             var type = typeof(IMockable);
 
             // TODO: Refactor tests to have more automatic approach
-            MappingArgument argument = new() { TargetType = type, TargetObject = targetObject, ConstructorArguments = constructorArguments };
+            MockMapping argument = new() { TargetType = type, TargetObject = targetObject, ConstructorArguments = constructorArguments };
 
             // Act
             var actual = sut.MapToMock(argument);
@@ -90,7 +90,7 @@
             var type = typeof(IMockable);
 
             // TODO: Refactor tests to have more automatic approach
-            MappingArgument argument = new() { TargetType = type, TargetObject = mockable, ConstructorArguments = constructorArguments };
+            MockMapping argument = new() { TargetType = type, TargetObject = mockable, ConstructorArguments = constructorArguments };
 
             // Act
             var actual = sut.MapToMock(argument);
@@ -114,7 +114,7 @@
                 .AddNamed("maxValue", 200);
 
             // TODO: Refactor tests to have more automatic approach
-            MappingArgument argument = new() { TargetType = type, TargetObject = mockable.Object, ConstructorArguments = arguments };
+            MockMapping argument = new() { TargetType = type, TargetObject = mockable.Object, ConstructorArguments = arguments };
 
             // Act
             var actual = sut.MapToMock(argument);

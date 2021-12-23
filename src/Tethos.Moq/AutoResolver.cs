@@ -28,7 +28,7 @@
             || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
-        public override object MapToMock(MappingArgument argument)
+        public override object MapToMock(MockMapping argument)
         {
             var mockType = typeof(Mock<>).MakeGenericType(argument.TargetType);
             var arguments = argument.ConstructorArguments

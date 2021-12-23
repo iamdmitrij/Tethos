@@ -27,7 +27,7 @@
             DependencyModel dependency) => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
-        public override object MapToMock(MappingArgument argument)
+        public override object MapToMock(MockMapping argument)
         {
             Action<IFakeOptions> arguments = argument.TargetType.IsInterface switch
             {

@@ -9,6 +9,6 @@
         {
         }
 
-        public override object MapToMock(MappingArgument argument) => argument;
+        public override object MapToMock(MockMapping argument) => argument;
     }
 }

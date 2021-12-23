@@ -28,7 +28,7 @@
         /// </summary>
         /// <param name="argument">Argument object used to pass mapping parameters.</param>
         /// <returns>Auto-mocked object depending on target type.</returns>
-        public abstract object MapToMock(MappingArgument argument);
+        public abstract object MapToMock(MockMapping argument);
 
         /// <inheritdoc />
         public virtual bool CanResolve(

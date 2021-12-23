@@ -3,7 +3,7 @@
     using System;
     using Castle.MicroKernel;
 
-    internal class MappingArgument
+    internal class MockMapping
     {
         /// <summary>
         /// Target type for object to be converted to destination object.
