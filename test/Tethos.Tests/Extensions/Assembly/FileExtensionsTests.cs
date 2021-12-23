@@ -24,7 +24,7 @@
 
         [Fact]
         [Trait("Category", "Unit")]
-        public void GetAssemblyFiles_FromCurrentDirectoryShouldNotBeEmpty()
+        public void GetAssemblyFiles_FromCurrentDirectory_ShouldNotBeEmpty()
         {
             // Arrange
             var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
