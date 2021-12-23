@@ -3,9 +3,6 @@
     using System;
     using Castle.MicroKernel;
 
-    /// <summary>
-    /// TODO: Naming of this class.
-    /// </summary>
     internal class MapToMockArguments
     {
         public Type TargetType { get; set; }

@@ -36,7 +36,7 @@
             string key)
         {
             // Arrange
-            var sut = new ConcreteAutoResolver(kernel);
+            var sut = new AutoResolver(kernel);
 
             // Act
             var actual = sut.CanResolve(
@@ -61,17 +61,19 @@
             // Arrange
             var type = expected.GetType();
             kernel.Setup(mock => mock.Resolve(type)).Returns(expected);
-            var sut = new ConcreteAutoResolver(kernel.Object);
+            var sut = new AutoResolver(kernel.Object);
 
             // Act
             var actual = sut.Resolve(
                 resolver,
                 resolver,
                 new(),
-                new(key, type, false));
+                new(key, type, false)) as MapToMockArguments;
 
             // Assert
-            actual.Should().BeSameAs(expected);
+            actual.TargetType.Should().Be(type);
+            actual.TargetObject.Should().Be(expected);
+            actual.ConstructorArguments.Should().BeEmpty();
         }
 
         [Theory]
@@ -86,7 +88,7 @@
             // Arrange
             var type = expected.GetType();
             kernel.Setup(mock => mock.Resolve(type)).Returns(expected);
-            var sut = new MockedAutoResolver(kernel.Object);
+            var sut = new AutoResolver(kernel.Object);
 
             resolver.AdditionalArguments.Add(new Arguments().AddNamed($"{type}__name", key));
 
@@ -116,7 +118,7 @@
             // Arrange
             var type = expected.GetType();
             kernel.Setup(mock => mock.Resolve(type)).Returns(expected);
-            var sut = new MockedAutoResolver(kernel.Object);
+            var sut = new AutoResolver(kernel.Object);
 
             resolver.AdditionalArguments.Add(new Arguments().AddNamed($"{arguments.GetType()}__name", key));
 

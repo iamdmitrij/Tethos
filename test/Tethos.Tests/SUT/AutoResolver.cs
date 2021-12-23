@@ -3,9 +3,9 @@
     using System;
     using Castle.MicroKernel;
 
-    internal class MockedAutoResolver : BaseAutoResolver
+    internal class AutoResolver : BaseAutoResolver
     {
-        public MockedAutoResolver(IKernel kernel)
+        public AutoResolver(IKernel kernel)
             : base(kernel)
         {
         }
