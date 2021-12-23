@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Castle.MicroKernel;
@@ -74,10 +75,9 @@
         }
 
         [Theory]
-        [InlineAutoMoqData("pattern")]
+        [AutoMoqData]
         [Trait("Category", "Unit")]
         public void Resolve_Arguments_ShouldMatch(
-            string pattern,
             Mock<IKernel> kernel,
             Mock<object> expected,
             CreationContext resolver,
@@ -88,19 +88,49 @@
             kernel.Setup(mock => mock.Resolve(type)).Returns(expected);
             var sut = new MockedAutoResolver(kernel.Object);
 
-            resolver.AdditionalArguments.Add(new Arguments().AddNamed($"{type}__name", "foo"));
+            resolver.AdditionalArguments.Add(new Arguments().AddNamed($"{type}__name", key));
 
             // Act
             var actual = sut.Resolve(
                 resolver,
                 resolver,
                 new(),
-                new(key, type, false));
+                new(key, type, false)) as MapToMockArguments;
 
             // Assert
-            (actual as MapToMockArguments).ConstructorArguments.Should().HaveSameCount(resolver.AdditionalArguments);
-            (actual as MapToMockArguments).TargetType.Should().Be(type);
-            (actual as MapToMockArguments).TargetObject.Should().Be(expected);
+            actual.TargetType.Should().Be(type);
+            actual.TargetObject.Should().Be(expected);
+            actual.ConstructorArguments.Should().HaveSameCount(resolver.AdditionalArguments);
+        }
+
+        [Theory]
+        [AutoMoqData]
+        [Trait("Category", "Unit")]
+        public void Resolve_NonMatchingArguments_ShouldMatch(
+            Mock<IKernel> kernel,
+            Mock<object> expected,
+            CreationContext resolver,
+            string key,
+            IList<string> arguments)
+        {
+            // Arrange
+            var type = expected.GetType();
+            kernel.Setup(mock => mock.Resolve(type)).Returns(expected);
+            var sut = new MockedAutoResolver(kernel.Object);
+
+            resolver.AdditionalArguments.Add(new Arguments().AddNamed($"{arguments.GetType()}__name", key));
+
+            // Act
+            var actual = sut.Resolve(
+                resolver,
+                resolver,
+                new(),
+                new(key, type, false)) as MapToMockArguments;
+
+            // Assert
+            actual.TargetType.Should().Be(type);
+            actual.TargetObject.Should().Be(expected);
+            actual.ConstructorArguments.Should().BeEmpty();
         }
     }
 }
