@@ -52,14 +52,10 @@
             var currentTargetObject = getTargetObject.SwallowExceptions(typeof(ComponentNotFoundException), typeof(HandlerException));
             var arguments = context.AdditionalArguments
                 .Where(_ => !targetType.IsInterface)
-                .Where(argument => this.GetArgumentType(argument.Key) == $"{targetType}");
+                .Where(argument => argument.Key.GetArgumentType() == $"{targetType}");
             var constructorArguments = new Arguments().Add(arguments);
 
             return this.MapToMock(targetType, currentTargetObject, constructorArguments);
         }
-
-        internal string GetArgumentType(object argument) => $"{argument}"
-            .Split(new[] { "__" }, StringSplitOptions.None)
-            .FirstOrDefault();
     }
 }
