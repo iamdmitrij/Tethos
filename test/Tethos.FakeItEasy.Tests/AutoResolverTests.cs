@@ -60,8 +60,11 @@
             var sut = new AutoResolver(kernel);
             var type = typeof(IMockable);
 
+            // TODO: Refactor tests to have more automatic approach
+            MappingArgument argument = new() { TargetType = type, TargetObject = targetObject, ConstructorArguments = constructorArguments };
+
             // Act
-            var actual = sut.MapToMock(type, targetObject, constructorArguments);
+            var actual = sut.MapToMock(argument);
 
             // Assert
             A.CallTo(() => kernel.Register(A<IRegistration>._)).MustHaveHappenedOnceExactly();
@@ -78,8 +81,11 @@
             var sut = new AutoResolver(kernel);
             var type = typeof(IMockable);
 
+            // TODO: Refactor tests to have more automatic approach
+            MappingArgument argument = new() { TargetType = type, TargetObject = mockable, ConstructorArguments = constructorArguments };
+
             // Act
-            var actual = sut.MapToMock(type, mockable, constructorArguments);
+            var actual = sut.MapToMock(argument);
 
             // Assert
             A.CallTo(() => kernel.Register(A<IRegistration>._)).MustNotHaveHappened();

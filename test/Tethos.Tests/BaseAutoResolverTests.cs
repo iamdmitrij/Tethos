@@ -68,7 +68,7 @@
                 resolver,
                 resolver,
                 new(),
-                new(key, type, false)) as MapToMockArguments;
+                new(key, type, false)) as MappingArgument;
 
             // Assert
             actual.TargetType.Should().Be(type);
@@ -97,7 +97,7 @@
                 resolver,
                 resolver,
                 new(),
-                new(key, type, false)) as MapToMockArguments;
+                new(key, type, false)) as MappingArgument;
 
             // Assert
             actual.TargetType.Should().Be(type);
@@ -127,7 +127,7 @@
                 resolver,
                 resolver,
                 new(),
-                new(key, type, false)) as MapToMockArguments;
+                new(key, type, false)) as MappingArgument;
 
             // Assert
             actual.TargetType.Should().Be(type);
