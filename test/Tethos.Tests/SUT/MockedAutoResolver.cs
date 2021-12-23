@@ -18,5 +18,4 @@
                 ConstructorArguments = constructorArguments,
             };
     }
-
 }
