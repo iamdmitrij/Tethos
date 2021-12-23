@@ -63,7 +63,7 @@
             arguments.Select(argument => argument.Value).ToArray();
 
         internal static string GetArgumentType(this object argument) => $"{argument}"
-            .Split(new[] { "__" }, StringSplitOptions.None)
+            .Split(new[] { "__" }, StringSplitOptions.RemoveEmptyEntries)
             .FirstOrDefault();
     }
 }

@@ -184,9 +184,9 @@
         [InlineData("string___foo", "string")]
         [InlineData("string____foo", "string")]
         [InlineData("string  foo", "string  foo")]
-        [InlineData("", "")]
+        [InlineData("", null)]
         [InlineData("  ", "  ")]
-        [InlineData("__", "")]
+        [InlineData("__", null)]
         [Trait("Category", "Unit")]
         public void GetArgumentType_WithPattern_ShouldMatch(string argument, string expected)
         {
