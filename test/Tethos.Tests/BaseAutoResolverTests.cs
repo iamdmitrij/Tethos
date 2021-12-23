@@ -98,10 +98,9 @@
                 new(key, type, false));
 
             // Assert
-            (actual as MapToMockArgs).ConstructorArguments.Should().HaveSameCount(resolver.AdditionalArguments);
-            (actual as MapToMockArgs).TargetType.Should().Be(type);
-            (actual as MapToMockArgs).TargetObject.Should().Be(expected);
-
+            (actual as MapToMockArguments).ConstructorArguments.Should().HaveSameCount(resolver.AdditionalArguments);
+            (actual as MapToMockArguments).TargetType.Should().Be(type);
+            (actual as MapToMockArguments).TargetObject.Should().Be(expected);
         }
     }
 }

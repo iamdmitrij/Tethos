@@ -2,16 +2,6 @@
 {
     using System;
     using Castle.MicroKernel;
-    using Moq;
-
-    internal class MapToMockArgs
-    {
-        public Type TargetType { get; set; }
-
-        public object TargetObject { get; set; }
-
-        public Arguments ConstructorArguments { get; set; }
-    }
 
     internal class MockedAutoResolver : BaseAutoResolver
     {
@@ -21,7 +11,7 @@
         }
 
         public override object MapToMock(Type targetType, object targetObject, Arguments constructorArguments) =>
-            new MapToMockArgs
+            new MapToMockArguments
             {
                 TargetType = targetType,
                 TargetObject = targetObject,
