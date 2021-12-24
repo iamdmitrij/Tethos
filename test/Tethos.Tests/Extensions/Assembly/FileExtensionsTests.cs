@@ -1,5 +1,6 @@
 ﻿namespace Tethos.Tests.Extensions.Assembly
 {
+    using System.IO;
     using System.Reflection;
     using FluentAssertions;
     using Tethos.Extensions.Assembly;
@@ -19,6 +20,20 @@
 
             // Assert
             actual.Path.Should().Be(expected);
+        }
+
+        [Fact]
+        [Trait("Category", "Unit")]
+        public void GetAssemblyFiles_FromCurrentDirectory_ShouldNotBeEmpty()
+        {
+            // Arrange
+            var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            // Act
+            var actual = directory.GetAssemblyFiles();
+
+            // Assert
+            actual.Should().NotBeEmpty();
         }
     }
 }
