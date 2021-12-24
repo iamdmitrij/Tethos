@@ -11,29 +11,29 @@
             {
                 return func.Invoke();
             }
-            catch (Exception ex) when (types.Contains(ex.GetType()))
+            catch (Exception exception)
             {
-                return default;
+                if (types?.Contains(exception.GetType()) ?? false)
+                {
+                    return default;
+                }
+
+                throw;
             }
         }
 
         internal static bool Throws<T>(this Func<T> func, params Type[] types)
         {
-            bool wasThrown = false;
             try
             {
                 _ = func.Invoke();
             }
-            catch (Exception ex) when (types.Contains(ex.GetType()))
+            catch (Exception exception)
             {
-                wasThrown = true;
-            }
-            catch (Exception)
-            {
-                wasThrown = false;
+                return types?.Contains(exception.GetType()) ?? false;
             }
 
-            return wasThrown;
+            return false;
         }
     }
 }
