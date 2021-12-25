@@ -56,11 +56,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\nuget.yml = .github\workflows\nuget.yml
 		.github\workflows\performance-report.yml = .github\workflows\performance-report.yml
 		.github\workflows\performance.yml = .github\workflows\performance.yml
+		.github\workflows\stryker-report.yml = .github\workflows\stryker-report.yml
+		.github\workflows\stryker.yml = .github\workflows\stryker.yml
 		.github\workflows\test-report.yml = .github\workflows\test-report.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{AF8AEBBB-412A-423A-8830-3190F48D959F}"
 	ProjectSection(SolutionItems) = preProject
+		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
@@ -158,6 +161,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.Moq.Tests.Benchmarks", "test\Performance\Moq\Tethos.Moq.Tests.Benchmarks\Tethos.Moq.Tests.Benchmarks.csproj", "{7AA07285-287C-4AE6-B740-B3612DDC8373}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tethos.FakeItEasy.Tests.Benchmarks", "test\Performance\FakeItEasy\Tethos.FakeItEasy.Tests.Benchmarks\Tethos.FakeItEasy.Tests.Benchmarks.csproj", "{EDD446E3-330D-4B50-A950-7D5E0FF19BFA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ISSUE_TEMPLATE", "ISSUE_TEMPLATE", "{70390AC1-E5B1-451A-AEED-E97E2C72104E}"
+	ProjectSection(SolutionItems) = preProject
+		.github\ISSUE_TEMPLATE\bug_report.md = .github\ISSUE_TEMPLATE\bug_report.md
+		.github\ISSUE_TEMPLATE\feature_request.md = .github\ISSUE_TEMPLATE\feature_request.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -391,6 +400,7 @@ Global
 		{8586A0E7-F314-4561-8B13-D9B9FF615F48} = {E80BF742-F5F3-4F0F-808F-714197D3A4A4}
 		{7AA07285-287C-4AE6-B740-B3612DDC8373} = {1A1E5468-B2E3-4781-87A7-444020461FBC}
 		{EDD446E3-330D-4B50-A950-7D5E0FF19BFA} = {6180FE0E-7A6A-4778-9FC8-6C422E6A91F5}
+		{70390AC1-E5B1-451A-AEED-E97E2C72104E} = {8DDA643A-1839-4470-A593-5EE9507FB294}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF888DCC-71E7-4562-AA35-5B93FD8DD252}
