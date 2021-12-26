@@ -4,6 +4,7 @@ utc
 sut
 deps
 automocking
+github
 
 # CSharp libraries
 tethos
