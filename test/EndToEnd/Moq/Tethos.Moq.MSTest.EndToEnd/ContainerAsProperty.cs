@@ -16,7 +16,7 @@ namespace Tethos.Moq.MSTest.EndToEnd
         public IAutoMockingContainer Container { get; }
 
         [TestMethod]
-        [TestCategory("E2E")]
+        [TestProperty("Type", "E2E")]
         public void Exercise_WithMock_ShouldReturn42()
         {
             // Arrange

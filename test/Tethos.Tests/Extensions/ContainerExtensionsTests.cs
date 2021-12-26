@@ -14,7 +14,7 @@
     {
         [Theory]
         [AutoData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void AddDependencyTo_ShouldMatch(Arguments sut, string name, int expected)
         {
             // Act
@@ -27,7 +27,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void AddDependencyTo_WithNullValue_ShouldBeNull(Arguments sut, string name)
         {
             // Arrange
@@ -43,7 +43,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void AddDependencyTo_WithNameValue_ShouldThrowArgumentNullException(Arguments sut, int value)
         {
             // Arrange
@@ -58,7 +58,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void AddDependencyTo_UsingTypeParam_ShouldMatch(Arguments sut, string name, int expected)
         {
             // Arrange
@@ -74,7 +74,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void AddDependencyTo_UsingTypeParam_WithNullValue_ShouldBeNull(Arguments sut, string name)
         {
             // Arrange
@@ -91,7 +91,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void AddDependencyTo_UsingTypeParam_WithNameValue_ShouldThrowArgumentNullException(Arguments sut, int value)
         {
             // Arrange
@@ -106,7 +106,7 @@
 
         [Theory]
         [AutoMoqData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void ResolveFrom_UsingGenerics_ShouldMatch(int expected, Mock<IAutoMockingContainer> mock)
         {
             // Arrange
@@ -124,7 +124,7 @@
 
         [Theory]
         [AutoMoqData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void ResolveFrom_UsingTypeParams_ShouldMatch(int expected, Type parent, Mock<IAutoMockingContainer> mock)
         {
             // Arrange
@@ -141,7 +141,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void Flatten_ShouldMatchArgumentsValueArray(Arguments sut)
         {
             // Arrange

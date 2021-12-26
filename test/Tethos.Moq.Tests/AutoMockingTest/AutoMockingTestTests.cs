@@ -12,7 +12,7 @@
     public class AutoMockingTestTests : Moq.AutoMockingTest
     {
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Container_ShouldHaveMockInstalled()
         {
             // Arrange
@@ -26,7 +26,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Container_ShouldHaveAutoResolverInstalled()
         {
             // Assert
@@ -35,7 +35,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void SystemUnderTest_Exercise_ShouldMatch(int expected)
         {
             // Arrange
@@ -54,7 +54,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Clean_ShouldRevertBackToOriginalBehavior(Mockable mockable)
         {
             // Arrange

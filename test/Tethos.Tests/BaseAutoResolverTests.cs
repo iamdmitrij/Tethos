@@ -26,7 +26,7 @@
         [InlineAutoMoqData(typeof(Task<>), false)]
         [InlineAutoMoqData(typeof(Task<int>), false)]
         [InlineAutoMoqData(typeof(int), false)]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void CanResolve_ShouldMatch(
             Type type,
             bool expected,
@@ -50,7 +50,7 @@
 
         [Theory]
         [AutoMoqData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void Resolve_ShouldMatch(
             Mock<IKernel> kernel,
             Mock<object> expected,
