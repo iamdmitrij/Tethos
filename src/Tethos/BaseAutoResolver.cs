@@ -47,16 +47,13 @@
             ComponentModel model,
             DependencyModel dependency)
         {
-            static string GetType(object argument) => $"{argument}"
-                .Split(new[] { "__" }, StringSplitOptions.None)
-                .FirstOrDefault();
             var targetType = dependency.TargetType;
-            var arguments = context.AdditionalArguments
-                .Where(_ => !targetType.IsInterface)
-                .Where(argument => GetType(argument.Key) == $"{targetType}");
-            var constructorArguments = new Arguments().Add(arguments);
             var getTargetObject = () => this.Kernel.Resolve(targetType);
             var currentTargetObject = getTargetObject.SwallowExceptions(typeof(ComponentNotFoundException), typeof(HandlerException));
+            var arguments = context.AdditionalArguments
+                .Where(_ => !targetType.IsInterface)
+                .Where(argument => argument.Key.GetArgumentType() == $"{targetType}");
+            var constructorArguments = new Arguments().Add(arguments);
 
             return this.MapToMock(targetType, currentTargetObject, constructorArguments);
         }
