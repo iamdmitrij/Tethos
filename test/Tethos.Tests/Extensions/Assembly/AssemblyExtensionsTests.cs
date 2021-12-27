@@ -33,7 +33,7 @@
         [InlineData(typeof(Task<>))]
         [InlineData(typeof(Task<int>))]
         [InlineData(typeof(int))]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void GetRelatedAssemblies_ShouldLoad(Type type)
         {
             // Arrange
@@ -47,7 +47,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void GetDependencies_UsingMicrosoftCorLib_ShouldLoad()
         {
             // Arrange
@@ -64,7 +64,7 @@
 
         [Theory]
         [ClassData(typeof(AssemblyTheoryData))]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void GetDependencies_ShouldLoad(string assemblyName, IEnumerable<string> expected)
         {
             // Arrange
@@ -78,7 +78,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void ElseLoadReferencedAssemblies_Empty_ShouldHaveReferencedAssembliesCount()
         {
             // Arrange
@@ -95,7 +95,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         internal void ElseLoadReferencedAssemblies_ShouldMatchFileCount(File[] files)
         {
             // Arrange

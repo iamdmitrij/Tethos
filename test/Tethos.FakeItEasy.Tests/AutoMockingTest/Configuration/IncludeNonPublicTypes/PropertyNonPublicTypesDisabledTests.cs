@@ -10,7 +10,7 @@
         public override AutoMockingConfiguration AutoMockingConfiguration => new() { IncludeNonPublicTypes = false };
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Resolve_WithIncludeNonPublicTypesDisabled_ShouldThrowComponentNotFoundException()
         {
             // Arrange
