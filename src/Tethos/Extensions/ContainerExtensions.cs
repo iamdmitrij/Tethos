@@ -61,5 +61,9 @@
 
         internal static object[] Flatten(this Arguments arguments) =>
             arguments.Select(argument => argument.Value).ToArray();
+
+        internal static string GetArgumentType(this object argument) => $"{argument}"
+            .Split(new[] { "__" }, StringSplitOptions.RemoveEmptyEntries)
+            .FirstOrDefault();
     }
 }
