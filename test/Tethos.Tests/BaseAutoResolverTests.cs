@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Castle.MicroKernel;
@@ -35,7 +36,7 @@
             string key)
         {
             // Arrange
-            var sut = new ConcreteAutoResolver(kernel);
+            var sut = new AutoResolver(kernel);
 
             // Act
             var actual = sut.CanResolve(
@@ -60,17 +61,78 @@
             // Arrange
             var type = expected.GetType();
             kernel.Setup(mock => mock.Resolve(type)).Returns(expected);
-            var sut = new ConcreteAutoResolver(kernel.Object);
+            var sut = new AutoResolver(kernel.Object);
 
             // Act
             var actual = sut.Resolve(
                 resolver,
                 resolver,
                 new(),
-                new(key, type, false));
+                new(key, type, false)) as MapToMockArguments;
 
             // Assert
-            actual.Should().BeSameAs(expected);
+            actual.TargetType.Should().Be(type);
+            actual.TargetObject.Should().Be(expected);
+            actual.ConstructorArguments.Should().BeEmpty();
+        }
+
+        [Theory]
+        [AutoMoqData]
+        [Trait("Category", "Unit")]
+        public void Resolve_Arguments_ShouldMatch(
+            Mock<IKernel> kernel,
+            Mock<object> expected,
+            CreationContext resolver,
+            string key)
+        {
+            // Arrange
+            var type = expected.GetType();
+            kernel.Setup(mock => mock.Resolve(type)).Returns(expected);
+            var sut = new AutoResolver(kernel.Object);
+
+            resolver.AdditionalArguments.Add(new Arguments().AddNamed($"{type}__name", key));
+
+            // Act
+            var actual = sut.Resolve(
+                resolver,
+                resolver,
+                new(),
+                new(key, type, false)) as MapToMockArguments;
+
+            // Assert
+            actual.TargetType.Should().Be(type);
+            actual.TargetObject.Should().Be(expected);
+            actual.ConstructorArguments.Should().HaveSameCount(resolver.AdditionalArguments);
+        }
+
+        [Theory]
+        [AutoMoqData]
+        [Trait("Category", "Unit")]
+        public void Resolve_NonMatchingArguments_ShouldMatch(
+            Mock<IKernel> kernel,
+            Mock<object> expected,
+            CreationContext resolver,
+            string key,
+            IList<string> arguments)
+        {
+            // Arrange
+            var type = expected.GetType();
+            kernel.Setup(mock => mock.Resolve(type)).Returns(expected);
+            var sut = new AutoResolver(kernel.Object);
+
+            resolver.AdditionalArguments.Add(new Arguments().AddNamed($"{arguments.GetType()}__name", key));
+
+            // Act
+            var actual = sut.Resolve(
+                resolver,
+                resolver,
+                new(),
+                new(key, type, false)) as MapToMockArguments;
+
+            // Assert
+            actual.TargetType.Should().Be(type);
+            actual.TargetObject.Should().Be(expected);
+            actual.ConstructorArguments.Should().BeEmpty();
         }
     }
 }
