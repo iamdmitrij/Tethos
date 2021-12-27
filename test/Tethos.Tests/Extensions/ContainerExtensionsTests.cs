@@ -165,7 +165,7 @@
         [InlineAutoData(typeof(Task<int>))]
         [InlineAutoData(typeof(BaseAutoResolver))]
         [InlineAutoData(typeof(Guid))]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void GetArgumentType_WithType_ShouldMatch(Type type, object value)
         {
             // Arrange
@@ -187,7 +187,7 @@
         [InlineData("", null)]
         [InlineData("  ", "  ")]
         [InlineData("__", null)]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void GetArgumentType_WithPattern_ShouldMatch(string argument, string expected)
         {
             // Act

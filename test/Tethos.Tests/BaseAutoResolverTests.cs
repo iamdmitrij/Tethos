@@ -78,7 +78,7 @@
 
         [Theory]
         [AutoMoqData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void Resolve_Arguments_ShouldMatch(
             Mock<IKernel> kernel,
             Mock<object> expected,
@@ -107,7 +107,7 @@
 
         [Theory]
         [AutoMoqData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void Resolve_NonMatchingArguments_ShouldMatch(
             Mock<IKernel> kernel,
             Mock<object> expected,
