@@ -8,7 +8,7 @@
     public class DefaultNonPublicTypesTests : Moq.AutoMockingTest
     {
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Resolve_WithDefaultIncludeNonPublicTypesConfiguration_ShouldThrowComponentNotFoundException()
         {
             // Arrange

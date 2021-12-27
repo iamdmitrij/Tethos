@@ -15,7 +15,7 @@
         [InlineData("Tethos.Moq.Tests.Performance, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "Tethos")]
         [InlineData("System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139", "System")]
         [InlineData("mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089", "mscorlib")]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void GetPattern_ShouldMatch(string assemblyName, string expected)
         {
             // Act
@@ -31,7 +31,7 @@
         [InlineData(" ")]
         [InlineData("FooBar")]
         [InlineData("Foo Bar")]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void GetPattern_ShouldThrowArgumentException(string assemblyName)
         {
             // Arrange
