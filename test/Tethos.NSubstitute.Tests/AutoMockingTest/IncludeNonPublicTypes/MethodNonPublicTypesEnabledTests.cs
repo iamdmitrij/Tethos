@@ -16,7 +16,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Resolve_WithIncludeNonPublicTypesEnabled_ShouldMatch(int expected)
         {
             // Arrange

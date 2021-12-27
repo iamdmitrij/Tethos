@@ -13,7 +13,7 @@
         [InlineData("Tethos.dll", "Tethos.Tests.Common.dll")]
         [InlineData("AutoFixture.dll", "FluentAssertions.dll", "Moq.dll", "xunit.core.dll")]
         [InlineData("Castle.Core.dll", "Castle.Windsor.dll")]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void LoadAssemblies_ShouldLoad(params string[] assemblies)
         {
             // Arrange
@@ -29,7 +29,7 @@
 
         [Theory]
         [InlineData("Fake.Core30.exe", "Fake.Core31.exe")]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void LoadAssemblies_ShouldSkip(params string[] assemblies)
         {
             // Arrange
@@ -44,7 +44,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void TryToLoadAssembly_UsingAssemblyName_ShouldReturnNull(string name)
         {
             // Arrange
@@ -58,7 +58,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void TryToLoadAssembly_UsingAssemblyName_ShouldLoad()
         {
             // Arrange
@@ -73,7 +73,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void TryToLoadAssembly_WithCorruptAssembly_ShouldReturnNull()
         {
             // Arrange
@@ -90,7 +90,7 @@
         [InlineData("Microsoft.Extensions.DependencyModel.dll")]
         [InlineData("Fake.Framework461.exe")]
         [InlineData("Fake.Core31.dll")]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void TryToLoadAssembly_ShouldLoad(string assemblyName)
         {
             // Arrange

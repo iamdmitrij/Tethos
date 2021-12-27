@@ -12,7 +12,7 @@
     {
         [Theory]
         [AutoMoqData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void IncludeNonPublicTypes_ShouldMatch(FromAssemblyDescriptorStub expected, AutoMockingConfiguration configuration)
         {
             // Act
@@ -24,7 +24,7 @@
 
         [Theory]
         [AutoMoqData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void IncludeNonPublicTypes_ExcludeNonPublicTypes_ShouldBeFalse(FromAssemblyDescriptorStub descriptor, AutoMockingConfiguration configuration)
         {
             // Arrange
@@ -40,7 +40,7 @@
 
         [Theory]
         [AutoMoqData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void IncludeNonPublicTypes_WithIncludeNonPublicTypes_ShouldBeTrue(FromAssemblyDescriptorStub descriptor, AutoMockingConfiguration configuration)
         {
             // Arrange
@@ -55,7 +55,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void OverridesExistingRegistration_PassNull_ShouldBeNull()
         {
             // Arrange
@@ -70,7 +70,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void OverridesExistingRegistration_ShouldHaveGuidInTheNamed(ComponentRegistration sut)
         {
             // Act
