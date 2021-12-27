@@ -18,7 +18,7 @@
         [InlineData("Tethos", 0, "Fake.Standard20.dll")]
         [InlineData("Tethos", 1, "Fake.Standard20.dll", "ref/Tethos.Tests.dll")]
         [InlineData("xunit", 1, "xunit.abstractions.dll")]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void FilterAssemblies_ShouldMatchCount(string pattern, int expected, params string[] assemblies)
         {
             // Arrange
@@ -37,7 +37,7 @@
         [InlineData(0, "ref/Fake.Core31.ref.dll")]
         [InlineData(1, "Fake.Core31.dll")]
         [InlineData(2, "Fake.ref.Core31.dll", "Fake.ref.ref.ref")]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void ExcludeRefDirectory(int expected, params string[] assemblies)
         {
             // Arrange

@@ -9,7 +9,7 @@
     {
         [Theory]
         [AutoData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void Dispose_ShouldDisposeContainer(InheritedAutoMockingTest sut)
         {
             // Act
@@ -21,7 +21,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void Dispose_NullContainer_ShouldNotDisposeContainer(InheritedAutoMockingTest sut)
         {
             // Arrange
