@@ -1,7 +1,9 @@
 ﻿namespace Tethos.Tests.Extensions
 {
     using System;
+    using System.Collections;
     using System.Linq;
+    using System.Threading.Tasks;
     using AutoFixture.Xunit2;
     using Castle.MicroKernel;
     using FluentAssertions;
@@ -152,6 +154,47 @@
 
             // Assert
             actual.Should().BeEquivalentTo(expected);
+        }
+
+        [Theory]
+        [InlineAutoData(typeof(string))]
+        [InlineAutoData(typeof(int))]
+        [InlineAutoData(typeof(Type))]
+        [InlineAutoData(typeof(IList))]
+        [InlineAutoData(typeof(Task<>))]
+        [InlineAutoData(typeof(Task<int>))]
+        [InlineAutoData(typeof(BaseAutoResolver))]
+        [InlineAutoData(typeof(Guid))]
+        [Trait("Category", "Unit")]
+        public void GetArgumentType_WithType_ShouldMatch(Type type, object value)
+        {
+            // Arrange
+            var argument = $"{type}__{value}";
+
+            // Act
+            var actual = argument.GetArgumentType();
+
+            // Assert
+            actual.Should().Be($"{type}");
+        }
+
+        [Theory]
+        [InlineData("string++foo", "string++foo")]
+        [InlineData("string_foo", "string_foo")]
+        [InlineData("string___foo", "string")]
+        [InlineData("string____foo", "string")]
+        [InlineData("string  foo", "string  foo")]
+        [InlineData("", null)]
+        [InlineData("  ", "  ")]
+        [InlineData("__", null)]
+        [Trait("Category", "Unit")]
+        public void GetArgumentType_WithPattern_ShouldMatch(string argument, string expected)
+        {
+            // Act
+            var actual = argument.GetArgumentType();
+
+            // Assert
+            actual.Should().Be(expected);
         }
     }
 }
