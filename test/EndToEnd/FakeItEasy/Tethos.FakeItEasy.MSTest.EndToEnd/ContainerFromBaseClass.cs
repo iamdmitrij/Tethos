@@ -9,7 +9,7 @@ namespace Tethos.FakeItEasy.MSTest.EndToEnd
     public class ContainerFromBaseClass : AutoMockingTest
     {
         [TestMethod]
-        [TestCategory("E2E")]
+        [TestProperty("Type", "E2E")]
         public void Exercise_WithMock_ShouldReturn42()
         {
             // Arrange

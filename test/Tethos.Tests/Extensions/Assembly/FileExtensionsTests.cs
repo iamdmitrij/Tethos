@@ -9,7 +9,7 @@
     public class FileExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
     {
         [Fact]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void GetFile_FromExecutingAssembly_ShouldMatchLocation()
         {
             // Arrange
@@ -23,7 +23,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void GetAssemblyFiles_FromCurrentDirectory_ShouldNotBeEmpty()
         {
             // Arrange

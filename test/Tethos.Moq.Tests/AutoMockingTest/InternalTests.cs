@@ -14,7 +14,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Exercise_InternalClass_ShouldMatch(int expected)
         {
             // Arrange
@@ -33,7 +33,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Exercise_InternalDependency_ShouldMatch(int expected)
         {
             // Arrange
@@ -51,7 +51,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Resolve_WeakNamedAssembly_ShouldThrowGeneratorException()
         {
             // Arrange
@@ -62,7 +62,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void ResolveFrom_WeakNamedAssembly_ShouldThrowGeneratorException()
         {
             // Arrange
@@ -73,7 +73,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Exercise_LooseInternalDependency_ShouldMatch()
         {
             // Act

@@ -8,7 +8,7 @@
     public class IdempotencyTests : FakeItEasy.AutoMockingTest
     {
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void ResolveFrom_Idempotency_ShouldMatchMocks()
         {
             // Arrange
@@ -22,7 +22,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Test_Idempotency_ResolveFromVsResolve_ShouldMatchMocks()
         {
             // Arrange
@@ -37,7 +37,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Test_Idempotency_ShouldMatchMocks()
         {
             // Arrange
@@ -51,7 +51,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Test_Idempotency_ShouldMatchMockTypes()
         {
             // Arrange
