@@ -16,7 +16,7 @@ namespace Tethos.MSTest.Demo
         public IAutoMockingContainer Container { get; }
 
         [TestMethod]
-        [TestCategory("Demo")]
+        [TestProperty("Type", "Demo")]
         public void Exercise_WithMock_ShouldReturn42()
         {
             // Arrange

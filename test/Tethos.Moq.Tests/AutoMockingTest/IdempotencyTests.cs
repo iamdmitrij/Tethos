@@ -9,7 +9,7 @@
     public class IdempotencyTests : Moq.AutoMockingTest
     {
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void ResolveFrom_Idempotency_ShouldMatchMocks()
         {
             // Arrange
@@ -23,7 +23,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Test_Idempotency_ResolveFromVsResolve_ShouldMatchMocks()
         {
             // Arrange
@@ -38,7 +38,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Test_Idempotency_ShouldMatchMocks()
         {
             // Arrange
@@ -52,7 +52,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Test_Idempotency_ShouldMatchMockTypes()
         {
             // Arrange
@@ -67,7 +67,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Idempotency_ResolveFrom_ShouldBeSameMockObjects()
         {
             // Arrange
@@ -81,7 +81,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Idempotency_ResolveFrom_ShouldBeSameMocks()
         {
             // Arrange
@@ -95,7 +95,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Idempotency_ResolveFromVsResolve_ShouldNotBeSameMockObjects()
         {
             // Arrange
@@ -110,7 +110,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Idempotency_ResolveFromVsResolve_ShouldBeSameMocks()
         {
             // Arrange
@@ -125,7 +125,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Idempotency_WithProxyObject_ShouldBeSameMockObjects()
         {
             // Arrange
@@ -140,7 +140,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Idempotency_WithProxyObject_ShouldBeSameMocks()
         {
             // Arrange

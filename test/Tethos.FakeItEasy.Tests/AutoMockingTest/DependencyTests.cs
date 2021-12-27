@@ -11,7 +11,7 @@
     public class DependencyTests : FakeItEasy.AutoMockingTest
     {
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Container_Resolve_WithClass_ShouldMockClass()
         {
             // Arrange
@@ -29,7 +29,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Container_Resolve_WithClassAndArguments_ShouldMockClass(int minValue, int maxValue)
         {
             // Arrange
@@ -52,7 +52,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Container_Resolve_WithClassAndPrimitiveType_ShouldMatchMockTypes(
             int minValue,
             int maxValue,
@@ -82,7 +82,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Container_Resolve_WithAbstractClass_ShouldMatchMockTypes(bool enabled)
         {
             // Arrange
@@ -102,7 +102,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Container_Resolve_WithPartialClass_ShouldMatchMockTypes(bool enabled)
         {
             // Arrange
@@ -122,7 +122,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Container_Resolve_WithMixedClasses_ShouldCallMock(
             int minValue,
             int maxValue,

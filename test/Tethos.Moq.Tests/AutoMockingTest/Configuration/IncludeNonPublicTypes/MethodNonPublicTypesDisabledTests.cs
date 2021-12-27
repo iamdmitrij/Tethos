@@ -14,7 +14,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Resolve_WithIncludeNonPublicTypesDisabled_ShouldThrowComponentNotFoundException()
         {
             // Arrange

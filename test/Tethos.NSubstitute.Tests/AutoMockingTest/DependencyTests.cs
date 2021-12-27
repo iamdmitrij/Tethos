@@ -11,7 +11,7 @@
     public class DependencyTests : NSubstitute.AutoMockingTest
     {
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Container_Resolve_WithClassAndArguments_ShouldMockClass()
         {
             // Arrange
@@ -32,7 +32,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Container_Resolve_WithClassAndPrimitiveType_ShouldMatchMockTypes(bool value)
         {
             // Arrange
@@ -57,7 +57,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Container_Resolve_WithAbstractClass_ShouldMatchMockTypes(bool value)
         {
             // Arrange
@@ -75,7 +75,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Container_Resolve_WithPartialClass_ShouldMatchMockTypes(bool value)
         {
             // Arrange
@@ -92,7 +92,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Container_Resolve_WithMixedClasses_ShouldCallMock()
         {
             // Arrange
