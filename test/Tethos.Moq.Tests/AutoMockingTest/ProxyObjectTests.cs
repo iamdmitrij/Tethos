@@ -10,7 +10,7 @@
     {
         [Theory]
         [AutoMoqData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Resolve_ProxyObject_ShouldBeMock(Mock<IMockable> mock)
         {
             // Arrange
@@ -27,7 +27,7 @@
 
         [Theory]
         [AutoMoqData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void Resolve_ProxyObject_ShouldBeMockObject(Mock<IMockable> mock)
         {
             // Arrange

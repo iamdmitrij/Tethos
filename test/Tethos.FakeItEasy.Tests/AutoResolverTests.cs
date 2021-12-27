@@ -28,7 +28,7 @@
         [InlineAutoFakeItEasyData(typeof(Task<>), true)]
         [InlineAutoFakeItEasyData(typeof(Task<int>), true)]
         [InlineAutoFakeItEasyData(typeof(int), false)]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void CanResolve_ShouldMatch(
             Type type,
             bool expected,
@@ -52,7 +52,7 @@
 
         [Theory]
         [AutoFakeItEasyData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void MapToMock_ShouldRegisterMock(IKernel kernel, object targetObject, IMockable mockable, Arguments constructorArguments)
         {
             // Arrange
@@ -73,7 +73,7 @@
 
         [Theory]
         [AutoFakeItEasyData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void MapToMock_ShouldNotRegisterMock(IKernel kernel, IMockable mockable, Arguments constructorArguments)
         {
             // Arrange

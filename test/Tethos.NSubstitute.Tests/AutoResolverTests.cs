@@ -28,7 +28,7 @@
         [InlineAutoNSubstituteData(typeof(Task<>), true)]
         [InlineAutoNSubstituteData(typeof(Task<int>), true)]
         [InlineAutoNSubstituteData(typeof(int), false)]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void CanResolve_ShouldMatch(
             Type type,
             bool expected,
@@ -52,7 +52,7 @@
 
         [Theory]
         [AutoNSubstituteData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void MapToMock_ShouldRegisterMock(IKernel kernel, object targetObject, IMockable mockable, Arguments constructorArguments)
         {
             // Arrange
@@ -73,7 +73,7 @@
 
         [Theory]
         [AutoNSubstituteData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void MapToMock_ShouldNotRegisterMock(IKernel kernel, IMockable mockable, Arguments constructorArguments)
         {
             // Arrange

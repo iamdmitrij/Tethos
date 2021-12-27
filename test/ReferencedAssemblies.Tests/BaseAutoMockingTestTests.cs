@@ -8,7 +8,7 @@ namespace ReferencedAssemblies.Tests
     public class BaseAutoMockingTestTests : BaseAutoMockingTest<AutoMockingContainer>
     {
         [Fact]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void SystemUnderTest_Exercise_ShouldMatchValueRange()
         {
             // Arrange

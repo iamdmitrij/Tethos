@@ -31,7 +31,7 @@
         [InlineAutoMoqData(typeof(Array), 0, false)]
         [InlineAutoMoqData(typeof(Guid), 0, false)]
         [InlineAutoMoqData(typeof(int), 0, false)]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void CanResolve_ShouldMatch(
             Type type,
             int arguments,
@@ -60,7 +60,7 @@
 
         [Theory]
         [AutoMoqData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void MapToMock_ShouldRegisterMock(Mock<IKernel> kernel, object targetObject, IMockable mockable, Arguments constructorArguments)
         {
             // Arrange
@@ -81,7 +81,7 @@
 
         [Theory]
         [AutoMoqData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void MapToMock_ShouldNotRegisterMock(Mock<IKernel> kernel, IMockable mockable, Arguments constructorArguments)
         {
             // Arrange
@@ -102,7 +102,7 @@
 
         [Theory]
         [AutoMoqData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void MapToMock_WithConstructorArguments_ShouldMatchMockType(Mock<IKernel> kernel, Mock<Concrete> mockable)
         {
             // Arrange

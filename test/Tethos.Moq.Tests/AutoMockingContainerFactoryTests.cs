@@ -11,7 +11,7 @@
     {
         [Theory]
         [FactoryContainerData]
-        [Trait("Category", "Integration")]
+        [Trait("Type", "Integration")]
         public void SystemUnderTest_Exercise_ShouldMatch(
             IAutoMockingContainer container,
             int expected)

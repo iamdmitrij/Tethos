@@ -8,7 +8,7 @@ namespace Tethos.FakeItEasy.Xunit.EndToEnd
     public class ContainerFromBaseClass : AutoMockingTest
     {
         [Fact]
-        [Trait("", "E2E")]
+        [Trait("Type", "E2E")]
         public void Exercise_WithMock_ShouldReturn42()
         {
             // Arrange

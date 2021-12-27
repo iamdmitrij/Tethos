@@ -10,7 +10,7 @@
     {
         [Theory]
         [AutoData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void SwallowExceptions_WithNoExceptions_ShouldMatch(object expected)
         {
             // Arrange
@@ -24,7 +24,7 @@
         }
 
         [Fact]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void SwallowExceptions_WhenTypeMatchExpected_ShouldMatchDefault()
         {
             // Arrange
@@ -43,7 +43,7 @@
         [InlineAutoData(typeof(NotImplementedException))]
         [InlineAutoData(typeof(ArgumentException), typeof(ArgumentException))]
         [InlineAutoData(typeof(NotImplementedException), typeof(Exception), typeof(ArgumentException))]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void SwallowExceptions_WhenTypesDoNotMatch_ShouldThrowSameException(params Type[] type)
         {
             // Arrange
@@ -58,7 +58,7 @@
 
         [Theory]
         [AutoData]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void Throws_WhenFuncDoesNotThrow_ShouldBeFalse(object @object)
         {
             // Arrange
@@ -80,7 +80,7 @@
         [InlineAutoData(true, typeof(NullReferenceException))]
         [InlineAutoData(true, typeof(NullReferenceException), typeof(NullReferenceException))]
         [InlineAutoData(true, typeof(NullReferenceException), typeof(ArgumentException))]
-        [Trait("Category", "Unit")]
+        [Trait("Type", "Unit")]
         public void Throws_WhenTypesDoNotMatch_ShouldMatch(bool expected, params Type[] type)
         {
             // Arrange
