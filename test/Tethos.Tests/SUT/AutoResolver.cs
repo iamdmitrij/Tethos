@@ -1,6 +1,5 @@
 ﻿namespace Tethos.Tests.SUT
 {
-    using System;
     using Castle.MicroKernel;
 
     internal class AutoResolver : BaseAutoResolver
@@ -10,12 +9,6 @@
         {
         }
 
-        public override object MapToMock(Type targetType, object targetObject, Arguments constructorArguments) =>
-            new MapToMockArguments
-            {
-                TargetType = targetType,
-                TargetObject = targetObject,
-                ConstructorArguments = constructorArguments,
-            };
+        public override object MapToMock(MockMapping argument) => argument;
     }
 }

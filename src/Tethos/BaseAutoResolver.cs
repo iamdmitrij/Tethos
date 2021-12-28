@@ -1,6 +1,5 @@
 ﻿namespace Tethos
 {
-    using System;
     using System.Linq;
     using Castle.Core;
     using Castle.MicroKernel;
@@ -27,11 +26,9 @@
         /// <summary>
         /// Maps target mock object to mocked object type.
         /// </summary>
-        /// <param name="targetType">Target type for object to be converted to destination object.</param>
-        /// <param name="targetObject">Current target object available in container.</param>
-        /// <param name="constructorArguments">Constructor arguments for non-abstract target type.</param>
+        /// <param name="argument">Argument object used to pass mapping parameters.</param>
         /// <returns>Auto-mocked object depending on target type.</returns>
-        public abstract object MapToMock(Type targetType, object targetObject, Arguments constructorArguments);
+        public abstract object MapToMock(MockMapping argument);
 
         /// <inheritdoc />
         public virtual bool CanResolve(
@@ -55,7 +52,12 @@
                 .Where(argument => argument.Key.GetArgumentType() == $"{targetType}");
             var constructorArguments = new Arguments().Add(arguments);
 
-            return this.MapToMock(targetType, currentTargetObject, constructorArguments);
+            return this.MapToMock(new()
+            {
+                TargetType = targetType,
+                TargetObject = currentTargetObject,
+                ConstructorArguments = constructorArguments,
+            });
         }
     }
 }
