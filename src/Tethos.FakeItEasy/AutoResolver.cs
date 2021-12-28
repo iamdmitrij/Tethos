@@ -27,19 +27,19 @@
             DependencyModel dependency) => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
-        public override object MapToMock(Type targetType, object targetObject, Arguments constructorArguments)
+        public override object MapToMock(MockMapping argument)
         {
-            Action<IFakeOptions> arguments = targetType.IsInterface switch
+            Action<IFakeOptions> arguments = argument.TargetType.IsInterface switch
             {
                 true => options => _ = options,
-                false => options => options.WithArgumentsForConstructor(constructorArguments.Flatten()),
+                false => options => options.WithArgumentsForConstructor(argument.ConstructorArguments.Flatten()),
             };
-            var mock = Create.Fake(targetType, arguments);
-            var isPlainObject = !Fake.IsFake(targetObject ?? 0);
+            var mock = Create.Fake(argument.TargetType, arguments);
+            var isPlainObject = !Fake.IsFake(argument.TargetObject ?? 0);
 
             if (isPlainObject)
             {
-                this.Kernel.Register(Component.For(targetType)
+                this.Kernel.Register(Component.For(argument.TargetType)
                     .Instance(mock)
                     .OverridesExistingRegistration());
             }

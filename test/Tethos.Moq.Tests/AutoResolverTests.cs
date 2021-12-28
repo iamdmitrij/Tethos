@@ -68,8 +68,11 @@
             var sut = new AutoResolver(kernel.Object);
             var type = typeof(IMockable);
 
+            // TODO: Refactor tests to have more automatic approach
+            MockMapping argument = new() { TargetType = type, TargetObject = targetObject, ConstructorArguments = constructorArguments };
+
             // Act
-            var actual = sut.MapToMock(type, targetObject, constructorArguments);
+            var actual = sut.MapToMock(argument);
 
             // Assert
             kernel.Verify(m => m.Register(It.IsAny<IRegistration>()), Times.AtLeastOnce);
@@ -86,8 +89,11 @@
             var sut = new AutoResolver(kernel.Object);
             var type = typeof(IMockable);
 
+            // TODO: Refactor tests to have more automatic approach
+            MockMapping argument = new() { TargetType = type, TargetObject = mockable, ConstructorArguments = constructorArguments };
+
             // Act
-            var actual = sut.MapToMock(type, mockable, constructorArguments);
+            var actual = sut.MapToMock(argument);
 
             // Assert
             kernel.Verify(m => m.Register(It.IsAny<IRegistration>()), Times.Never);
@@ -107,8 +113,11 @@
                 .AddNamed("minValue", 100)
                 .AddNamed("maxValue", 200);
 
+            // TODO: Refactor tests to have more automatic approach
+            MockMapping argument = new() { TargetType = type, TargetObject = mockable.Object, ConstructorArguments = arguments };
+
             // Act
-            var actual = sut.MapToMock(type, mockable.Object, arguments);
+            var actual = sut.MapToMock(argument);
 
             // Assert
             kernel.Verify(m => m.Register(It.IsAny<IRegistration>()), Times.Never);

@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using Castle.Core;
-    using Castle.DynamicProxy;
     using Castle.MicroKernel;
     using Castle.MicroKernel.Context;
     using Castle.MicroKernel.Registration;
@@ -29,14 +28,14 @@
             || base.CanResolve(context, contextHandlerResolver, model, dependency);
 
         /// <inheritdoc />
-        public override object MapToMock(Type targetType, object targetObject, Arguments constructorArguments)
+        public override object MapToMock(MockMapping argument)
         {
-            var mockType = typeof(Mock<>).MakeGenericType(targetType);
-            var arguments = constructorArguments
+            var mockType = typeof(Mock<>).MakeGenericType(argument.TargetType);
+            var arguments = argument.ConstructorArguments
                 .Select(argument => argument.Value)
                 .ToArray();
             var mock = Activator.CreateInstance(mockType, arguments) as Mock;
-            var isPlainObject = !typeof(IMocked).IsAssignableFrom(targetObject?.GetType());
+            var isPlainObject = !typeof(IMocked).IsAssignableFrom(argument.TargetObject?.GetType());
 
             if (isPlainObject)
             {
@@ -44,7 +43,7 @@
                     .Instance(mock)
                     .OverridesExistingRegistration());
 
-                this.Kernel.Register(Component.For(targetType)
+                this.Kernel.Register(Component.For(argument.TargetType)
                   .Instance(mock.Object)
                   .OverridesExistingRegistration());
             }
