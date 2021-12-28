@@ -2,6 +2,7 @@
   "stryker-config": {
     "test-projects": ["test/Tethos.Moq.Tests/Tethos.Moq.Tests.csproj"],
     "project": "Tethos.Moq.csproj",
-    "project-info": { "module": "Tethos.Moq" }
+    "project-info": { "module": "Tethos.Moq" },
+    "thresholds": { "high": 90, "low": 80, "break": 70 }
   }
 }
