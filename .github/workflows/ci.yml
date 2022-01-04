@@ -139,12 +139,12 @@ jobs:
             cspell:fullstack/fullstack.txt
             cspell:html/html.txt
             cspell:software-terms/software-terms.txt
-  lint-yaml:
-    name: 🔦 Lint YAML
+  lint-yml:
+    name: 🔦 YML
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
 
-      - name: ✅ Check YAML
+      - name: ✅ Check YML
         uses: ibiqlik/action-yamllint@v3
