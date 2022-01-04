@@ -148,5 +148,3 @@ jobs:
 
       - name: ✅ Check YAML
         uses: ibiqlik/action-yamllint@v3
-        with:
-          file_or_dir: .github/**/*.yaml
