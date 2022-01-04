@@ -140,7 +140,7 @@ jobs:
             cspell:html/html.txt
             cspell:software-terms/software-terms.txt
   lint-yml:
-    name: 🔦 YML
+    name: 🐞 YML
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
