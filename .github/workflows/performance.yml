@@ -42,13 +42,8 @@ jobs:
 
       - name: 🔬 Test
         run: |
-          dotnet run
-           --project ./test
-           /Performance
-           /Moq
-           /Tethos.Moq.Tests.Benchmarks
-           /Tethos.Moq.Tests.Benchmarks.csproj 
-           --configuration Release
+          dir "Tethos.Moq.Tests.Benchmarks.csproj" -Recurse 
+          | %{dotnet run --project $PSItem.FullName --configuration Release}
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
