@@ -20,7 +20,7 @@
             this IEnumerable<Assembly> assemblies, string name) => 
             assemblies
                 .Select(assembly => Path.GetFileName(assembly.Location))
-                .Any(fileName => fileName == Name);
+                .Any(fileName => fileName == name);
 
         internal static IEnumerable<File> ExcludeRefDirectory(
             this IEnumerable<File> assemblies) =>
