@@ -14,13 +14,13 @@
             params Assembly[] rootAssemblies) => assemblies
                 .Where(file => allowedFileExtensions.Contains(file.Extension))
                 .Where(file => file.Name.Contains(searchPattern))
-                .Where(file => !rootAssemblies.ContainsAssembly(file));
+                .Where(file => !rootAssemblies.ContainsAssemblyNamed(file.Name));
 
-        internal static IEnumerable<File> ContainsAssembly(
-            this IEnumerable<File> files, Assembly assembly) => 
-            files
+        internal static bool ContainsAssemblyNamed(
+            this IEnumerable<Assembly> assemblies, string name) => 
+            assemblies
                 .Select(assembly => Path.GetFileName(assembly.Location))
-                .Any(fileName => fileName == assembly.Name);
+                .Any(fileName => fileName == Name);
 
         internal static IEnumerable<File> ExcludeRefDirectory(
             this IEnumerable<File> assemblies) =>
