@@ -39,16 +39,19 @@
 
         [Fact]
         [Trait("Type", "Integration")]
-        public void Test_Idempotency_ShouldMatchMocks()
+        public void Test_Idempotency_ShouldNotMatch()
         {
             // Arrange
             var expected = this.Container.Resolve<SystemUnderTest>();
+            var expectedMock = this.Container.Resolve<IMockable>();
 
             // Act
             var actual = this.Container.Resolve<SystemUnderTest>();
+            var actualMock = this.Container.Resolve<IMockable>();
 
             // Assert
-            actual.Should().NotBe(expected); // TODO: Is this ok though?
+            actual.Should().NotBeSameAs(expected);
+            expectedMock.Should().BeSameAs(actualMock);
         }
 
         [Fact]
@@ -63,7 +66,7 @@
             var actual = this.Container.Resolve<Mock<IMockable>>();
 
             // Assert
-            actual.Should().Be(expected);
+            actual.Should().BeSameAs(expected);
         }
 
         [Fact]
@@ -136,7 +139,7 @@
             var actual = this.Container.Resolve<IMockable>();
 
             // Assert
-            actual.Should().Be(expected);
+            actual.Should().BeSameAs(expected);
         }
 
         [Fact]
@@ -151,7 +154,7 @@
             var actual = Mock.Get(this.Container.Resolve<IMockable>());
 
             // Assert
-            actual.Should().Be(expected);
+            actual.Should().BeSameAs(expected);
         }
     }
 }
