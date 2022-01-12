@@ -9,6 +9,7 @@ on:
 
 jobs:
   security-scan:
+    name: 🔍 Security scan
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
