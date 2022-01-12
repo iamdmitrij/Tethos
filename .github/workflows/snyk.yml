@@ -8,10 +8,12 @@ on:
     types: ["opened", "synchronize", "reopened"]
 
 jobs:
-  security:
+  security-scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
       - name: 🔧 Use .NET 6.0 SDK
         uses: actions/setup-dotnet@v1
         with:
@@ -20,10 +22,10 @@ jobs:
       - name: 🔨 Build
         run: dotnet build ./Tethos.sln --configuration Release
 
-      - name: Run Snyk to check for vulnerabilities
+      - name: 🔓 Run Snyk scan
         if: ${{ github.actor != 'dependabot[bot]' }}
         uses: snyk/actions/dotnet@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --severity-threshold=critical --all-projects
+          args: --severity-threshold=critical
