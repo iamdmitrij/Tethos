@@ -30,7 +30,7 @@ jobs:
         run: dotnet build ./Tethos.sln --configuration Release -p:Version=$(echo ${{ steps.previoustag.outputs.tag }} | tr -d 'v')
 
       - name: 🔦 Lint
-        run: dotnet format -v diag --verify-no-changes --no-restore
+        run: dotnet format --verify-no-changes --no-restore
 
       - name: 📚 Artifact NuGet
         uses: actions/upload-artifact@v2
