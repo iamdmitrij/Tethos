@@ -17,7 +17,7 @@
                 .Where(file => !rootAssemblies.ContainsAssemblyNamed(file.Name));
 
         internal static bool ContainsAssemblyNamed(
-            this IEnumerable<Assembly> assemblies, string name) => 
+            this IEnumerable<Assembly> assemblies, string name) =>
             assemblies
                 .Select(assembly => Path.GetFileName(assembly.Location))
                 .Any(fileName => fileName == name);
