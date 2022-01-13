@@ -14,7 +14,7 @@
             params Assembly[] rootAssemblies) => assemblies
                 .Where(file => allowedFileExtensions.Contains(file.Extension))
                 .Where(file => file.Name.Contains(searchPattern))
-                .Where(file => !rootAssemblies 
+                .Where(file => !rootAssemblies
                     .Select(assembly => Path.GetFileName(assembly.Location))
                     .Any(fileName => fileName == file.Name));
 
