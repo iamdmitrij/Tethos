@@ -59,7 +59,7 @@ jobs:
         run: >
           is_tag=${{ steps.branch-name.outputs.is_tag }} 
           target_branch=${{ steps.branch-name.outputs.current_branch }} 
-          extra_reporter="cleartext" 
+          extra_reporter="dashboard" 
 
           if [ "$is_tag" = true ]; then
             target_branch="main"
@@ -71,8 +71,8 @@ jobs:
 
           dotnet stryker --config-file test/Tethos.Tests/stryker-config.json
           --version "$target_branch"
-          --reporter "cleartext"
           --reporter "$extra_reporter"
+          --reporter "cleartext"
           --reporter "html"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
