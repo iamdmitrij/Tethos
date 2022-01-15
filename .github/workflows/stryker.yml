@@ -72,7 +72,7 @@ jobs:
             --version "$target_branch" \
             --reporter "cleartext" \
             --reporter "$extra_reporter" \ 
-            --reporter "html"
+            --reporter "html" \
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
