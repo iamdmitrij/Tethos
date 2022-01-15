@@ -57,7 +57,9 @@ jobs:
       - name: 💀 Run mutation tests
         shell: bash
         run: |
-          if [[ "$GITHUB_ACTOR" != "dependabot[bot]" ]]; then
+          if [[ steps.branch-name.outputs.is_tag == TRUE ]]; then
+            dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --version "main" --reporter "cleartext" --reporter "html" --reporter dashboard
+          elif [[ "$GITHUB_ACTOR" != "dependabot[bot]" ]]; then
             dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}" --reporter "cleartext" --reporter "html" --reporter dashboard
           else
             dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}" --reporter "cleartext" --reporter "html"
