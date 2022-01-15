@@ -32,7 +32,7 @@ jobs:
           version=$(echo ${{ steps.previoustag.outputs.tag }} | tr -d 'v')
           dotnet build ./Tethos.sln
           --configuration Release
-          -p:Version=$version
+          -p:Version=$${ $version }}
 
       - name: 🔦 Lint
         run: dotnet format --verify-no-changes --no-restore
