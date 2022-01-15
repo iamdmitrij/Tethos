@@ -59,7 +59,7 @@ jobs:
             ${{ steps.branch.outputs.content }})
 
 
-            ## 📊 Reports                                                                                                                      
+            ## 📊 Reports
 
             - [Tethos]
             (https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/
