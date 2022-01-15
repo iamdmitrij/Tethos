@@ -59,7 +59,7 @@ jobs:
         run: |
           is_tag=${{ steps.branch-name.outputs.is_tag }}
           echo ${{ steps.branch-name.outputs.is_tag }}
-          if [ !"$is_tag" = true ]; then
+          if [ "$is_tag" != true ]; then
             dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --version "main1" --reporter "cleartext" --reporter "html" --reporter dashboard
           elif [[ "$GITHUB_ACTOR" != "dependabot[bot]" ]]; then
             dotnet stryker --config-file test/Tethos.Tests/stryker-config.json --version "${{ steps.branch-name.outputs.current_branch }}" --reporter "cleartext" --reporter "html" --reporter dashboard
