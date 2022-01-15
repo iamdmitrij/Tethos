@@ -57,9 +57,10 @@ jobs:
       - name: 💀 Run mutation tests
         shell: bash
         run: >
-          is_tag=${{ steps.branch-name.outputs.is_tag }}
-          target_branch=${{ steps.branch-name.outputs.current_branch }}
-          extra_reporter="cleartext"
+          is_tag=${{ steps.branch-name.outputs.is_tag }} 
+          target_branch=${{ steps.branch-name.outputs.current_branch }} 
+          extra_reporter="cleartext" 
+
           if [ "$is_tag" = true ]; then
             target_branch="main"
           fi
@@ -68,11 +69,11 @@ jobs:
             extra_reporter="cleartext"
           fi
 
-          dotnet stryker --config-file test/Tethos.Tests/stryker-config.json \  
-            --version "$target_branch" \
-            --reporter "cleartext" \
-            --reporter "$extra_reporter" \ 
-            --reporter "html" \
+          dotnet stryker --config-file test/Tethos.Tests/stryker-config.json
+            --version "$target_branch"
+            --reporter "cleartext" 
+            --reporter "$extra_reporter"  
+            --reporter "html"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
