@@ -75,11 +75,10 @@ jobs:
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
 
-        # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
-      - name: 🔧 Use .NET 5.0 SDK
+      - name: 🔧 Use .NET 6.0 SDK
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 5.0.x
+          dotnet-version: 6.0.x
 
       - name: 🔽 Start SonarCloud scan
         if: ${{ github.actor != 'dependabot[bot]' }}
@@ -90,19 +89,8 @@ jobs:
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"iamdmitrij_Tethos" /o:"iamdmitrij" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /d:sonar.cs.vstest.reportsPaths="coverage/*.trx" /d:sonar.coverage.exclusions="test/**, demo/**"
 
-        # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
-      - name: 🔧 Use .NET 6.0 SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 6.0.x
       - name: 🔬 Test
         run: dotnet test ./Tethos.sln --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory ./coverage
-
-        # TODO: Workaround until https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
-      - name: 🔧 Use .NET 5.0 SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 5.0.x
 
       - name: 🔼 End SonarCloud scan
         if: ${{ github.actor != 'dependabot[bot]' }}
