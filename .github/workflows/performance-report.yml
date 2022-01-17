@@ -20,7 +20,11 @@ jobs:
           name: performance-test-results
 
       - name: 📑 Aggregate results
-        run: cat **/Tethos.*.Tests.Benchmarks.*.md > results.md
+        run: >
+          find .
+          -name 'Tethos.*.Tests.Benchmarks.*.md'
+          -exec cat {} \; 
+          > results.md
 
       - name: 🔟 Resolve Pull Request Reference
         id: pr_number
