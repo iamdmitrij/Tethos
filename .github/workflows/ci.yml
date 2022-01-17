@@ -59,8 +59,8 @@ jobs:
       - name: 🔦 Restore tools
         run: dotnet tool restore
 
-        # TODO: Workaround until
-        # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
+      # TODO: Workaround until
+      # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
       - name: 🔧 Use .NET 5.0 SDK
         uses: actions/setup-dotnet@v1
         with:
@@ -81,12 +81,13 @@ jobs:
           /d:sonar.cs.vstest.reportsPaths="coverage/*.trx"
           /d:sonar.coverage.exclusions="test/**, demo/**"
 
-        # TODO: Workaround until
-        # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
+      # TODO: Workaround until
+      # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
       - name: 🔧 Use .NET 6.0 SDK
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.0.x
+
       - name: 🔬 Test
         run: >
           dotnet test ./Tethos.sln
@@ -96,12 +97,16 @@ jobs:
           --logger trx
           --results-directory ./coverage
 
-        # TODO: Workaround until
-        # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
+      # TODO: Workaround until
+      # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
       - name: 🔧 Use .NET 5.0 SDK
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
+
+      # TODO: Needed because .NET SDK is restored above
+      - name: 🔦 Restore tools
+        run: dotnet tool restore
 
       - name: 🔼 End SonarCloud scan
         if: ${{ github.actor != 'dependabot[bot]' }}
