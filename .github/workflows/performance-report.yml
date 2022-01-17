@@ -7,7 +7,9 @@ on:
 jobs:
   report:
     runs-on: windows-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request' }}
+    if: >
+      ${{ github.event.workflow_run.conclusion == 'success'
+      && github.event.workflow_run.event == 'pull_request' }}
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
@@ -18,7 +20,10 @@ jobs:
           name: performance-test-results
 
       - name: 📑 Aggregate results
-        run: Get-ChildItem -include Tethos.*.Tests.Benchmarks.*.md -rec | ForEach-Object {gc $_; ""} | out-file results.md
+        run: >
+          Get-ChildItem -include Tethos.*.Tests.Benchmarks.*.md -rec
+          | ForEach-Object {gc $_; ""}
+          | out-file results.md
       - name: 🔟 Resolve Pull Request Reference
         id: pr_number
         uses: juliangruber/read-file-action@v1.0.0
