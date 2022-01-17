@@ -9,9 +9,10 @@ on:
 jobs:
   publish:
     name: 📦 Publish to NuGet
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' }}
+    if: >
+      ${{ github.event.workflow_run.conclusion == 'success'
+      && github.event.workflow_run.event == 'push' }}
     runs-on: windows-latest
-
     steps:
       - uses: dawidd6/action-download-artifact@v2
         with:
@@ -24,4 +25,8 @@ jobs:
           dotnet-version: "6.0.x"
 
       - name: 🎁 Push to NuGet
-        run: dotnet nuget push **/Tethos.*.nupkg --source ${{ secrets.NUGET_FEED }} --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
+        run: >
+          dotnet nuget push **/Tethos.*.nupkg
+          --source ${{ secrets.NUGET_FEED }}
+          --api-key ${{ secrets.NUGET_API_KEY }}
+          --skip-duplicate

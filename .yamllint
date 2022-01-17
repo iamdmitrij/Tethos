@@ -2,6 +2,6 @@ rules:
   document-start:
     present: false
   line-length:
-    max: 500 # TODO: Change it to 100 or similar https://github.com/iamdmitrij/Tethos/issues/195
+    max: 100
     allow-non-breakable-words: true
     allow-non-breakable-inline-mappings: false
