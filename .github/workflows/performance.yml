@@ -29,7 +29,7 @@ jobs:
 
   test-moq:
     name: 🏇 Tethos.Moq
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
@@ -40,9 +40,10 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: 🔬 Test
-        run: |
-          dir "Tethos.Moq.Tests.Benchmarks.csproj" -Recurse | 
-          %{dotnet run --project $PSItem.FullName --configuration Release}
+        run: >
+          dotnet run
+          --project ./test/Performance/Moq/Tethos.Moq.Tests.Benchmarks.csproj
+          --configuration Release
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
@@ -53,7 +54,7 @@ jobs:
 
   test-fakeiteasy:
     name: 🏇 Tethos.FakeItEasy
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
@@ -64,9 +65,10 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: 🔬 Test
-        run: |
-          dir "Tethos.FakeItEasy.Tests.Benchmarks.csproj" -Recurse | 
-          %{dotnet run --project $PSItem.FullName --configuration Release}
+        run: >
+          dotnet run
+          --project ./test/Performance/FakeItEasy/Tethos.FakeItEasy.Tests.Benchmarks.csproj
+          --configuration Release
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
@@ -77,7 +79,7 @@ jobs:
 
   test-nsubstitute:
     name: 🏇 Tethos.NSubstitute
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
@@ -88,9 +90,10 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: 🔬 Test
-        run: |
-          dir "Tethos.NSubstitute.Tests.Benchmarks.csproj" -Recurse | 
-          %{dotnet run --project $PSItem.FullName --configuration Release}
+        run: >
+          dotnet run
+          --project ./test/Performance/NSubstitute/Tethos.NSubstitute.Tests.Benchmarks.csproj
+          --configuration Release
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
