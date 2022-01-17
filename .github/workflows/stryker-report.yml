@@ -46,8 +46,7 @@ jobs:
       - name: 📝 Create comment
         uses: peter-evans/create-or-update-comment@v1
         with:
-          body: >
-            "# 🎳 [Stryker]\
+          body: "# 🎳 [Stryker]\
             (https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/\
             ${{ steps.branch.outputs.content }}) Report
 
@@ -72,7 +71,7 @@ jobs:
             - [Tethos.FakeItEasy]\
             (https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/\
             ${{ steps.branch.outputs.content }}?module=Tethos.FakeItEasy)\
-        
+
             - [Tethos.NSubstitute]\
             (https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/\
             ${{ steps.branch.outputs.content }}?module=Tethos.NSubstitute)"
