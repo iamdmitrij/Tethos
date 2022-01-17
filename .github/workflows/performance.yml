@@ -40,12 +40,11 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: 🔬 Test
-        run: >
-          dotnet run
-          --project ./test/Performance/Moq
-          /Tethos.Moq.Tests.Benchmarks/
-          Tethos.Moq.Tests.Benchmarks.csproj
-          --configuration Release
+        run: "dotnet run
+          --project ./test/Performance/Moq\
+          /Tethos.Moq.Tests.Benchmarks/\
+          Tethos.Moq.Tests.Benchmarks.csproj\
+          --configuration Release"
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
@@ -67,12 +66,11 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: 🔬 Test
-        run: >
-          dotnet run
-          --project ./test/Performance/FakeItEasy/
-          Tethos.FakeItEasy.Tests.Benchmarks/
-          Tethos.FakeItEasy.Tests.Benchmarks.csproj
-          --configuration Release
+        run: "dotnet run
+          --project ./test/Performance/FakeItEasy\
+          /Tethos.FakeItEasy.Tests.Benchmarks/\
+          Tethos.FakeItEasy.Tests.Benchmarks.csproj\
+          --configuration Release"
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
@@ -94,12 +92,11 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: 🔬 Test
-        run: >
-          dotnet run
-          --project ./test/Performance/NSubstitute/
-          Tethos.NSubstitute.Tests.Benchmarks/
-          Tethos.NSubstitute.Tests.Benchmarks.csproj
-          --configuration Release
+        run: "dotnet run
+          --project ./test/Performance/NSubstitute\
+          /Tethos.NSubstitute.Tests.Benchmarks/\
+          Tethos.NSubstitute.Tests.Benchmarks.csproj\
+          --configuration Release"
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
