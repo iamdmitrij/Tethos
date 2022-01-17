@@ -43,7 +43,7 @@ jobs:
         run: "dotnet run
           --project ./test/Performance/Moq\
           /Tethos.Moq.Tests.Benchmarks/\
-          Tethos.Moq.Tests.Benchmarks.csproj\
+          Tethos.Moq.Tests.Benchmarks.csproj
           --configuration Release"
 
       - name: 📚 Artifact Test Results
@@ -69,7 +69,7 @@ jobs:
         run: "dotnet run
           --project ./test/Performance/FakeItEasy\
           /Tethos.FakeItEasy.Tests.Benchmarks/\
-          Tethos.FakeItEasy.Tests.Benchmarks.csproj\
+          Tethos.FakeItEasy.Tests.Benchmarks.csproj
           --configuration Release"
 
       - name: 📚 Artifact Test Results
@@ -95,7 +95,7 @@ jobs:
         run: "dotnet run
           --project ./test/Performance/NSubstitute\
           /Tethos.NSubstitute.Tests.Benchmarks/\
-          Tethos.NSubstitute.Tests.Benchmarks.csproj\
+          Tethos.NSubstitute.Tests.Benchmarks.csproj
           --configuration Release"
 
       - name: 📚 Artifact Test Results
