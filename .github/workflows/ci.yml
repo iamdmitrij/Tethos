@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: 🔨 Build
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
@@ -27,7 +27,6 @@ jobs:
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
 
       - name: 🔨 Build
-        shell: bash
         run: >
           dotnet build ./Tethos.sln
           --configuration Release
