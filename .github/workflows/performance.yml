@@ -16,7 +16,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: 🔟 Save Pull Request Number
-        shell: bash
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: echo $PR_NUMBER > pr_number.meta
