@@ -71,6 +71,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        # TODO: Move /k iamdmitrij_Tethos into GitHub variables
+        # TODO: Move /o iamdmitrij into GitHub variables
         run: >
           dotnet sonarscanner begin
           /k:"iamdmitrij_Tethos"
