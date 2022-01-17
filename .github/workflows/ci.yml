@@ -46,7 +46,7 @@ jobs:
 
   test:
     name: 🔬 Test
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
@@ -56,27 +56,8 @@ jobs:
         with:
           java-version: 1.11
 
-      - name: 📦 Cache SonarCloud packages
-        uses: actions/cache@v1
-        with:
-          path: ~\sonar\cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
-      - name: 📦 Cache SonarCloud scanner
-        id: cache-sonar-scanner
-        uses: actions/cache@v1
-        with:
-          path: .\.sonar\scanner
-          key: ${{ runner.os }}-sonar-scanner
-          restore-keys: ${{ runner.os }}-sonar-scanner
-
-      - name: 📡 Install SonarCloud scanner
-        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-        shell: powershell
-        run: |
-          New-Item -Path .\.sonar\scanner -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+      - name: 🔦 Restore tools
+        run: dotnet tool restore
 
         # TODO: Workaround until
         # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
@@ -90,9 +71,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        shell: powershell
         run: >
-          .\.sonar\scanner\dotnet-sonarscanner begin
+          dotnet sonarscanner begin
           /k:"iamdmitrij_Tethos"
           /o:"iamdmitrij"
           /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
@@ -128,9 +108,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        shell: powershell
         run: >
-          .\.sonar\scanner\dotnet-sonarscanner end
+          dotnet sonarscanner end
           /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
       - name: 🔍 Coverage
