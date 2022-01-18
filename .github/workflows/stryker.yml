@@ -10,7 +10,7 @@ on:
 jobs:
   save-metadata:
     name: 🔽 Save metadata
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
@@ -20,13 +20,11 @@ jobs:
         uses: tj-actions/branch-names@v5
 
       - name: 🔟 Save Pull Request Number
-        shell: bash
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: echo $PR_NUMBER > pr_number.meta
 
       - name: 🔟 Save Branch Name
-        shell: bash
         run: echo ${{ steps.branch-name.outputs.current_branch }} | tr -d '\n' > branch.meta
 
       - name: 📚 Test results
@@ -37,7 +35,7 @@ jobs:
 
   mutation-tests:
     name: 💀 Tethos
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
@@ -55,7 +53,6 @@ jobs:
         uses: tj-actions/branch-names@v5
 
       - name: 💀 Run mutation tests
-        shell: bash
         run: >
           is_tag=${{ steps.branch-name.outputs.is_tag }}
           target_branch=${{ steps.branch-name.outputs.current_branch }}
@@ -85,7 +82,7 @@ jobs:
 
   mutation-tests-moq:
     name: 💀 Tethos.Moq
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
@@ -103,7 +100,6 @@ jobs:
         uses: tj-actions/branch-names@v5
 
       - name: 💀 Run mutation tests
-        shell: bash
         run: >
           is_tag=${{ steps.branch-name.outputs.is_tag }}
           target_branch=${{ steps.branch-name.outputs.current_branch }}
@@ -133,7 +129,7 @@ jobs:
 
   mutation-tests-fakeiteasy:
     name: 💀 Tethos.FakeItEasy
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
@@ -151,7 +147,6 @@ jobs:
         uses: tj-actions/branch-names@v5
 
       - name: 💀 Run mutation tests
-        shell: bash
         run: >
           is_tag=${{ steps.branch-name.outputs.is_tag }}
           target_branch=${{ steps.branch-name.outputs.current_branch }}
@@ -181,7 +176,7 @@ jobs:
 
   mutation-tests-nsubstitute:
     name: 💀 Tethos.NSubstitute
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
@@ -199,7 +194,6 @@ jobs:
         uses: tj-actions/branch-names@v5
 
       - name: 💀 Run mutation tests
-        shell: bash
         run: >
           is_tag=${{ steps.branch-name.outputs.is_tag }}
           target_branch=${{ steps.branch-name.outputs.current_branch }}
