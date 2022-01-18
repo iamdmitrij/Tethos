@@ -95,6 +95,12 @@ jobs:
           dotnet build ./Tethos.sln
           --configuration Release
 
+      - name: 🔖 Fetch artifact
+        uses: actions/download-artifact@master
+        with:
+          name: test-results
+          path: coverage
+
       # TODO: Workaround until
       # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
       - name: 🔧 Use .NET 5.0 SDK
