@@ -157,7 +157,9 @@ jobs:
         if: success() || failure()
         with:
           name: test-results
-          path: coverage/*.trx
+          path: |
+            coverage/*.trx
+            **/coverage.opencover.xml
 
   test-demo:
     name: 🔬 Test (Demo)
