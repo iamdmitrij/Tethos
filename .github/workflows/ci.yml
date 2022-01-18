@@ -44,8 +44,8 @@ jobs:
             src/**/Tethos*.nupkg
             src/**/Tethos*.snupkg
 
-  test:
-    name: 🔬 Test
+  sonar:
+    name: 📡 SonarCloud
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
@@ -90,14 +90,16 @@ jobs:
         with:
           dotnet-version: 6.0.x
 
-      - name: 🔬 Test
+      - name: 🔨 Build
         run: >
-          dotnet test ./Tethos.sln
+          dotnet build ./Tethos.sln
           --configuration Release
-          /p:CollectCoverage=true
-          /p:CoverletOutputFormat=opencover
-          --logger trx
-          --results-directory ./coverage
+
+      - name: 🔖 Fetch artifact
+        uses: actions/download-artifact@master
+        with:
+          name: test-results
+          path: coverage
 
       # TODO: Workaround until
       # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
@@ -119,6 +121,27 @@ jobs:
           dotnet sonarscanner end
           /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
+  test:
+    name: 🔬 Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔬 Test
+        run: >
+          dotnet test ./Tethos.sln
+          --configuration Release
+          /p:CollectCoverage=true
+          /p:CoverletOutputFormat=opencover
+          --logger trx
+          --results-directory ./coverage
+
       - name: 🔍 Coverage
         uses: codecov/codecov-action@v2
         with:
@@ -129,7 +152,9 @@ jobs:
         if: success() || failure()
         with:
           name: test-results
-          path: coverage/*.trx
+          path: |
+            coverage/*.trx
+            **/coverage.opencover.xml
 
   spellcheck:
     name: 🔦 Spellcheck
