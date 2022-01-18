@@ -101,6 +101,10 @@ jobs:
           name: test-results
           path: coverage
 
+      - run: ls -al .
+
+      - run: ls -al coverage
+
       # TODO: Workaround until
       # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
       - name: 🔧 Use .NET 5.0 SDK
