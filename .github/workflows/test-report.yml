@@ -12,5 +12,5 @@ jobs:
         with:
           artifact: test-results
           name: 📜 Test Report
-          path: "*.trx"
+          path: coverage/*.trx
           reporter: dotnet-trx
