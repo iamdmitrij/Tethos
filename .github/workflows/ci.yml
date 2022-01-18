@@ -94,6 +94,7 @@ jobs:
         run: >
           dotnet test ./Tethos.sln
           --configuration Release
+          --filter "Type~Unit | Type~Integration"
           /p:CollectCoverage=true
           /p:CoverletOutputFormat=opencover
           --logger trx
@@ -123,6 +124,64 @@ jobs:
         uses: codecov/codecov-action@v2
         with:
           verbose: true
+
+      - name: 📚 Artifact Test Results
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: test-results
+          path: coverage/*.trx
+
+  test-demo:
+    name: 🔬 Test (Demo)
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔬 Test
+        run: >
+          dotnet test ./Tethos.sln
+          --configuration Release
+          --filter Type=Demo
+          /p:CollectCoverage=true
+          /p:CoverletOutputFormat=opencover
+          --logger trx
+          --results-directory ./coverage
+
+      - name: 📚 Artifact Test Results
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: test-results
+          path: coverage/*.trx
+
+  test-end-to-end:
+    name: 🔬 Test (End-to-End)
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔬 Test
+        run: >
+          dotnet test ./Tethos.sln
+          --configuration Release
+          --filter Type=E2E
+          /p:CollectCoverage=true
+          /p:CoverletOutputFormat=opencover
+          --logger trx
+          --results-directory ./coverage
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v2
