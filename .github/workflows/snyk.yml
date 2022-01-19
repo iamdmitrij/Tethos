@@ -23,10 +23,10 @@ jobs:
       - name: 🔨 Build
         run: dotnet build ./Tethos.sln --configuration Release
 
-      # - name: 🔓 Run Snyk scan
-      #   if: ${{ github.actor != 'dependabot[bot]' }}
-      #   uses: snyk/actions/dotnet@master
-      #   env:
-      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      #   with:
-      #     args: --all-projects --severity-threshold=critical
+      - name: 🔓 Run Snyk scan
+        if: ${{ github.actor != 'dependabot[bot]' }}
+        uses: snyk/actions/dotnet@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --all-projects --severity-threshold=critical
