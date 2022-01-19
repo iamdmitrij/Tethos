@@ -71,14 +71,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        # TODO: Move /k iamdmitrij_Tethos into GitHub variables
-        # TODO: Move /o iamdmitrij into GitHub variables
         run: >
           dotnet sonarscanner begin
-          /k:"iamdmitrij_Tethos"
-          /o:"iamdmitrij"
+          /o:"${{ secrets.SONAR_ORGANIZATION }}"
+          /k:"${{ secrets.SONAR_PROJECT_KEY }}"
           /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
-          /d:sonar.host.url="https://sonarcloud.io"
+          /d:sonar.host.url="${{ secrets.SONAR_URL }}"
           /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
           /d:sonar.cs.vstest.reportsPaths="coverage/*.trx"
           /d:sonar.coverage.exclusions="test/**, demo/**"
