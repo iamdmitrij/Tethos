@@ -59,33 +59,12 @@ jobs:
       - name: 🔦 Restore tools
         run: dotnet tool restore
 
-      - name: 📦 Cache SonarCloud scanner
-        id: cache-sonar-scanner
-        uses: actions/cache@v1
-        with:
-          path: .\.sonar\scanner
-          key: ${{ runner.os }}-sonar-scanner
-          restore-keys: ${{ runner.os }}-sonar-scanner
-
-      - name: 📡 Install SonarCloud scanner
-        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-        shell: powershell
-        run: |
-          New-Item -Path .\.sonar\scanner -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
-
-      - name: 🔧 Use .NET 6.0 SDK
+      # TODO: Workaround until
+      # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
+      - name: 🔧 Use .NET 5.0 SDK
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 6.0.x
-      - name: SonarCloud version
-        if: ${{ github.actor != 'dependabot[bot]' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        shell: powershell
-        run: |
-          .\.sonar\scanner\dotnet-sonarscanner
+          dotnet-version: 5.0.x
 
       - name: 🔽 Start SonarCloud scan
         if: ${{ github.actor != 'dependabot[bot]' }}
@@ -102,11 +81,6 @@ jobs:
           /d:sonar.cs.vstest.reportsPaths="coverage/*.trx"
           /d:sonar.coverage.exclusions="test/**, demo/**"
 
-<<<<<<< HEAD
-      - name: 🔬 Test
-        run: dotnet test ./Tethos.sln --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory ./coverage
-
-=======
       # TODO: Workaround until
       # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
       - name: 🔧 Use .NET 6.0 SDK
@@ -136,7 +110,6 @@ jobs:
       - name: 🔦 Restore tools
         run: dotnet tool restore
 
->>>>>>> main
       - name: 🔼 End SonarCloud scan
         if: ${{ github.actor != 'dependabot[bot]' }}
         env:
