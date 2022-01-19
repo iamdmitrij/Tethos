@@ -92,9 +92,9 @@ jobs:
           name: test-results
           path: coverage
 
-      # TODO: Needed because .NET SDK is restored above
-      - name: 🔦 Restore tools
-        run: dotnet tool restore
+      # # TODO: Needed because .NET SDK is restored above
+      # - name: 🔦 Restore tools
+      #   run: dotnet tool restore
 
       - name: 🔼 End SonarCloud scan
         if: ${{ github.actor != 'dependabot[bot]' }}
