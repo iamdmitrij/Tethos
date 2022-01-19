@@ -5,6 +5,10 @@
     "dotnet-stryker": {
       "version": "1.2.2",
       "commands": ["dotnet-stryker"]
+    },
+    "dotnet-sonarscanner": {
+      "version": "5.4.1",
+      "commands": ["dotnet-sonarscanner"]
     }
   }
 }

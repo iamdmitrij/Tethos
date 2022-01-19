@@ -6,8 +6,10 @@ on:
     types: ["completed"]
 jobs:
   report:
-    runs-on: windows-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request' }}
+    if: >
+      ${{ github.event.workflow_run.conclusion == 'success'
+      && github.event.workflow_run.event == 'pull_request' }}
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
@@ -35,22 +37,36 @@ jobs:
         with:
           issue-number: ${{ steps.pr_number.outputs.content }}
           comment-author: "github-actions[bot]"
-          body-includes: 🎳 [Stryker](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }}) Report
+          body-includes: "🎳 [Stryker]\
+            (https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/\
+            ${{ steps.branch.outputs.content }}) Report"
           direction: last
 
       - name: 📝 Create comment
         uses: peter-evans/create-or-update-comment@v1
         with:
-          body: |
-            # 🎳 [Stryker](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }}) Report
-            [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fiamdmitrij%2FTethos%2F${{ steps.branch.outputs.content }})](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }})
-                                                                                                                                               
-            ## 📊 Reports                                                                                                                      
-                                                                                                                                               
-            - [Tethos](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }}?module=Tethos)
-            - [Tethos.Moq](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }}?module=Tethos.Moq)
-            - [Tethos.FakeItEasy](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }}?module=Tethos.FakeItEasy)
-            - [Tethos.NSubstitute](https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/${{ steps.branch.outputs.content }}?module=Tethos.NSubstitute)
+          body: "# 🎳 [Stryker]\
+            (https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/\
+            ${{ steps.branch.outputs.content }}) Report\n
+            [![Mutation testing badge]\
+            (https://img.shields.io/endpoint?style=flat&url=\
+            https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fiamdmitrij%2FTethos%2F\
+            ${{ steps.branch.outputs.content }})]\
+            (https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/\
+            ${{ steps.branch.outputs.content }})\n
+            ## 📊 Reports\n
+            - [Tethos]\
+            (https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/\
+            ${{ steps.branch.outputs.content }}?module=Tethos)\n
+            - [Tethos.Moq]\
+            (https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/\
+            ${{ steps.branch.outputs.content }}?module=Tethos.Moq)\n
+            - [Tethos.FakeItEasy]\
+            (https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/\
+            ${{ steps.branch.outputs.content }}?module=Tethos.FakeItEasy)\n
+            - [Tethos.NSubstitute]\
+            (https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/\
+            ${{ steps.branch.outputs.content }}?module=Tethos.NSubstitute)"
           issue-number: ${{ steps.pr_number.outputs.content }}
           comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: "replace"

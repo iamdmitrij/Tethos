@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: 🔨 Build
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
@@ -27,7 +27,10 @@ jobs:
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
 
       - name: 🔨 Build
-        run: dotnet build ./Tethos.sln --configuration Release -p:Version=$(echo ${{ steps.previoustag.outputs.tag }} | tr -d 'v')
+        run: >
+          dotnet build ./Tethos.sln
+          --configuration Release
+          -p:Version=$(echo ${{ steps.previoustag.outputs.tag }} | tr -d 'v')
 
       - name: 🔦 Lint
         run: dotnet format --verify-no-changes --no-restore
@@ -41,9 +44,9 @@ jobs:
             src/**/Tethos*.nupkg
             src/**/Tethos*.snupkg
 
-  test:
-    name: 🔬 Test
-    runs-on: windows-latest
+  sonar:
+    name: 📡 SonarCloud
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
@@ -53,12 +56,8 @@ jobs:
         with:
           java-version: 1.11
 
-      - name: 📦 Cache SonarCloud packages
-        uses: actions/cache@v1
-        with:
-          path: ~\sonar\cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
+      - name: 🔦 Restore tools
+        run: dotnet tool restore
 
       - name: 📦 Cache SonarCloud scanner
         id: cache-sonar-scanner
@@ -93,21 +92,80 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        shell: powershell
-        run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"iamdmitrij_Tethos" /o:"iamdmitrij" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /d:sonar.cs.vstest.reportsPaths="coverage/*.trx" /d:sonar.coverage.exclusions="test/**, demo/**"
+        run: >
+          dotnet sonarscanner begin
+          /o:"${{ secrets.SONAR_ORGANIZATION }}"
+          /k:"${{ secrets.SONAR_PROJECT_KEY }}"
+          /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          /d:sonar.host.url="${{ secrets.SONAR_URL }}"
+          /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
+          /d:sonar.cs.vstest.reportsPaths="coverage/*.trx"
+          /d:sonar.coverage.exclusions="test/**, demo/**"
 
+<<<<<<< HEAD
       - name: 🔬 Test
         run: dotnet test ./Tethos.sln --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory ./coverage
 
+=======
+      # TODO: Workaround until
+      # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔨 Build
+        run: >
+          dotnet build ./Tethos.sln
+          --configuration Release
+
+      - name: 🔖 Fetch artifact
+        uses: actions/download-artifact@master
+        with:
+          name: test-results
+          path: coverage
+
+      # TODO: Workaround until
+      # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
+      - name: 🔧 Use .NET 5.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+
+      # TODO: Needed because .NET SDK is restored above
+      - name: 🔦 Restore tools
+        run: dotnet tool restore
+
+>>>>>>> main
       - name: 🔼 End SonarCloud scan
         if: ${{ github.actor != 'dependabot[bot]' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        shell: powershell
-        run: |
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+        run: >
+          dotnet sonarscanner end
+          /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+
+  test:
+    name: 🔬 Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔬 Test
+        run: >
+          dotnet test ./Tethos.sln
+          --configuration Release
+          /p:CollectCoverage=true
+          /p:CoverletOutputFormat=opencover
+          --logger trx
+          --results-directory ./coverage
 
       - name: 🔍 Coverage
         uses: codecov/codecov-action@v2
@@ -119,7 +177,9 @@ jobs:
         if: success() || failure()
         with:
           name: test-results
-          path: coverage/*.trx
+          path: |
+            coverage/*.trx
+            **/coverage.opencover.xml
 
   spellcheck:
     name: 🔦 Spellcheck
