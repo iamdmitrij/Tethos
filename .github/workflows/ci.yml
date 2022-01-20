@@ -50,6 +50,8 @@ jobs:
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: 🔧 Set up JDK 11
         uses: actions/setup-java@v1
@@ -58,13 +60,6 @@ jobs:
 
       - name: 🔦 Restore tools
         run: dotnet tool restore
-
-      # TODO: Workaround until
-      # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
-      - name: 🔧 Use .NET 5.0 SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 5.0.x
 
       - name: 🔽 Start SonarCloud scan
         if: ${{ github.actor != 'dependabot[bot]' }}
@@ -81,8 +76,6 @@ jobs:
           /d:sonar.cs.vstest.reportsPaths="coverage/*.trx"
           /d:sonar.coverage.exclusions="test/**, demo/**"
 
-      # TODO: Workaround until
-      # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
       - name: 🔧 Use .NET 6.0 SDK
         uses: actions/setup-dotnet@v1
         with:
@@ -99,14 +92,6 @@ jobs:
           name: test-results
           path: coverage
 
-      # TODO: Workaround until
-      # https://github.com/SonarSource/sonar-scanner-msbuild/issues/1095 is closed
-      - name: 🔧 Use .NET 5.0 SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 5.0.x
-
-      # TODO: Needed because .NET SDK is restored above
       - name: 🔦 Restore tools
         run: dotnet tool restore
 
