@@ -5,6 +5,7 @@ sut
 deps
 automocking
 github
+atest
 
 # CSharp libraries
 tethos

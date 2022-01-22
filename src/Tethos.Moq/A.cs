@@ -1,7 +1,7 @@
 ﻿namespace Tethos.Moq
 {
     /// <summary>
-    /// Static entrypoint for generating <see cref="IAutoMockingContainer"/> containers used for auto-mocking.
+    /// Static entry-point for generating <see cref="IAutoMockingContainer"/> containers used for auto-mocking.
     /// </summary>
     public static class A
     {
