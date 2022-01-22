@@ -1,4 +1,4 @@
-﻿namespace Tethos.FakeItEasy.Tests
+﻿namespace Tethos.Moq.Tests
 {
     using FluentAssertions;
     using global::Moq;

@@ -23,7 +23,7 @@ namespace Tethos.FakeItEasy.NUnit.EndToEnd
             var sut = this.Container.Resolve<SystemUnderTest>();
             var mock = this.Container.Resolve<IMockable>();
 
-            A.CallTo(() => mock.Get()).Returns(expected);
+            global::FakeItEasy.A.CallTo(() => mock.Get()).Returns(expected);
 
             // Act
             var actual = sut.Exercise();

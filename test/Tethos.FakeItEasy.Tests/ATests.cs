@@ -1,11 +1,11 @@
-﻿namespace Tethos.Moq.Tests
+﻿namespace Tethos.NSubstitute.Tests
 {
     using AutoFixture.Xunit2;
     using FluentAssertions;
-    using global::Moq;
-    using Tethos.Moq;
+    using global::FakeItEasy;
     using Tethos.Tests.Common;
     using Xunit;
+    using A = Tethos.FakeItEasy.A;
 
     public class ATests
     {
@@ -17,16 +17,14 @@
             // Arrange
             var sut = A.Container.Resolve<SystemUnderTest>();
 
-            A.Container.Resolve<Mock<IMockable>>()
-                .Setup(mock => mock.Get())
-                .Returns(expected);
+            global::FakeItEasy.A.CallTo(() => A.Container.Resolve<IMockable>().Get()).Returns(expected);
 
             // Act
             var actual = sut.Exercise();
 
             // Assert
             actual.Should().Be(expected);
-            A.Container.Resolve<Mock<IMockable>>().Verify();
+            global::FakeItEasy.A.CallTo(() => A.Container.Resolve<IMockable>().Get()).MustHaveHappened();
         }
     }
 }

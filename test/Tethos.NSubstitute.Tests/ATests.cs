@@ -1,9 +1,8 @@
-﻿namespace Tethos.Moq.Tests
+﻿namespace Tethos.NSubstitute.Tests
 {
     using AutoFixture.Xunit2;
     using FluentAssertions;
-    using global::Moq;
-    using Tethos.Moq;
+    using global::NSubstitute;
     using Tethos.Tests.Common;
     using Xunit;
 
@@ -16,9 +15,8 @@
         {
             // Arrange
             var sut = A.Container.Resolve<SystemUnderTest>();
-
-            A.Container.Resolve<Mock<IMockable>>()
-                .Setup(mock => mock.Get())
+            A.Container.Resolve<IMockable>()
+                .Get()
                 .Returns(expected);
 
             // Act
@@ -26,7 +24,7 @@
 
             // Assert
             actual.Should().Be(expected);
-            A.Container.Resolve<Mock<IMockable>>().Verify();
+            A.Container.Resolve<IMockable>().Received().Get();
         }
     }
 }
