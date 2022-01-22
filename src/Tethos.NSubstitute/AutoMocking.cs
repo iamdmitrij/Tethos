@@ -1,9 +1,9 @@
-﻿namespace Tethos.FakeItEasy
+﻿namespace Tethos.NSubstitute
 {
     /// <summary>
     /// Static entry-point for generating <see cref="IAutoMockingContainer"/> containers used for auto-mocking.
     /// </summary>
-    public static class A
+    public static class AutoMocking
     {
         /// <summary>
         /// Gets ready to use auto-mocking container.

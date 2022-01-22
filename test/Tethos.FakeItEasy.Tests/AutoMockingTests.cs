@@ -5,9 +5,9 @@
     using global::FakeItEasy;
     using Tethos.Tests.Common;
     using Xunit;
-    using A = Tethos.FakeItEasy.A;
+    using AutoMocking = Tethos.FakeItEasy.AutoMocking;
 
-    public class ATests
+    public class AutoMockingTests
     {
         [Theory]
         [AutoData]
@@ -15,16 +15,16 @@
         public void SystemUnderTest_Exercise_ShouldMatch(int expected)
         {
             // Arrange
-            var sut = A.Container.Resolve<SystemUnderTest>();
+            var sut = AutoMocking.Container.Resolve<SystemUnderTest>();
 
-            global::FakeItEasy.A.CallTo(() => A.Container.Resolve<IMockable>().Get()).Returns(expected);
+            global::FakeItEasy.A.CallTo(() => AutoMocking.Container.Resolve<IMockable>().Get()).Returns(expected);
 
             // Act
             var actual = sut.Exercise();
 
             // Assert
             actual.Should().Be(expected);
-            global::FakeItEasy.A.CallTo(() => A.Container.Resolve<IMockable>().Get()).MustHaveHappened();
+            global::FakeItEasy.A.CallTo(() => AutoMocking.Container.Resolve<IMockable>().Get()).MustHaveHappened();
         }
     }
 }

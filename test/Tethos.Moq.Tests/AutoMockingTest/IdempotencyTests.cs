@@ -27,10 +27,10 @@
         public void A_Idempotency_ShouldMatchMocks()
         {
             // Arrange
-            var expected = A.Container.ResolveFrom<SystemUnderTest, Mock<IMockable>>();
+            var expected = AutoMocking.Container.ResolveFrom<SystemUnderTest, Mock<IMockable>>();
 
             // Act
-            var actual = A.Container.ResolveFrom<SystemUnderTest, Mock<IMockable>>();
+            var actual = AutoMocking.Container.ResolveFrom<SystemUnderTest, Mock<IMockable>>();
 
             // Assert
             actual.Should().BeSameAs(expected);

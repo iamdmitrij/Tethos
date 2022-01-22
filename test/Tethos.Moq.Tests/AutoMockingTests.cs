@@ -1,12 +1,13 @@
-﻿namespace Tethos.NSubstitute.Tests
+﻿namespace Tethos.Moq.Tests
 {
     using AutoFixture.Xunit2;
     using FluentAssertions;
-    using global::NSubstitute;
+    using global::Moq;
+    using Tethos.Moq;
     using Tethos.Tests.Common;
     using Xunit;
 
-    public class ATests
+    public class AutoMockingTests
     {
         [Theory]
         [AutoData]
@@ -14,9 +15,10 @@
         public void SystemUnderTest_Exercise_ShouldMatch(int expected)
         {
             // Arrange
-            var sut = A.Container.Resolve<SystemUnderTest>();
-            A.Container.Resolve<IMockable>()
-                .Get()
+            var sut = AutoMocking.Container.Resolve<SystemUnderTest>();
+
+            AutoMocking.Container.Resolve<Mock<IMockable>>()
+                .Setup(mock => mock.Get())
                 .Returns(expected);
 
             // Act
@@ -24,7 +26,7 @@
 
             // Assert
             actual.Should().Be(expected);
-            A.Container.Resolve<IMockable>().Received().Get();
+            AutoMocking.Container.Resolve<Mock<IMockable>>().Verify();
         }
     }
 }
