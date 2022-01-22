@@ -23,7 +23,7 @@ public class SystemUnderTest
 {
     public SystemUnderTest(IMockA mockA, IMockB mockB, IMockC mockC, IMockD mockD)
     {
-        ...
+        ...asad
     }
 
     public int Exercise()
