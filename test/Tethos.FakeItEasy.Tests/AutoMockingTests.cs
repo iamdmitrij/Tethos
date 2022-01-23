@@ -26,6 +26,8 @@
             // Assert
             actual.Should().Be(expected);
             A.CallTo(() => AutoMocking.Container.Resolve<IMockable>().Get()).MustHaveHappened();
+
+            AutoMocking.Container.Dispose();
         }
     }
 }

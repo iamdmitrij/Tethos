@@ -28,6 +28,8 @@
             // Assert
             actual.Should().Be(expected);
             AutoMocking.Container.Resolve<Mock<IMockable>>().Verify();
+
+            AutoMocking.Container.Dispose();
         }
     }
 }
