@@ -10,17 +10,9 @@
         /// </summary>
         public static IAutoMockingContainer Container
         {
-            get
-            {
-                if (Singleton == null)
-                {
-                    Singleton = new AutoMockingTest().Container;
-                }
-
-                return Singleton;
-            }
+            get => Singleton;
         }
 
-        private static IAutoMockingContainer Singleton { get; set; }
+        private static IAutoMockingContainer Singleton { get; set; } = new AutoMockingTest().Container;
     }
 }
