@@ -15,7 +15,6 @@
         public void SystemUnderTest_Exercise_ShouldMatch(int expected)
         {
             // Arrange
-            expected = 20;
             var sut = AutoMocking.Container.Resolve<SystemUnderTest>();
             AutoMocking.Container.Resolve<IMockable>()
                 .Get()
@@ -27,8 +26,6 @@
             // Assert
             actual.Should().Be(expected);
             AutoMocking.Container.Resolve<IMockable>().Received().Get();
-
-            AutoMocking.Container.Dispose();
         }
     }
 }
