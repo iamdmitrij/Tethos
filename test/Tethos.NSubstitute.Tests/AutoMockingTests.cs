@@ -11,6 +11,7 @@
         [Theory]
         [AutoData]
         [Trait("Type", "Integration")]
+        [Trait("Type", "Thread")]
         public void SystemUnderTest_Exercise_ShouldMatch(int expected)
         {
             // Arrange
