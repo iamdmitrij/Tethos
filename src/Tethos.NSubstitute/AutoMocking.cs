@@ -15,15 +15,18 @@
         {
             get
             {
-                lock (Lock)
+                if (@object == null)
                 {
-                    if (@object == null)
+                    lock (Lock)
                     {
-                        @object = new AutoMockingTest().Container;
+                        if (@object == null)
+                        {
+                            @object = new AutoMockingTest().Container;
+                        }
                     }
-
-                    return @object;
                 }
+
+                return @object;
             }
         }
     }
