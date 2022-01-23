@@ -3,7 +3,7 @@
     /// <summary>
     /// Static entry-point for generating <see cref="IAutoMockingContainer"/> containers used for auto-mocking.
     /// </summary>
-    public static class AutoMocking
+    public class AutoMocking
     {
         private static readonly object Lock = new object();
         private static IAutoMockingContainer @object = null;
