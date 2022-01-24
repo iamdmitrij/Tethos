@@ -47,7 +47,22 @@ jobs:
   sonar:
     name: 📡 SonarCloud
     runs-on: ubuntu-latest
+    if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
+      - name: Show GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Is dependabot[bot]
+        run: echo '${{ github.actor == 'dependabot[bot]'}}'
+      - name: Is dependabot
+        run: echo '${{ github.actor == 'dependabot'}}'
+      - name: Is ***
+        run: echo '${{ github.actor == '***'}}'
+      - name: Is iamdmitrij
+        run: echo '${{ github.actor == 'iamdmitrij'}}'
+      - name: Is bot
+        run: echo '${{ github.actor == 'bot'}}'
       - name: 📥 Checkout
         uses: actions/checkout@v2
         with:
@@ -62,7 +77,6 @@ jobs:
         run: dotnet tool restore
 
       - name: 🔽 Start SonarCloud scan
-        if: ${{ github.actor != 'dependabot[bot]' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -96,7 +110,6 @@ jobs:
         run: dotnet tool restore
 
       - name: 🔼 End SonarCloud scan
-        if: ${{ github.actor != 'dependabot[bot]' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
