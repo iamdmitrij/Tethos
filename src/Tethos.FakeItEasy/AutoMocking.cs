@@ -7,7 +7,8 @@
     /// </summary>
     public class AutoMocking : IDisposable
     {
-        private static readonly object Lock = new object();
+        private static readonly object Mutex = new();
+
         [ThreadStatic]
         private static IAutoMockingContainer @object = null;
 
@@ -25,7 +26,7 @@
             {
                 if (@object == null)
                 {
-                    lock (Lock)
+                    lock (Mutex)
                     {
                         if (@object == null)
                         {
@@ -42,9 +43,12 @@
 
         public void Release()
         {
-            this.IsReleased = true;
-            AutoMocking.@object.Dispose();
-            AutoMocking.@object = null;
+            if (!this.IsReleased)
+            {
+                this.IsReleased = true;
+                AutoMocking.@object.Dispose();
+                AutoMocking.@object = null;
+            }
         }
 
         void IDisposable.Dispose()
