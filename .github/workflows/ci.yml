@@ -49,9 +49,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
-      - name: Dump GitHub context
-        id: github_context_step
-        run: echo '${{ github.actor == 'dependabot[bot]' }}'
+      - name: Show GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT" ```
       - name: 📥 Checkout
         uses: actions/checkout@v2
         with:
