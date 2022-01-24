@@ -43,6 +43,7 @@
         public void Release()
         {
             this.IsReleased = true;
+            AutoMocking.@object.Dispose();
             AutoMocking.@object = null;
         }
 
