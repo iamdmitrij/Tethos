@@ -49,6 +49,8 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
+      - name: Echo
+        run: echo ${{ github.actor }}
       - name: 📥 Checkout
         uses: actions/checkout@v2
         with:
