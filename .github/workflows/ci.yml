@@ -53,6 +53,12 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+      - name: Is dependabot[bot]
+        run: echo '${{ github.actor == 'dependabot[bot]'}}'
+      - name: Is dependabot
+        run: echo '${{ github.actor == 'dependabot'}}'
+      - name: Is ***
+        run: echo '${{ github.actor == '***'}}'
       - name: 📥 Checkout
         uses: actions/checkout@v2
         with:
