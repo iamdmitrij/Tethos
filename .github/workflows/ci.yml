@@ -59,6 +59,10 @@ jobs:
         run: echo '${{ github.actor == 'dependabot'}}'
       - name: Is ***
         run: echo '${{ github.actor == '***'}}'
+      - name: Is iamdmitrij
+        run: echo '${{ github.actor == 'iamdmitrij'}}'
+      - name: Is bot
+        run: echo '${{ github.actor == 'bot'}}'
       - name: 📥 Checkout
         uses: actions/checkout@v2
         with:
