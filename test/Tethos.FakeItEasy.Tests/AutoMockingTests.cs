@@ -1,4 +1,4 @@
-﻿namespace Tethos.NSubstitute.Tests
+﻿namespace Tethos.FakeItEasy.Tests
 {
     using AutoFixture.Xunit2;
     using FluentAssertions;
