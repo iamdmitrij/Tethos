@@ -56,19 +56,14 @@ jobs:
         run: >
           is_tag=${{ steps.branch-name.outputs.is_tag }}
           target_branch=${{ steps.branch-name.outputs.current_branch }}
-          extra_reporter="dashboard"
 
           if [ "$is_tag" = true ]; then
             target_branch="main"
           fi
 
-          if [[ "$GITHUB_ACTOR" == "dependabot[bot]" ]]; then
-            extra_reporter="cleartext"
-          fi
-
           dotnet stryker --config-file test/Tethos.Tests/stryker-config.json
           --version "$target_branch"
-          --reporter "$extra_reporter"
+          --reporter "dashboard"
           --reporter "cleartext"
           --reporter "html"
         env:
@@ -103,19 +98,14 @@ jobs:
         run: >
           is_tag=${{ steps.branch-name.outputs.is_tag }}
           target_branch=${{ steps.branch-name.outputs.current_branch }}
-          extra_reporter="dashboard"
 
           if [ "$is_tag" = true ]; then
             target_branch="main"
           fi
 
-          if [[ "$GITHUB_ACTOR" == "dependabot[bot]" ]]; then
-            extra_reporter="cleartext"
-          fi
-
           dotnet stryker --config-file test/Tethos.Moq.Tests/stryker-config.json
           --version "$target_branch"
-          --reporter "$extra_reporter"
+          --reporter "dashboard"
           --reporter "cleartext"
           --reporter "html"
         env:
@@ -150,19 +140,14 @@ jobs:
         run: >
           is_tag=${{ steps.branch-name.outputs.is_tag }}
           target_branch=${{ steps.branch-name.outputs.current_branch }}
-          extra_reporter="dashboard"
 
           if [ "$is_tag" = true ]; then
             target_branch="main"
           fi
 
-          if [[ "$GITHUB_ACTOR" == "dependabot[bot]" ]]; then
-            extra_reporter="cleartext"
-          fi
-
           dotnet stryker --config-file test/Tethos.FakeItEasy.Tests/stryker-config.json
           --version "$target_branch"
-          --reporter "$extra_reporter"
+          --reporter "dashboard"
           --reporter "cleartext"
           --reporter "html"
         env:
@@ -197,19 +182,14 @@ jobs:
         run: >
           is_tag=${{ steps.branch-name.outputs.is_tag }}
           target_branch=${{ steps.branch-name.outputs.current_branch }}
-          extra_reporter="dashboard"
 
           if [ "$is_tag" = true ]; then
             target_branch="main"
           fi
 
-          if [[ "$GITHUB_ACTOR" == "dependabot[bot]" ]]; then
-            extra_reporter="cleartext"
-          fi
-
           dotnet stryker --config-file test/Tethos.NSubstitute.Tests/stryker-config.json
           --version "$target_branch"
-          --reporter "$extra_reporter"
+          --reporter "dashboard"
           --reporter "cleartext"
           --reporter "html"
         env:
