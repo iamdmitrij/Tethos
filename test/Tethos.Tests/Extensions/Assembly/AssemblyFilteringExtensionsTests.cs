@@ -44,11 +44,10 @@
         [Trait("Type", "Unit")]
         public void ContainsAssemblyNamed_ShouldMatch(string name, bool expected, params string[] assemblies)
         {
-            // Arrange
-            var assebmlies = assemblies.Select(Assembly.LoadFrom);
-
             // Act
-            var actual = assebmlies.ContainsAssemblyNamed(name);
+            var actual = assemblies
+                .Select(Assembly.LoadFrom)
+                .ContainsAssemblyNamed(name);
 
             // Assert
             actual.Should().Be(expected);
