@@ -1,6 +1,7 @@
 ﻿namespace Tethos.Tests.Extensions.Assembly
 {
     using System.Linq;
+    using System.Reflection;
     using FluentAssertions;
     using Tethos.Extensions.Assembly;
     using Xunit;
@@ -30,6 +31,26 @@
 
             // Assert
             actual.Should().HaveCount(expected);
+        }
+
+        [Theory]
+        [InlineData("", false)]
+        [InlineData("Fake", false)]
+        [InlineData("Fake.Net60.exe", false, "Fake.Net60.dll")]
+        [InlineData("Fake.Net60.exe", false, "Fake.Core31.dll", "Fake.Core30.dll")]
+        [InlineData("Fake.Core30.dll", true, "Fake.Core31.dll", "Fake.Core30.dll")]
+        [InlineData("Fake.Net60.dll", true, "Fake.Net60.dll")]
+        [InlineData("xunit.abstractions.dll", true, "xunit.abstractions.dll")]
+        [Trait("Type", "Unit")]
+        public void ContainsAssemblyNamed_ShouldMatch(string name, bool expected, params string[] assemblies)
+        {
+            // Act
+            var actual = assemblies
+                .Select(Assembly.LoadFrom)
+                .ContainsAssemblyNamed(name);
+
+            // Assert
+            actual.Should().Be(expected);
         }
 
         [Theory]
