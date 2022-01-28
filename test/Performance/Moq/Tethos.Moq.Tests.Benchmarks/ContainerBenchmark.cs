@@ -25,5 +25,8 @@ namespace Tethos.Moq.Tests.Benchmarks
 
         [Benchmark(Description = "Moq.ResolveSut")]
         public SystemUnderTest ResolveSut() => this.Container.Resolve<SystemUnderTest>();
+
+        [Benchmark(Description = "Moq.StaticResolveSut")]
+        public SystemUnderTest StaticResolveSut() => AutoMocking.Container.Resolve<SystemUnderTest>();
     }
 }

@@ -21,5 +21,8 @@ namespace Tethos.NSubstitute.Tests.Benchmarks
 
         [Benchmark(Description = "NSubstitute.ResolveSut")]
         public SystemUnderTest ResolveSut() => this.Container.Resolve<SystemUnderTest>();
+
+        [Benchmark(Description = "NSubstitute.StaticResolveSut")]
+        public SystemUnderTest StaticResolveSut() => AutoMocking.Container.Resolve<SystemUnderTest>();
     }
 }

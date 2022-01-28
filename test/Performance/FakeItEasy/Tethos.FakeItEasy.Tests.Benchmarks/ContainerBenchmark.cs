@@ -21,5 +21,8 @@ namespace Tethos.FakeItEasy.Tests.Benchmarks
 
         [Benchmark(Description = "FakeItEasy.ResolveSut")]
         public SystemUnderTest ResolveSut() => this.Container.Resolve<SystemUnderTest>();
+
+        [Benchmark(Description = "FakeItEasy.StaticResolveSut")]
+        public SystemUnderTest StaticResolveSut() => AutoMocking.Container.Resolve<SystemUnderTest>();
     }
 }
