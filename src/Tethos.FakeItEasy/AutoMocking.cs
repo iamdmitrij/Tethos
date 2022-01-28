@@ -7,10 +7,10 @@
     /// </summary>
     public class AutoMocking
     {
-        [ThreadStatic]
+        //[ThreadStatic]
         private static volatile Lazy<IAutoMockingContainer> instance;
-        private static volatile int instanceCount = 0;
-        private bool alreadyDisposed = false;
+        //private static volatile int instanceCount = 0;
+        //private bool alreadyDisposed = false;
 
         private AutoMocking()
         {
@@ -28,7 +28,7 @@
                     instance = new Lazy<IAutoMockingContainer>(() => new AutoMockingTest().Container);
                 }
 
-                instanceCount++;
+                //instanceCount++;
                 return instance.Value;
             }
         }
