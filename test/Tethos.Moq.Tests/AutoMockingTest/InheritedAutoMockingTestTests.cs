@@ -19,19 +19,19 @@
             sut.Proxy.Verify(mock => mock.Dispose(), Times.Once);
         }
 
-        [Theory]
-        [AutoData]
-        [Trait("Type", "Unit")]
-        public void Dispose_NullContainer_ShouldNotDisposeContainer(InheritedAutoMockingTest sut)
-        {
-            // Arrange
-            sut.Container = null;
+        //[Theory]
+        //[AutoData]
+        //[Trait("Type", "Unit")]
+        //public void Dispose_NullContainer_ShouldNotDisposeContainer(InheritedAutoMockingTest sut)
+        //{
+        //    // Arrange
+        //    sut.Container = null;
 
-            // Act
-            sut.Dispose();
+        //    // Act
+        //    sut.Dispose();
 
-            // Assert
-            sut.Proxy.Verify(mock => mock.Dispose(), Times.Never);
-        }
+        //    // Assert
+        //    sut.Proxy.Verify(mock => mock.Dispose(), Times.Never);
+        //}
     }
 }

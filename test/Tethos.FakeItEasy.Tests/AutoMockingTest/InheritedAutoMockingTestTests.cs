@@ -19,19 +19,19 @@
             A.CallTo(() => sut.Container.Dispose()).MustHaveHappened();
         }
 
-        [Theory]
-        [AutoData]
-        [Trait("Type", "Unit")]
-        public void Dispose_NullContainer_ShouldNotDisposeContainer(InheritedAutoMockingTest sut)
-        {
-            // Arrange
-            sut.Container = null;
+        //[Theory]
+        //[AutoData]
+        //[Trait("Type", "Unit")]
+        //public void Dispose_NullContainer_ShouldNotDisposeContainer(InheritedAutoMockingTest sut)
+        //{
+        //    // Arrange
+        //    sut.Container = null;
 
-            // Act
-            sut.Dispose();
+        //    // Act
+        //    sut.Dispose();
 
-            // Assert
-            A.CallTo(() => sut.Proxy.Dispose()).MustNotHaveHappened();
-        }
+        //    // Assert
+        //    A.CallTo(() => sut.Proxy.Dispose()).MustNotHaveHappened();
+        //}
     }
 }
