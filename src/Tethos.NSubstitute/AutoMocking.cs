@@ -8,11 +8,22 @@
     public static class AutoMocking
     {
         [ThreadStatic]
-        private static Lazy<IAutoMockingContainer> container = new(() => new AutoMockingTest().Container);
+        private static Lazy<IAutoMockingContainer> container;
 
         /// <summary>
         /// Gets ready to use auto-mocking container.
         /// </summary>
-        public static IAutoMockingContainer Container => container.Value;
+        public static IAutoMockingContainer Container
+        {
+            get
+            {
+                if (container == null)
+                {
+                    container = new(() => new AutoMockingTest().Container);
+                }
+
+                return container.Value;
+            }
+        }
     }
 }
