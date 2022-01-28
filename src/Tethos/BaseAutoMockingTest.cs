@@ -86,8 +86,10 @@
         {
             if (disposing)
             {
-                //this.Container.Release(this.Container);
-                //this.Container?.Dispose();
+                //this.Container.Release(this.AutoResolver);
+                //this.Container.Dispose();
+                ////this.Container.Release(this.Container);
+                this.Container?.Dispose();
             }
         }
     }
