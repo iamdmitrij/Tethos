@@ -7,6 +7,7 @@
     /// </summary>
     public sealed class AutoMocking : IDisposable
     {
+        [ThreadStatic]
         private static readonly Lazy<IAutoMockingContainer> Lazy =
             new(() => new AutoMockingTest().Container);
 
