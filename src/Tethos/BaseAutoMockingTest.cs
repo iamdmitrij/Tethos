@@ -82,15 +82,6 @@
         /// Disposes <see cref="IWindsorContainer"/> current instance.
         /// </summary>
         /// <param name="disposing">Is instance disposing.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                //this.Container.Release(this.AutoResolver);
-                //this.Container.Dispose();
-                ////this.Container.Release(this.Container);
-                this.Container?.Dispose();
-            }
-        }
+        protected virtual void Dispose(bool disposing) => this.Container?.Dispose();
     }
 }
