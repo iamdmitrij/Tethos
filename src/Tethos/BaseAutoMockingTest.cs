@@ -86,6 +86,7 @@
         {
             if (disposing)
             {
+                this.Container.Release(this.Container);
                 this.Container?.Dispose();
             }
         }
