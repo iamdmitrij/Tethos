@@ -1,5 +1,6 @@
 namespace Tethos.Moq.Tests.Benchmarks
 {
+    using System.Diagnostics.CodeAnalysis;
     using BenchmarkDotNet.Attributes;
     using global::Moq;
     using Tethos.Extensions;
@@ -27,6 +28,7 @@ namespace Tethos.Moq.Tests.Benchmarks
         public SystemUnderTest ResolveSut() => this.Container.Resolve<SystemUnderTest>();
 
         [Benchmark(Description = "Moq.StaticResolveSut")]
+        [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Framework requirement")]
         public SystemUnderTest StaticResolveSut() => AutoMocking.Container.Resolve<SystemUnderTest>();
     }
 }
