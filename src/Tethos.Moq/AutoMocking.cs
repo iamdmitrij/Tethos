@@ -8,7 +8,7 @@
     public sealed class AutoMocking : IDisposable
     {
         private static readonly Lazy<IAutoMockingContainer> Lazy =
-            new(() => new AutoMockingTest().Container, true);
+            new(() => new AutoMockingTest().Container, System.Threading.LazyThreadSafetyMode.PublicationOnly);
 
         private AutoMocking()
         {
