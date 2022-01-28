@@ -51,6 +51,7 @@
 
             if (disposing)
             {
+                instance.Value.Dispose();
                 instance = null;
             }
 
