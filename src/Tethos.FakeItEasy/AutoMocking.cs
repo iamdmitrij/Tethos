@@ -8,7 +8,7 @@
     public static class AutoMocking
     {
         [ThreadStatic]
-        private static volatile Lazy<IAutoMockingContainer> container;
+        private static Lazy<IAutoMockingContainer> container;
 
         /// <summary>
         /// Gets ready to use auto-mocking container.
