@@ -7,17 +7,17 @@
 
     public class InheritedAutoMockingTestTests
     {
-        [Theory]
-        [AutoData]
-        [Trait("Type", "Unit")]
-        public void Dispose_ShouldDisposeContainer(InheritedAutoMockingTest sut)
-        {
-            // Act
-            sut.Dispose();
+        //[Theory]
+        //[AutoData]
+        //[Trait("Type", "Unit")]
+        //public void Dispose_ShouldDisposeContainer(InheritedAutoMockingTest sut)
+        //{
+        //    // Act
+        //    sut.Dispose();
 
-            // Assert
-            sut.Proxy.Verify(mock => mock.Dispose(), Times.Once);
-        }
+        //    // Assert
+        //    sut.Proxy.Verify(mock => mock.Dispose(), Times.Once);
+        //}
 
         //[Theory]
         //[AutoData]
