@@ -47,6 +47,7 @@ jobs:
   sonar:
     name: 📡 SonarCloud
     runs-on: ubuntu-latest
+    if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v2
