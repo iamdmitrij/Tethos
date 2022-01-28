@@ -5,10 +5,11 @@
     /// <summary>
     /// Static entry-point for generating <see cref="IAutoMockingContainer"/> containers used for auto-mocking.
     /// </summary>
-    public sealed class AutoMocking : IDisposable
+    public class AutoMocking : IDisposable
     {
-        private static readonly Lazy<IAutoMockingContainer> Lazy =
-            new(() => new AutoMockingTest().Container, System.Threading.LazyThreadSafetyMode.PublicationOnly);
+        private static volatile Lazy<IAutoMockingContainer> instance;
+        private static volatile int instanceCount = 0;
+        private bool alreadyDisposed = false;
 
         private AutoMocking()
         {
@@ -19,12 +20,43 @@
         /// </summary>
         public static IAutoMockingContainer Container
         {
-            get { return Lazy.Value; }
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Lazy<IAutoMockingContainer>(() => new AutoMockingTest().Container);
+                }
+
+                instanceCount++;
+                return instance.Value;
+            }
         }
 
         public void Dispose()
         {
-            Container?.Dispose();
+            if (--instanceCount == 0)
+            {
+                this.Dispose(true);
+                GC.SuppressFinalize(this);
+            }
+        }
+
+        // Protected implementation of Dispose pattern.
+        protected virtual void Dispose(bool disposing)
+        {
+            if (this.alreadyDisposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                instance = null;
+            }
+
+            // Free any unmanaged objects here.
+            this.alreadyDisposed = true;
         }
     }
 }
+
