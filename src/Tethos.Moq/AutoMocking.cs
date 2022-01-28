@@ -5,17 +5,13 @@
     /// <summary>
     /// Static entry-point for generating <see cref="IAutoMockingContainer"/> containers used for auto-mocking.
     /// </summary>
-    public class AutoMocking
+    public static class AutoMocking
     {
         //[ThreadStatic]
         private static volatile Lazy<IAutoMockingContainer> instance;
         //private static volatile int instanceCount = 0;
         //private bool alreadyDisposed = false;
-
-        private AutoMocking()
-        {
-        }
-
+ 
         /// <summary>
         /// Gets ready to use auto-mocking container.
         /// </summary>
