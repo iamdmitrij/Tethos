@@ -36,14 +36,17 @@
             var mock = Substitute.For(new[] { argument.TargetType }, arguments);
             var isPlainObject = argument.TargetObject is not ICallRouterProvider;
 
+
             if (isPlainObject)
             {
                 this.Kernel.Register(Component.For(argument.TargetType)
                     .Instance(mock)
                     .OverridesExistingRegistration());
+
+                return mock;
             }
 
-            return mock;
+            return argument.TargetObject;
         }
     }
 }
