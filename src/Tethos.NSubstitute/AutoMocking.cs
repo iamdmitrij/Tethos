@@ -7,6 +7,7 @@
     /// </summary>
     public class AutoMocking : IDisposable
     {
+        [ThreadStatic]
         private static volatile Lazy<IAutoMockingContainer> instance;
         private static volatile int instanceCount = 0;
         private bool alreadyDisposed = false;
