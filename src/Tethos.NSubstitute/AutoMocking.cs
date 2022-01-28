@@ -9,7 +9,7 @@
     {
         [ThreadStatic]
         private static readonly Lazy<IAutoMockingContainer> Lazy =
-            new(() => new AutoMockingTest().Container);
+            new(() => new AutoMockingTest().Container, true);
 
         private AutoMocking()
         {
