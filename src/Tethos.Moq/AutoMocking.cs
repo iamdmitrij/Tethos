@@ -5,16 +5,13 @@
     /// <summary>
     /// Static entry-point for generating <see cref="IAutoMockingContainer"/> containers used for auto-mocking.
     /// </summary>
-    public class AutoMocking : IDisposable
+    public sealed class AutoMocking : IDisposable
     {
-        private static readonly object Mutex = new();
-
-        [ThreadStatic]
-        private static IAutoMockingContainer @object = null;
+        private static readonly Lazy<IAutoMockingContainer> Lazy =
+            new(() => new AutoMockingTest().Container);
 
         private AutoMocking()
         {
-            this.IsReleased = false;
         }
 
         /// <summary>
@@ -22,38 +19,12 @@
         /// </summary>
         public static IAutoMockingContainer Container
         {
-            get
-            {
-                if (@object == null)
-                {
-                    lock (Mutex)
-                    {
-                        if (@object == null)
-                        {
-                            @object = new AutoMockingTest().Container;
-                        }
-                    }
-                }
-
-                return @object;
-            }
+            get { return Lazy.Value; }
         }
 
-        public bool IsReleased { get; private set; }
-
-        public void Release()
+        public void Dispose()
         {
-            if (!this.IsReleased)
-            {
-                this.IsReleased = true;
-                AutoMocking.@object.Dispose();
-                AutoMocking.@object = null;
-            }
-        }
-
-        void IDisposable.Dispose()
-        {
-            this.Release();
+            Container?.Dispose();
         }
     }
 }
