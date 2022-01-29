@@ -42,9 +42,9 @@ in order to resolve dependencies for `SystemUnderTest` we will need to write fol
 public void Test()
 {
     var sut = new SystemUnderTest(
-        Mock.Of<MockA>(),
-        Mock.Of<MockB>(),
-        Mock.Of<MockC>()
+        Mock.Of<IMockA>(),
+        Mock.Of<IMockB>(),
+        Mock.Of<IMockC>()
     );
 }
 ```
@@ -107,7 +107,7 @@ public class ContainerFromBaseClass: AutoMockingTest
     [Fact]
     public void Exercise_ShouldReturn42()
     {
-        var sut = Container.Resolve<SystemUnderTest>();
+        var sut = this.Container.Resolve<SystemUnderTest>();
         ...
     }
 }
@@ -128,7 +128,7 @@ public class ContainerAsProperty: AutoMockingTest
     [Fact]
     public void Exercise_ShouldReturn42()
     {
-        var sut = Container.Resolve<SystemUnderTest>();
+        var sut = this.Container.Resolve<SystemUnderTest>();
         ...
     }
 }
