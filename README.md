@@ -21,7 +21,7 @@ Consider following example:
 ```c#
 public class SystemUnderTest
 {
-    public SystemUnderTest(IMockA mockA, IMockB mockB, IMockC mockC, IMockD mockD)
+    public SystemUnderTest(IMockA mockA, IMockB mockB, IMockC mockC)
     {
         ...
     }
@@ -31,7 +31,6 @@ public class SystemUnderTest
         MockA.Get();
         MockB.Get();
         MockC.Get();
-        MockD.Get();
     }
 }
 ```
@@ -43,10 +42,9 @@ in order to resolve dependencies for `SystemUnderTest` we will need to write fol
 public void Test()
 {
     var sut = new SystemUnderTest(
-        Mock.Of<MockA>()
-        Mock.Of<MockB>()
+        Mock.Of<MockA>(),
+        Mock.Of<MockB>(),
         Mock.Of<MockC>()
-        Mock.Of<MockD>()
     );
 }
 ```
