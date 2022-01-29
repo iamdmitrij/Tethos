@@ -59,9 +59,9 @@ with `Tethos` all you need to do is:
 [Fact]
 public void Test()
 {
-    var sut = Container.Resolve<SystemUnderTest>();
-    var mockA = Container.Resolve<Mock<MockA>>().Setup(...);
-    var mockB = Container.Resolve<Mock<MockB>>().Setup(...);
+    var sut = AutoMocking.Container.Resolve<SystemUnderTest>();
+    var mockA = AutoMocking.Container.Resolve<Mock<MockA>>().Setup(...);
+    var mockB = AutoMocking. Container.Resolve<Mock<MockB>>().Setup(...);
     ...
 }
 ```
@@ -91,6 +91,20 @@ public void Test_Exercise()
 within the scope of the test method dependencies, including mock instances will be exactly the same.
 
 ## Usage
+
+- Use `AutoMocking.Container` static property to retrieve container
+
+```c#
+public class ContainerFromBaseClass
+{
+    [Fact]
+    public void Exercise_ShouldReturn42()
+    {
+        var sut = AutoMockingTest.Container.Resolve<SystemUnderTest>();
+        ...
+    }
+}
+```
 
 - Inherit from `AutoMockingTest` to have access to `Container` property.
 
