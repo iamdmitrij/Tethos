@@ -12,7 +12,7 @@
 		<PackageLicense>https://github.com/iamdmitrij/Tethos/blob/main/LICENSE</PackageLicense>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageProjectUrl>https://github.com/iamdmitrij/Tethos</PackageProjectUrl>
-		<PackageTags>auto-mocking container test core</PackageTags>
+		<PackageTags>auto-mocking container fakeiteasy moq nsubstitute testing mock stub ioc tdd dependency-injection mocking test tests unit automock auto-stubbing</PackageTags>
 		<PackageIconUrl></PackageIconUrl>
 		<Copyright>Copyright © 2022</Copyright>
 		<PackageIcon>logo.png</PackageIcon>
