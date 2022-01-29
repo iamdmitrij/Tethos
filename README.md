@@ -43,13 +43,11 @@ in order to resolve dependencies for `SystemUnderTest` we will need to write fol
 public void Test()
 {
     var sut = new SystemUnderTest(
-        Mock.Of<MockA>(Mock.Of<UnknownA>(Mock.Of<UnknownB>(), Mock.Of<UnknownC>())),
-        Mock.Of<MockB>(Mock.Of<UnknownC>()),
-        Mock.Of<MockC>(Mock.Of<UnknownD>(), Mock.Of<UnknownE>()),
-        Mock.Of<MockD>(Mock.Of<UnknownD>())
+        Mock.Of<MockA>()
+        Mock.Of<MockB>()
+        Mock.Of<MockC>()
+        Mock.Of<MockD>()
     );
-
-    ...
 }
 ```
 
@@ -60,9 +58,6 @@ with `Tethos` all you need to do is:
 public void Test()
 {
     var sut = AutoMocking.Container.Resolve<SystemUnderTest>();
-    var mockA = AutoMocking.Container.Resolve<Mock<MockA>>().Setup(...);
-    var mockB = AutoMocking. Container.Resolve<Mock<MockB>>().Setup(...);
-    ...
 }
 ```
 
