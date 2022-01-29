@@ -33,7 +33,7 @@
             var actual = directory.GetAssemblyFiles();
 
             // Assert
-            actual.Should().NotBeEmpty();
+            actual.Should().HaveCount(143);
         }
     }
 }
