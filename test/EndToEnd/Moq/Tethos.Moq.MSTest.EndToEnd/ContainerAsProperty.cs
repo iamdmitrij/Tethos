@@ -10,7 +10,7 @@ namespace Tethos.Moq.MSTest.EndToEnd
     {
         public ContainerAsProperty()
         {
-            this.Container = AutoMockingContainerFactory.Create();
+            this.Container = AutoMocking.Create();
         }
 
         public IAutoMockingContainer Container { get; }
