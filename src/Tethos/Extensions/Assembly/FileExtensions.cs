@@ -8,7 +8,7 @@
     {
         internal static IEnumerable<File> GetAssemblyFiles(
             this string directory) => Directory
-                .EnumerateFiles(directory, "*.*", SearchOption.AllDirectories)
+                .EnumerateFiles(directory, string.Empty, SearchOption.AllDirectories)
                 .Select(GetFile);
 
         internal static File GetFile(this string filePath) =>
