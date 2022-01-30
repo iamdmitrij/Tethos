@@ -10,7 +10,9 @@
             () =>
             {
                 var fixture = new Fixture();
+#pragma warning disable CS0618 // Type or member is obsolete
                 fixture.Register(AutoMockingContainerFactory.Create);
+#pragma warning restore CS0618 // Type or member is obsolete
                 return fixture;
             })
         {

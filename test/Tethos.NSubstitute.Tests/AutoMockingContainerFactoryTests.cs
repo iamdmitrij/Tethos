@@ -6,7 +6,7 @@
     using Tethos.Tests.Common;
     using Xunit;
 
-    public class AutoMockingContainerFactory
+    public class AutoMockingContainerFactoryTests
     {
         [Theory]
         [FactoryContainerData]
