@@ -1,13 +1,13 @@
-namespace Tethos.NSubstitute.Tests.Benchmarks
+namespace Tethos.FakeItEasy.Tests.Benchmarks
 {
     using System.Diagnostics.CodeAnalysis;
     using BenchmarkDotNet.Attributes;
 
     [ShortRunJob]
-    public class FactoryBenchmark
+    public class CreationBenchmark
     {
-        [Benchmark(Description = "NSubstitute.MakeFactory")]
+        [Benchmark(Description = "FakeItEasy")]
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Framework requirement")]
-        public void MakeFactory() => AutoMockingContainerFactory.Create();
+        public void MakeFactory() => AutoMocking.Create();
     }
 }
