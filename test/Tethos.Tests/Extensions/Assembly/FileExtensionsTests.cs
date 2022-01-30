@@ -2,6 +2,7 @@
 {
     using System.IO;
     using System.Reflection;
+    using AutoFixture.Xunit2;
     using FluentAssertions;
     using Tethos.Extensions.Assembly;
     using Xunit;
@@ -22,18 +23,66 @@
             actual.Path.Should().Be(expected);
         }
 
-        [Fact]
+        [Theory]
+        [AutoData]
         [Trait("Type", "Unit")]
-        public void GetAssemblyFiles_FromCurrentDirectory_ShouldNotBeEmpty()
+        public void GetAssemblyFiles_FromEmptyDirectory_ShouldBeEmpty(string name)
         {
             // Arrange
-            var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var directory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), name);
+            Directory.CreateDirectory(directory);
 
             // Act
             var actual = directory.GetAssemblyFiles();
 
             // Assert
-            actual.Should().NotBeEmpty();
+            actual.Should().BeEmpty();
+
+            // Teardown
+            Directory.Delete(directory);
+        }
+
+        [Theory]
+        [AutoData]
+        [Trait("Type", "Unit")]
+        public void GetAssemblyFiles_FromDirectoryWithOneFile_ShouldHaveOneFile(string name)
+        {
+            // Arrange
+            var directory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), name);
+            Directory.CreateDirectory(directory);
+            string fileName = Path.GetRandomFileName();
+            System.IO.File.Create(Path.Combine(directory, fileName)).Close();
+
+            // Act
+            var actual = directory.GetAssemblyFiles();
+
+            // Assert
+            actual.Should().HaveCount(1);
+
+            // Teardown
+            Directory.Delete(directory, true);
+        }
+
+        [Theory]
+        [AutoData]
+        [Trait("Type", "Unit")]
+        public void GetAssemblyFiles_FromRecursiveDirectory_ShouldHaveMultipleFiles(string name, string extraDir)
+        {
+            // Arrange
+            var directory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), name);
+            Directory.CreateDirectory(directory);
+            System.IO.File.Create(Path.Combine(directory, Path.GetRandomFileName())).Close();
+            Directory.CreateDirectory(Path.Combine(directory, extraDir));
+            System.IO.File.Create(Path.Combine(directory, extraDir, Path.GetRandomFileName())).Close();
+
+            // Act
+            var actual = directory.GetAssemblyFiles();
+
+            // Assert
+            actual.Should().HaveCount(2);
+
+            // Teardown
+            Directory.Delete(directory, true);
         }
     }
 }
