@@ -10,7 +10,7 @@ namespace Tethos.Moq.Tests.Benchmarks
     {
         public ContainerBenchmark()
         {
-            this.Container = AutoMockingContainerFactory.Create();
+            this.Container = AutoMocking.Create();
         }
 
         public IAutoMockingContainer Container { get; }

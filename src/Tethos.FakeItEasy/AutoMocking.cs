@@ -25,5 +25,11 @@
                 return container.Value;
             }
         }
+
+        /// <summary>
+        /// Creates ready to use auto-mocking container.
+        /// </summary>
+        /// <returns>Auto-mocking container.</returns>
+        public static IAutoMockingContainer Create() => new AutoMockingTest().Container;
     }
 }
