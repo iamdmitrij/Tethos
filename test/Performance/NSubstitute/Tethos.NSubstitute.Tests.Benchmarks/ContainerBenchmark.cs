@@ -1,5 +1,6 @@
 namespace Tethos.NSubstitute.Tests.Benchmarks
 {
+    using System.Diagnostics.CodeAnalysis;
     using BenchmarkDotNet.Attributes;
     using Tethos.Extensions;
     using Tethos.Tests.Common;
@@ -21,5 +22,9 @@ namespace Tethos.NSubstitute.Tests.Benchmarks
 
         [Benchmark(Description = "NSubstitute.ResolveSut")]
         public SystemUnderTest ResolveSut() => this.Container.Resolve<SystemUnderTest>();
+
+        [Benchmark(Description = "NSubstitute.StaticResolveSut")]
+        [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Framework requirement")]
+        public SystemUnderTest StaticResolveSut() => AutoMocking.Container.Resolve<SystemUnderTest>();
     }
 }

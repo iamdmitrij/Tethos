@@ -1,25 +1,23 @@
 ﻿namespace Tethos.Moq.Tests
 {
+    using AutoFixture.Xunit2;
     using FluentAssertions;
     using global::Moq;
     using Tethos.Moq;
-    using Tethos.Moq.Tests.Attributes;
     using Tethos.Tests.Common;
     using Xunit;
 
-    public class AutoMockingContainerFactoryTests
+    public class AutoMockingTests
     {
         [Theory]
-        [FactoryContainerData]
+        [AutoData]
         [Trait("Type", "Integration")]
-        public void SystemUnderTest_Exercise_ShouldMatch(
-            IAutoMockingContainer container,
-            int expected)
+        public void SystemUnderTest_Exercise_ShouldMatch(int expected)
         {
             // Arrange
-            var sut = container.Resolve<SystemUnderTest>();
+            var sut = AutoMocking.Container.Resolve<SystemUnderTest>();
 
-            container.Resolve<Mock<IMockable>>()
+            AutoMocking.Container.Resolve<Mock<IMockable>>()
                 .Setup(mock => mock.Get())
                 .Returns(expected);
 
@@ -28,6 +26,7 @@
 
             // Assert
             actual.Should().Be(expected);
+            AutoMocking.Container.Resolve<Mock<IMockable>>().Verify();
         }
     }
 }

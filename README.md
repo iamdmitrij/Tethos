@@ -21,7 +21,7 @@ Consider following example:
 ```c#
 public class SystemUnderTest
 {
-    public SystemUnderTest(IMockA mockA, IMockB mockB, IMockC mockC, IMockD mockD)
+    public SystemUnderTest(IMockA mockA, IMockB mockB, IMockC mockC)
     {
         ...
     }
@@ -31,7 +31,6 @@ public class SystemUnderTest
         MockA.Get();
         MockB.Get();
         MockC.Get();
-        MockD.Get();
     }
 }
 ```
@@ -43,13 +42,10 @@ in order to resolve dependencies for `SystemUnderTest` we will need to write fol
 public void Test()
 {
     var sut = new SystemUnderTest(
-        Mock.Of<MockA>(Mock.Of<UnknownA>(Mock.Of<UnknownB>(), Mock.Of<UnknownC>())),
-        Mock.Of<MockB>(Mock.Of<UnknownC>()),
-        Mock.Of<MockC>(Mock.Of<UnknownD>(), Mock.Of<UnknownE>()),
-        Mock.Of<MockD>(Mock.Of<UnknownD>())
+        Mock.Of<IMockA>(),
+        Mock.Of<IMockB>(),
+        Mock.Of<IMockC>()
     );
-
-    ...
 }
 ```
 
@@ -59,10 +55,7 @@ with `Tethos` all you need to do is:
 [Fact]
 public void Test()
 {
-    var sut = Container.Resolve<SystemUnderTest>();
-    var mockA = Container.Resolve<Mock<MockA>>().Setup(...);
-    var mockB = Container.Resolve<Mock<MockB>>().Setup(...);
-    ...
+    var sut = AutoMocking.Container.Resolve<SystemUnderTest>();
 }
 ```
 
@@ -92,6 +85,20 @@ within the scope of the test method dependencies, including mock instances will 
 
 ## Usage
 
+- Use `AutoMocking.Container` static property to retrieve container
+
+```c#
+public class ContainerFromBaseClass
+{
+    [Fact]
+    public void Exercise_ShouldReturn42()
+    {
+        var sut = AutoMockingTest.Container.Resolve<SystemUnderTest>();
+        ...
+    }
+}
+```
+
 - Inherit from `AutoMockingTest` to have access to `Container` property.
 
 ```c#
@@ -100,7 +107,7 @@ public class ContainerFromBaseClass: AutoMockingTest
     [Fact]
     public void Exercise_ShouldReturn42()
     {
-        var sut = Container.Resolve<SystemUnderTest>();
+        var sut = this.Container.Resolve<SystemUnderTest>();
         ...
     }
 }
@@ -121,7 +128,7 @@ public class ContainerAsProperty: AutoMockingTest
     [Fact]
     public void Exercise_ShouldReturn42()
     {
-        var sut = Container.Resolve<SystemUnderTest>();
+        var sut = this.Container.Resolve<SystemUnderTest>();
         ...
     }
 }

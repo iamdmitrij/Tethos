@@ -23,6 +23,20 @@
 
         [Fact]
         [Trait("Type", "Integration")]
+        public void A_Idempotency_ShouldMatchMocks()
+        {
+            // Arrange
+            var expected = AutoMocking.Container.ResolveFrom<SystemUnderTest, IMockable>();
+
+            // Act
+            var actual = AutoMocking.Container.ResolveFrom<SystemUnderTest, IMockable>();
+
+            // Assert
+            actual.Should().BeSameAs(expected);
+        }
+
+        [Fact]
+        [Trait("Type", "Integration")]
         public void Test_Idempotency_ResolveFromVsResolve_ShouldMatchMocks()
         {
             // Arrange
