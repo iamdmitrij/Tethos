@@ -81,27 +81,6 @@
         [Theory]
         [AutoMoqData]
         [Trait("Type", "Unit")]
-        public void MapToMock_ConstructorArguments_ShouldRegisterMock(Mock<IKernel> kernel, object targetObject, IMockable mockable)
-        {
-            // Arrange
-            var expected = mockable.GetType();
-            var sut = new AutoResolver(kernel.Object);
-            var type = typeof(IMockable);
-            var constructorArguments = new Arguments().AddTyped(Array.Empty<string>());
-
-            MockMapping argument = new() { TargetType = type, TargetObject = targetObject, ConstructorArguments = constructorArguments };
-
-            // Act
-            var actual = sut.MapToMock(argument);
-
-            // Assert
-            kernel.Verify(m => m.Register(It.IsAny<IRegistration>()), Times.AtLeastOnce);
-            actual.Should().BeOfType(expected);
-        }
-
-        [Theory]
-        [AutoMoqData]
-        [Trait("Type", "Unit")]
         public void MapToMock_ShouldNotRegisterMock(Mock<IKernel> kernel, IMockable mockable)
         {
             // Arrange
