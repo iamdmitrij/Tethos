@@ -30,15 +30,16 @@
         /// <inheritdoc />
         public override object MapToMock(MockMapping argument)
         {
-            var mockType = typeof(Mock<>).MakeGenericType(argument.TargetType);
-            var arguments = argument.ConstructorArguments
-                .Select(argument => argument.Value)
-                .ToArray();
-            var mock = Activator.CreateInstance(mockType, arguments) as Mock;
             var isPlainObject = !typeof(IMocked).IsAssignableFrom(argument.TargetObject?.GetType());
 
             if (isPlainObject)
             {
+                var mockType = typeof(Mock<>).MakeGenericType(argument.TargetType);
+                var arguments = argument?.ConstructorArguments
+                    ?.Select(argument => argument.Value)
+                    .ToArray();
+                var mock = Activator.CreateInstance(mockType, arguments) as Mock;
+
                 this.Kernel.Register(Component.For(mockType)
                     .Instance(mock)
                     .OverridesExistingRegistration());
@@ -46,6 +47,7 @@
                 this.Kernel.Register(Component.For(argument.TargetType)
                   .Instance(mock.Object)
                   .OverridesExistingRegistration());
+
                 return mock.Object;
             }
 
