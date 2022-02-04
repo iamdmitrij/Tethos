@@ -89,5 +89,28 @@
             kernel.DidNotReceive().Register(Arg.Any<IRegistration>());
             actual.Should().BeOfType(expected);
         }
+
+        [Theory]
+        [AutoNSubstituteData]
+        [Trait("Type", "Unit")]
+        public void MapToMock_WithConstructorArguments_ShouldMatchMockType(IKernel kernel, IMockable mockable)
+        {
+            // Arrange
+            var expected = mockable.GetType();
+            var sut = new AutoResolver(kernel);
+            var type = typeof(Concrete);
+            var constructorArguments = new Arguments()
+                .AddNamed("minValue", 100)
+                .AddNamed("maxValue", 200);
+
+            MockMapping argument = new() { TargetType = type, TargetObject = mockable, ConstructorArguments = constructorArguments };
+
+            // Act
+            var actual = sut.MapToMock(argument);
+
+            // Assert
+            kernel.DidNotReceive().Register(Arg.Any<IRegistration>());
+            actual.Should().BeOfType(expected);
+        }
     }
 }
