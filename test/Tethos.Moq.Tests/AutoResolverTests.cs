@@ -128,12 +128,11 @@
             var expected = mockable.Object.GetType();
             var sut = new AutoResolver(kernel.Object);
             var type = typeof(Concrete);
-            var arguments = new Arguments()
+            var constructorArguments = new Arguments()
                 .AddNamed("minValue", 100)
                 .AddNamed("maxValue", 200);
 
-            // TODO: Refactor tests to have more automatic approach
-            MockMapping argument = new() { TargetType = type, TargetObject = mockable.Object, ConstructorArguments = arguments };
+            MockMapping argument = new() { TargetType = type, TargetObject = mockable.Object, ConstructorArguments = constructorArguments };
 
             // Act
             var actual = sut.MapToMock(argument);
