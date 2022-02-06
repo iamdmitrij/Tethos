@@ -35,7 +35,7 @@
             if (isPlainObject)
             {
                 var mockType = typeof(Mock<>).MakeGenericType(argument.TargetType);
-                var arguments = argument?.ConstructorArguments
+                var arguments = argument.ConstructorArguments
                     ?.Select(argument => argument.Value)
                     .ToArray();
                 var mock = Activator.CreateInstance(mockType, arguments) as Mock;
