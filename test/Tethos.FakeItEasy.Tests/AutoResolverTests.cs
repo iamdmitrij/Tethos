@@ -53,15 +53,14 @@
         [Theory]
         [AutoFakeItEasyData]
         [Trait("Type", "Unit")]
-        public void MapToMock_ShouldRegisterMock(IKernel kernel, object targetObject, IMockable mockable, Arguments constructorArguments)
+        public void MapToMock_ShouldRegisterMock(IKernel kernel, object targetObject, IMockable mockable)
         {
             // Arrange
             var expected = mockable.GetType();
             var sut = new AutoResolver(kernel);
             var type = typeof(IMockable);
 
-            // TODO: Refactor tests to have more automatic approach
-            MockMapping argument = new() { TargetType = type, TargetObject = targetObject, ConstructorArguments = constructorArguments };
+            MockMapping argument = new() { TargetType = type, TargetObject = targetObject };
 
             // Act
             var actual = sut.MapToMock(argument);
@@ -74,14 +73,36 @@
         [Theory]
         [AutoFakeItEasyData]
         [Trait("Type", "Unit")]
-        public void MapToMock_ShouldNotRegisterMock(IKernel kernel, IMockable mockable, Arguments constructorArguments)
+        public void MapToMock_ShouldNotRegisterMock(IKernel kernel, IMockable mockable)
         {
             // Arrange
             var expected = mockable.GetType();
             var sut = new AutoResolver(kernel);
             var type = typeof(IMockable);
 
-            // TODO: Refactor tests to have more automatic approach
+            MockMapping argument = new() { TargetType = type, TargetObject = mockable };
+
+            // Act
+            var actual = sut.MapToMock(argument);
+
+            // Assert
+            A.CallTo(() => kernel.Register(A<IRegistration>._)).MustNotHaveHappened();
+            actual.Should().BeOfType(expected);
+        }
+
+        [Theory]
+        [AutoFakeItEasyData]
+        [Trait("Type", "Unit")]
+        public void MapToMock_WithConstructorArguments_ShouldMatchMockType(IKernel kernel, IMockable mockable)
+        {
+            // Arrange
+            var expected = mockable.GetType();
+            var sut = new AutoResolver(kernel);
+            var type = typeof(Concrete);
+            var constructorArguments = new Arguments()
+                .AddNamed("minValue", 100)
+                .AddNamed("maxValue", 200);
+
             MockMapping argument = new() { TargetType = type, TargetObject = mockable, ConstructorArguments = constructorArguments };
 
             // Act

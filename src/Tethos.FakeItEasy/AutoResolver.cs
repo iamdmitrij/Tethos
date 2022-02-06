@@ -29,19 +29,22 @@
         /// <inheritdoc />
         public override object MapToMock(MockMapping argument)
         {
-            Action<IFakeOptions> arguments = argument.TargetType.IsInterface switch
-            {
-                true => options => _ = options,
-                false => options => options.WithArgumentsForConstructor(argument.ConstructorArguments.Flatten()),
-            };
-            var mock = Create.Fake(argument.TargetType, arguments);
             var isPlainObject = !Fake.IsFake(argument.TargetObject ?? 0);
 
             if (isPlainObject)
             {
+                // TODO: Not all cases in this switch are covered with unit tests
+                Action<IFakeOptions> arguments = argument.TargetType.IsInterface switch
+                {
+                    true => options => _ = options,
+                    false => options => options.WithArgumentsForConstructor(argument.ConstructorArguments.Flatten()),
+                };
+                var mock = Create.Fake(argument.TargetType, arguments);
+
                 this.Kernel.Register(Component.For(argument.TargetType)
                     .Instance(mock)
                     .OverridesExistingRegistration());
+
                 return mock;
             }
 

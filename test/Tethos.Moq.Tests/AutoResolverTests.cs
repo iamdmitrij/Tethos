@@ -61,15 +61,14 @@
         [Theory]
         [AutoMoqData]
         [Trait("Type", "Unit")]
-        public void MapToMock_ShouldRegisterMock(Mock<IKernel> kernel, object targetObject, IMockable mockable, Arguments constructorArguments)
+        public void MapToMock_ShouldRegisterMock(Mock<IKernel> kernel, object targetObject, IMockable mockable)
         {
             // Arrange
             var expected = mockable.GetType();
             var sut = new AutoResolver(kernel.Object);
             var type = typeof(IMockable);
 
-            // TODO: Refactor tests to have more automatic approach
-            MockMapping argument = new() { TargetType = type, TargetObject = targetObject, ConstructorArguments = constructorArguments };
+            MockMapping argument = new() { TargetType = type, TargetObject = targetObject };
 
             // Act
             var actual = sut.MapToMock(argument);
@@ -82,15 +81,14 @@
         [Theory]
         [AutoMoqData]
         [Trait("Type", "Unit")]
-        public void MapToMock_ShouldNotRegisterMock(Mock<IKernel> kernel, IMockable mockable, Arguments constructorArguments)
+        public void MapToMock_ShouldNotRegisterMock(Mock<IKernel> kernel, IMockable mockable)
         {
             // Arrange
             var expected = mockable.GetType();
             var sut = new AutoResolver(kernel.Object);
             var type = typeof(IMockable);
 
-            // TODO: Refactor tests to have more automatic approach
-            MockMapping argument = new() { TargetType = type, TargetObject = mockable, ConstructorArguments = constructorArguments };
+            MockMapping argument = new() { TargetType = type, TargetObject = mockable };
 
             // Act
             var actual = sut.MapToMock(argument);
@@ -109,12 +107,11 @@
             var expected = mockable.Object.GetType();
             var sut = new AutoResolver(kernel.Object);
             var type = typeof(Concrete);
-            var arguments = new Arguments()
+            var constructorArguments = new Arguments()
                 .AddNamed("minValue", 100)
                 .AddNamed("maxValue", 200);
 
-            // TODO: Refactor tests to have more automatic approach
-            MockMapping argument = new() { TargetType = type, TargetObject = mockable.Object, ConstructorArguments = arguments };
+            MockMapping argument = new() { TargetType = type, TargetObject = mockable.Object, ConstructorArguments = constructorArguments };
 
             // Act
             var actual = sut.MapToMock(argument);

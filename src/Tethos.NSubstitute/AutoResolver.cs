@@ -28,16 +28,18 @@
         /// <inheritdoc />
         public override object MapToMock(MockMapping argument)
         {
-            var arguments = argument.TargetType.IsInterface switch
-            {
-                true => Array.Empty<object>(),
-                false => argument.ConstructorArguments.Flatten(),
-            };
-            var mock = Substitute.For(new[] { argument.TargetType }, arguments);
             var isPlainObject = argument.TargetObject is not ICallRouterProvider;
 
             if (isPlainObject)
             {
+                // TODO: Not all cases in this switch are covered with unit tests
+                var arguments = argument.TargetType.IsInterface switch
+                {
+                    true => Array.Empty<object>(),
+                    false => argument.ConstructorArguments.Flatten(),
+                };
+                var mock = Substitute.For(new[] { argument.TargetType }, arguments);
+
                 this.Kernel.Register(Component.For(argument.TargetType)
                     .Instance(mock)
                     .OverridesExistingRegistration());
