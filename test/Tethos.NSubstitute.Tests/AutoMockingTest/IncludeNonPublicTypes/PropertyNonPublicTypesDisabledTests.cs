@@ -7,7 +7,7 @@
 
     public class PropertyNonPublicTypesDisabledTests : NSubstitute.AutoMockingTest
     {
-        public override AutoMockingConfiguration AutoMockingConfiguration => new() { IncludeNonPublicTypes = false };
+        public override AutoMockingConfiguration AutoMockingConfiguration => new () { IncludeNonPublicTypes = false };
 
         [Fact]
         [Trait("Type", "Integration")]

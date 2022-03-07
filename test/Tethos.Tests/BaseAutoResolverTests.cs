@@ -42,8 +42,8 @@
             var actual = sut.CanResolve(
                 resolver,
                 resolver,
-                new(),
-                new(key, type, false));
+                new (),
+                new (key, type, false));
 
             // Assert
             actual.Should().Be(expected);
@@ -67,8 +67,8 @@
             var actual = sut.Resolve(
                 resolver,
                 resolver,
-                new(),
-                new(key, type, false)) as MockMapping;
+                new (),
+                new (key, type, false)) as MockMapping;
 
             // Assert
             actual.TargetType.Should().Be(type);
@@ -96,8 +96,8 @@
             var actual = sut.Resolve(
                 resolver,
                 resolver,
-                new(),
-                new(key, type, false)) as MockMapping;
+                new (),
+                new (key, type, false)) as MockMapping;
 
             // Assert
             actual.TargetType.Should().Be(type);
@@ -126,8 +126,8 @@
             var actual = sut.Resolve(
                 resolver,
                 resolver,
-                new(),
-                new(key, type, false)) as MockMapping;
+                new (),
+                new (key, type, false)) as MockMapping;
 
             // Assert
             actual.TargetType.Should().Be(type);

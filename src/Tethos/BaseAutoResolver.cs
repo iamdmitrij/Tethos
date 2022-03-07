@@ -52,7 +52,7 @@
                 .Where(argument => argument.Key.GetArgumentType() == $"{targetType}");
             var constructorArguments = new Arguments().Add(arguments);
 
-            return this.MapToMock(new()
+            return this.MapToMock(new ()
             {
                 TargetType = targetType,
                 TargetObject = currentTargetObject,

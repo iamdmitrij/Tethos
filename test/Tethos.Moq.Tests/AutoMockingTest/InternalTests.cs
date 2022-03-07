@@ -10,7 +10,7 @@
 
     public class InternalTests : Moq.AutoMockingTest
     {
-        public override AutoMockingConfiguration AutoMockingConfiguration => new() { IncludeNonPublicTypes = true };
+        public override AutoMockingConfiguration AutoMockingConfiguration => new () { IncludeNonPublicTypes = true };
 
         [Theory]
         [AutoData]

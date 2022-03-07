@@ -43,8 +43,8 @@
             var actual = sut.CanResolve(
                 resolver,
                 resolver,
-                new(),
-                new(key, type, false));
+                new (),
+                new (key, type, false));
 
             // Assert
             actual.Should().Be(expected);
@@ -60,7 +60,7 @@
             var sut = new AutoResolver(kernel);
             var type = typeof(IMockable);
 
-            MockMapping argument = new() { TargetType = type, TargetObject = targetObject };
+            MockMapping argument = new () { TargetType = type, TargetObject = targetObject };
 
             // Act
             var actual = sut.MapToMock(argument);
@@ -80,7 +80,7 @@
             var sut = new AutoResolver(kernel);
             var type = typeof(IMockable);
 
-            MockMapping argument = new() { TargetType = type, TargetObject = mockable };
+            MockMapping argument = new () { TargetType = type, TargetObject = mockable };
 
             // Act
             var actual = sut.MapToMock(argument);
@@ -103,7 +103,7 @@
                 .AddNamed("minValue", 100)
                 .AddNamed("maxValue", 200);
 
-            MockMapping argument = new() { TargetType = type, TargetObject = mockable, ConstructorArguments = constructorArguments };
+            MockMapping argument = new () { TargetType = type, TargetObject = mockable, ConstructorArguments = constructorArguments };
 
             // Act
             var actual = sut.MapToMock(argument);
