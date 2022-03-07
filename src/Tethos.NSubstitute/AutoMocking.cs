@@ -19,7 +19,7 @@
             {
                 if (container == null)
                 {
-                    container = new (() => new AutoMockingTest().Container);
+                    container = new(() => new AutoMockingTest().Container);
                 }
 
                 return container.Value;

@@ -35,7 +35,7 @@
         /// </summary>
         public T Container { get; internal set; }
 
-        public virtual AutoMockingConfiguration AutoMockingConfiguration => this.OnConfigurationCreated(new ());
+        public virtual AutoMockingConfiguration AutoMockingConfiguration => this.OnConfigurationCreated(new());
 
         /// <summary>
         /// Gets or sets auto-mocking container.
