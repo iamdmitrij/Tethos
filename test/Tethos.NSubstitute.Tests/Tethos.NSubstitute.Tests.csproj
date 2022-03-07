@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<IsTestProject>true</IsTestProject>
-		<NoWarn>1701;1702;NU1603</NoWarn>
+		<NoWarn>1701;1702;NU1603;SA1000</NoWarn>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
