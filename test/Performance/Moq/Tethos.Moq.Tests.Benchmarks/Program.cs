@@ -1,3 +1,1 @@
-using BenchmarkDotNet.Running;
-
-_ = BenchmarkRunner.Run(typeof(Program).Assembly);
+_ = BenchmarkDotNet.Running.BenchmarkRunner.Run(typeof(Program).Assembly);

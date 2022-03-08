@@ -3,11 +3,11 @@
   "isRoot": true,
   "tools": {
     "dotnet-stryker": {
-      "version": "1.2.2",
+      "version": "1.4.2",
       "commands": ["dotnet-stryker"]
     },
     "dotnet-sonarscanner": {
-      "version": "5.4.1",
+      "version": "5.5.3",
       "commands": ["dotnet-sonarscanner"]
     }
   }
