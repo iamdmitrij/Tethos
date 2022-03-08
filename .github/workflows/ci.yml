@@ -45,6 +45,7 @@ jobs:
             src/**/Tethos*.snupkg
 
   sonar:
+    needs: [test]
     name: 📡 SonarCloud
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
