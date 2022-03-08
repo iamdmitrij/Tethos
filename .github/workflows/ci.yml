@@ -59,6 +59,9 @@ jobs:
         with:
           java-version: 1.11
 
+      - name: 🔦 Restore tools
+        run: dotnet tool restore
+
       - name: 🔽 Start SonarCloud scan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -88,9 +91,6 @@ jobs:
         with:
           name: test-results
           path: coverage
-
-      - name: 🔦 Restore tools
-        run: dotnet tool restore
 
       - name: 🔼 End SonarCloud scan
         env:
