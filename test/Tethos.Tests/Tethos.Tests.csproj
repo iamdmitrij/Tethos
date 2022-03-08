@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<IsTestProject>true</IsTestProject>
-		<NoWarn>1701;1702;NU1702;NU1603</NoWarn>
+		<NoWarn>1701;1702;NU1702;NU1603;SA1000</NoWarn>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
@@ -20,7 +20,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.406">
+		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.66">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
