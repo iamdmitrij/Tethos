@@ -59,7 +59,7 @@
             var actual = assembly.GetDependencies();
 
             // Assert
-            actual.Should().BeEquivalentTo(expected);
+            actual.Should().Contain(expected);
         }
 
         [Theory]

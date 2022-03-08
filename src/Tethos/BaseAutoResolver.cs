@@ -5,6 +5,7 @@
     using Castle.MicroKernel;
     using Castle.MicroKernel.Context;
     using Castle.MicroKernel.Handlers;
+    using Castle.MicroKernel.Resolvers;
     using Tethos.Extensions;
 
     /// <summary>
@@ -46,7 +47,7 @@
         {
             var targetType = dependency.TargetType;
             var getTargetObject = () => this.Kernel.Resolve(targetType);
-            var currentTargetObject = getTargetObject.SwallowExceptions(typeof(ComponentNotFoundException), typeof(HandlerException));
+            var currentTargetObject = getTargetObject.SwallowExceptions(typeof(ComponentNotFoundException), typeof(HandlerException), typeof(DependencyResolverException));
             var arguments = context.AdditionalArguments
                 .Where(_ => !targetType.IsInterface)
                 .Where(argument => argument.Key.GetArgumentType() == $"{targetType}");

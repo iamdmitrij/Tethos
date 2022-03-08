@@ -10,11 +10,13 @@
         internal static Assembly[] GetRelatedAssemblies(this Type type) =>
             Assembly.GetAssembly(type).GetDependencies();
 
+        /// <summary>
+        /// TODO: Create assembly loading configuration
+        /// </summary>
         internal static Assembly[] GetDependencies(
             this Assembly rootAssembly) => AppDomain.CurrentDomain.BaseDirectory.GetFiles()
-                .FilterAssemblies(rootAssembly.FullName.GetPattern(), new[] { ".dll", ".exe" }, rootAssembly)
+                .FilterAssemblies(new[] { ".dll", ".exe" }, rootAssembly)
                 .ExcludeRefDirectory()
-                .ElseLoadReferencedAssemblies(rootAssembly)
                 .LoadAssemblies(rootAssembly)
                 .ToArray();
 
