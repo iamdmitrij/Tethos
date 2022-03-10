@@ -11,7 +11,7 @@
             Assembly.GetAssembly(type).GetDependencies();
 
         internal static Assembly[] GetDependencies(
-            this Assembly rootAssembly) => AppDomain.CurrentDomain.BaseDirectory.GetAssemblyFiles()
+            this Assembly rootAssembly) => AppDomain.CurrentDomain.BaseDirectory.GetFiles()
                 .FilterAssemblies(rootAssembly.FullName.GetPattern(), new[] { ".dll", ".exe" }, rootAssembly)
                 .ExcludeRefDirectory()
                 .ElseLoadReferencedAssemblies(rootAssembly)
