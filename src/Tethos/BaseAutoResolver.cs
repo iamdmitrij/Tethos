@@ -47,6 +47,8 @@
         {
             var targetType = dependency.TargetType;
             var getTargetObject = () => this.Kernel.Resolve(targetType);
+
+            // TODO: Extract exception types to a variable
             var currentTargetObject = getTargetObject.SwallowExceptions(typeof(ComponentNotFoundException), typeof(HandlerException), typeof(DependencyResolverException));
             var arguments = context.AdditionalArguments
                 .Where(_ => !targetType.IsInterface)
