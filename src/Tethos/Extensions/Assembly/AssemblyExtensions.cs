@@ -14,7 +14,7 @@
         /// TODO: Create assembly loading configuration
         /// </summary>
         internal static Assembly[] GetDependencies(
-            this Assembly rootAssembly) => AppDomain.CurrentDomain.BaseDirectory.GetAssemblyFiles()
+            this Assembly rootAssembly) => AppDomain.CurrentDomain.BaseDirectory.GetFiles()
                 .FilterAssemblies(new[] { ".dll", ".exe" }, rootAssembly)
                 .ExcludeRefDirectory()
                 .LoadAssemblies(rootAssembly)
