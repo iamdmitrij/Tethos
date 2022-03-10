@@ -8,7 +8,7 @@ namespace ReferencedAssemblies.NSubstitute.Tests
     public class StaticContainer
     {
         [Fact]
-        [Trait("Type", "E2E")]
+        [Trait("Type", "Integration")]
         public void Exercise_WithMock_ShouldReturn42()
         {
             // Arrange
