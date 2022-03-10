@@ -44,7 +44,7 @@
         [InlineData("Tethos", 1, "Fake.Standard20.dll", "ref/Tethos.Tests.dll")]
         [InlineData("xunit", 1, "xunit.abstractions.dll")]
         [Trait("Type", "Unit")]
-        public void FilterAssemblies_Pattern_ShouldMatchCount(string pattern, int expected, params string[] assemblies)
+        public void FilterAssemblies_ByPattern_ShouldMatchCount(string pattern, int expected, params string[] assemblies)
         {
             // Arrange
             var extensions = new[] { ".dll", ".exe" };
