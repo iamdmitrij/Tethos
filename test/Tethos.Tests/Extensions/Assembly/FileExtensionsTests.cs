@@ -26,14 +26,14 @@
         [Theory]
         [AutoData]
         [Trait("Type", "Unit")]
-        public void GetAssemblyFiles_FromEmptyDirectory_ShouldBeEmpty(string name)
+        public void GetFiles_FromEmptyDirectory_ShouldBeEmpty(string name)
         {
             // Arrange
             var directory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), name);
             Directory.CreateDirectory(directory);
 
             // Act
-            var actual = directory.GetAssemblyFiles();
+            var actual = directory.GetFiles();
 
             // Assert
             actual.Should().BeEmpty();
@@ -45,7 +45,7 @@
         [Theory]
         [AutoData]
         [Trait("Type", "Unit")]
-        public void GetAssemblyFiles_FromDirectoryWithOneFile_ShouldHaveOneFile(string name)
+        public void GetFiles_FromDirectoryWithOneFile_ShouldHaveOneFile(string name)
         {
             // Arrange
             var directory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), name);
@@ -54,7 +54,7 @@
             System.IO.File.Create(Path.Combine(directory, fileName)).Close();
 
             // Act
-            var actual = directory.GetAssemblyFiles();
+            var actual = directory.GetFiles();
 
             // Assert
             actual.Should().HaveCount(1);
@@ -66,7 +66,7 @@
         [Theory]
         [AutoData]
         [Trait("Type", "Unit")]
-        public void GetAssemblyFiles_FromRecursiveDirectory_ShouldHaveMultipleFiles(string name, string extraDir)
+        public void GetFiles_FromRecursiveDirectory_ShouldHaveMultipleFiles(string name, string extraDir)
         {
             // Arrange
             var directory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), name);
@@ -76,7 +76,7 @@
             System.IO.File.Create(Path.Combine(directory, extraDir, Path.GetRandomFileName())).Close();
 
             // Act
-            var actual = directory.GetAssemblyFiles();
+            var actual = directory.GetFiles();
 
             // Assert
             actual.Should().HaveCount(2);

@@ -6,7 +6,7 @@
 
     internal static class FileExtensions
     {
-        internal static IEnumerable<File> GetAssemblyFiles(
+        internal static IEnumerable<File> GetFiles(
             this string directory) => Directory
                 .EnumerateFiles(directory, string.Empty, SearchOption.AllDirectories)
                 .Select(GetFile);
