@@ -1,7 +1,7 @@
 ﻿namespace Tethos
 {
     using System;
-    using System.Linq;
+    using System.IO;
     using System.Reflection;
     using Castle.MicroKernel.Registration;
     using Castle.MicroKernel.SubSystems.Configuration;
@@ -43,17 +43,20 @@
         internal BaseAutoResolver AutoResolver { get; set; }
 
         /// <inheritdoc />
-        public virtual void Install(IWindsorContainer container, IConfigurationStore store) =>
-            container.Register(
-                this.Assemblies.Select(assembly =>
-                    Classes.FromAssembly(assembly)
-                        .IncludeNonPublicTypes(this.AutoMockingConfiguration)
-                        .Pick()
-                        .WithServiceBase()
-                        .WithServiceAllInterfaces()
-                        .WithServiceSelf()
-                        .LifestyleTransient())
-                .ToArray());
+        public virtual void Install(IWindsorContainer container, IConfigurationStore store)
+        {
+            foreach (var assembly in this.Assemblies)
+            {
+                var func = () => container.Register(Classes.FromAssembly(assembly)
+                    .IncludeNonPublicTypes(this.AutoMockingConfiguration)
+                    .Pick()
+                    .WithServiceBase()
+                    .WithServiceAllInterfaces()
+                    .WithServiceSelf()
+                    .LifestyleTransient());
+                func.SwallowExceptions(typeof(FileNotFoundException));
+            }
+        }
 
         /// <summary>
         /// Method which lets user to configure <see cref="AutoMockingConfiguration"/>.

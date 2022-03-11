@@ -27,7 +27,6 @@
         private static IEnumerable<string> GetMatchingAssemblies(string pattern) => Directory
             .EnumerateFiles(AppDomain.CurrentDomain.BaseDirectory, "*.*", SearchOption.TopDirectoryOnly)
             .Select(file => Path.GetFileName(file))
-            .Where(file => file.StartsWith(pattern))
             .Where(file => new[] { ".exe", ".dll" }.Contains(Path.GetExtension(file)))
             .Select(file => Path.GetFileNameWithoutExtension(file))
             .Distinct();

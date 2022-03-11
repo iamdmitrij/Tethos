@@ -9,6 +9,13 @@
     {
         internal static IEnumerable<File> FilterAssemblies(
             this IEnumerable<File> assemblies,
+            string[] allowedFileExtensions,
+            params Assembly[] rootAssemblies) => assemblies
+                .Where(file => allowedFileExtensions.Contains(file.Extension))
+                .Where(file => !rootAssemblies.ContainsAssemblyNamed(file.Name));
+
+        internal static IEnumerable<File> FilterAssemblies(
+            this IEnumerable<File> assemblies,
             string searchPattern,
             string[] allowedFileExtensions,
             params Assembly[] rootAssemblies) => assemblies
