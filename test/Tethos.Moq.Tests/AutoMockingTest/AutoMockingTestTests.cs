@@ -3,9 +3,12 @@
     using System;
     using AutoFixture.Xunit2;
     using Castle.MicroKernel.Registration;
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
     using FluentAssertions;
     using global::Moq;
     using Tethos.Extensions;
+    using Tethos.Moq.Tests.Attributes;
     using Tethos.Tests.Common;
     using Xunit;
 
@@ -31,6 +34,18 @@
         {
             // Assert
             this.AutoResolver.Should().BeOfType<AutoResolver>();
+        }
+
+        [Theory]
+        [AutoMoqData]
+        [Trait("Type", "Integration")]
+        public void Install_ShouldRegisterDiamondTypeComponent(Mock<IWindsorContainer> container, Mock<IConfigurationStore> store)
+        {
+            // Act
+            this.Install(container.Object, store.Object);
+
+            // Assert
+            container.Verify(mock => mock.Register(this.DiamondTypeComponent), Times.Once);
         }
 
         [Theory]
