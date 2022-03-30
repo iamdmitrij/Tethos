@@ -44,6 +44,41 @@ jobs:
             src/**/Tethos*.nupkg
             src/**/Tethos*.snupkg
 
+  test:
+    name: 🔬 Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔬 Test
+        run: >
+          dotnet test ./Tethos.sln
+          --configuration Release
+          /p:CollectCoverage=true
+          /p:CoverletOutputFormat=opencover
+          --logger trx
+          --results-directory ./coverage
+
+      - name: 🔍 Coverage
+        uses: codecov/codecov-action@v2
+        with:
+          verbose: true
+
+      - name: 📚 Artifact Test Results
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: test-results
+          path: |
+            coverage/*.trx
+            **/coverage.opencover.xml
+
   sonar:
     needs: test
     name: 📡 SonarCloud
@@ -100,41 +135,6 @@ jobs:
         run: >
           dotnet sonarscanner end
           /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
-
-  test:
-    name: 🔬 Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: 📥 Checkout
-        uses: actions/checkout@v2
-
-      - name: 🔧 Use .NET 6.0 SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 6.0.x
-
-      - name: 🔬 Test
-        run: >
-          dotnet test ./Tethos.sln
-          --configuration Release
-          /p:CollectCoverage=true
-          /p:CoverletOutputFormat=opencover
-          --logger trx
-          --results-directory ./coverage
-
-      - name: 🔍 Coverage
-        uses: codecov/codecov-action@v2
-        with:
-          verbose: true
-
-      - name: 📚 Artifact Test Results
-        uses: actions/upload-artifact@v2
-        if: success() || failure()
-        with:
-          name: test-results
-          path: |
-            coverage/*.trx
-            **/coverage.opencover.xml
 
   spellcheck:
     name: 🔦 Spellcheck
