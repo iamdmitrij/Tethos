@@ -37,6 +37,18 @@
         }
 
         [Theory]
+        [AutoMoqData]
+        [Trait("Type", "Integration")]
+        public void Install_ShouldRegisterDiamondTypeComponent(Mock<IWindsorContainer> container, Mock<IConfigurationStore> store)
+        {
+            // Act
+            this.Install(container.Object, store.Object);
+
+            // Assert
+            container.Verify(mock => mock.Register(this.DiamondTypeComponent), Times.Once);
+        }
+
+        [Theory]
         [AutoData]
         [Trait("Type", "Integration")]
         public void SystemUnderTest_Exercise_ShouldMatch(int expected)
@@ -74,21 +86,6 @@
 
             // Assert
             action.Should().Throw<NotImplementedException>();
-        }
-
-        [Theory]
-        [AutoMoqData]
-        [Trait("Type", "Integration")]
-        public void Install_ShouldRegister(Mock<IWindsorContainer> container, Mock<IConfigurationStore> store)
-        {
-            // Arrange
-            var expected = Component.For(typeof(Mock<>));
-
-            // Act
-            this.Install(container.Object, store.Object);
-
-            // Assert
-            container.Verify(mock => mock.Register(expected), Times.Once);
         }
     }
 }

@@ -10,6 +10,8 @@
     /// </summary>
     public class AutoMockingTest : BaseAutoMockingTest<AutoMockingContainer>
     {
+        internal IRegistration DiamondTypeComponent { get; } = Component.For(typeof(Mock<>));
+
         /// <inheritdoc />
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {
@@ -18,7 +20,7 @@
             container.Kernel.Resolver.AddSubResolver(
                 this.AutoResolver);
 
-            container.Register(Component.For(typeof(Mock<>)));
+            container.Register(this.DiamondTypeComponent);
 
             base.Install(container, store);
         }
