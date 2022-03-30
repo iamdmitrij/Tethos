@@ -29,6 +29,7 @@ jobs:
 
   test-moq:
     name: 🏇 Tethos.Moq
+    needs: save-metadata
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
@@ -55,6 +56,7 @@ jobs:
 
   test-fakeiteasy:
     name: 🏇 Tethos.FakeItEasy
+    needs: save-metadata
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
@@ -81,6 +83,7 @@ jobs:
 
   test-nsubstitute:
     name: 🏇 Tethos.NSubstitute
+    needs: save-metadata
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout

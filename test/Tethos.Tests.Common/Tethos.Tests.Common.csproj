@@ -13,11 +13,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.66">
+		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.406">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="PeanutButter.RandomGenerators" Version="2.0.63" />
+		<PackageReference Include="PeanutButter.RandomGenerators" Version="2.0.66" />
 	</ItemGroup>
 
 </Project>
