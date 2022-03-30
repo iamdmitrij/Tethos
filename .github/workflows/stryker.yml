@@ -35,6 +35,7 @@ jobs:
 
   mutation-tests:
     name: 💀 Tethos
+    needs: save-metadata
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
@@ -82,6 +83,7 @@ jobs:
 
   mutation-tests-moq:
     name: 💀 Tethos.Moq
+    needs: save-metadata
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
@@ -129,6 +131,7 @@ jobs:
 
   mutation-tests-fakeiteasy:
     name: 💀 Tethos.FakeItEasy
+    needs: save-metadata
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
@@ -176,6 +179,7 @@ jobs:
 
   mutation-tests-nsubstitute:
     name: 💀 Tethos.NSubstitute
+    needs: save-metadata
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
