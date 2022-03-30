@@ -72,7 +72,7 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: 🔦 Install SonarScanner
-        run: dotnet tool install dotnet-sonarscanner --version 5.*
+        run: dotnet tool install dotnet-sonarscanner --version 5.* --global
 
       - name: 🔽 Start SonarCloud scan
         env:
