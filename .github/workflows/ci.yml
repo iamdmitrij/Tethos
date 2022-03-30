@@ -71,8 +71,8 @@ jobs:
         with:
           dotnet-version: 6.0.x
 
-      - name: 🔦 Restore tools
-        run: dotnet tool restore
+      - name: 🔦 Install SonarScanner
+        run: dotnet tool install dotnet-sonarscanner --version 5.* --global
 
       - name: 🔽 Start SonarCloud scan
         env:
