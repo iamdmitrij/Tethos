@@ -8,9 +8,9 @@ namespace Tethos.Benchmarks
 
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [RankColumn(NumeralSystem.Arabic)]
-    public class ResolveBenchmark
+    public class ResolveMockBenchmark
     {
-        public ResolveBenchmark()
+        public ResolveMockBenchmark()
         {
             this.ContainerFakeItEasy = FakeItEasy.AutoMocking.Create();
             this.ContainerMoq = Moq.AutoMocking.Create();
@@ -26,19 +26,10 @@ namespace Tethos.Benchmarks
         [Benchmark(Description = "FakeItEasy.GetMockableViaProxy")]
         public IMockable GetMockableViaProxyContainerFakeItEasy() => this.ContainerFakeItEasy.Resolve<IMockable>();
 
-        [Benchmark(Description = "FakeItEasy.ResolveSut")]
-        public SystemUnderTest ResolveSutContainerFakeItEasy() => this.ContainerFakeItEasy.Resolve<SystemUnderTest>();
-
         [Benchmark(Description = "Moq.GetMockableViaProxy")]
         public Mock<IMockable> GetMockableViaProxyMoq() => this.ContainerMoq.Resolve<Mock<IMockable>>();
 
-        [Benchmark(Description = "Moq.ResolveSut")]
-        public SystemUnderTest ResolveSutMoq() => this.ContainerMoq.Resolve<SystemUnderTest>();
-
         [Benchmark(Description = "NSubstitute.GetMockableViaProxy")]
         public IMockable GetMockableViaProxyNSubstitute() => this.ContainerNSubstitute.Resolve<IMockable>();
-
-        [Benchmark(Description = "NSubstitute.ResolveSut")]
-        public SystemUnderTest ResolveSutNSubstituteNSubstitute() => this.ContainerNSubstitute.Resolve<SystemUnderTest>();
     }
 }
