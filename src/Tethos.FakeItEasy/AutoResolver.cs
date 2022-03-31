@@ -33,7 +33,6 @@
 
             if (isPlainObject)
             {
-                // TODO: Not all cases in this switch are covered with unit tests
                 Action<IFakeOptions> arguments = argument.TargetType.IsInterface switch
                 {
                     true => options => _ = options,
