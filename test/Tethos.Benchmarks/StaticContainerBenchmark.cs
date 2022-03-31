@@ -2,8 +2,12 @@ namespace Tethos.Benchmarks
 {
     using System.Diagnostics.CodeAnalysis;
     using BenchmarkDotNet.Attributes;
+    using BenchmarkDotNet.Mathematics;
+    using BenchmarkDotNet.Order;
     using Tethos.Tests.Common;
 
+    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
+    [RankColumn(NumeralSystem.Arabic)]
     public class StaticContainerBenchmark
     {
         [Benchmark(Description = "FakeItEasy.StaticResolveSut")]

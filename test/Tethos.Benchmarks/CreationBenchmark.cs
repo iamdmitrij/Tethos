@@ -2,7 +2,11 @@ namespace Tethos.Benchmarks
 {
     using System.Diagnostics.CodeAnalysis;
     using BenchmarkDotNet.Attributes;
+    using BenchmarkDotNet.Mathematics;
+    using BenchmarkDotNet.Order;
 
+    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
+    [RankColumn(NumeralSystem.Arabic)]
     public class CreationBenchmark
     {
         [Benchmark(Description = "FakeItEasy.MakeFactory")]

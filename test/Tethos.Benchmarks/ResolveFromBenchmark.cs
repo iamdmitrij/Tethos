@@ -1,10 +1,14 @@
 namespace Tethos.Benchmarks
 {
     using BenchmarkDotNet.Attributes;
+    using BenchmarkDotNet.Mathematics;
+    using BenchmarkDotNet.Order;
     using global::Moq;
     using Tethos.Extensions;
     using Tethos.Tests.Common;
 
+    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
+    [RankColumn(NumeralSystem.Arabic)]
     public class ResolveFromBenchmark
     {
         public ResolveFromBenchmark()
