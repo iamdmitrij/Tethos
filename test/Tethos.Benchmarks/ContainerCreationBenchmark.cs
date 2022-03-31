@@ -3,7 +3,6 @@ namespace Tethos.NSubstitute.Tests.Benchmarks
     using System.Diagnostics.CodeAnalysis;
     using BenchmarkDotNet.Attributes;
 
-    [ShortRunJob]
     public class ContainerCreationBenchmark
     {
         [Benchmark(Description = "Moq.MakeFactory")]
