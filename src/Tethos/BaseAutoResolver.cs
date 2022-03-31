@@ -1,5 +1,6 @@
 ﻿namespace Tethos
 {
+    using System;
     using System.Linq;
     using Castle.Core;
     using Castle.MicroKernel;
@@ -13,6 +14,13 @@
     /// </summary>
     internal abstract class BaseAutoResolver : ISubDependencyResolver
     {
+        private readonly Type[] allowedExceptions = new[]
+        {
+            typeof(ComponentNotFoundException),
+            typeof(HandlerException),
+            typeof(DependencyResolverException),
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseAutoResolver"/> class.
         /// </summary>
@@ -47,9 +55,7 @@
         {
             var targetType = dependency.TargetType;
             var getTargetObject = () => this.Kernel.Resolve(targetType);
-
-            // TODO: Extract exception types to a variable
-            var currentTargetObject = getTargetObject.SwallowExceptions(typeof(ComponentNotFoundException), typeof(HandlerException), typeof(DependencyResolverException));
+            var currentTargetObject = getTargetObject.SwallowExceptions(this.allowedExceptions);
             var arguments = context.AdditionalArguments
                 .Where(_ => !targetType.IsInterface)
                 .Where(argument => argument.Key.GetArgumentType() == $"{targetType}");
