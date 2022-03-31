@@ -32,7 +32,6 @@
 
             if (isPlainObject)
             {
-                // TODO: Not all cases in this switch are covered with unit tests
                 var arguments = argument.TargetType.IsInterface switch
                 {
                     true => Array.Empty<object>(),
