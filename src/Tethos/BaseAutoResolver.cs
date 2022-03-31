@@ -14,6 +14,9 @@
     /// </summary>
     internal abstract class BaseAutoResolver : ISubDependencyResolver
     {
+        /// <summary>
+        /// Whitelist for allowed exception types during <see cref="IKernel.Resolve(Type)"/> process.
+        /// </summary>
         private readonly Type[] allowedExceptions = new[]
         {
             typeof(ComponentNotFoundException),
