@@ -23,13 +23,13 @@ namespace Tethos.Benchmarks
 
         public IAutoMockingContainer ContainerNSubstitute { get; }
 
-        [Benchmark(Description = "FakeItEasy.GetMockableViaProxy")]
-        public IMockable GetMockableViaProxyContainerFakeItEasy() => this.ContainerFakeItEasy.Resolve<IMockable>();
+        [Benchmark(Description = "FakeItEasy.GetMock")]
+        public IMockable GetMockFakeItEasy() => this.ContainerFakeItEasy.Resolve<IMockable>();
 
-        [Benchmark(Description = "Moq.GetMockableViaProxy")]
-        public Mock<IMockable> GetMockableViaProxyMoq() => this.ContainerMoq.Resolve<Mock<IMockable>>();
+        [Benchmark(Description = "Moq.GetMock")]
+        public Mock<IMockable> GetMockMoq() => this.ContainerMoq.Resolve<Mock<IMockable>>();
 
-        [Benchmark(Description = "NSubstitute.GetMockableViaProxy")]
-        public IMockable GetMockableViaProxyNSubstitute() => this.ContainerNSubstitute.Resolve<IMockable>();
+        [Benchmark(Description = "NSubstitute.GetMock")]
+        public IMockable GetMockNSubstitute() => this.ContainerNSubstitute.Resolve<IMockable>();
     }
 }

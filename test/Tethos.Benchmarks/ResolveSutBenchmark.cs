@@ -23,12 +23,12 @@ namespace Tethos.Benchmarks
         public IAutoMockingContainer ContainerNSubstitute { get; }
 
         [Benchmark(Description = "FakeItEasy.ResolveSut")]
-        public SystemUnderTest ResolveSutContainerFakeItEasy() => this.ContainerFakeItEasy.Resolve<SystemUnderTest>();
+        public SystemUnderTest GetSutFakeItEasy() => this.ContainerFakeItEasy.Resolve<SystemUnderTest>();
 
         [Benchmark(Description = "Moq.ResolveSut")]
-        public SystemUnderTest ResolveSutMoq() => this.ContainerMoq.Resolve<SystemUnderTest>();
+        public SystemUnderTest GetSutMoq() => this.ContainerMoq.Resolve<SystemUnderTest>();
 
         [Benchmark(Description = "NSubstitute.ResolveSut")]
-        public SystemUnderTest ResolveSutNSubstituteNSubstitute() => this.ContainerNSubstitute.Resolve<SystemUnderTest>();
+        public SystemUnderTest GetSutNSubstitute() => this.ContainerNSubstitute.Resolve<SystemUnderTest>();
     }
 }
