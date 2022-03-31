@@ -22,9 +22,9 @@ jobs:
 
       - name: 🔬 Test
         run: >
-          dotnet test ./Tethos.sln
+          dotnet test ./test/Tethos.PerformanceTests/\
+          Tethos.PerformanceTests.csproj
           --configuration Release
-          --filter FullyQualifiedName\~Tethos.PerformanceTests
           --logger trx
           --results-directory ./coverage
 
