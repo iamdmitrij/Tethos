@@ -1,6 +1,7 @@
 namespace Tethos.Benchmarks
 {
     using BenchmarkDotNet.Attributes;
+    using global::Moq;
     using Tethos.Extensions;
     using Tethos.Tests.Common;
 
@@ -38,10 +39,10 @@ namespace Tethos.Benchmarks
         public SystemUnderTest ResolveSutContainerFakeItEasy() => this.ContainerFakeItEasy.Resolve<SystemUnderTest>();
 
         [Benchmark(Description = "Moq.GetMockableViaProxy")]
-        public IMockable GetMockableViaProxyMoq() => this.ContainerMoq.Resolve<IMockable>();
+        public Mock<IMockable> GetMockableViaProxyMoq() => this.ContainerMoq.Resolve<Mock<IMockable>>();
 
         [Benchmark(Description = "Moq.ResolveFromSut")]
-        public IMockable ResolveFromSutMoq() => this.ContainerMoq.ResolveFrom<SystemUnderTest, IMockable>();
+        public Mock<IMockable> ResolveFromSutMoq() => this.ContainerMoq.ResolveFrom<SystemUnderTest, Mock<IMockable>>();
 
         [Benchmark(Description = "Moq.ResolveSut")]
         public SystemUnderTest ResolveSutMoq() => this.ContainerMoq.Resolve<SystemUnderTest>();
