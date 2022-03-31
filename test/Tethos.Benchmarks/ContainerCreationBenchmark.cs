@@ -6,11 +6,11 @@ namespace Tethos.NSubstitute.Tests.Benchmarks
     [ShortRunJob]
     public class ContainerCreationBenchmark
     {
-        [Benchmark(Description = "NSubstitute.MakeFactory")]
+        [Benchmark(Description = "Moq.MakeFactory")]
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Framework requirement")]
         public void MakeFactoryMoq() => Moq.AutoMocking.Create();
 
-        [Benchmark(Description = "NSubstitute.MakeFactory")]
+        [Benchmark(Description = "FakeItEasy.MakeFactory")]
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Framework requirement")]
         public void MakeFactoryFakeItEasy() => FakeItEasy.AutoMocking.Create();
 
