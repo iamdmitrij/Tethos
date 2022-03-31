@@ -7,17 +7,18 @@ namespace Tethos.Benchmarks
 
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [RankColumn(NumeralSystem.Arabic)]
+    [MemoryDiagnoser]
     public class CreationBenchmark
     {
-        [Benchmark(Description = "FakeItEasy.MakeFactory")]
+        [Benchmark(Description = "FakeItEasy.CreateContainer")]
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Framework requirement")]
         public void CreateFakeItEasy() => FakeItEasy.AutoMocking.Create();
 
-        [Benchmark(Description = "Moq.MakeFactory")]
+        [Benchmark(Description = "Moq.CreateContainer")]
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Framework requirement")]
         public void CreateMoq() => Moq.AutoMocking.Create();
 
-        [Benchmark(Description = "NSubstitute.MakeFactory")]
+        [Benchmark(Description = "NSubstitute.CreateContainer")]
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Framework requirement")]
         public void CreateNSubstitute() => NSubstitute.AutoMocking.Create();
     }
