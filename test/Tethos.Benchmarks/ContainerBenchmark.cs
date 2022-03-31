@@ -28,7 +28,6 @@ namespace Tethos.Benchmarks
         [Benchmark(Description = "NSubstitute.ResolveSut")]
         public SystemUnderTest ResolveSutNSubstituteNSubstitute() => this.ContainerNSubstitute.Resolve<SystemUnderTest>();
 
-
         [Benchmark(Description = "FakeItEasy.GetMockableViaProxy")]
         public IMockable GetMockableViaProxyContainerFakeItEasy() => this.ContainerFakeItEasy.Resolve<IMockable>();
 
@@ -37,7 +36,6 @@ namespace Tethos.Benchmarks
 
         [Benchmark(Description = "FakeItEasy.ResolveSut")]
         public SystemUnderTest ResolveSutContainerFakeItEasy() => this.ContainerFakeItEasy.Resolve<SystemUnderTest>();
-
 
         [Benchmark(Description = "Moq.GetMockableViaProxy")]
         public IMockable GetMockableViaProxyMoq() => this.ContainerMoq.Resolve<IMockable>();
