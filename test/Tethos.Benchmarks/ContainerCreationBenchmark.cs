@@ -1,4 +1,4 @@
-namespace Tethos.NSubstitute.Tests.Benchmarks
+namespace Tethos.Benchmarks
 {
     using System.Diagnostics.CodeAnalysis;
     using BenchmarkDotNet.Attributes;
