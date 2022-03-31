@@ -5,6 +5,7 @@ sut
 deps
 automocking
 github
+whitelist
 
 # CSharp libraries
 tethos
