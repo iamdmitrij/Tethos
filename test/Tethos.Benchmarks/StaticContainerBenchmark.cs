@@ -2,14 +2,13 @@ namespace Tethos.Benchmarks
 {
     using System.Diagnostics.CodeAnalysis;
     using BenchmarkDotNet.Attributes;
-    using Tethos.FakeItEasy;
     using Tethos.Tests.Common;
 
     public class StaticContainerBenchmark
     {
         [Benchmark(Description = "NSubstitute.StaticResolveSut")]
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Framework requirement")]
-        public SystemUnderTest StaticResolveSutMoq() => AutoMocking.Container.Resolve<SystemUnderTest>();
+        public SystemUnderTest StaticResolveSutMoq() => Moq.AutoMocking.Container.Resolve<SystemUnderTest>();
 
         [Benchmark(Description = "NSubstitute.StaticResolveSut")]
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Framework requirement")]
