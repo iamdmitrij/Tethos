@@ -28,9 +28,8 @@ jobs:
           --results-directory ./coverage"
 
       - name: 📚 Artifact Test Results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: success() || failure()
         with:
           name: test-results
-          path: |
-            coverage/*.trx
+          path: coverage/*.trx
