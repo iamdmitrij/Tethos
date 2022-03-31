@@ -1,0 +1,64 @@
+name: "🏇 Benchmarks"
+
+on:
+  push:
+    tags: ["v[1-9]+.[0-9]+.[0-9]"]
+  pull_request:
+    branches: ["main"]
+    types: ["opened", "synchronize", "reopened"]
+
+jobs:
+  run-benchmarks:
+    name: 🏄 Benchmarks
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Use .NET Core 6.0 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🔬 Test
+        run: "dotnet run
+          --project ./test/Tethos.Benchmarks/\
+          Tethos.Benchmarks.csproj
+          --configuration Release"
+
+      - name: 📑 Aggregate results
+        run: >
+          find .
+          -name 'Tethos.Benchmarks.*.md'
+          -exec cat {} \; 
+          > results.md
+
+      - name: 🏅 Read test results
+        uses: pCYSl5EDgo/cat@master
+        id: benchmark
+        with:
+          path: results.md
+
+      - name: 📬 Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: "github-actions[bot]"
+          body-includes: 🏅 Benchmark test report
+          direction: last
+
+      - name: 📝 Create comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          body: |
+            # 🏅 Benchmark test report
+
+            <details closed><summary>Expand to see results 🔽</summary>
+
+            ${{ steps.benchmark.outputs.text }}
+
+            </details>
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: "replace"
