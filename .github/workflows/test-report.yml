@@ -2,7 +2,7 @@ name: "🏅 Test Report"
 
 on:
   workflow_run:
-    workflows: ["🔄 CI"]
+    workflows: ["🔄 CI", "🏄 Performance"]
     types: ["completed"]
 jobs:
   report:
