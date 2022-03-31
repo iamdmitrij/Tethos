@@ -8,7 +8,7 @@
         [Fact]
         public void Test()
         {
-            true.Should().Be(false);
+            true.Should().Be(true);
         }
     }
 }
