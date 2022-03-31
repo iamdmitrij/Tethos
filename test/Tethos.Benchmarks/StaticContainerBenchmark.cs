@@ -8,7 +8,6 @@ namespace Tethos.Benchmarks
 
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [RankColumn(NumeralSystem.Arabic)]
-    [MemoryDiagnoser]
     public class StaticContainerBenchmark
     {
         [Benchmark(Description = "FakeItEasy.StaticResolveSut")]
