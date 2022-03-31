@@ -9,25 +9,16 @@ namespace Tethos.Benchmarks
     {
         public ContainerBenchmark()
         {
+            this.ContainerFakeItEasy = FakeItEasy.AutoMocking.Create();
             this.ContainerMoq = Moq.AutoMocking.Create();
             this.ContainerNSubstitute = NSubstitute.AutoMocking.Create();
-            this.ContainerFakeItEasy = FakeItEasy.AutoMocking.Create();
         }
+
+        public IAutoMockingContainer ContainerFakeItEasy { get; }
 
         public IAutoMockingContainer ContainerMoq { get; }
 
         public IAutoMockingContainer ContainerNSubstitute { get; }
-
-        public IAutoMockingContainer ContainerFakeItEasy { get; }
-
-        [Benchmark(Description = "NSubstitute.GetMockableViaProxy")]
-        public IMockable GetMockableViaProxyNSubstitute() => this.ContainerNSubstitute.Resolve<IMockable>();
-
-        [Benchmark(Description = "NSubstitute.ResolveFromSut")]
-        public IMockable ResolveFromSutNSubstitute() => this.ContainerNSubstitute.ResolveFrom<SystemUnderTest, IMockable>();
-
-        [Benchmark(Description = "NSubstitute.ResolveSut")]
-        public SystemUnderTest ResolveSutNSubstituteNSubstitute() => this.ContainerNSubstitute.Resolve<SystemUnderTest>();
 
         [Benchmark(Description = "FakeItEasy.GetMockableViaProxy")]
         public IMockable GetMockableViaProxyContainerFakeItEasy() => this.ContainerFakeItEasy.Resolve<IMockable>();
@@ -46,5 +37,14 @@ namespace Tethos.Benchmarks
 
         [Benchmark(Description = "Moq.ResolveSut")]
         public SystemUnderTest ResolveSutMoq() => this.ContainerMoq.Resolve<SystemUnderTest>();
+
+        [Benchmark(Description = "NSubstitute.GetMockableViaProxy")]
+        public IMockable GetMockableViaProxyNSubstitute() => this.ContainerNSubstitute.Resolve<IMockable>();
+
+        [Benchmark(Description = "NSubstitute.ResolveFromSut")]
+        public IMockable ResolveFromSutNSubstitute() => this.ContainerNSubstitute.ResolveFrom<SystemUnderTest, IMockable>();
+
+        [Benchmark(Description = "NSubstitute.ResolveSut")]
+        public SystemUnderTest ResolveSutNSubstituteNSubstitute() => this.ContainerNSubstitute.Resolve<SystemUnderTest>();
     }
 }
