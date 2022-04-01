@@ -43,7 +43,7 @@ jobs:
           direction: last
 
       - name: 📝 Create comment
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v2
         with:
           body: "# 🎳 [Stryker]\
             (https://dashboard.stryker-mutator.io/reports/github.com/iamdmitrij/Tethos/\
