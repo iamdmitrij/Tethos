@@ -1,6 +1,7 @@
 ﻿namespace Tethos.PerformanceTests
 {
     using System.Linq;
+    using BenchmarkDotNet.Configs;
     using BenchmarkDotNet.Reports;
     using BenchmarkDotNet.Running;
     using FluentAssertions;
@@ -13,7 +14,7 @@
 
         public CreationBenchmarkTests()
         {
-            this.summary = BenchmarkRunner.Run(typeof(CreationBenchmark));
+            this.summary = BenchmarkRunner.Run(typeof(CreationBenchmark), new DebugBuildConfig());
         }
 
         [Fact]
