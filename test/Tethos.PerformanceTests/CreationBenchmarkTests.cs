@@ -18,6 +18,7 @@
         }
 
         [Fact]
+        [Trait("Type", "Performance")]
         public void CreationBenchmark_Mean_ShouldBeBelow600()
         {
             // Arrange & Act
