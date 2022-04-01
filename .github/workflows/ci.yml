@@ -36,7 +36,7 @@ jobs:
         run: dotnet format --verify-no-changes --no-restore
 
       - name: 📚 Artifact NuGet
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: success()
         with:
           name: nuget-packages
