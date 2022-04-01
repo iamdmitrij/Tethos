@@ -21,13 +21,13 @@ jobs:
 
       - name: 🔟 Resolve Pull Request Reference
         id: pr_number
-        uses: juliangruber/read-file-action@v1.0.0
+        uses: juliangruber/read-file-action@v1
         with:
           path: pr_number.meta
 
       - name: 🔟 Resolve Branch Name
         id: branch
-        uses: juliangruber/read-file-action@v1.0.0
+        uses: juliangruber/read-file-action@v1
         with:
           path: branch.meta
 
