@@ -10,7 +10,7 @@ namespace Tethos.Benchmarks.NonPublicTypes
     [MemoryDiagnoser]
     public class NonPublicTypesCreationBenchmark
     {
-        [Benchmark(Description = "FakeItEasy.NonPublicTypes..CreateContainer")]
+        [Benchmark(Description = "FakeItEasy.NonPublicTypes.CreateContainer")]
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Framework requirement")]
         public FakeItEasy.AutoMockingTest CreateFakeItEasy() => new FakeItEasyAutoMockingTest();
 
