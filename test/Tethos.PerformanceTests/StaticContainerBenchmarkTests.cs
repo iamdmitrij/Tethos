@@ -14,10 +14,10 @@
         {
             // Arrange & Act
             var sut = BenchmarkRunner.Run<CreationBenchmark>();
-            var means = sut.Reports.Select(report => report.ResultStatistics.Mean.ToMicroseconds());
+            var means = sut.Reports.Select(report => report.ResultStatistics.Mean.ToMilliseconds());
 
             // Assert
-            means.Should().OnlyContain(value => value < 100);
+            means.Should().OnlyContain(value => value < 600);
         }
     }
 }
