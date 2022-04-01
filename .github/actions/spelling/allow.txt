@@ -7,6 +7,8 @@ automocking
 github
 whitelist
 diagnoser
+nano
+utils
 
 # CSharp libraries
 tethos
