@@ -23,7 +23,7 @@ jobs:
       - name: 🔬 Test
         run: "dotnet test ./test/Tethos.PerformanceTests/\
           Tethos.PerformanceTests.csproj
-          --configuration Release
+          --configuration Debug
           --logger trx
           --results-directory ./coverage"
 
