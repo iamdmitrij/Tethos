@@ -60,6 +60,7 @@ jobs:
         run: >
           dotnet test ./Tethos.sln
           --configuration Release
+          --filter FullyQualifiedName\!~Tethos.PerformanceTests
           /p:CollectCoverage=true
           /p:CoverletOutputFormat=opencover
           --logger trx
@@ -71,7 +72,7 @@ jobs:
           verbose: true
 
       - name: 📚 Artifact Test Results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: success() || failure()
         with:
           name: test-results

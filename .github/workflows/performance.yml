@@ -8,28 +8,8 @@ on:
     types: ["opened", "synchronize", "reopened"]
 
 jobs:
-  save-metadata:
-    name: 🔽 Save metadata
-    runs-on: ubuntu-latest
-    steps:
-      - name: 📥 Checkout
-        uses: actions/checkout@v2
-
-      - name: 🔟 Save Pull Request Number
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: echo $PR_NUMBER > pr_number.meta
-
-      - name: 📚 Artifact Test Results
-        uses: actions/upload-artifact@v2
-        if: success()
-        with:
-          name: performance-test-results
-          path: "**/*.meta"
-
-  test-moq:
-    name: 🏇 Tethos.Moq
-    needs: save-metadata
+  test-performance:
+    name: 🏇 Performance Tests
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
@@ -41,69 +21,16 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: 🔬 Test
-        run: "dotnet run
-          --project ./test/Performance/Moq\
-          /Tethos.Moq.Tests.Benchmarks/\
-          Tethos.Moq.Tests.Benchmarks.csproj
-          --configuration Release"
+        run: "dotnet test ./test/Tethos.PerformanceTests/\
+          Tethos.PerformanceTests.csproj
+          --configuration Release
+          --logger trx
+          --results-directory ./coverage
+          -- xunit.parallelizeAssembly=true"
 
       - name: 📚 Artifact Test Results
-        uses: actions/upload-artifact@v2
-        if: success()
+        uses: actions/upload-artifact@v3
+        if: success() || failure()
         with:
           name: performance-test-results
-          path: BenchmarkDotNet.Artifacts/results/**
-
-  test-fakeiteasy:
-    name: 🏇 Tethos.FakeItEasy
-    needs: save-metadata
-    runs-on: ubuntu-latest
-    steps:
-      - name: 📥 Checkout
-        uses: actions/checkout@v2
-
-      - name: 🔧 Use .NET Core 6.0 SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 6.0.x
-
-      - name: 🔬 Test
-        run: "dotnet run
-          --project ./test/Performance/FakeItEasy\
-          /Tethos.FakeItEasy.Tests.Benchmarks/\
-          Tethos.FakeItEasy.Tests.Benchmarks.csproj
-          --configuration Release"
-
-      - name: 📚 Artifact Test Results
-        uses: actions/upload-artifact@v2
-        if: success()
-        with:
-          name: performance-test-results
-          path: BenchmarkDotNet.Artifacts/results/**
-
-  test-nsubstitute:
-    name: 🏇 Tethos.NSubstitute
-    needs: save-metadata
-    runs-on: ubuntu-latest
-    steps:
-      - name: 📥 Checkout
-        uses: actions/checkout@v2
-
-      - name: 🔧 Use .NET Core 6.0 SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 6.0.x
-
-      - name: 🔬 Test
-        run: "dotnet run
-          --project ./test/Performance/NSubstitute\
-          /Tethos.NSubstitute.Tests.Benchmarks/\
-          Tethos.NSubstitute.Tests.Benchmarks.csproj
-          --configuration Release"
-
-      - name: 📚 Artifact Test Results
-        uses: actions/upload-artifact@v2
-        if: success()
-        with:
-          name: performance-test-results
-          path: BenchmarkDotNet.Artifacts/results/**
+          path: coverage/*.trx
