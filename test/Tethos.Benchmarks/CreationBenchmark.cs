@@ -8,6 +8,7 @@ namespace Tethos.Benchmarks
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [RankColumn(NumeralSystem.Arabic)]
     [MemoryDiagnoser]
+    [ShortRunJob]
     public class CreationBenchmark
     {
         [Benchmark(Description = "FakeItEasy.CreateContainer")]

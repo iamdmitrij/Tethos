@@ -8,6 +8,7 @@ namespace Tethos.Benchmarks.NonPublicTypes
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [RankColumn(NumeralSystem.Arabic)]
     [MemoryDiagnoser]
+    [ShortRunJob]
     public class NonPublicCreationBenchmark
     {
         [Benchmark(Description = "FakeItEasy.NonPublicTypes.CreateContainer")]
