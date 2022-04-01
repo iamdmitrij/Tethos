@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 🔖 Get branch name
         id: branch-name
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 🔧 Use .NET 6.0 SDK
         uses: actions/setup-dotnet@v1
@@ -87,7 +87,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 🔧 Use .NET 6.0 SDK
         uses: actions/setup-dotnet@v1
@@ -135,7 +135,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 🔧 Use .NET 6.0 SDK
         uses: actions/setup-dotnet@v1
@@ -183,7 +183,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 🔧 Use .NET 6.0 SDK
         uses: actions/setup-dotnet@v1
