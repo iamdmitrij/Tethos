@@ -78,6 +78,13 @@ jobs:
           name: test-results
           path: |
             coverage/*.trx
+
+      - name: 📚 Artifact Test Coverage
+        uses: actions/upload-artifact@v3
+        if: success() || failure()
+        with:
+          name: test-coverage
+          path: |
             **/coverage.opencover.xml
 
   sonar:
@@ -95,6 +102,12 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: test-results
+          path: coverage
+
+      - name: 🔖 Fetch artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: test-coverage
           path: coverage
 
       - name: 🔧 Set up JDK 11
