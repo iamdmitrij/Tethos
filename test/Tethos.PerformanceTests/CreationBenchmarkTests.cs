@@ -13,11 +13,11 @@
         public void CreationBenchmark_Mean_ShouldBeBelow600()
         {
             // Arrange & Act
-            var summary = BenchmarkRunner.Run<CreationBenchmark>();
-            var means = summary.Reports.Select(report => report.ResultStatistics.Mean.ToMilliseconds());
+            var sut = BenchmarkRunner.Run<CreationBenchmark>();
+            var means = sut.Reports.Select(report => report.ResultStatistics.Mean.ToMilliseconds());
 
             // Assert
-            means.Should().OnlyContain(x => x < 600);
+            means.Should().OnlyContain(value => value < 600);
         }
     }
 }
