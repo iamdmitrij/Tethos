@@ -23,9 +23,10 @@ jobs:
       - name: 🔬 Test
         run: "dotnet test ./test/Tethos.PerformanceTests/\
           Tethos.PerformanceTests.csproj
-          --configuration Debug
+          --configuration Release
           --logger trx
-          --results-directory ./coverage"
+          --results-directory ./coverage
+          -- xunit.parallelizeAssembly=true"
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v3
