@@ -8,9 +8,18 @@ jobs:
   report:
     runs-on: ubuntu-latest
     steps:
+      - uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: performance.yml
+          name: test-results
+
+      - uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: ci.yml
+          name: test-results
+
       - uses: dorny/test-reporter@v1
         with:
-          artifact: test-results
           name: 📜 Test Report
-          path: coverage/*.trx
+          path: "**/*.trx"
           reporter: dotnet-trx
