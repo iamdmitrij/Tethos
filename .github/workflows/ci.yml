@@ -92,7 +92,7 @@ jobs:
           fetch-depth: 0
 
       - name: 🔖 Fetch artifact
-        uses: actions/download-artifact@master
+        uses: actions/download-artifact@v3
         with:
           name: test-results
           path: coverage
