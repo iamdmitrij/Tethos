@@ -28,7 +28,7 @@ namespace Tethos.Benchmarks
         public IMockable ResolveFromContainerFakeItEasy() => this.ContainerFakeItEasy.ResolveFrom<SystemUnderTest, IMockable>();
 
         [Benchmark(Description = "Moq.ResolveFrom")]
-        public Mock<IMockable> ResolveFromMoq() => this.ContainerMoq.ResolveFrom<SystemUnderTest, Mock<IMockable>>();
+        public IMockable ResolveFromMoq() => this.ContainerMoq.ResolveFrom<SystemUnderTest, Mock<IMockable>>().Object;
 
         [Benchmark(Description = "NSubstitute.ResolveFrom")]
         public IMockable ResolveFromNSubstitute() => this.ContainerNSubstitute.ResolveFrom<SystemUnderTest, IMockable>();
