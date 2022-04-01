@@ -98,13 +98,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🔖 Fetch artifact
+      - name: 🔖 Fetch test result artifact
         uses: actions/download-artifact@v3
         with:
           name: test-results
-          path: coverage
+          path: results
 
-      - name: 🔖 Fetch artifact
+      - name: 🔖 Fetch test coverage artifact
         uses: actions/download-artifact@v3
         with:
           name: test-coverage
@@ -135,7 +135,7 @@ jobs:
           /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
           /d:sonar.host.url="${{ secrets.SONAR_URL }}"
           /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
-          /d:sonar.cs.vstest.reportsPaths="coverage/*.trx"
+          /d:sonar.cs.vstest.reportsPaths="results/*.trx"
           /d:sonar.coverage.exclusions="test/**, demo/**"
 
       - name: 🔨 Build
