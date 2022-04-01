@@ -145,7 +145,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: ✅ Check spelling
-        uses: check-spelling/check-spelling@v0.0.20-alpha3
+        uses: check-spelling/check-spelling@v0.0.20-alpha4
         with:
           extra_dictionaries: cspell:csharp/csharp.txt
             cspell:companies/companies.txt
