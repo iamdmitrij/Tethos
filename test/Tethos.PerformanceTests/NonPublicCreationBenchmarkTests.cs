@@ -6,14 +6,14 @@
     using Tethos.Benchmarks.NonPublicTypes;
     using Xunit;
 
-    public class NonPublicTypesCreationBenchmarkTests
+    public class NonPublicCreationBenchmarkTests
     {
         [Fact]
         [Trait("Type", "Performance")]
         public void CreationBenchmark_Mean_ShouldBeBelow5000()
         {
             // Arrange & Act
-            var sut = BenchmarkRunner.Run<NonPublicTypesCreationBenchmark>();
+            var sut = BenchmarkRunner.Run<NonPublicCreationBenchmark>();
             var means = sut.Reports.Select(report => report.ResultStatistics.Mean.ToMilliseconds());
 
             // Assert
