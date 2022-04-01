@@ -21,10 +21,10 @@
         public void CreationBenchmark_Mean_ShouldBeBelow600()
         {
             // Arrange & Act
-            var actual = this.summary.Reports.Select(report => report.ResultStatistics.Mean);
+            var means = this.summary.Reports.Select(report => report.ResultStatistics.Mean.ToMilliseconds());
 
             // Assert
-            actual.Should().OnlyContain(x => x < 600);
+            means.Should().OnlyContain(x => x < 600);
         }
     }
 }
