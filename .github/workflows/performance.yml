@@ -21,11 +21,12 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: 🔬 Test
-        run: "dotnet test ./test/Tethos.PerformanceTests/\
-          Tethos.PerformanceTests.csproj
+        run: >
+          dotnet test ./Tethos.sln
           --configuration Release
+          --filter FullyQualifiedName\~Tethos.PerformanceTests
           --logger trx
-          --results-directory ./coverage"
+          --results-directory ./coverage
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v3
