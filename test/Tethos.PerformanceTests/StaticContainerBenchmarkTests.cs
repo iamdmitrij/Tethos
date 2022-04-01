@@ -25,7 +25,7 @@
             var means = this.summary.Reports.Select(report => report.ResultStatistics.Mean.ToMicroseconds());
 
             // Assert
-            means.Should().OnlyContain(x => x < 5);
+            means.Should().OnlyContain(x => x < 100);
         }
     }
 }
