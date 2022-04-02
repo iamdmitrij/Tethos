@@ -1,4 +1,4 @@
-﻿namespace Tethos.PerformanceTests
+﻿namespace Tethos.PerformanceTests.Utils
 {
     public static class TimeUtils
     {

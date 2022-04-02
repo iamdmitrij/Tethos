@@ -4,6 +4,7 @@
     using BenchmarkDotNet.Running;
     using FluentAssertions;
     using Tethos.Benchmarks.NonPublicTypes;
+    using Tethos.PerformanceTests.Utils;
     using Xunit;
 
     public class CreationBenchmarkTests

@@ -4,6 +4,7 @@
     using BenchmarkDotNet.Running;
     using FluentAssertions;
     using Tethos.Benchmarks;
+    using Tethos.PerformanceTests.Utils;
     using Xunit;
 
     public class StaticContainerBenchmarkTests
