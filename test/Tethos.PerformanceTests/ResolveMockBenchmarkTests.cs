@@ -1,6 +1,5 @@
 ﻿namespace Tethos.PerformanceTests
 {
-    using System.Linq;
     using BenchmarkDotNet.Running;
     using FluentAssertions;
     using Tethos.Benchmarks;
