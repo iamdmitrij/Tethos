@@ -16,7 +16,7 @@
         {
             // Act
             var sut = BenchmarkRunner.Run<CreationBenchmark>();
-            var means = sut.Reports.Select(report => report.ResultStatistics.Mean.ToMilliseconds());
+            var means = sut.GetMeansInMilliseconds();
 
             // Assert
             means.Should().OnlyContain(value => value < expected);
