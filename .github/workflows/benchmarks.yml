@@ -15,6 +15,11 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v3
 
+      - name: 🔟 Save Pull Request Number
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: echo $PR_NUMBER > pr_number.meta
+
       - name: 🔧 Use .NET Core 6.0 SDK
         uses: actions/setup-dotnet@v2
         with:
@@ -26,39 +31,10 @@ jobs:
           Tethos.Benchmarks.csproj
           --configuration Release"
 
-      - name: 📑 Aggregate results
-        run: >
-          find .
-          -name 'Tethos.Benchmarks.*.md'
-          -exec cat {} \; 
-          > results.md
-
-      - name: 🏅 Read test results
-        uses: pCYSl5EDgo/cat@master
-        id: benchmark
+      - name: 📚 Publish results
+        uses: actions/upload-artifact@v3
         with:
-          path: results.md
-
-      - name: 📬 Find Comment
-        uses: peter-evans/find-comment@v2
-        id: fc
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-author: "github-actions[bot]"
-          body-includes: 🏅 Benchmark test report
-          direction: last
-
-      - name: 📝 Create comment
-        uses: peter-evans/create-or-update-comment@v2
-        with:
-          body: |
-            # 🏅 Benchmark test report
-
-            <details closed><summary>Expand to see results 🔽</summary>
-
-            ${{ steps.benchmark.outputs.text }}
-
-            </details>
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          edit-mode: "replace"
+          name: benchmark-results
+          path: |
+            **/*.meta
+            BenchmarkDotNet.Artifacts/results/**
