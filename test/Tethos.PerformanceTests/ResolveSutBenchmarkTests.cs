@@ -8,16 +8,17 @@
 
     public class ResolveSutBenchmarkTests
     {
-        [Fact]
+        [Theory]
+        [InlineData(5)]
         [Trait("Type", "Performance")]
-        public void ResolveSutBenchmark_Mean_ShouldBeBelow5()
+        public void ResolveSutBenchmark_Mean_ShouldBeBelowThreshold(int expected)
         {
-            // Arrange & Act
+            // Act
             var sut = BenchmarkRunner.Run<ResolveSutBenchmark>();
             var means = sut.Reports.Select(report => report.ResultStatistics.Mean.ToMicroseconds());
 
             // Assert
-            means.Should().OnlyContain(value => value < 5);
+            means.Should().OnlyContain(value => value < expected);
         }
     }
 }

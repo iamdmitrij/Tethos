@@ -9,7 +9,7 @@ namespace Tethos.Benchmarks.NonPublicTypes
     [RankColumn(NumeralSystem.Arabic)]
     [MemoryDiagnoser]
     [ShortRunJob]
-    public class NonPublicCreationBenchmark
+    public class CreationBenchmark
     {
         [Benchmark(Description = "FakeItEasy.NonPublicTypes.CreateContainer")]
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Framework requirement")]

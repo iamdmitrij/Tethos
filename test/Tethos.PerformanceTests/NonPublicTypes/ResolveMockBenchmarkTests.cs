@@ -1,20 +1,20 @@
-﻿namespace Tethos.PerformanceTests
+﻿namespace Tethos.PerformanceTests.NonPublicTypes
 {
     using System.Linq;
     using BenchmarkDotNet.Running;
     using FluentAssertions;
-    using Tethos.Benchmarks;
+    using Tethos.Benchmarks.NonPublicTypes;
     using Xunit;
 
-    public class ResolveFromBenchmarkTests
+    public class ResolveMockBenchmarkTests
     {
         [Theory]
         [InlineData(5)]
         [Trait("Type", "Performance")]
-        public void ResolveFromBenchmark_Mean_ShouldBeBelowThreshold(int expected)
+        public void NonPublicResolveMockBenchmark_Mean_ShouldBeBelowThreshold(int expected)
         {
             // Act
-            var sut = BenchmarkRunner.Run<ResolveFromBenchmark>();
+            var sut = BenchmarkRunner.Run<ResolveMockBenchmark>();
             var means = sut.Reports.Select(report => report.ResultStatistics.Mean.ToMicroseconds());
 
             // Assert

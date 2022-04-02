@@ -1,17 +1,17 @@
-﻿namespace Tethos.PerformanceTests
+﻿namespace Tethos.PerformanceTests.NonPublicTypes
 {
     using System.Linq;
     using BenchmarkDotNet.Running;
     using FluentAssertions;
-    using Tethos.Benchmarks;
+    using Tethos.Benchmarks.NonPublicTypes;
     using Xunit;
 
-    public class StaticContainerBenchmarkTests
+    public class CreationBenchmarkTests
     {
         [Theory]
-        [InlineData(600)]
+        [InlineData(5000)]
         [Trait("Type", "Performance")]
-        public void StaticContainerBenchmark_Mean_ShouldBeBelowThreshold(int expected)
+        public void CreationBenchmark_Mean_ShouldBeBelowThreshold(int expected)
         {
             // Act
             var sut = BenchmarkRunner.Run<CreationBenchmark>();

@@ -8,9 +8,9 @@ namespace Tethos.Benchmarks.NonPublicTypes
 
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [RankColumn(NumeralSystem.Arabic)]
-    public class NonPublicResolveMockBenchmark
+    public class ResolveMockBenchmark
     {
-        public NonPublicResolveMockBenchmark()
+        public ResolveMockBenchmark()
         {
             this.ContainerFakeItEasy = new FakeItEasyAutoMockingTest().Container;
             this.ContainerMoq = new MoqAutoMockingTest().Container;
