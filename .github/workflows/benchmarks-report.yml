@@ -1,0 +1,63 @@
+name: "🏅 Benchmark Report"
+
+on:
+  workflow_run:
+    workflows: ["🏇 Benchmarks"]
+    types: ["completed"]
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    if: >
+      ${{ github.event.workflow_run.conclusion == 'success'
+      && github.event.workflow_run.event == 'pull_request' }}
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v3
+
+      - uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: benchmarks.yml
+          name: benchmark-results
+
+      - name: 📑 Aggregate results
+        run: >
+          find .
+          -name 'Tethos.Benchmarks.*.md'
+          -exec cat {} \; 
+          > results.md
+
+      - name: 🔟 Resolve Pull Request Reference
+        id: pr_number
+        uses: juliangruber/read-file-action@v1.0.0
+        with:
+          path: pr_number.meta
+
+      - name: 🏅 Read test results
+        uses: pCYSl5EDgo/cat@master
+        id: benchmark
+        with:
+          path: results.md
+
+      - name: 📬 Find Comment
+        uses: peter-evans/find-comment@v2
+        id: fc
+        with:
+          issue-number: ${{ steps.pr_number.outputs.content }}
+          comment-author: "github-actions[bot]"
+          body-includes: 🏅 Benchmark test report
+          direction: last
+
+      - name: 📝 Create comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          body: |
+            # 🏅 Benchmark test report
+
+            <details closed><summary>Expand to see results 🔽</summary>
+
+            ${{ steps.benchmark.outputs.text }}
+
+            </details>
+          issue-number: ${{ steps.pr_number.outputs.content }}
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: "replace"
