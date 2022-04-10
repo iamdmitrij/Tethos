@@ -1,23 +1,24 @@
 ﻿namespace Tethos.PerformanceTests
 {
-    using System.Linq;
     using BenchmarkDotNet.Running;
     using FluentAssertions;
     using Tethos.Benchmarks;
+    using Tethos.PerformanceTests.Utils;
     using Xunit;
 
     public class CreationBenchmarkTests
     {
-        [Fact]
+        [Theory]
+        [InlineData(600)]
         [Trait("Type", "Performance")]
-        public void CreationBenchmark_Mean_ShouldBeBelow600()
+        public void CreationBenchmark_Mean_ShouldBeBelowThreshold(int expected)
         {
-            // Arrange & Act
+            // Act
             var sut = BenchmarkRunner.Run<CreationBenchmark>();
-            var means = sut.Reports.Select(report => report.ResultStatistics.Mean.ToMilliseconds());
+            var means = sut.GetMeansInMilliseconds();
 
             // Assert
-            means.Should().OnlyContain(value => value < 600);
+            means.Should().OnlyContain(value => value < expected);
         }
     }
 }

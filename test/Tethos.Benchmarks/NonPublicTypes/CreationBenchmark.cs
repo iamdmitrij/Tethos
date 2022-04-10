@@ -1,4 +1,4 @@
-namespace Tethos.Benchmarks
+namespace Tethos.Benchmarks.NonPublicTypes
 {
     using System.Diagnostics.CodeAnalysis;
     using BenchmarkDotNet.Attributes;
@@ -11,16 +11,16 @@ namespace Tethos.Benchmarks
     [ShortRunJob]
     public class CreationBenchmark
     {
-        [Benchmark(Description = "FakeItEasy.CreateContainer")]
+        [Benchmark(Description = "FakeItEasy.NonPublicTypes.CreateContainer")]
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Framework requirement")]
-        public void CreateFakeItEasy() => FakeItEasy.AutoMocking.Create();
+        public FakeItEasy.AutoMockingTest CreateFakeItEasy() => new FakeItEasyAutoMockingTest();
 
-        [Benchmark(Description = "Moq.CreateContainer")]
+        [Benchmark(Description = "Moq.NonPublicTypes.CreateContainer")]
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Framework requirement")]
-        public void CreateMoq() => Moq.AutoMocking.Create();
+        public Moq.AutoMockingTest CreateMoq() => new MoqAutoMockingTest();
 
-        [Benchmark(Description = "NSubstitute.CreateContainer")]
+        [Benchmark(Description = "NSubstitute.NonPublicTypes.CreateContainer")]
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Framework requirement")]
-        public void CreateNSubstitute() => NSubstitute.AutoMocking.Create();
+        public NSubstitute.AutoMockingTest CreateNSubstitute() => new NSubstituteAutoMockingTest();
     }
 }

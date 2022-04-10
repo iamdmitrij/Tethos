@@ -1,23 +1,24 @@
 ﻿namespace Tethos.PerformanceTests
 {
-    using System.Linq;
     using BenchmarkDotNet.Running;
     using FluentAssertions;
     using Tethos.Benchmarks;
+    using Tethos.PerformanceTests.Utils;
     using Xunit;
 
     public class ResolveMockBenchmarkTests
     {
-        [Fact]
+        [Theory]
+        [InlineData(5)]
         [Trait("Type", "Performance")]
-        public void ResolveMockBenchmark_Mean_ShouldBeBelow5()
+        public void ResolveMockBenchmark_Mean_ShouldBeBelowThreshold(int expected)
         {
-            // Arrange & Act
+            // Act
             var sut = BenchmarkRunner.Run<ResolveMockBenchmark>();
-            var means = sut.Reports.Select(report => report.ResultStatistics.Mean.ToMicroseconds());
+            var means = sut.GetMeansInMicroseconds();
 
             // Assert
-            means.Should().OnlyContain(value => value < 5);
+            means.Should().OnlyContain(value => value < expected);
         }
     }
 }
