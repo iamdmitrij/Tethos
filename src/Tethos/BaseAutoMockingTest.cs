@@ -21,7 +21,7 @@
         /// </summary>
         protected BaseAutoMockingTest()
         {
-            this.Assemblies = this.GetType().GetRelatedAssemblies();
+            this.Assemblies = this.GetType().GetRelatedAssemblies(this.AutoMockingConfiguration);
             this.Container = (T)new T().Install(this);
         }
 

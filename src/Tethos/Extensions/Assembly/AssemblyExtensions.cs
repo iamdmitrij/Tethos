@@ -7,7 +7,7 @@
 
     internal static class AssemblyExtensions
     {
-        internal static Assembly[] GetRelatedAssemblies(this Type type) =>
+        internal static Assembly[] GetRelatedAssemblies(this Type type, AutoMockingConfiguration configuration) =>
             Assembly.GetAssembly(type).GetDependencies();
 
         /// <summary>

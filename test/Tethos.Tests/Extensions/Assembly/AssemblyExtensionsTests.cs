@@ -14,33 +14,33 @@
     public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
     {
         [Theory]
-        [InlineData(typeof(IMockable))]
-        [InlineData(typeof(Assert))]
-        [InlineData(typeof(Xunit.Abstractions.ITest))]
-        [InlineData(typeof(Moq.IMock<>))]
-        [InlineData(typeof(FluentAssertions.Events.EventMetadata))]
-        [InlineData(typeof(AutoFixture.BehaviorRoot))]
-        [InlineData(typeof(Castle.Core.ParameterModel))]
-        [InlineData(typeof(Castle.Windsor.IWindsorContainer))]
-        [InlineData(typeof(System.Collections.IList))]
-        [InlineData(typeof(System.Collections.IEnumerable))]
-        [InlineData(typeof(Array))]
-        [InlineData(typeof(Enumerable))]
-        [InlineData(typeof(Type))]
-        [InlineData(typeof(BaseAutoResolver))]
-        [InlineData(typeof(TimeoutException))]
-        [InlineData(typeof(Guid))]
-        [InlineData(typeof(Task<>))]
-        [InlineData(typeof(Task<int>))]
-        [InlineData(typeof(int))]
+        [InlineAutoData(typeof(IMockable))]
+        [InlineAutoData(typeof(Assert))]
+        [InlineAutoData(typeof(Xunit.Abstractions.ITest))]
+        [InlineAutoData(typeof(Moq.IMock<>))]
+        [InlineAutoData(typeof(FluentAssertions.Events.EventMetadata))]
+        [InlineAutoData(typeof(AutoFixture.BehaviorRoot))]
+        [InlineAutoData(typeof(Castle.Core.ParameterModel))]
+        [InlineAutoData(typeof(Castle.Windsor.IWindsorContainer))]
+        [InlineAutoData(typeof(System.Collections.IList))]
+        [InlineAutoData(typeof(System.Collections.IEnumerable))]
+        [InlineAutoData(typeof(Array))]
+        [InlineAutoData(typeof(Enumerable))]
+        [InlineAutoData(typeof(Type))]
+        [InlineAutoData(typeof(BaseAutoResolver))]
+        [InlineAutoData(typeof(TimeoutException))]
+        [InlineAutoData(typeof(Guid))]
+        [InlineAutoData(typeof(Task<>))]
+        [InlineAutoData(typeof(Task<int>))]
+        [InlineAutoData(typeof(int))]
         [Trait("Type", "Unit")]
-        public void GetRelatedAssemblies_ShouldLoad(Type type)
+        public void GetRelatedAssemblies_ShouldLoad(Type type, AutoMockingConfiguration configuration)
         {
             // Arrange
             var expected = type.Assembly;
 
             // Act
-            var actual = type.GetRelatedAssemblies();
+            var actual = type.GetRelatedAssemblies(configuration);
 
             // Assert
             actual.Should().Contain(expected);
