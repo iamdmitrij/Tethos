@@ -9,5 +9,7 @@
         /// Toggle to include non-public types into auto-mocking container.
         /// </summary>
         public bool IncludeNonPublicTypes { get; set; }
+
+        public AutoMockingLoadingTypes LoadingMethod { get; set; } = AutoMockingLoadingTypes.All;
     }
 }
