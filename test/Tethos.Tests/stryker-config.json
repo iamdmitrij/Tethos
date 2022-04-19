@@ -5,6 +5,6 @@
     "project-info": { "module": "Tethos" },
     "thresholds": { "high": 90, "low": 80, "break": 70 },
     "verbosity": "trace",
-    "additional-timeout": 40000
+    "additional-timeout": 50000
   }
 }
