@@ -1,13 +1,12 @@
-﻿namespace Tethos.Extensions.Assembly
+﻿namespace Tethos.Extensions.Assembly;
+
+internal class File
 {
-    internal class File
-    {
-        public string Name { get; set; }
+    public string Name { get; set; }
 
-        public string Path { get; set; }
+    public string Path { get; set; }
 
-        public string Extension { get; set; }
+    public string Extension { get; set; }
 
-        public string Directory { get; set; }
-    }
+    public string Directory { get; set; }
 }
