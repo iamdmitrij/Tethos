@@ -1,53 +1,52 @@
-﻿namespace Tethos.FakeItEasy
+﻿namespace Tethos.FakeItEasy;
+
+using System;
+using Castle.Core;
+using Castle.MicroKernel;
+using Castle.MicroKernel.Context;
+using Castle.MicroKernel.Registration;
+using global::FakeItEasy;
+using global::FakeItEasy.Creation;
+using global::FakeItEasy.Sdk;
+using Tethos.Extensions;
+
+/// <inheritdoc />
+internal class AutoResolver : BaseAutoResolver
 {
-    using System;
-    using Castle.Core;
-    using Castle.MicroKernel;
-    using Castle.MicroKernel.Context;
-    using Castle.MicroKernel.Registration;
-    using global::FakeItEasy;
-    using global::FakeItEasy.Creation;
-    using global::FakeItEasy.Sdk;
-    using Tethos.Extensions;
+    /// <inheritdoc cref="BaseAutoResolver" />
+    public AutoResolver(IKernel kernel)
+        : base(kernel)
+    {
+    }
 
     /// <inheritdoc />
-    internal class AutoResolver : BaseAutoResolver
+    public override bool CanResolve(
+        CreationContext context,
+        ISubDependencyResolver contextHandlerResolver,
+        ComponentModel model,
+        DependencyModel dependency) => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
+
+    /// <inheritdoc />
+    public override object MapToMock(MockMapping argument)
     {
-        /// <inheritdoc cref="BaseAutoResolver" />
-        public AutoResolver(IKernel kernel)
-            : base(kernel)
+        var isPlainObject = !Fake.IsFake(argument.TargetObject ?? 0);
+
+        if (isPlainObject)
         {
-        }
-
-        /// <inheritdoc />
-        public override bool CanResolve(
-            CreationContext context,
-            ISubDependencyResolver contextHandlerResolver,
-            ComponentModel model,
-            DependencyModel dependency) => dependency.TargetType.IsClass || base.CanResolve(context, contextHandlerResolver, model, dependency);
-
-        /// <inheritdoc />
-        public override object MapToMock(MockMapping argument)
-        {
-            var isPlainObject = !Fake.IsFake(argument.TargetObject ?? 0);
-
-            if (isPlainObject)
+            Action<IFakeOptions> arguments = argument.TargetType.IsInterface switch
             {
-                Action<IFakeOptions> arguments = argument.TargetType.IsInterface switch
-                {
-                    true => options => _ = options,
-                    false => options => options.WithArgumentsForConstructor(argument.ConstructorArguments.Flatten()),
-                };
-                var mock = Create.Fake(argument.TargetType, arguments);
+                true => options => _ = options,
+                false => options => options.WithArgumentsForConstructor(argument.ConstructorArguments.Flatten()),
+            };
+            var mock = Create.Fake(argument.TargetType, arguments);
 
-                this.Kernel.Register(Component.For(argument.TargetType)
-                    .Instance(mock)
-                    .OverridesExistingRegistration());
+            this.Kernel.Register(Component.For(argument.TargetType)
+                .Instance(mock)
+                .OverridesExistingRegistration());
 
-                return mock;
-            }
-
-            return argument.TargetObject;
+            return mock;
         }
+
+        return argument.TargetObject;
     }
 }
