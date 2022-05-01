@@ -1,5 +1,5 @@
-﻿namespace Tethos.PerformanceTests
-{
+﻿namespace Tethos.PerformanceTests;
+
     using BenchmarkDotNet.Running;
     using FluentAssertions;
     using Tethos.Benchmarks;
@@ -21,4 +21,3 @@
             means.Should().OnlyContain(value => value < expected);
         }
     }
-}

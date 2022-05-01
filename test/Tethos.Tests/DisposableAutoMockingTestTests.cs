@@ -1,23 +1,22 @@
-﻿namespace Tethos.Tests
+﻿namespace Tethos.Tests;
+
+using FluentAssertions;
+using Xunit;
+
+public class DisposableAutoMockingTestTests
 {
-    using FluentAssertions;
-    using Xunit;
-
-    public class DisposableAutoMockingTestTests
+    [Fact]
+    [Trait("Type", "Unit")]
+    public void Dispose_ShouldBeDisposing()
     {
-        [Fact]
-        [Trait("Type", "Unit")]
-        public void Dispose_ShouldBeDisposing()
-        {
-            // Arrange
-            var sut = new DisposableAutoMockingTest();
+        // Arrange
+        var sut = new DisposableAutoMockingTest();
 
-            // Act
-            sut.Dispose();
-            var actual = sut.Disposing;
+        // Act
+        sut.Dispose();
+        var actual = sut.Disposing;
 
-            // Assert
-            actual.Should().BeTrue();
-        }
+        // Assert
+        actual.Should().BeTrue();
     }
 }

@@ -1,29 +1,28 @@
-namespace Tethos.Moq.NUnit.EndToEnd
+namespace Tethos.Moq.NUnit.EndToEnd;
+
+using global::Moq;
+using global::NUnit.Framework;
+using Tethos.Moq;
+using Tethos.Tests.Common;
+
+public class StaticContainer
 {
-    using global::Moq;
-    using global::NUnit.Framework;
-    using Tethos.Moq;
-    using Tethos.Tests.Common;
-
-    public class StaticContainer
+    [Test]
+    [Property("Type", "E2E")]
+    public void Exercise_WithMock_ShouldReturn42()
     {
-        [Test]
-        [Property("Type", "E2E")]
-        public void Exercise_WithMock_ShouldReturn42()
-        {
-            // Arrange
-            var expected = 42;
-            var sut = AutoMocking.Container.Resolve<SystemUnderTest>();
+        // Arrange
+        var expected = 42;
+        var sut = AutoMocking.Container.Resolve<SystemUnderTest>();
 
-            AutoMocking.Container.Resolve<Mock<IMockable>>()
-                .Setup(mock => mock.Get())
-                .Returns(expected);
+        AutoMocking.Container.Resolve<Mock<IMockable>>()
+            .Setup(mock => mock.Get())
+            .Returns(expected);
 
-            // Act
-            var actual = sut.Exercise();
+        // Act
+        var actual = sut.Exercise();
 
-            // Assert
-            Assert.That(actual, Is.EqualTo(expected));
-        }
+        // Assert
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

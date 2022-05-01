@@ -1,13 +1,12 @@
-﻿namespace Tethos.Tests.Attributes
-{
-    using AutoFixture.Xunit2;
-    using Tethos.FakeItEasy.Tests.Attributes;
+﻿namespace Tethos.Tests.Attributes;
 
-    internal class InlineAutoFakeItEasyDataAttribute : InlineAutoDataAttribute
+using AutoFixture.Xunit2;
+using Tethos.FakeItEasy.Tests.Attributes;
+
+internal class InlineAutoFakeItEasyDataAttribute : InlineAutoDataAttribute
+{
+    public InlineAutoFakeItEasyDataAttribute(params object[] objects)
+        : base(new AutoFakeItEasyDataAttribute(), objects)
     {
-        public InlineAutoFakeItEasyDataAttribute(params object[] objects)
-            : base(new AutoFakeItEasyDataAttribute(), objects)
-        {
-        }
     }
 }

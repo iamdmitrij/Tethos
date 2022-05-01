@@ -1,8 +1,7 @@
-namespace Tethos.Benchmarks.NonPublicTypes
+namespace Tethos.Benchmarks.NonPublicTypes;
+
+public class MoqAutoMockingTest : Moq.AutoMockingTest
 {
-    public class MoqAutoMockingTest : Moq.AutoMockingTest
-    {
-        public override AutoMockingConfiguration AutoMockingConfiguration
-            => new() { IncludeNonPublicTypes = true };
-    }
+    public override AutoMockingConfiguration AutoMockingConfiguration
+        => new() { IncludeNonPublicTypes = true };
 }
