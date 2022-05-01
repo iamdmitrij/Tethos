@@ -19,10 +19,10 @@ internal abstract class BaseAutoResolver : ISubDependencyResolver
     /// </summary>
     private readonly Type[] allowedExceptions = new[]
     {
-            typeof(ComponentNotFoundException),
-            typeof(HandlerException),
-            typeof(DependencyResolverException),
-        };
+        typeof(ComponentNotFoundException),
+        typeof(HandlerException),
+        typeof(DependencyResolverException),
+    };
 
     /// <summary>
     /// Initializes a new instance of the <see cref="BaseAutoResolver"/> class.
