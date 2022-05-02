@@ -18,4 +18,3 @@ public class DefaultNonPublicTypesTests : Moq.AutoMockingTest
         sut.Should().Throw<ComponentNotFoundException>();
     }
 }
-
