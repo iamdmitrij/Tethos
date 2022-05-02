@@ -1,45 +1,44 @@
-﻿namespace Tethos.Moq.Tests.AutoMockingTest
+﻿namespace Tethos.Moq.Tests.AutoMockingTest;
+
+using FluentAssertions;
+using global::Moq;
+using Tethos.Moq.Tests.Attributes;
+using Tethos.Tests.Common;
+using Xunit;
+
+public class ProxyObjectTests : Moq.AutoMockingTest
 {
-    using FluentAssertions;
-    using global::Moq;
-    using Tethos.Moq.Tests.Attributes;
-    using Tethos.Tests.Common;
-    using Xunit;
-
-    public class ProxyObjectTests : Moq.AutoMockingTest
+    [Theory]
+    [AutoMoqData]
+    [Trait("Type", "Integration")]
+    public void Resolve_ProxyObject_ShouldBeMock(Mock<IMockable> mock)
     {
-        [Theory]
-        [AutoMoqData]
-        [Trait("Type", "Integration")]
-        public void Resolve_ProxyObject_ShouldBeMock(Mock<IMockable> mock)
-        {
-            // Arrange
-            var expected = mock.GetType();
-            _ = this.Container.Resolve<SystemUnderTest>();
-            var sut = this.Container.Resolve<IMockable>();
+        // Arrange
+        var expected = mock.GetType();
+        _ = this.Container.Resolve<SystemUnderTest>();
+        var sut = this.Container.Resolve<IMockable>();
 
-            // Act
-            var actual = Mock.Get(sut);
+        // Act
+        var actual = Mock.Get(sut);
 
-            // Assert
-            actual.Should().BeOfType(expected);
-        }
+        // Assert
+        actual.Should().BeOfType(expected);
+    }
 
-        [Theory]
-        [AutoMoqData]
-        [Trait("Type", "Integration")]
-        public void Resolve_ProxyObject_ShouldBeMockObject(Mock<IMockable> mock)
-        {
-            // Arrange
-            var expected = mock.Object.GetType();
-            _ = this.Container.Resolve<SystemUnderTest>();
-            var sut = this.Container.Resolve<IMockable>();
+    [Theory]
+    [AutoMoqData]
+    [Trait("Type", "Integration")]
+    public void Resolve_ProxyObject_ShouldBeMockObject(Mock<IMockable> mock)
+    {
+        // Arrange
+        var expected = mock.Object.GetType();
+        _ = this.Container.Resolve<SystemUnderTest>();
+        var sut = this.Container.Resolve<IMockable>();
 
-            // Act
-            var actual = Mock.Get(sut).Object;
+        // Act
+        var actual = Mock.Get(sut).Object;
 
-            // Assert
-            actual.Should().BeOfType(expected);
-        }
+        // Assert
+        actual.Should().BeOfType(expected);
     }
 }

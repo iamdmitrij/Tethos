@@ -1,23 +1,22 @@
-﻿namespace Tethos.FakeItEasy.Tests.AutoMockingTest.Configuration.IncludeNonPublicTypes
+﻿namespace Tethos.FakeItEasy.Tests.AutoMockingTest.Configuration.IncludeNonPublicTypes;
+
+using Castle.MicroKernel;
+using FluentAssertions;
+using Tethos.Tests.Common;
+using Xunit;
+
+public class PropertyNonPublicTypesDisabledTests : FakeItEasy.AutoMockingTest
 {
-    using Castle.MicroKernel;
-    using FluentAssertions;
-    using Tethos.Tests.Common;
-    using Xunit;
+    public override AutoMockingConfiguration AutoMockingConfiguration => new() { IncludeNonPublicTypes = false };
 
-    public class PropertyNonPublicTypesDisabledTests : FakeItEasy.AutoMockingTest
+    [Fact]
+    [Trait("Type", "Integration")]
+    public void Resolve_WithIncludeNonPublicTypesDisabled_ShouldThrowComponentNotFoundException()
     {
-        public override AutoMockingConfiguration AutoMockingConfiguration => new() { IncludeNonPublicTypes = false };
+        // Arrange
+        var sut = () => this.Container.Resolve<InternalSystemUnderTest>();
 
-        [Fact]
-        [Trait("Type", "Integration")]
-        public void Resolve_WithIncludeNonPublicTypesDisabled_ShouldThrowComponentNotFoundException()
-        {
-            // Arrange
-            var sut = () => this.Container.Resolve<InternalSystemUnderTest>();
-
-            // Act & Assert
-            sut.Should().Throw<ComponentNotFoundException>();
-        }
+        // Act & Assert
+        sut.Should().Throw<ComponentNotFoundException>();
     }
 }

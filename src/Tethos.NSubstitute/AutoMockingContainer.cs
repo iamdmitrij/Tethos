@@ -1,9 +1,8 @@
-﻿namespace Tethos.NSubstitute
-{
-    using Castle.Windsor;
+﻿namespace Tethos.NSubstitute;
 
-    /// <inheritdoc cref="IAutoMockingContainer" />
-    public class AutoMockingContainer : WindsorContainer, IAutoMockingContainer
-    {
-    }
+using Castle.Windsor;
+
+/// <inheritdoc cref="IAutoMockingContainer" />
+public class AutoMockingContainer : WindsorContainer, IAutoMockingContainer
+{
 }

@@ -1,19 +1,18 @@
-﻿namespace Tethos.Moq.Tests.Attributes
-{
-    using AutoFixture;
-    using AutoFixture.Xunit2;
+﻿namespace Tethos.Moq.Tests.Attributes;
 
-    internal class AutoMockingContainerDataAttribute : AutoDataAttribute
-    {
-        public AutoMockingContainerDataAttribute()
-            : base(
-            () =>
-            {
-                var fixture = new Fixture();
-                fixture.Register(AutoMocking.Create);
-                return fixture;
-            })
+using AutoFixture;
+using AutoFixture.Xunit2;
+
+internal class AutoMockingContainerDataAttribute : AutoDataAttribute
+{
+    public AutoMockingContainerDataAttribute()
+        : base(
+        () =>
         {
-        }
+            var fixture = new Fixture();
+            fixture.Register(AutoMocking.Create);
+            return fixture;
+        })
+    {
     }
 }

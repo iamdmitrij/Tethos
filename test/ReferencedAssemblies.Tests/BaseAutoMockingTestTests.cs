@@ -1,24 +1,23 @@
-namespace ReferencedAssemblies.Tests
+namespace ReferencedAssemblies.Tests;
+
+using FluentAssertions;
+using Tethos;
+using Tethos.Tests.Common;
+using Xunit;
+
+public class BaseAutoMockingTestTests : BaseAutoMockingTest<AutoMockingContainer>
 {
-    using FluentAssertions;
-    using Tethos;
-    using Tethos.Tests.Common;
-    using Xunit;
-
-    public class BaseAutoMockingTestTests : BaseAutoMockingTest<AutoMockingContainer>
+    [Fact]
+    [Trait("Type", "Integration")]
+    public void SystemUnderTest_Exercise_ShouldMatchValueRange()
     {
-        [Fact]
-        [Trait("Type", "Integration")]
-        public void SystemUnderTest_Exercise_ShouldMatchValueRange()
-        {
-            // Arrange
-            var sut = this.Container.Resolve<SystemUnderTest>();
+        // Arrange
+        var sut = this.Container.Resolve<SystemUnderTest>();
 
-            // Act
-            var actual = sut.Exercise();
+        // Act
+        var actual = sut.Exercise();
 
-            // Assert
-            actual.Should().BeInRange(0, 10);
-        }
+        // Assert
+        actual.Should().BeInRange(0, 10);
     }
 }
