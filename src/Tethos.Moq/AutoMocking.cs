@@ -1,35 +1,34 @@
-﻿namespace Tethos.Moq
+﻿namespace Tethos.Moq;
+
+using System;
+
+/// <summary>
+/// Static entry-point for generating <see cref="IAutoMockingContainer"/> containers used for auto-mocking.
+/// </summary>
+public static class AutoMocking
 {
-    using System;
+    [ThreadStatic]
+    private static Lazy<IAutoMockingContainer> container;
 
     /// <summary>
-    /// Static entry-point for generating <see cref="IAutoMockingContainer"/> containers used for auto-mocking.
+    /// Gets ready to use auto-mocking container.
     /// </summary>
-    public static class AutoMocking
+    public static IAutoMockingContainer Container
     {
-        [ThreadStatic]
-        private static Lazy<IAutoMockingContainer> container;
-
-        /// <summary>
-        /// Gets ready to use auto-mocking container.
-        /// </summary>
-        public static IAutoMockingContainer Container
+        get
         {
-            get
+            if (container == null)
             {
-                if (container == null)
-                {
-                    container = new(() => new AutoMockingTest().Container);
-                }
-
-                return container.Value;
+                container = new(() => new AutoMockingTest().Container);
             }
-        }
 
-        /// <summary>
-        /// Creates ready to use auto-mocking container.
-        /// </summary>
-        /// <returns>Auto-mocking container.</returns>
-        public static IAutoMockingContainer Create() => new AutoMockingTest().Container;
+            return container.Value;
+        }
     }
+
+    /// <summary>
+    /// Creates ready to use auto-mocking container.
+    /// </summary>
+    /// <returns>Auto-mocking container.</returns>
+    public static IAutoMockingContainer Create() => new AutoMockingTest().Container;
 }

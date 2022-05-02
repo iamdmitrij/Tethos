@@ -1,37 +1,36 @@
-﻿namespace Tethos.FakeItEasy.Tests.AutoMockingTest
+﻿namespace Tethos.FakeItEasy.Tests.AutoMockingTest;
+
+using AutoFixture.Xunit2;
+using global::FakeItEasy;
+using Tethos.FakeItEasy.Tests.AutoMockingTest.SUT;
+using Xunit;
+
+public class InheritedAutoMockingTestTests
 {
-    using AutoFixture.Xunit2;
-    using global::FakeItEasy;
-    using Tethos.FakeItEasy.Tests.AutoMockingTest.SUT;
-    using Xunit;
-
-    public class InheritedAutoMockingTestTests
+    [Theory]
+    [AutoData]
+    [Trait("Type", "Unit")]
+    public void Dispose_ShouldDisposeContainer(InheritedAutoMockingTest sut)
     {
-        [Theory]
-        [AutoData]
-        [Trait("Type", "Unit")]
-        public void Dispose_ShouldDisposeContainer(InheritedAutoMockingTest sut)
-        {
-            // Act
-            sut.Dispose();
+        // Act
+        sut.Dispose();
 
-            // Assert
-            A.CallTo(() => sut.Container.Dispose()).MustHaveHappened();
-        }
+        // Assert
+        A.CallTo(() => sut.Container.Dispose()).MustHaveHappened();
+    }
 
-        [Theory]
-        [AutoData]
-        [Trait("Type", "Unit")]
-        public void Dispose_NullContainer_ShouldNotDisposeContainer(InheritedAutoMockingTest sut)
-        {
-            // Arrange
-            sut.Container = null;
+    [Theory]
+    [AutoData]
+    [Trait("Type", "Unit")]
+    public void Dispose_NullContainer_ShouldNotDisposeContainer(InheritedAutoMockingTest sut)
+    {
+        // Arrange
+        sut.Container = null;
 
-            // Act
-            sut.Dispose();
+        // Act
+        sut.Dispose();
 
-            // Assert
-            A.CallTo(() => sut.Proxy.Dispose()).MustNotHaveHappened();
-        }
+        // Assert
+        A.CallTo(() => sut.Proxy.Dispose()).MustNotHaveHappened();
     }
 }

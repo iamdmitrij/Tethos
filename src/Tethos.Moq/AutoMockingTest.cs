@@ -1,28 +1,27 @@
-﻿namespace Tethos.Moq
+﻿namespace Tethos.Moq;
+
+using Castle.MicroKernel.Registration;
+using Castle.MicroKernel.SubSystems.Configuration;
+using Castle.Windsor;
+using global::Moq;
+
+/// <summary>
+/// <see cref="Tethos"/> auto-mocking system using <see cref="Moq"/> to inject mocks.
+/// </summary>
+public class AutoMockingTest : BaseAutoMockingTest<AutoMockingContainer>
 {
-    using Castle.MicroKernel.Registration;
-    using Castle.MicroKernel.SubSystems.Configuration;
-    using Castle.Windsor;
-    using global::Moq;
+    internal IRegistration DiamondTypeComponent { get; } = Component.For(typeof(Mock<>));
 
-    /// <summary>
-    /// <see cref="Tethos"/> auto-mocking system using <see cref="Moq"/> to inject mocks.
-    /// </summary>
-    public class AutoMockingTest : BaseAutoMockingTest<AutoMockingContainer>
+    /// <inheritdoc />
+    public override void Install(IWindsorContainer container, IConfigurationStore store)
     {
-        internal IRegistration DiamondTypeComponent { get; } = Component.For(typeof(Mock<>));
+        this.AutoResolver = new AutoResolver(container.Kernel);
 
-        /// <inheritdoc />
-        public override void Install(IWindsorContainer container, IConfigurationStore store)
-        {
-            this.AutoResolver = new AutoResolver(container.Kernel);
+        container.Kernel.Resolver.AddSubResolver(
+            this.AutoResolver);
 
-            container.Kernel.Resolver.AddSubResolver(
-                this.AutoResolver);
+        container.Register(this.DiamondTypeComponent);
 
-            container.Register(this.DiamondTypeComponent);
-
-            base.Install(container, store);
-        }
+        base.Install(container, store);
     }
 }

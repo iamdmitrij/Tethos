@@ -1,31 +1,30 @@
-﻿namespace Tethos.Moq.Tests.AutoMockingTest.Configuration.IncludeNonPublicTypes
+﻿namespace Tethos.Moq.Tests.AutoMockingTest.Configuration.IncludeNonPublicTypes;
+
+using AutoFixture.Xunit2;
+using FluentAssertions;
+using global::Moq;
+using Tethos.Tests.Common;
+using Xunit;
+
+public class PropertyNonPublicTypesEnabledTests : Moq.AutoMockingTest
 {
-    using AutoFixture.Xunit2;
-    using FluentAssertions;
-    using global::Moq;
-    using Tethos.Tests.Common;
-    using Xunit;
+    public override AutoMockingConfiguration AutoMockingConfiguration => new() { IncludeNonPublicTypes = true };
 
-    public class PropertyNonPublicTypesEnabledTests : Moq.AutoMockingTest
+    [Theory]
+    [AutoData]
+    [Trait("Type", "Integration")]
+    public void Resolve_WithIncludeNonPublicTypesEnabled_ShouldMatch(int expected)
     {
-        public override AutoMockingConfiguration AutoMockingConfiguration => new() { IncludeNonPublicTypes = true };
+        // Arrange
+        var sut = this.Container.Resolve<InternalSystemUnderTest>();
+        var mock = this.Container.Resolve<Mock<IMockable>>()
+            .Setup(m => m.Get())
+            .Returns(expected);
 
-        [Theory]
-        [AutoData]
-        [Trait("Type", "Integration")]
-        public void Resolve_WithIncludeNonPublicTypesEnabled_ShouldMatch(int expected)
-        {
-            // Arrange
-            var sut = this.Container.Resolve<InternalSystemUnderTest>();
-            var mock = this.Container.Resolve<Mock<IMockable>>()
-                .Setup(m => m.Get())
-                .Returns(expected);
+        // Act
+        var actual = sut.Exercise();
 
-            // Act
-            var actual = sut.Exercise();
-
-            // Assert
-            actual.Should().Be(expected);
-        }
+        // Assert
+        actual.Should().Be(expected);
     }
 }

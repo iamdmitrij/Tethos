@@ -1,21 +1,20 @@
-﻿namespace Tethos.NSubstitute.Tests.AutoMockingTest.Configuration.IncludeNonPublicTypes
+﻿namespace Tethos.NSubstitute.Tests.AutoMockingTest.Configuration.IncludeNonPublicTypes;
+
+using Castle.MicroKernel;
+using FluentAssertions;
+using Tethos.Tests.Common;
+using Xunit;
+
+public class DefaultNonPublicTypesTests : NSubstitute.AutoMockingTest
 {
-    using Castle.MicroKernel;
-    using FluentAssertions;
-    using Tethos.Tests.Common;
-    using Xunit;
-
-    public class DefaultNonPublicTypesTests : NSubstitute.AutoMockingTest
+    [Fact]
+    [Trait("Type", "Integration")]
+    public void Resolve_WithDefaultIncludeNonPublicTypesConfiguration_ShouldThrowComponentNotFoundException()
     {
-        [Fact]
-        [Trait("Type", "Integration")]
-        public void Resolve_WithDefaultIncludeNonPublicTypesConfiguration_ShouldThrowComponentNotFoundException()
-        {
-            // Arrange
-            var sut = () => this.Container.Resolve<InternalSystemUnderTest>();
+        // Arrange
+        var sut = () => this.Container.Resolve<InternalSystemUnderTest>();
 
-            // Act & Assert
-            sut.Should().Throw<ComponentNotFoundException>();
-        }
+        // Act & Assert
+        sut.Should().Throw<ComponentNotFoundException>();
     }
 }
