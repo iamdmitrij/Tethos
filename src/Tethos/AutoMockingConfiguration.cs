@@ -10,5 +10,8 @@ public class AutoMockingConfiguration
     /// </summary>
     public bool IncludeNonPublicTypes { get; set; }
 
+    /// <summary>
+    /// TODO: Describe property
+    /// </summary>
     public AutoMockingLoadingTypes LoadingMethod { get; set; } = AutoMockingLoadingTypes.All;
 }

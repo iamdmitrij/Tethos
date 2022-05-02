@@ -7,6 +7,9 @@ using System.Reflection;
 
 internal static class AssemblyExtensions
 {
+    /// <summary>
+    /// TODO: Describe function
+    /// </summary>
     internal static Assembly[] GetRelatedAssemblies(this Type type, AutoMockingConfiguration configuration) =>
         Assembly.GetAssembly(type).GetDependencies();
 
