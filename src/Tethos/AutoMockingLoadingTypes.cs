@@ -1,11 +1,10 @@
-﻿namespace Tethos
+namespace Tethos;
+
+/// <summary>
+/// TODO: Add enum docs
+/// </summary>
+public enum AutoMockingLoadingTypes
 {
-    /// <summary>
-    /// TODO: Add enum docs
-    /// </summary>
-    public enum AutoMockingLoadingTypes
-    {
-        All,
-        ReferencedAssemblies,
-    }
+    All,
+    ReferencedAssemblies,
 }
