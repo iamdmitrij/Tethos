@@ -1,7 +1,7 @@
 namespace Tethos;
 
 /// <summary>
-/// TODO: Add enum docs
+/// Available assembly loading type methods.
 /// </summary>
 public enum AutoMockingLoadingTypes
 {

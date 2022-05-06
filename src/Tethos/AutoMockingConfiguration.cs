@@ -11,7 +11,7 @@ public class AutoMockingConfiguration
     public bool IncludeNonPublicTypes { get; set; }
 
     /// <summary>
-    /// TODO: Describe property
+    /// Assembly loading type method selection.
     /// </summary>
     public AutoMockingLoadingTypes LoadingMethod { get; set; } = AutoMockingLoadingTypes.All;
 }
