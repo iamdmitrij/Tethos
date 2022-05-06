@@ -7,4 +7,5 @@ public enum AutoMockingLoadingTypes
 {
     All,
     ReferencedAssemblies,
+    PatternFromSourceAssembly,
 }
