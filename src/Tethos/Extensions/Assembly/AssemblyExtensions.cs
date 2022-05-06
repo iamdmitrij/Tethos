@@ -8,7 +8,7 @@ using System.Reflection;
 internal static class AssemblyExtensions
 {
     /// <summary>
-    /// Retrives related assemblies.
+    /// Retrieves related assemblies.
     /// </summary>
     internal static Assembly[] GetAssemblies(
         this Type type,
