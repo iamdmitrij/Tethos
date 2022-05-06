@@ -34,29 +34,31 @@
         [InlineAutoData(typeof(Task<int>))]
         [InlineAutoData(typeof(int))]
         [Trait("Type", "Unit")]
-        public void GetRelatedAssemblies_ShouldLoad(Type type, AutoMockingConfiguration configuration)
+        public void GetAssemblies_ShouldLoadAssembly(Type type, AutoMockingConfiguration configuration)
         {
             // Arrange
             var expected = type.Assembly;
 
             // Act
-            var actual = type.GetRelatedAssemblies(configuration);
+            var actual = type.GetAssemblies(configuration);
 
             // Assert
             actual.Should().Contain(expected);
         }
 
-        [Fact]
+        [Theory(Skip = "Use different assembly")]
+        [AutoData]
         [Trait("Type", "Unit")]
-        public void GetDependencies_UsingMicrosoftCorLib_ShouldLoad()
+        public void GetAssemblies_UsingMicrosoftCorLib_ShouldLoad(AutoMockingConfiguration configuration)
         {
             // Arrange
             var assemblyName = "mscorlib";
             var assembly = Assembly.Load(assemblyName);
             var expected = new[] { assembly };
+            var type = assembly.DefinedTypes.First();
 
             // Act
-            var actual = assembly.GetDependencies();
+            var actual = type.GetAssemblies(configuration);
 
             // Assert
             actual.Should().Contain(expected);
@@ -65,13 +67,17 @@
         [Theory]
         [ClassData(typeof(AssemblyTheoryData))]
         [Trait("Type", "Unit")]
-        public void GetDependencies_ShouldLoad(string assemblyName, IEnumerable<string> expected)
+        public void GetAssemblies_ShouldLoad(
+            string assemblyName,
+            IEnumerable<string> expected,
+            AutoMockingConfiguration configuration)
         {
             // Arrange
             var assembly = Assembly.LoadFrom(assemblyName);
+            var type = assembly.DefinedTypes.First();
 
             // Act
-            var actual = assembly.GetDependencies().Select(dependency => dependency.GetName().Name);
+            var actual = type.GetAssemblies(configuration).Select(dependency => dependency.GetName().Name);
 
             // Assert
             actual.Should().BeEquivalentTo(expected);

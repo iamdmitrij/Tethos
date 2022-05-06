@@ -21,7 +21,7 @@ public abstract class BaseAutoMockingTest<T> : IWindsorInstaller, IDisposable
     /// </summary>
     protected BaseAutoMockingTest()
     {
-        this.Assemblies = this.GetType().GetRelatedAssemblies(this.AutoMockingConfiguration);
+        this.Assemblies = this.GetType().GetAssemblies(this.AutoMockingConfiguration);
         this.Container = (T)new T().Install(this);
     }
 
