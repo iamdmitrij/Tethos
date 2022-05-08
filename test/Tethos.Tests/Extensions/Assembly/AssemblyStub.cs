@@ -1,10 +1,9 @@
-﻿namespace Tethos.Tests.Extensions.Assembly
-{
-    using System;
-    using System.Reflection;
+﻿namespace Tethos.Tests.Extensions.Assembly;
 
-    public class AssemblyStub : Assembly
-    {
-        public override string FullName => $"{Guid.NewGuid()}";
-    }
+using System;
+using System.Reflection;
+
+public class AssemblyStub : Assembly
+{
+    public override string FullName => $"{Guid.NewGuid()}";
 }

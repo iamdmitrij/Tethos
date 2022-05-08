@@ -1,18 +1,17 @@
-﻿namespace Tethos.PerformanceTests.Utils
+﻿namespace Tethos.PerformanceTests.Utils;
+
+using System.Linq;
+using BenchmarkDotNet.Reports;
+
+public static class BenchmarkUtils
 {
-    using System.Linq;
-    using BenchmarkDotNet.Reports;
+    public static double[] GetMeansInMilliseconds(this Summary summary) =>
+        summary.Reports
+            .Select(report => report.ResultStatistics.Mean.ToMilliseconds())
+            .ToArray();
 
-    public static class BenchmarkUtils
-    {
-        public static double[] GetMeansInMilliseconds(this Summary summary) =>
-            summary.Reports
-                .Select(report => report.ResultStatistics.Mean.ToMilliseconds())
-                .ToArray();
-
-        public static double[] GetMeansInMicroseconds(this Summary summary) =>
-            summary.Reports
-                .Select(report => report.ResultStatistics.Mean.ToMicroseconds())
-                .ToArray();
-    }
+    public static double[] GetMeansInMicroseconds(this Summary summary) =>
+        summary.Reports
+            .Select(report => report.ResultStatistics.Mean.ToMicroseconds())
+            .ToArray();
 }

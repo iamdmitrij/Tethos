@@ -1,47 +1,46 @@
-﻿namespace Tethos.Xunit.Demo
+﻿namespace Tethos.Xunit.Demo;
+
+using System;
+using global::FakeItEasy;
+using global::Xunit;
+using Tethos.FakeItEasy;
+using Tethos.Tests.Common;
+
+public class ContainerInjected : IDisposable
 {
-    using System;
-    using global::FakeItEasy;
-    using global::Xunit;
-    using Tethos.FakeItEasy;
-    using Tethos.Tests.Common;
-
-    public class ContainerInjected : IDisposable
+    public ContainerInjected(IAutoMockingContainer container)
     {
-        public ContainerInjected(IAutoMockingContainer container)
-        {
-            this.Container = container;
-        }
+        this.Container = container;
+    }
 
-        public IAutoMockingContainer Container { get; }
+    public IAutoMockingContainer Container { get; }
 
-        [Fact]
-        [Trait("Type", "Demo")]
-        public void Exercise_WithMock_ShouldReturn42()
-        {
-            // Arrange
-            var expected = 42;
-            var sut = this.Container.Resolve<SystemUnderTest>();
-            var mock = this.Container.Resolve<IMockable>();
+    [Fact]
+    [Trait("Type", "Demo")]
+    public void Exercise_WithMock_ShouldReturn42()
+    {
+        // Arrange
+        var expected = 42;
+        var sut = this.Container.Resolve<SystemUnderTest>();
+        var mock = this.Container.Resolve<IMockable>();
 
-            A.CallTo(() => mock.Get()).Returns(expected);
+        A.CallTo(() => mock.Get()).Returns(expected);
 
-            // Act
-            var actual = sut.Exercise();
+        // Act
+        var actual = sut.Exercise();
 
-            // Assert
-            Assert.Equal(actual, expected);
-        }
+        // Assert
+        Assert.Equal(actual, expected);
+    }
 
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+    public void Dispose()
+    {
+        this.Dispose(true);
+        GC.SuppressFinalize(this);
+    }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            this.Container?.Dispose();
-        }
+    protected virtual void Dispose(bool disposing)
+    {
+        this.Container?.Dispose();
     }
 }
