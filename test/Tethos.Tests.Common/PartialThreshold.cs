@@ -1,26 +1,25 @@
-﻿namespace Tethos.Tests.Common
+﻿namespace Tethos.Tests.Common;
+
+using System;
+
+public partial class PartialThreshold : AbstractThreshold
 {
-    using System;
-
-    public partial class PartialThreshold : AbstractThreshold
+    public PartialThreshold(bool enabled)
+        : base(enabled)
     {
-        public PartialThreshold(bool enabled)
-            : base(enabled)
-        {
-            this.CreatedOn = DateTime.UtcNow;
-        }
-
-        public DateTime CreatedOn { get; }
+        this.CreatedOn = DateTime.UtcNow;
     }
 
-    public partial class PartialThreshold : AbstractThreshold, IDisposable
-    {
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+    public DateTime CreatedOn { get; }
+}
 
-        protected virtual void Dispose(bool disposing) => throw new NotImplementedException();
+public partial class PartialThreshold : AbstractThreshold, IDisposable
+{
+    public void Dispose()
+    {
+        this.Dispose(true);
+        GC.SuppressFinalize(this);
     }
+
+    protected virtual void Dispose(bool disposing) => throw new NotImplementedException();
 }

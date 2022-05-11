@@ -1,15 +1,14 @@
-﻿namespace Tethos.Tests.Extensions
+﻿namespace Tethos.Tests.Extensions;
+
+using Castle.MicroKernel.Registration;
+using Tethos.Tests.Extensions.Assembly;
+
+public class FromAssemblyDescriptorStub : FromAssemblyDescriptor
 {
-    using Castle.MicroKernel.Registration;
-    using Tethos.Tests.Extensions.Assembly;
-
-    public class FromAssemblyDescriptorStub : FromAssemblyDescriptor
+    public FromAssemblyDescriptorStub()
+        : base(new AssemblyStub(), _ => true)
     {
-        public FromAssemblyDescriptorStub()
-            : base(new AssemblyStub(), _ => true)
-        {
-        }
-
-        public bool IncludesNonPublicTypes => this.nonPublicTypes;
     }
+
+    public bool IncludesNonPublicTypes => this.nonPublicTypes;
 }
