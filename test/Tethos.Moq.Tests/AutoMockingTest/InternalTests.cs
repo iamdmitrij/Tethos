@@ -1,7 +1,6 @@
 ﻿namespace Tethos.Moq.Tests.AutoMockingTest;
 
 using AutoFixture.Xunit2;
-using Castle.DynamicProxy.Generators;
 using FluentAssertions;
 using global::Moq;
 using Tethos.Extensions;
@@ -52,24 +51,24 @@ public class InternalTests : Moq.AutoMockingTest
 
     [Fact]
     [Trait("Type", "Integration")]
-    public void Resolve_WeakNamedAssembly_ShouldThrowGeneratorException()
+    public void Resolve_WeakNamedAssembly_ShouldThrowArgumentException()
     {
         // Arrange
         var sut = () => this.Container.Resolve<Tethos.Tests.Common.WeakNamed.SystemUnderTest>();
 
         // Act & Assert
-        sut.Should().Throw<GeneratorException>();
+        sut.Should().Throw<ArgumentException>();
     }
 
     [Fact]
     [Trait("Type", "Integration")]
-    public void ResolveFrom_WeakNamedAssembly_ShouldThrowGeneratorException()
+    public void ResolveFrom_WeakNamedAssembly_ShouldThrowArgumentException()
     {
         // Arrange
         var sut = () => this.Container.ResolveFrom<Tethos.Tests.Common.WeakNamed.SystemUnderTest, Mock<Tethos.Tests.Common.WeakNamed.IMockable>>();
 
         // Act & Assert
-        sut.Should().Throw<GeneratorException>();
+        sut.Should().Throw<ArgumentException>();
     }
 
     [Fact]
