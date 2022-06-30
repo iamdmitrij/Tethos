@@ -9,7 +9,7 @@ using Xunit;
 public class StaticContainerBenchmarkTests
 {
     [Theory]
-    [InlineData(600)]
+    [InlineData(800)]
     [Trait("Type", "Performance")]
     public void StaticContainerBenchmark_Mean_ShouldBeBelowThreshold(int expected)
     {
