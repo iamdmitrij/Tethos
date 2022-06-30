@@ -14,49 +14,51 @@ using Xunit;
 public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
 {
     [Theory]
-    [InlineData(typeof(IMockable))]
-    [InlineData(typeof(Assert))]
-    [InlineData(typeof(Xunit.Abstractions.ITest))]
-    [InlineData(typeof(Moq.IMock<>))]
-    [InlineData(typeof(FluentAssertions.Events.EventMetadata))]
-    [InlineData(typeof(AutoFixture.BehaviorRoot))]
-    [InlineData(typeof(Castle.Core.ParameterModel))]
-    [InlineData(typeof(Castle.Windsor.IWindsorContainer))]
-    [InlineData(typeof(System.Collections.IList))]
-    [InlineData(typeof(System.Collections.IEnumerable))]
-    [InlineData(typeof(Array))]
-    [InlineData(typeof(Enumerable))]
-    [InlineData(typeof(Type))]
-    [InlineData(typeof(BaseAutoResolver))]
-    [InlineData(typeof(TimeoutException))]
-    [InlineData(typeof(Guid))]
-    [InlineData(typeof(Task<>))]
-    [InlineData(typeof(Task<int>))]
-    [InlineData(typeof(int))]
+    [InlineAutoData(typeof(IMockable))]
+    [InlineAutoData(typeof(Assert))]
+    [InlineAutoData(typeof(Xunit.Abstractions.ITest))]
+    [InlineAutoData(typeof(Moq.IMock<>))]
+    [InlineAutoData(typeof(FluentAssertions.Events.EventMetadata))]
+    [InlineAutoData(typeof(AutoFixture.BehaviorRoot))]
+    [InlineAutoData(typeof(Castle.Core.ParameterModel))]
+    [InlineAutoData(typeof(Castle.Windsor.IWindsorContainer))]
+    [InlineAutoData(typeof(System.Collections.IList))]
+    [InlineAutoData(typeof(System.Collections.IEnumerable))]
+    [InlineAutoData(typeof(Array))]
+    [InlineAutoData(typeof(Enumerable))]
+    [InlineAutoData(typeof(Type))]
+    [InlineAutoData(typeof(BaseAutoResolver))]
+    [InlineAutoData(typeof(TimeoutException))]
+    [InlineAutoData(typeof(Guid))]
+    [InlineAutoData(typeof(Task<>))]
+    [InlineAutoData(typeof(Task<int>))]
+    [InlineAutoData(typeof(int))]
     [Trait("Type", "Unit")]
-    public void GetRelatedAssemblies_ShouldLoad(Type type)
+    public void GetAssemblies_ShouldLoadAssembly(Type type, AutoMockingConfiguration configuration)
     {
         // Arrange
         var expected = type.Assembly;
 
         // Act
-        var actual = type.GetRelatedAssemblies();
+        var actual = type.GetAssemblies(configuration);
 
         // Assert
         actual.Should().Contain(expected);
     }
 
-    [Fact]
+    [Theory(Skip = "Use different assembly")]
+    [AutoData]
     [Trait("Type", "Unit")]
-    public void GetDependencies_UsingMicrosoftCorLib_ShouldLoad()
+    public void GetAssemblies_UsingMicrosoftCorLib_ShouldLoad(AutoMockingConfiguration configuration)
     {
         // Arrange
         var assemblyName = "mscorlib";
         var assembly = Assembly.Load(assemblyName);
         var expected = new[] { assembly };
+        var type = assembly.DefinedTypes.First();
 
         // Act
-        var actual = assembly.GetDependencies();
+        var actual = type.GetAssemblies(configuration);
 
         // Assert
         actual.Should().Contain(expected);
@@ -65,13 +67,17 @@ public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
     [Theory]
     [ClassData(typeof(AssemblyTheoryData))]
     [Trait("Type", "Unit")]
-    public void GetDependencies_ShouldLoad(string assemblyName, IEnumerable<string> expected)
+    public void GetAssemblies_ShouldLoad(
+        string assemblyName,
+        IEnumerable<string> expected,
+        AutoMockingConfiguration configuration)
     {
         // Arrange
         var assembly = Assembly.LoadFrom(assemblyName);
+        var type = assembly.DefinedTypes.First();
 
         // Act
-        var actual = assembly.GetDependencies().Select(dependency => dependency.GetName().Name);
+        var actual = type.GetAssemblies(configuration).Select(dependency => dependency.GetName().Name);
 
         // Assert
         actual.Should().BeEquivalentTo(expected);

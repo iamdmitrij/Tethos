@@ -7,18 +7,29 @@ using System.Reflection;
 
 internal static class AssemblyExtensions
 {
-    internal static Assembly[] GetRelatedAssemblies(this Type type) =>
-        Assembly.GetAssembly(type).GetDependencies();
-
     /// <summary>
-    /// TODO: Create assembly loading configuration
+    /// Retrieves related assemblies.
     /// </summary>
-    internal static Assembly[] GetDependencies(
-        this Assembly rootAssembly) => AppDomain.CurrentDomain.BaseDirectory.GetFiles()
-            .FilterAssemblies(new[] { ".dll", ".exe" }, rootAssembly)
+    internal static Assembly[] GetAssemblies(
+        this Type type,
+        AutoMockingConfiguration configuration)
+    {
+        var rootAssembly = Assembly.GetAssembly(type);
+        var appDomain = AppDomain.CurrentDomain.BaseDirectory.GetFiles();
+
+        var assemblies = configuration.LoadingMethod switch
+        {
+            AutoMockingLoadingTypes.All => appDomain.FilterAssemblies(new[] { ".dll", ".exe" }, rootAssembly),
+            AutoMockingLoadingTypes.PatternFromSourceAssembly => appDomain.FilterAssemblies(rootAssembly.FullName.GetPattern(), new[] { ".dll", ".exe" }, rootAssembly),
+            AutoMockingLoadingTypes.ReferencedAssemblies => appDomain.ElseLoadReferencedAssemblies(rootAssembly),
+            _ => throw new NotImplementedException(),
+        };
+
+        return assemblies
             .ExcludeRefDirectory()
             .LoadAssemblies(rootAssembly)
             .ToArray();
+    }
 
     internal static IEnumerable<File> ElseLoadReferencedAssemblies(
         this IEnumerable<File> assemblies,
