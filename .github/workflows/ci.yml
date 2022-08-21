@@ -167,7 +167,7 @@ jobs:
             cspell:filetypes/filetypes.txt
             cspell:fullstack/fullstack.txt
             cspell:html/html.txt
-            cspell:software-terms/software-terms.txt
+            cspell:software-terms/softwareTerms.txt
   lint-yml:
     name: 🐞 YML
     runs-on: ubuntu-latest
