@@ -155,21 +155,42 @@ jobs:
 
   spellcheck:
     name: 🔦 Spellcheck
+    permissions:
+      contents: read
+      pull-requests: read
+      actions: read
+    outputs:
+      followup: ${{ steps.spelling.outputs.followup }}
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout
-        uses: actions/checkout@v3
-
       - name: ✅ Check spelling
-        uses: check-spelling/check-spelling@v0.0.20-alpha4
+        id: spelling
+        uses: check-spelling/check-spelling@v0.0.20
         with:
+          checkout: true
+          post_comment: 0
           extra_dictionaries: cspell:csharp/csharp.txt
             cspell:companies/companies.txt
             cspell:dotnet/dotnet.txt
             cspell:filetypes/filetypes.txt
             cspell:fullstack/fullstack.txt
             cspell:html/html.txt
-            cspell:software-terms/software-terms.txt
+            cspell:software-terms/softwareTerms.txt
+  spellcheck-comment:
+    name: 💬 Spellcheck
+    runs-on: ubuntu-latest
+    needs: spellcheck
+    permissions:
+      contents: write
+      pull-requests: write
+    if: (success() || failure()) && needs.spellcheck.outputs.followup
+    steps:
+      - name: 💬 Report
+        uses: check-spelling/check-spelling@v0.0.20
+        with:
+          checkout: true
+          task: ${{ needs.spellcheck.outputs.followup }}
+
   lint-yml:
     name: 🐞 YML
     runs-on: ubuntu-latest
