@@ -11,6 +11,9 @@ jobs:
   save-metadata:
     name: 🔽 Save metadata
     runs-on: ubuntu-latest
+    if: >
+      ${{ github.actor != 'dependabot[bot]'
+      && github.repository_owner == 'iamdmitrij' }}
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v3
@@ -37,6 +40,9 @@ jobs:
     name: 💀 Tethos
     needs: save-metadata
     runs-on: ubuntu-latest
+    if: >
+      ${{ github.actor != 'dependabot[bot]'
+      && github.repository_owner == 'iamdmitrij' }}
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v3
@@ -85,6 +91,9 @@ jobs:
     name: 💀 Tethos.Moq
     needs: save-metadata
     runs-on: ubuntu-latest
+    if: >
+      ${{ github.actor != 'dependabot[bot]'
+      && github.repository_owner == 'iamdmitrij' }}
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v3
@@ -133,6 +142,9 @@ jobs:
     name: 💀 Tethos.FakeItEasy
     needs: save-metadata
     runs-on: ubuntu-latest
+    if: >
+      ${{ github.actor != 'dependabot[bot]'
+      && github.repository_owner == 'iamdmitrij' }}
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v3
@@ -181,6 +193,9 @@ jobs:
     name: 💀 Tethos.NSubstitute
     needs: save-metadata
     runs-on: ubuntu-latest
+    if: >
+      ${{ github.actor != 'dependabot[bot]'
+      && github.repository_owner == 'iamdmitrij' }}
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v3
