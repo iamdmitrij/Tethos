@@ -91,7 +91,9 @@ jobs:
     needs: test
     name: 📡 SonarCloud
     runs-on: ubuntu-latest
-    if: ${{ github.actor != 'dependabot[bot]' }}
+    if: >
+      ${{ github.actor != 'dependabot[bot]'
+      && github.repository_owner == 'iamdmitrij' }}
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v3
