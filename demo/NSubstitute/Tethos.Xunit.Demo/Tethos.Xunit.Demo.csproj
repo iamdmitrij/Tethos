@@ -22,7 +22,7 @@
 		<PackageReference Include="Tethos.NSubstitute" Version="1.*" />
 		<PackageReference Include="xunit" Version="2.4.2" />
 		<PackageReference Include="xunit.analyzers" Version="1.1.0" />
-		<PackageReference Include="Xunit.DependencyInjection" Version="8.7.0" />
+		<PackageReference Include="Xunit.DependencyInjection" Version="8.7.1" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
