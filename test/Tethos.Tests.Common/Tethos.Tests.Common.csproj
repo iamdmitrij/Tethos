@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<LangVersion>10.0</LangVersion>
@@ -18,7 +18,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="PeanutButter.RandomGenerators" Version="3.0.108" />
+		<PackageReference Include="PeanutButter.RandomGenerators" Version="3.0.115" />
 	</ItemGroup>
 
 </Project>
