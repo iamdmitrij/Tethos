@@ -20,7 +20,7 @@ jobs:
       - name: 🔧 Use .NET 6.0 SDK
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 7.0.x
 
       - name: 🔙 Get Previous Version
         id: previoustag
@@ -54,7 +54,7 @@ jobs:
       - name: 🔧 Use .NET 6.0 SDK
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 7.0.x
 
       - name: 🔬 Test
         run: >
@@ -119,7 +119,7 @@ jobs:
       - name: 🔧 Use .NET 6.0 SDK
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 7.0.x
 
       - name: 🔦 Install SonarScanner
         run: dotnet tool install dotnet-sonarscanner --version 5.* --global
