@@ -47,7 +47,7 @@ jobs:
           dotnet-version: 7.0.x
 
       - name: 🔦 Install Stryker
-        run: dotnet tool install dotnet-stryker --version 1.* --global
+        run: dotnet tool install dotnet-stryker --version 3.* --global
 
       - name: 🔖 Get branch name
         id: branch-name
@@ -95,7 +95,7 @@ jobs:
           dotnet-version: 7.0.x
 
       - name: 🔦 Install Stryker
-        run: dotnet tool install dotnet-stryker --version 1.* --global
+        run: dotnet tool install dotnet-stryker --version 3.* --global
 
       - name: 🔖 Get branch name
         id: branch-name
@@ -143,7 +143,7 @@ jobs:
           dotnet-version: 7.0.x
 
       - name: 🔦 Install Stryker
-        run: dotnet tool install dotnet-stryker --version 1.* --global
+        run: dotnet tool install dotnet-stryker --version 3.* --global
 
       - name: 🔖 Get branch name
         id: branch-name
@@ -191,7 +191,7 @@ jobs:
           dotnet-version: 7.0.x
 
       - name: 🔦 Install Stryker
-        run: dotnet tool install dotnet-stryker --version 1.* --global
+        run: dotnet tool install dotnet-stryker --version 3.* --global
 
       - name: 🔖 Get branch name
         id: branch-name
