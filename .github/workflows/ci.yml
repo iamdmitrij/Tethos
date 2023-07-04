@@ -17,8 +17,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🔧 Use .NET 6.0 SDK
-        uses: actions/setup-dotnet@v2
+      - name: 🔧 Use .NET 7.0 SDK
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.0.x
 
@@ -51,8 +51,8 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v3
 
-      - name: 🔧 Use .NET 6.0 SDK
-        uses: actions/setup-dotnet@v2
+      - name: 🔧 Use .NET 7.0 SDK
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.0.x
 
@@ -116,8 +116,8 @@ jobs:
           distribution: "zulu"
           java-version: 11
 
-      - name: 🔧 Use .NET 6.0 SDK
-        uses: actions/setup-dotnet@v2
+      - name: 🔧 Use .NET 7.0 SDK
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.0.x
 
