@@ -184,7 +184,7 @@ jobs:
     if: (success() || failure()) && needs.spellcheck.outputs.followup
     steps:
       - name: 💬 Report
-        uses: check-spelling/check-spelling@v0.0.20
+        uses: check-spelling/check-spelling@v0.0.21
         with:
           checkout: true
           task: ${{ needs.spellcheck.outputs.followup }}
