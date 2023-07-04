@@ -41,10 +41,10 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v3
 
-      - name: 🔧 Use .NET 6.0 SDK
+      - name: 🔧 Use .NET 7.0 SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 7.0.x
 
       - name: 🔦 Install Stryker
         run: dotnet tool install dotnet-stryker --version 3.* --global
@@ -72,7 +72,7 @@ jobs:
 
           cd test/Tethos.Tests
 
-          dotnet stryker --verbosity debug --config-file stryker-config.json
+          dotnet stryker --config-file stryker-config.json
           --version "$target_branch"
           --reporter "$extra_reporter"
           --reporter "cleartext"
@@ -94,10 +94,10 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v3
 
-      - name: 🔧 Use .NET 6.0 SDK
+      - name: 🔧 Use .NET 7.0 SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 7.0.x
 
       - name: 🔦 Install Stryker
         run: dotnet tool install dotnet-stryker --version 3.* --global
@@ -122,7 +122,7 @@ jobs:
 
           cd test/Tethos.Moq.Tests
 
-          dotnet stryker --verbosity debug --config-file stryker-config.json
+          dotnet stryker --config-file stryker-config.json
           --version "$target_branch"
           --reporter "$extra_reporter"
           --reporter "cleartext"
@@ -144,10 +144,10 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v3
 
-      - name: 🔧 Use .NET 6.0 SDK
+      - name: 🔧 Use .NET 7.0 SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 7.0.x
 
       - name: 🔦 Install Stryker
         run: dotnet tool install dotnet-stryker --version 3.* --global
@@ -172,7 +172,7 @@ jobs:
 
           cd test/Tethos.FakeItEasy.Tests
 
-          dotnet stryker --verbosity debug --config-file stryker-config.json
+          dotnet stryker --config-file stryker-config.json
           --version "$target_branch"
           --reporter "$extra_reporter"
           --reporter "cleartext"
@@ -194,10 +194,10 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v3
 
-      - name: 🔧 Use .NET 6.0 SDK
+      - name: 🔧 Use .NET 7.0 SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 7.0.x
 
       - name: 🔦 Install Stryker
         run: dotnet tool install dotnet-stryker --version 3.* --global
@@ -222,7 +222,7 @@ jobs:
 
           cd test/Tethos.NSubstitute.Tests
 
-          dotnet stryker --verbosity debug --config-file stryker-config.json
+          dotnet stryker --config-file stryker-config.json
           --version "$target_branch"
           --reporter "$extra_reporter"
           --reporter "cleartext"
