@@ -1,5 +1,6 @@
 {
   "stryker-config": {
+    "solution": null,
     "test-projects": ["test/Tethos.Tests/Tethos.Tests.csproj"],
     "project": "Tethos.csproj",
     "project-info": { "module": "Tethos" },
