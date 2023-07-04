@@ -28,7 +28,7 @@ jobs:
 
       - name: 🔟 Resolve Pull Request Reference
         id: pr_number
-        uses: juliangruber/read-file-action@v1.0.0
+        uses: juliangruber/read-file-action@v1
         with:
           path: pr_number.meta
 
@@ -48,7 +48,7 @@ jobs:
           direction: last
 
       - name: 📝 Create comment
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v3
         with:
           body: |
             # 🏅 Benchmark test report
