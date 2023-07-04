@@ -172,7 +172,7 @@ jobs:
 
           cd test/Tethos.FakeItEasy.Tests
 
-          dotnet stryker --debug --config-file stryker-config.json
+          dotnet stryker --verbosity debug --config-file stryker-config.json
           --version "$target_branch"
           --reporter "$extra_reporter"
           --reporter "cleartext"
