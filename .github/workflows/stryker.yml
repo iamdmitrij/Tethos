@@ -49,6 +49,9 @@ jobs:
       - name: 🔦 Install Stryker
         run: dotnet tool install dotnet-stryker --version 3.* --global
 
+      - run: dotnet --info
+      - run: dotnet tool list -g
+
       - name: 🔖 Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v5
