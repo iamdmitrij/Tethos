@@ -1,8 +1,6 @@
 {
   "stryker-config": {
-    "test-projects": [
-      "test/Tethos.FakeItEasy.Tests/Tethos.FakeItEasy.Tests.csproj"
-    ],
+    "test-projects": ["Tethos.FakeItEasy.Tests.csproj"],
     "project": "Tethos.FakeItEasy.csproj",
     "project-info": { "module": "Tethos.FakeItEasy" },
     "thresholds": { "high": 90, "low": 80, "break": 70 }
