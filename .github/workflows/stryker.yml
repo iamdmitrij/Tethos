@@ -67,7 +67,7 @@ jobs:
             extra_reporter="cleartext"
           fi
 
-          dotnet stryker log-level debug --config-file test/Tethos.Tests/stryker-config.json
+          dotnet stryker --verbosity debug --config-file test/Tethos.Tests/stryker-config.json
           --version "$target_branch"
           --reporter "$extra_reporter"
           --reporter "cleartext"
@@ -115,7 +115,7 @@ jobs:
             extra_reporter="cleartext"
           fi
 
-          dotnet stryker log-level debug --config-file test/Tethos.Moq.Tests/stryker-config.json
+          dotnet stryker --verbosity debug --config-file test/Tethos.Moq.Tests/stryker-config.json
           --version "$target_branch"
           --reporter "$extra_reporter"
           --reporter "cleartext"
@@ -163,7 +163,7 @@ jobs:
             extra_reporter="cleartext"
           fi
 
-          dotnet stryker log-level debug --config-file test/Tethos.FakeItEasy.Tests/stryker-config.json
+          dotnet stryker --verbosity debug --config-file test/Tethos.FakeItEasy.Tests/stryker-config.json
           --version "$target_branch"
           --reporter "$extra_reporter"
           --reporter "cleartext"
@@ -211,7 +211,7 @@ jobs:
             extra_reporter="cleartext"
           fi
 
-          dotnet stryker log-level debug --config-file test/Tethos.NSubstitute.Tests/stryker-config.json
+          dotnet stryker --verbosity debug --config-file test/Tethos.NSubstitute.Tests/stryker-config.json
           --version "$target_branch"
           --reporter "$extra_reporter"
           --reporter "cleartext"
