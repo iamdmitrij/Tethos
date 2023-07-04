@@ -173,7 +173,7 @@ jobs:
             cspell:filetypes/filetypes.txt
             cspell:fullstack/fullstack.txt
             cspell:html/html.txt
-            cspell:software-terms/softwareTerms.txt
+            cspell_old:software-terms/softwareTerms.txt
   spellcheck-comment:
     name: 💬 Spellcheck
     runs-on: ubuntu-latest
