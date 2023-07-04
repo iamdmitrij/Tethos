@@ -1,8 +1,6 @@
 {
   "stryker-config": {
-    "test-projects": [
-      "test/Tethos.NSubstitute.Tests/Tethos.NSubstitute.Tests.csproj"
-    ],
+    "test-projects": ["Tethos.NSubstitute.Tests.csproj"],
     "project": "Tethos.NSubstitute.csproj",
     "project-info": { "module": "Tethos.NSubstitute" },
     "thresholds": { "high": 90, "low": 80, "break": 70 }
