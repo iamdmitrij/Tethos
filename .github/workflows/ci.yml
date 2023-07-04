@@ -174,8 +174,8 @@ jobs:
             cspell:filetypes/filetypes.txt
             cspell:fullstack/fullstack.txt
             cspell:html/html.txt
-            cspell:companies/companies.txt
-            cspell:software-terms/softwareTerms.txt
+            cspell_old:companies/companies.txt
+            cspell_old:software-terms/softwareTerms.txt
           check_extra_dictionaries: ""
   spellcheck-comment:
     name: 💬 Spellcheck
