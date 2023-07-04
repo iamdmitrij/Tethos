@@ -21,7 +21,7 @@ jobs:
         run: echo $PR_NUMBER > pr_number.meta
 
       - name: 🔧 Use .NET Core 7.0 SDK
-        uses: actions/setup-dotnet@v2
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.0.x
 
