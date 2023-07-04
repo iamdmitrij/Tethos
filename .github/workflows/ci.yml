@@ -167,14 +167,16 @@ jobs:
         with:
           checkout: true
           post_comment: 0
-          dictionary_source_prefixes: '{"cspell": "https://raw.githubusercontent.com/check-spelling/cspell-dicts/v20220816/dictionaries/", "cspell_old": "https://raw.githubusercontent.com/check-spelling/cspell-dicts/v20220427/dictionaries/"}'
+          dictionary_source_prefixes: >
+            {"cspell": "https://raw.githubusercontent.com/check-spelling/cspell-dicts/v20220816/dictionaries/", "cspell_old": "https://raw.githubusercontent.com/check-spelling/cspell-dicts/v20220427/dictionaries/"}
           extra_dictionaries: cspell:csharp/csharp.txt
             cspell:dotnet/dotnet.txt
             cspell:filetypes/filetypes.txt
             cspell:fullstack/fullstack.txt
             cspell:html/html.txt
-            cspell_old:companies/companies.txt
-            cspell_old:software-terms/softwareTerms.txt
+            cspell:companies/companies.txt
+            cspell:software-terms/softwareTerms.txt
+          check_extra_dictionaries: ""
   spellcheck-comment:
     name: 💬 Spellcheck
     runs-on: ubuntu-latest
