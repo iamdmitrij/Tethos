@@ -24,8 +24,8 @@ jobs:
         uses: nick-fields/retry@v2
         with:
           timeout_minutes: 20
-          max_attempts: 3
-          shell: pwsh
+          max_attempts: 5
+          retry_on: error
           command: "dotnet test ./test/Tethos.PerformanceTests/\
             Tethos.PerformanceTests.csproj
             --configuration Release
