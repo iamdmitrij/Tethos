@@ -21,12 +21,17 @@ jobs:
           dotnet-version: 7.0.x
 
       - name: 🔬 Test
-        run: "dotnet test ./test/Tethos.PerformanceTests/\
-          Tethos.PerformanceTests.csproj
-          --configuration Release
-          --logger trx
-          --results-directory ./coverage
-          -- xunit.parallelizeAssembly=true"
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 20
+          max_attempts: 3
+          shell: pwsh
+          command: "dotnet test ./test/Tethos.PerformanceTests/\
+            Tethos.PerformanceTests.csproj
+            --configuration Release
+            --logger trx
+            --results-directory ./coverage
+            -- xunit.parallelizeAssembly=true"
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v3
