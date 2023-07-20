@@ -14,7 +14,7 @@
 		<PackageProjectUrl>https://github.com/iamdmitrij/Tethos</PackageProjectUrl>
 		<PackageTags>auto-mocking container moq testing mock stub ioc tdd di dependency-injection mocking test tests unit automock auto-stubbing</PackageTags>
 		<PackageIconUrl></PackageIconUrl>
-		<Copyright>Copyright © 2022</Copyright>
+		<Copyright>Copyright © 2023</Copyright>
 		<PackageIcon>logo.png</PackageIcon>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<IncludeSymbols>true</IncludeSymbols>
