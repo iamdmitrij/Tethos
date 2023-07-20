@@ -1,10 +1,9 @@
 ﻿namespace Tethos.Moq.Tests.AutoMockingTest;
 
+using System;
 using AutoFixture.Xunit2;
-using Castle.DynamicProxy.Generators;
 using FluentAssertions;
 using global::Moq;
-using System;
 using Tethos.Extensions;
 using Tethos.Tests.Common;
 using Xunit;

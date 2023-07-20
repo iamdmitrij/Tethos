@@ -1,11 +1,10 @@
 ﻿namespace Tethos.NSubstitute.Tests.AutoMockingTest;
 
+using System;
 using AutoFixture.Xunit2;
-using Castle.DynamicProxy.Generators;
 using Castle.MicroKernel;
 using FluentAssertions;
 using global::NSubstitute;
-using System;
 using Tethos.Extensions;
 using Tethos.Tests.Common;
 using Xunit;
