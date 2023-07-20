@@ -49,7 +49,7 @@ public class InternalTests : FakeItEasy.AutoMockingTest
 
     [Fact]
     [Trait("Type", "Integration")]
-    public void Resolve_WeakNamedAssembly_ShouldThrowGeneratorException()
+    public void Resolve_WeakNamedAssembly_ShouldThrowFakeCreationException()
     {
         // Arrange
         var sut = () => this.Container.Resolve<Tethos.Tests.Common.WeakNamed.SystemUnderTest>();
@@ -60,7 +60,7 @@ public class InternalTests : FakeItEasy.AutoMockingTest
 
     [Fact]
     [Trait("Type", "Integration")]
-    public void ResolveFrom_WeakNamedAssembly_ShouldThrowGeneratorException()
+    public void ResolveFrom_WeakNamedAssembly_ShouldThrowFakeCreationException()
     {
         // Arrange
         var sut = () => this.Container.ResolveFrom<Tethos.Tests.Common.WeakNamed.SystemUnderTest, Tethos.Tests.Common.WeakNamed.IMockable>();
