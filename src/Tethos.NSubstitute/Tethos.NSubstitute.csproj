@@ -14,7 +14,7 @@
 		<PackageProjectUrl>https://github.com/iamdmitrij/Tethos</PackageProjectUrl>
 		<PackageTags>auto-mocking container nsubstitute testing mock stub ioc tdd di dependency-injection mocking test tests unit automock auto-stubbing</PackageTags>
 		<PackageIconUrl></PackageIconUrl>
-		<Copyright>Copyright © 2022</Copyright>
+		<Copyright>Copyright © 2023</Copyright>
 		<PackageIcon>logo.png</PackageIcon>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<IncludeSymbols>true</IncludeSymbols>
@@ -33,7 +33,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="NSubstitute" Version="4.3.0" />
+		<PackageReference Include="NSubstitute" Version="5.0.0" />
 		<PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.16">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
