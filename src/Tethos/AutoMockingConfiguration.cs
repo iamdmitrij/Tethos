@@ -9,4 +9,9 @@ public class AutoMockingConfiguration
     /// Toggle to include non-public types into auto-mocking container.
     /// </summary>
     public bool IncludeNonPublicTypes { get; set; }
+
+    /// <summary>
+    /// Assembly loading type method selection.
+    /// </summary>
+    public AutoMockingLoadingTypes LoadingMethod { get; set; } = AutoMockingLoadingTypes.All;
 }
