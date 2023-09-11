@@ -18,11 +18,11 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.1" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
 		<PackageReference Include="Tethos.NSubstitute" Version="1.*" />
 		<PackageReference Include="xunit" Version="2.5.0" />
 		<PackageReference Include="xunit.analyzers" Version="1.2.0" />
-		<PackageReference Include="Xunit.DependencyInjection" Version="8.7.2" />
+		<PackageReference Include="Xunit.DependencyInjection" Version="8.8.2" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.5.0">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
