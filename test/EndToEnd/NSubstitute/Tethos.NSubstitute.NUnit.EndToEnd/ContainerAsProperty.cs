@@ -1,4 +1,3 @@
-
 namespace Tethos.NSubstitute.NUnit.EndToEnd;
 
 using System;
