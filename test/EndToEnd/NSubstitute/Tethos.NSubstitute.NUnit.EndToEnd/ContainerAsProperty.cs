@@ -1,11 +1,13 @@
+
 namespace Tethos.NSubstitute.NUnit.EndToEnd;
 
+using System;
 using global::NSubstitute;
 using global::NUnit.Framework;
 using Tethos.NSubstitute;
 using Tethos.Tests.Common;
 
-public class ContainerAsProperty
+public class ContainerAsProperty : IDisposable
 {
     public ContainerAsProperty()
     {
@@ -30,5 +32,10 @@ public class ContainerAsProperty
 
         // Assert
         Assert.That(actual, Is.EqualTo(expected));
+    }
+
+    public void Dispose()
+    {
+        this.Container.Dispose();
     }
 }
