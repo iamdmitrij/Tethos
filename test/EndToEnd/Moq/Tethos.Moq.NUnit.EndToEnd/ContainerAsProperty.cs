@@ -1,11 +1,12 @@
 namespace Tethos.Moq.NUnit.EndToEnd;
 
+using System;
 using global::Moq;
 using global::NUnit.Framework;
 using Tethos.Moq;
 using Tethos.Tests.Common;
 
-public class ContainerAsProperty
+public class ContainerAsProperty : IDisposable
 {
     public ContainerAsProperty()
     {
@@ -31,5 +32,10 @@ public class ContainerAsProperty
 
         // Assert
         Assert.That(actual, Is.EqualTo(expected));
+    }
+
+    public void Dispose()
+    {
+        this.Container.Dispose();
     }
 }
