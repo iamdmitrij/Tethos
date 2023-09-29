@@ -164,7 +164,7 @@ jobs:
     steps:
       - name: ✅ Check spelling
         id: spelling
-        uses: check-spelling/check-spelling@v0.0.21
+        uses: check-spelling/check-spelling@v0.0.22
         with:
           checkout: true
           post_comment: 0
@@ -191,7 +191,7 @@ jobs:
     if: (success() || failure()) && needs.spellcheck.outputs.followup
     steps:
       - name: 💬 Report
-        uses: check-spelling/check-spelling@v0.0.21
+        uses: check-spelling/check-spelling@v0.0.22
         with:
           checkout: true
           task: ${{ needs.spellcheck.outputs.followup }}
