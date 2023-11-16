@@ -17,10 +17,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🔧 Use .NET 7.0 SDK
+      - name: 🔧 Use .NET 8.0 SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 8.0.x
 
       - name: 🔙 Get Previous Version
         id: previoustag
@@ -51,10 +51,10 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
 
-      - name: 🔧 Use .NET 7.0 SDK
+      - name: 🔧 Use .NET 8.0 SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 8.0.x
 
       - name: 🔬 Test
         run: >
@@ -117,10 +117,10 @@ jobs:
           distribution: "zulu"
           java-version: 17
 
-      - name: 🔧 Use .NET 7.0 SDK
+      - name: 🔧 Use .NET 8.0 SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 8.0.x
 
       - name: 🔦 Install SonarScanner
         run: dotnet tool install dotnet-sonarscanner --version 5.* --global

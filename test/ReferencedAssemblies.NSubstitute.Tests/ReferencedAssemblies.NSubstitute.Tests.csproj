@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<IsTestProject>true</IsTestProject>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
@@ -36,7 +36,8 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Tethos.NSubstitute\Tethos.NSubstitute.csproj" />
-		<ProjectReference Include="..\ReferencedAssemblies.Common\ReferencedAssemblies.Common.csproj" />
+		<ProjectReference
+			Include="..\ReferencedAssemblies.Common\ReferencedAssemblies.Common.csproj" />
 	</ItemGroup>
 
 </Project>
