@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<IsTestProject>true</IsTestProject>
 		<NoWarn>1701;1702;NU1603;NU1702;SA1000</NoWarn>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -43,7 +43,8 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Tethos.FakeItEasy\Tethos.FakeItEasy.csproj" />
-		<ProjectReference Include="..\Tethos.Tests.Common.WeakNamed\Tethos.Tests.Common.WeakNamed.csproj" />
+		<ProjectReference
+			Include="..\Tethos.Tests.Common.WeakNamed\Tethos.Tests.Common.WeakNamed.csproj" />
 		<ProjectReference Include="..\Tethos.Tests.Common\Tethos.Tests.Common.csproj" />
 	</ItemGroup>
 

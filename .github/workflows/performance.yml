@@ -15,10 +15,10 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
 
-      - name: 🔧 Use .NET Core 7.0 SDK
+      - name: 🔧 Use .NET Core 8.0 SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 8.0.x
 
       - name: 🔬 Test
         uses: nick-fields/retry@v2
