@@ -2,5 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
   "ignorePresets": [":ignoreModulesAndTests"],
+  "automerge": true,
   "platformAutomerge": true
 }
