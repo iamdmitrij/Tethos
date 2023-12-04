@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
 
       - name: 🔧 Use .NET 8.0 SDK
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
@@ -52,7 +52,7 @@ jobs:
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
 
       - name: 🔧 Use .NET 8.0 SDK
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
@@ -118,7 +118,7 @@ jobs:
           java-version: 17
 
       - name: 🔧 Use .NET 8.0 SDK
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
