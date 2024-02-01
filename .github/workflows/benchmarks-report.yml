@@ -48,7 +48,7 @@ jobs:
           direction: last
 
       - name: 📝 Create comment
-        uses: peter-evans/create-or-update-comment@v3
+        uses: peter-evans/create-or-update-comment@v4
         with:
           body: |
             # 🏅 Benchmark test report
