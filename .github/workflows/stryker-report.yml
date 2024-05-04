@@ -17,7 +17,27 @@ jobs:
       - uses: dawidd6/action-download-artifact@v3
         with:
           workflow: stryker.yml
+          name: stryker-results-metadata
+
+      - uses: dawidd6/action-download-artifact@v3
+        with:
+          workflow: stryker.yml
           name: stryker-results
+
+      - uses: dawidd6/action-download-artifact@v3
+        with:
+          workflow: stryker.yml
+          name: stryker-results-moq
+
+      - uses: dawidd6/action-download-artifact@v3
+        with:
+          workflow: stryker.yml
+          name: stryker-results-fakeiteasy
+
+      - uses: dawidd6/action-download-artifact@v3
+        with:
+          workflow: stryker.yml
+          name: stryker-results-nsubstitute
 
       - name: 🔟 Resolve Pull Request Reference
         id: pr_number

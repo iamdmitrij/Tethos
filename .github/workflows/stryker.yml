@@ -30,7 +30,7 @@ jobs:
       - name: 📚 Test results
         uses: actions/upload-artifact@v3
         with:
-          name: stryker-results
+          name: stryker-results-metadata
           path: "**/*.meta"
 
   mutation-tests:
@@ -130,7 +130,7 @@ jobs:
       - name: 📚 Test results
         uses: actions/upload-artifact@v3
         with:
-          name: stryker-results
+          name: stryker-results-moq
           path: "**/StrykerOutput/**"
 
   mutation-tests-fakeiteasy:
@@ -180,7 +180,7 @@ jobs:
       - name: 📚 Test results
         uses: actions/upload-artifact@v3
         with:
-          name: stryker-results
+          name: stryker-results-fakeiteasy
           path: "**/StrykerOutput/**"
 
   mutation-tests-nsubstitute:
@@ -230,5 +230,5 @@ jobs:
       - name: 📚 Test results
         uses: actions/upload-artifact@v3
         with:
-          name: stryker-results
+          name: stryker-results-nsubstitute
           path: "**/StrykerOutput/**"
