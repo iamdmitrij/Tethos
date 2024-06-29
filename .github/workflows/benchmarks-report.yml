@@ -14,7 +14,7 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
 
-      - uses: dawidd6/action-download-artifact@v3
+      - uses: dawidd6/action-download-artifact@v6
         with:
           workflow: benchmarks.yml
           name: benchmark-results
