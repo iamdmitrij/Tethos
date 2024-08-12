@@ -4,6 +4,7 @@
   "ignorePresets": [":ignoreModulesAndTests"],
   "rebaseWhen": "conflicted",
   "automergeStrategy": "merge-commit",
+  "platformAutomerge": false,
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
