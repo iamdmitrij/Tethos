@@ -3,6 +3,7 @@
   "extends": ["config:base"],
   "ignorePresets": [":ignoreModulesAndTests"],
   "rebaseWhen": "conflicted",
+  "automergeStrategy": "merge-commit",
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
