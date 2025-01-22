@@ -14,27 +14,27 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
-      - uses: dawidd6/action-download-artifact@v3
+      - uses: dawidd6/action-download-artifact@v8
         with:
           workflow: stryker.yml
           name: stryker-results-metadata
 
-      - uses: dawidd6/action-download-artifact@v3
+      - uses: dawidd6/action-download-artifact@v8
         with:
           workflow: stryker.yml
           name: stryker-results
 
-      - uses: dawidd6/action-download-artifact@v3
+      - uses: dawidd6/action-download-artifact@v8
         with:
           workflow: stryker.yml
           name: stryker-results-moq
 
-      - uses: dawidd6/action-download-artifact@v3
+      - uses: dawidd6/action-download-artifact@v8
         with:
           workflow: stryker.yml
           name: stryker-results-fakeiteasy
 
-      - uses: dawidd6/action-download-artifact@v3
+      - uses: dawidd6/action-download-artifact@v8
         with:
           workflow: stryker.yml
           name: stryker-results-nsubstitute
