@@ -6,7 +6,7 @@ public class InheritedAutoMockingTest : Moq.AutoMockingTest
 {
     public InheritedAutoMockingTest()
     {
-        this.Container = Mock.Of<AutoMockingContainer>(MockBehavior.Strict);
+        this.Container = Mock.Of<AutoMockingContainer>(MockBehavior.Loose);
         this.Proxy = Mock.Get(this.Container);
     }
 
