@@ -15,7 +15,7 @@ public class DependencyTests : Moq.AutoMockingTest
     public void Container_Resolve_WithClassAndArguments_ShouldMockClass()
     {
         // Arrange
-        var expectedType = new Mock<Concrete>(100, 200).GetType();
+        var expectedType = new Mock<Concrete>(MockBehavior.Strict, 100, 200).GetType();
         var actual = this.Container.Resolve<SystemUnderTestClass>(
             new Arguments()
                 .AddNamed("minValue", 100)
@@ -36,8 +36,8 @@ public class DependencyTests : Moq.AutoMockingTest
     public void Container_Resolve_WithClassAndPrimitiveType_ShouldMatchMockTypes(bool value)
     {
         // Arrange
-        var expectedType = new Mock<Concrete>(100, 200).GetType();
-        var expectedThresholdType = new Mock<Threshold>(value).GetType();
+        var expectedType = new Mock<Concrete>(MockBehavior.Strict, 100, 200).GetType();
+        var expectedThresholdType = new Mock<Threshold>(MockBehavior.Strict, value).GetType();
 
         var actual = this.Container.Resolve<SystemUnderTwoClasses>(
             new Arguments()
@@ -61,7 +61,7 @@ public class DependencyTests : Moq.AutoMockingTest
     public void Container_Resolve_WithAbstractClass_ShouldMatchMockTypes(bool value)
     {
         // Arrange
-        var expected = new Mock<AbstractThreshold>(value).GetType();
+        var expected = new Mock<AbstractThreshold>(MockBehavior.Strict, value).GetType();
         var actual = this.Container.Resolve<SystemUnderAbstractClasses>(
             new Arguments()
                 .AddDependencyTo<AbstractThreshold, bool>("enabled", value));
@@ -79,7 +79,7 @@ public class DependencyTests : Moq.AutoMockingTest
     public void Container_Resolve_WithPartialClass_ShouldMatchMockTypes(bool value)
     {
         // Arrange
-        var expected = new Mock<PartialThreshold>(value).GetType();
+        var expected = new Mock<PartialThreshold>(MockBehavior.Strict, value).GetType();
         var sut = this.Container.Resolve<SystemUnderPartialClass>(
             new Arguments()
                 .AddDependencyTo<PartialThreshold, bool>("enabled", value));
@@ -110,9 +110,9 @@ public class DependencyTests : Moq.AutoMockingTest
         sut.Exercise();
 
         // Assert
-        this.Container.Resolve<Mock<Concrete>>().Should().BeOfType(new Mock<Concrete>(100, 200).GetType()).GetType();
-        this.Container.Resolve<Mock<Threshold>>().Should().BeOfType(new Mock<Threshold>(true).GetType()).GetType();
-        this.Container.Resolve<Mock<PartialThreshold>>().Should().BeOfType(new Mock<PartialThreshold>(true).GetType()).GetType();
-        this.Container.Resolve<Mock<AbstractThreshold>>().Should().BeOfType(new Mock<AbstractThreshold>(true).GetType()).GetType();
+        this.Container.Resolve<Mock<Concrete>>().Should().BeOfType(new Mock<Concrete>(MockBehavior.Strict, 100, 200).GetType()).GetType();
+        this.Container.Resolve<Mock<Threshold>>().Should().BeOfType(new Mock<Threshold>(MockBehavior.Strict, true).GetType()).GetType();
+        this.Container.Resolve<Mock<PartialThreshold>>().Should().BeOfType(new Mock<PartialThreshold>(MockBehavior.Strict, true).GetType()).GetType();
+        this.Container.Resolve<Mock<AbstractThreshold>>().Should().BeOfType(new Mock<AbstractThreshold>(MockBehavior.Strict, true).GetType()).GetType();
     }
 }
