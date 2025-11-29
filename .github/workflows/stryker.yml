@@ -76,7 +76,12 @@ jobs:
           echo $is_tag
 
           pwd
-
+          echo "PATH=$PATH"
+          which dotnet || true
+          dotnet --info || true
+          dotnet tool list -g || true
+          ls -la /root/.dotnet/tools || true
+          set -x
           dotnet stryker --config-file stryker-config.json --version "$target_branch" --reporter "$extra_reporter" --reporter "cleartext" --reporter "html"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
@@ -122,7 +127,12 @@ jobs:
           fi
 
           cd test/Tethos.Moq.Tests
-
+          echo "PATH=$PATH"
+          which dotnet || true
+          dotnet --info || true
+          dotnet tool list -g || true
+          ls -la /root/.dotnet/tools || true
+          set -x
           dotnet stryker --config-file stryker-config.json --version "$target_branch" --reporter "$extra_reporter" --reporter "cleartext" --reporter "html"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
@@ -168,7 +178,12 @@ jobs:
           fi
 
           cd test/Tethos.FakeItEasy.Tests
-
+          echo "PATH=$PATH"
+          which dotnet || true
+          dotnet --info || true
+          dotnet tool list -g || true
+          ls -la /root/.dotnet/tools || true
+          set -x
           dotnet stryker --config-file stryker-config.json --version "$target_branch" --reporter "$extra_reporter" --reporter "cleartext" --reporter "html"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
@@ -214,7 +229,12 @@ jobs:
           fi
 
           cd test/Tethos.NSubstitute.Tests
-
+          echo "PATH=$PATH"
+          which dotnet || true
+          dotnet --info || true
+          dotnet tool list -g || true
+          ls -la /root/.dotnet/tools || true
+          set -x
           dotnet stryker --config-file stryker-config.json --version "$target_branch" --reporter "$extra_reporter" --reporter "cleartext" --reporter "html"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
