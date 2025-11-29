@@ -69,11 +69,11 @@ jobs:
 
           cd test/Tethos.Tests
 
-          dotnet stryker --config-file stryker-config.json \
-          --version "$target_branch" \
-          --reporter "$extra_reporter" \
-          --reporter "cleartext" \
-          --reporter "html"
+          dotnet stryker --config-file stryker-config.json
+            --version "$target_branch"
+            --reporter "$extra_reporter"
+            --reporter "cleartext"
+            --reporter "html"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
