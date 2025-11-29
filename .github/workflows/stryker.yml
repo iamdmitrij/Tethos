@@ -10,7 +10,7 @@ on:
 jobs:
   save-metadata:
     name: 🔽 Save metadata
-    runs-on: ubuntu-23.04
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
@@ -36,7 +36,7 @@ jobs:
   mutation-tests:
     name: 💀 Tethos
     needs: save-metadata
-    runs-on: ubuntu-23.04
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
@@ -77,11 +77,7 @@ jobs:
 
           pwd
 
-          dotnet stryker --config-file stryker-config.json 
-          --version "$target_branch"
-          --reporter "$extra_reporter"
-          --reporter "cleartext"
-          --reporter "html"
+          dotnet stryker --config-file stryker-config.json --version "$target_branch" --reporter "$extra_reporter" --reporter "cleartext" --reporter "html"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
@@ -94,7 +90,7 @@ jobs:
   mutation-tests-moq:
     name: 💀 Tethos.Moq
     needs: save-metadata
-    runs-on: ubuntu-23.04
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
@@ -127,11 +123,7 @@ jobs:
 
           cd test/Tethos.Moq.Tests
 
-          dotnet stryker --config-file stryker-config.json
-          --version "$target_branch"
-          --reporter "$extra_reporter"
-          --reporter "cleartext"
-          --reporter "html"
+          dotnet stryker --config-file stryker-config.json --version "$target_branch" --reporter "$extra_reporter" --reporter "cleartext" --reporter "html"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
@@ -144,7 +136,7 @@ jobs:
   mutation-tests-fakeiteasy:
     name: 💀 Tethos.FakeItEasy
     needs: save-metadata
-    runs-on: ubuntu-23.04
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
@@ -177,11 +169,7 @@ jobs:
 
           cd test/Tethos.FakeItEasy.Tests
 
-          dotnet stryker --config-file stryker-config.json
-          --version "$target_branch"
-          --reporter "$extra_reporter"
-          --reporter "cleartext"
-          --reporter "html"
+          dotnet stryker --config-file stryker-config.json --version "$target_branch" --reporter "$extra_reporter" --reporter "cleartext" --reporter "html"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
@@ -194,7 +182,7 @@ jobs:
   mutation-tests-nsubstitute:
     name: 💀 Tethos.NSubstitute
     needs: save-metadata
-    runs-on: ubuntu-23.04
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
@@ -227,11 +215,7 @@ jobs:
 
           cd test/Tethos.NSubstitute.Tests
 
-          dotnet stryker --config-file stryker-config.json
-          --version "$target_branch"
-          --reporter "$extra_reporter"
-          --reporter "cleartext"
-          --reporter "html"
+          dotnet stryker --config-file stryker-config.json --version "$target_branch" --reporter "$extra_reporter" --reporter "cleartext" --reporter "html"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
