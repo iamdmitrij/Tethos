@@ -54,7 +54,7 @@ jobs:
         uses: tj-actions/branch-names@v8
 
       - name: 💀 Run mutation tests
-        run: |
+        run: >
           is_tag=${{ steps.branch-name.outputs.is_tag }}
           target_branch=${{ steps.branch-name.outputs.current_branch }}
           extra_reporter="dashboard"
@@ -82,7 +82,7 @@ jobs:
           dotnet tool list -g || true
           ls -la /root/.dotnet/tools || true
           set -x
-          dotnet stryker --config-file stryker-config.json --version "$target_branch" --reporter "$extra_reporter" --reporter "cleartext" --reporter "html"
+          dotnet stryker --config-file stryker-config.json --version "$target_branch" --reporter "$extra_reporter" --reporter "cleartext" --reporter "html" --verbosity trace
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
@@ -113,7 +113,7 @@ jobs:
         uses: tj-actions/branch-names@v8
 
       - name: 💀 Run mutation tests
-        run: |
+        run: >
           is_tag=${{ steps.branch-name.outputs.is_tag }}
           target_branch=${{ steps.branch-name.outputs.current_branch }}
           extra_reporter="dashboard"
@@ -164,7 +164,7 @@ jobs:
         uses: tj-actions/branch-names@v8
 
       - name: 💀 Run mutation tests
-        run: |
+        run: >
           is_tag=${{ steps.branch-name.outputs.is_tag }}
           target_branch=${{ steps.branch-name.outputs.current_branch }}
           extra_reporter="dashboard"
@@ -215,7 +215,7 @@ jobs:
         uses: tj-actions/branch-names@v8
 
       - name: 💀 Run mutation tests
-        run: |
+        run: >
           is_tag=${{ steps.branch-name.outputs.is_tag }}
           target_branch=${{ steps.branch-name.outputs.current_branch }}
           extra_reporter="dashboard"
