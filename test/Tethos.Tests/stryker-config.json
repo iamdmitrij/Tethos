@@ -1,7 +1,7 @@
 {
   "stryker-config": {
     "test-projects": ["Tethos.Tests.csproj"],
-    "project": "Tethos.csproj",
+    "project": "../../src/Tethos/Tethos.csproj",
     "project-info": { "module": "Tethos" },
     "thresholds": { "high": 90, "low": 80, "break": 70 }
   }
