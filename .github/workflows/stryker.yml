@@ -82,7 +82,7 @@ jobs:
           --reporter "$extra_reporter"
           --reporter "cleartext"
           --reporter "html"
-          --log-level trace
+          --verbosity "trace"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
