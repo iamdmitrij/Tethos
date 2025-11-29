@@ -47,7 +47,7 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: 🔦 Install Stryker
-        run: dotnet tool install dotnet-stryker --version 3.* --global
+        run: dotnet tool install dotnet-stryker --version 4.* --global
 
       - name: 🔖 Get branch name
         id: branch-name
