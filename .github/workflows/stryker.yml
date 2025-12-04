@@ -41,10 +41,10 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
 
-      - name: 🔧 Use .NET 8.0 SDK
+      - name: 🔧 Use .NET 9.0 SDK
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
 
       - name: 🔦 Install Stryker
         run: dotnet tool install dotnet-stryker --version 4.* --global
@@ -92,10 +92,10 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
 
-      - name: 🔧 Use .NET 8.0 SDK
+      - name: 🔧 Use .NET 9.0 SDK
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
 
       - name: 🔦 Install Stryker
         run: dotnet tool install dotnet-stryker --version 4.* --global
@@ -143,10 +143,10 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
 
-      - name: 🔧 Use .NET 8.0 SDK
+      - name: 🔧 Use .NET 9.0 SDK
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
 
       - name: 🔦 Install Stryker
         run: dotnet tool install dotnet-stryker --version 4.* --global
@@ -194,10 +194,10 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
 
-      - name: 🔧 Use .NET 8.0 SDK
+      - name: 🔧 Use .NET 9.0 SDK
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
 
       - name: 🔦 Install Stryker
         run: dotnet tool install dotnet-stryker --version 4.* --global
