@@ -69,14 +69,6 @@ jobs:
 
           cd test/Tethos.Tests
 
-          echo $target_branch
-
-          echo $extra_reporter
-
-          echo $is_tag
-
-          pwd
-
           dotnet stryker --config-file stryker-config.json 
           --version "$target_branch"
           --reporter "$extra_reporter"
