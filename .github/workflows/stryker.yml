@@ -74,7 +74,6 @@ jobs:
           --reporter "$extra_reporter"
           --reporter "cleartext"
           --reporter "html"
-          --verbosity "trace"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
@@ -125,7 +124,6 @@ jobs:
           --reporter "$extra_reporter"
           --reporter "cleartext"
           --reporter "html"
-          --verbosity "trace"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
@@ -176,7 +174,6 @@ jobs:
           --reporter "$extra_reporter"
           --reporter "cleartext"
           --reporter "html"
-          --verbosity "trace"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
@@ -227,7 +224,6 @@ jobs:
           --reporter "$extra_reporter"
           --reporter "cleartext"
           --reporter "html"
-          --verbosity "trace"
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
