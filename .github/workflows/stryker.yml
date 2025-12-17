@@ -46,8 +46,8 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: 🔦 Install Stryker
-        run: dotnet tool install dotnet-stryker --version 4.* --global
+      - name: 🔦 Restore Stryker
+        run: dotnet tool restore
 
       - name: 🔖 Get branch name
         id: branch-name
@@ -96,8 +96,8 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: 🔦 Install Stryker
-        run: dotnet tool install dotnet-stryker --version 4.* --global
+      - name: 🔦 Restore Stryker
+        run: dotnet tool restore
 
       - name: 🔖 Get branch name
         id: branch-name
@@ -146,8 +146,8 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: 🔦 Install Stryker
-        run: dotnet tool install dotnet-stryker --version 4.* --global
+      - name: 🔦 Restore Stryker
+        run: dotnet tool restore
 
       - name: 🔖 Get branch name
         id: branch-name
@@ -196,8 +196,8 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: 🔦 Install Stryker
-        run: dotnet tool install dotnet-stryker --version 4.* --global
+      - name: 🔦 Restore Stryker
+        run: dotnet tool restore
 
       - name: 🔖 Get branch name
         id: branch-name
