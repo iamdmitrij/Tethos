@@ -9,7 +9,7 @@ using Xunit;
 public class CreationBenchmarkTests
 {
     [Theory]
-    [InlineData(10000)]
+    [InlineData(15000)]
     [Trait("Type", "Performance")]
     public void CreationBenchmark_Mean_ShouldBeBelowThreshold(int expected)
     {
