@@ -34,12 +34,12 @@ public class BaseAutoResolverTests
         string key)
     {
         // Arrange
-        var resolver = Mock.Of<CreationContext>();
+        var resolver = Mock.Of<ISubDependencyResolver>();
         var sut = new AutoResolver(Mock.Of<IKernel>());
 
         // Act
         var actual = sut.CanResolve(
-            resolver,
+            (CreationContext)resolver,
             resolver,
             new(),
             new(key, type, false));
