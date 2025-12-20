@@ -34,7 +34,7 @@ jobs:
             -- xunit.parallelizeAssembly=true"
 
       - name: 📚 Artifact Test Results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: success() || failure()
         with:
           name: performance-test-results

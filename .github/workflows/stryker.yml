@@ -28,7 +28,7 @@ jobs:
         run: echo ${{ steps.branch-name.outputs.current_branch }} | tr -d '\n' > branch.meta
 
       - name: 📚 Test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: stryker-results-metadata
           path: "**/*.meta"
@@ -78,7 +78,7 @@ jobs:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
       - name: 📚 Test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: stryker-results
           path: "**/StrykerOutput/**"
@@ -128,7 +128,7 @@ jobs:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
       - name: 📚 Test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: stryker-results-moq
           path: "**/StrykerOutput/**"
@@ -178,7 +178,7 @@ jobs:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
       - name: 📚 Test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: stryker-results-fakeiteasy
           path: "**/StrykerOutput/**"
@@ -228,7 +228,7 @@ jobs:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
       - name: 📚 Test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: stryker-results-nsubstitute
           path: "**/StrykerOutput/**"
