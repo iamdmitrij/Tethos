@@ -4,6 +4,8 @@ using System;
 using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoFixture;
+using AutoFixture.AutoMoq;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Registration;
@@ -16,36 +18,36 @@ using Xunit;
 public class AutoResolverTests
 {
     [Theory]
-    [InlineAutoMoqData(typeof(IList), 1, true)]
-    [InlineAutoMoqData(typeof(IEnumerable), 2, true)]
-    [InlineAutoMoqData(typeof(Array), 5, true)]
-    [InlineAutoMoqData(typeof(Enumerable), 15, true)]
-    [InlineAutoMoqData(typeof(Type), 4, true)]
-    [InlineAutoMoqData(typeof(BaseAutoResolver), 8, true)]
-    [InlineAutoMoqData(typeof(TimeoutException), 10, true)]
-    [InlineAutoMoqData(typeof(Guid), 2, false)]
-    [InlineAutoMoqData(typeof(Task<>), 4, true)]
-    [InlineAutoMoqData(typeof(Task<int>), 10, true)]
-    [InlineAutoMoqData(typeof(int), 8, false)]
-    [InlineAutoMoqData(typeof(IList), 0, true)]
-    [InlineAutoMoqData(typeof(Array), 0, false)]
-    [InlineAutoMoqData(typeof(Guid), 0, false)]
-    [InlineAutoMoqData(typeof(int), 0, false)]
+    [InlineData(typeof(IList), 1, true)]
+    [InlineData(typeof(IEnumerable), 2, true)]
+    [InlineData(typeof(Array), 5, true)]
+    [InlineData(typeof(Enumerable), 15, true)]
+    [InlineData(typeof(Type), 4, true)]
+    [InlineData(typeof(BaseAutoResolver), 8, true)]
+    [InlineData(typeof(TimeoutException), 10, true)]
+    [InlineData(typeof(Guid), 2, false)]
+    [InlineData(typeof(Task<>), 4, true)]
+    [InlineData(typeof(Task<int>), 10, true)]
+    [InlineData(typeof(int), 8, false)]
+    [InlineData(typeof(IList), 0, true)]
+    [InlineData(typeof(Array), 0, false)]
+    [InlineData(typeof(Guid), 0, false)]
+    [InlineData(typeof(int), 0, false)]
     [Trait("Type", "Unit")]
     public void CanResolve_ShouldMatch(
         Type type,
         int arguments,
-        bool expected,
-        IKernel kernel,
-        CreationContext resolver,
-        string key)
+        bool expected)
     {
         // Arrange
+        var fixture = new Fixture().Customize(new AutoMoqCustomization());
+        var resolver = fixture.Create<CreationContext>();
+        var sut = new AutoResolver(Mock.Of<IKernel>());
+        var key = "key";
         Enumerable.Range(0, arguments)
             .Select(_ => new Arguments().AddNamed($"{Guid.NewGuid()}", Guid.NewGuid()))
             .ToList()
             .ForEach(argument => resolver.AdditionalArguments.Add(argument));
-        var sut = new AutoResolver(kernel);
 
         // Act
         var actual = sut.CanResolve(

@@ -5,6 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoFixture;
+using AutoFixture.AutoMoq;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
 using FluentAssertions;
@@ -33,13 +35,14 @@ public class BaseAutoResolverTests
         bool expected)
     {
         // Arrange
-        var resolver = Mock.Of<ISubDependencyResolver>();
+        var fixture = new Fixture().Customize(new AutoMoqCustomization());
+        var resolver = fixture.Create<CreationContext>();
         var sut = new AutoResolver(Mock.Of<IKernel>());
         var key = "key";
 
         // Act
         var actual = sut.CanResolve(
-            null,
+            resolver,
             resolver,
             new(),
             new(key, type, false));
