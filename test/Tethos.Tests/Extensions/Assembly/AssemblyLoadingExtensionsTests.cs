@@ -11,7 +11,7 @@ public class AssemblyLoadingExtensionsTests : BaseAutoMockingTest<AutoMockingCon
 {
     [Theory]
     [InlineData("Tethos.dll", "Tethos.Tests.Common.dll")]
-    [InlineData("AutoFixture.dll", "FluentAssertions.dll", "Moq.dll", "xunit.core.dll")]
+    [InlineData("AutoFixture.dll", "FluentAssertions.dll", "Moq.dll", "xunit.v3.core.dll")]
     [InlineData("Castle.Core.dll", "Castle.Windsor.dll")]
     [Trait("Type", "Unit")]
     public void LoadAssemblies_ShouldLoad(params string[] assemblies)
