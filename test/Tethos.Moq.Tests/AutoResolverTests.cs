@@ -42,7 +42,7 @@ public class AutoResolverTests
         // Arrange
         var fixture = new Fixture().Customize(new AutoMoqCustomization());
         var resolver = fixture.Create<CreationContext>();
-        var sut = new AutoResolver(Mock.Of<IKernel>());
+        var sut = new AutoResolver(fixture.Create<IKernel>());
         var key = "key";
         Enumerable.Range(0, arguments)
             .Select(_ => new Arguments().AddNamed($"{Guid.NewGuid()}", Guid.NewGuid()))

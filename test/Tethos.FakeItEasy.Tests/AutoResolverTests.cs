@@ -4,40 +4,41 @@ using System;
 using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoFixture;
+using AutoFixture.AutoFakeItEasy;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Registration;
 using FluentAssertions;
 using global::FakeItEasy;
 using Tethos.FakeItEasy.Tests.Attributes;
-using Tethos.Tests.Attributes;
 using Tethos.Tests.Common;
 using Xunit;
 
 public class AutoResolverTests
 {
     [Theory]
-    [InlineAutoFakeItEasyData(typeof(IList), true)]
-    [InlineAutoFakeItEasyData(typeof(IEnumerable), true)]
-    [InlineAutoFakeItEasyData(typeof(Array), true)]
-    [InlineAutoFakeItEasyData(typeof(Enumerable), true)]
-    [InlineAutoFakeItEasyData(typeof(Type), true)]
-    [InlineAutoFakeItEasyData(typeof(BaseAutoResolver), true)]
-    [InlineAutoFakeItEasyData(typeof(TimeoutException), true)]
-    [InlineAutoFakeItEasyData(typeof(Guid), false)]
-    [InlineAutoFakeItEasyData(typeof(Task<>), true)]
-    [InlineAutoFakeItEasyData(typeof(Task<int>), true)]
-    [InlineAutoFakeItEasyData(typeof(int), false)]
+    [InlineData(typeof(IList), true)]
+    [InlineData(typeof(IEnumerable), true)]
+    [InlineData(typeof(Array), true)]
+    [InlineData(typeof(Enumerable), true)]
+    [InlineData(typeof(Type), true)]
+    [InlineData(typeof(BaseAutoResolver), true)]
+    [InlineData(typeof(TimeoutException), true)]
+    [InlineData(typeof(Guid), false)]
+    [InlineData(typeof(Task<>), true)]
+    [InlineData(typeof(Task<int>), true)]
+    [InlineData(typeof(int), false)]
     [Trait("Type", "Unit")]
     public void CanResolve_ShouldMatch(
         Type type,
-        bool expected,
-        IKernel kernel,
-        CreationContext resolver,
-        string key)
+        bool expected)
     {
         // Arrange
-        var sut = new AutoResolver(kernel);
+        var fixture = new Fixture().Customize(new AutoFakeItEasyCustomization());
+        var resolver = fixture.Create<CreationContext>();
+        var sut = new AutoResolver(fixture.Create<IKernel>());
+        var key = "key";
 
         // Act
         var actual = sut.CanResolve(

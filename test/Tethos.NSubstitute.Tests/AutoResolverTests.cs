@@ -4,40 +4,41 @@ using System;
 using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoFixture;
+using AutoFixture.AutoNSubstitute;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Registration;
 using FluentAssertions;
 using global::NSubstitute;
 using Tethos.NSubstitute.Tests.Attributes;
-using Tethos.Tests.Attributes;
 using Tethos.Tests.Common;
 using Xunit;
 
 public class AutoResolverTests
 {
     [Theory]
-    [InlineAutoNSubstituteData(typeof(IList), true)]
-    [InlineAutoNSubstituteData(typeof(IEnumerable), true)]
-    [InlineAutoNSubstituteData(typeof(Array), true)]
-    [InlineAutoNSubstituteData(typeof(Enumerable), true)]
-    [InlineAutoNSubstituteData(typeof(Type), true)]
-    [InlineAutoNSubstituteData(typeof(BaseAutoResolver), true)]
-    [InlineAutoNSubstituteData(typeof(TimeoutException), true)]
-    [InlineAutoNSubstituteData(typeof(Guid), false)]
-    [InlineAutoNSubstituteData(typeof(Task<>), true)]
-    [InlineAutoNSubstituteData(typeof(Task<int>), true)]
-    [InlineAutoNSubstituteData(typeof(int), false)]
+    [InlineData(typeof(IList), true)]
+    [InlineData(typeof(IEnumerable), true)]
+    [InlineData(typeof(Array), true)]
+    [InlineData(typeof(Enumerable), true)]
+    [InlineData(typeof(Type), true)]
+    [InlineData(typeof(BaseAutoResolver), true)]
+    [InlineData(typeof(TimeoutException), true)]
+    [InlineData(typeof(Guid), false)]
+    [InlineData(typeof(Task<>), true)]
+    [InlineData(typeof(Task<int>), true)]
+    [InlineData(typeof(int), false)]
     [Trait("Type", "Unit")]
     public void CanResolve_ShouldMatch(
         Type type,
-        bool expected,
-        IKernel kernel,
-        CreationContext resolver,
-        string key)
+        bool expected)
     {
         // Arrange
-        var sut = new AutoResolver(kernel);
+        var fixture = new Fixture().Customize(new AutoNSubstituteCustomization());
+        var resolver = fixture.Create<CreationContext>();
+        var sut = new AutoResolver(fixture.Create<IKernel>());
+        var key = "key";
 
         // Act
         var actual = sut.CanResolve(
