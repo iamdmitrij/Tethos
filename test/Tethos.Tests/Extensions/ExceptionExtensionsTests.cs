@@ -38,19 +38,23 @@ public class ExceptionExtensionsTests
         actual.Should().Be(expected);
     }
 
+    /// <summary>
+    /// TODO: Open an issue, because I cannot use params here for type:
+    /// https://github.com/AutoFixture/AutoFixture.xUnit3/blob/48af207c92dbd79335751fbbaa667ddec9cb584b/Src/AutoFixture.xUnit3/Internal/InlineDataSource.cs#L42
+    /// </summary>
     [Theory]
-    [InlineAutoData(null)]
-    [InlineAutoData(typeof(NotImplementedException))]
-    [InlineAutoData(typeof(ArgumentException), typeof(ArgumentException))]
+    [InlineAutoData(null, null, null)]
+    [InlineAutoData(typeof(NotImplementedException), null, null)]
+    [InlineAutoData(typeof(ArgumentException), typeof(ArgumentException), null)]
     [InlineAutoData(typeof(NotImplementedException), typeof(Exception), typeof(ArgumentException))]
     [Trait("Type", "Unit")]
-    public void SwallowExceptions_WhenTypesDoNotMatch_ShouldThrowSameException(params Type[] type)
+    public void SwallowExceptions_WhenTypesDoNotMatch_ShouldThrowSameException(Type type, Type innerType, Type baseType)
     {
         // Arrange
         Func<object> sut = () => throw new NullReferenceException();
 
         // Act
-        var actual = () => sut.SwallowExceptions(type);
+        var actual = () => sut.SwallowExceptions(type, innerType, baseType);
 
         // Assert
         actual.Should().Throw<NullReferenceException>();
