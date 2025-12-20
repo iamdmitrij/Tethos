@@ -39,7 +39,7 @@ public class BaseAutoResolverTests
 
         // Act
         var actual = sut.CanResolve(
-            (CreationContext)resolver,
+            null,
             resolver,
             new(),
             new(key, type, false));
