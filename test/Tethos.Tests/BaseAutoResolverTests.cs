@@ -16,26 +16,26 @@ using Xunit;
 public class BaseAutoResolverTests
 {
     [Theory]
-    [InlineAutoMoqData(typeof(IList), true)]
-    [InlineAutoMoqData(typeof(IEnumerable), true)]
-    [InlineAutoMoqData(typeof(Array), false)]
-    [InlineAutoMoqData(typeof(Enumerable), false)]
-    [InlineAutoMoqData(typeof(Type), false)]
-    [InlineAutoMoqData(typeof(BaseAutoResolver), false)]
-    [InlineAutoMoqData(typeof(TimeoutException), false)]
-    [InlineAutoMoqData(typeof(Guid), false)]
-    [InlineAutoMoqData(typeof(Task<>), false)]
-    [InlineAutoMoqData(typeof(Task<int>), false)]
-    [InlineAutoMoqData(typeof(int), false)]
+    [InlineData(typeof(IList), true)]
+    [InlineData(typeof(IEnumerable), true)]
+    [InlineData(typeof(Array), false)]
+    [InlineData(typeof(Enumerable), false)]
+    [InlineData(typeof(Type), false)]
+    [InlineData(typeof(BaseAutoResolver), false)]
+    [InlineData(typeof(TimeoutException), false)]
+    [InlineData(typeof(Guid), false)]
+    [InlineData(typeof(Task<>), false)]
+    [InlineData(typeof(Task<int>), false)]
+    [InlineData(typeof(int), false)]
     [Trait("Type", "Unit")]
     public void CanResolve_ShouldMatch(
         Type type,
-        bool expected,
-        string key)
+        bool expected)
     {
         // Arrange
         var resolver = Mock.Of<ISubDependencyResolver>();
         var sut = new AutoResolver(Mock.Of<IKernel>());
+        var key = "key";
 
         // Act
         var actual = sut.CanResolve(
