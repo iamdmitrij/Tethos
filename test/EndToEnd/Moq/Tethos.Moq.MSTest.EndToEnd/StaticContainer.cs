@@ -24,6 +24,6 @@ public class StaticContainer
         var actual = sut.Exercise();
 
         // Assert
-        Assert.AreEqual(actual, expected);
+        Assert.AreEqual(expected, actual);
     }
 }
