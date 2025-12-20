@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 using FluentAssertions;
 using Tethos.Extensions.Assembly;
 using Tethos.Tests.Common;
@@ -16,7 +16,6 @@ public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
     [Theory]
     [InlineData(typeof(IMockable))]
     [InlineData(typeof(Assert))]
-    [InlineData(typeof(Xunit.Abstractions.ITest))]
     [InlineData(typeof(Moq.IMock<>))]
     [InlineData(typeof(FluentAssertions.Events.EventMetadata))]
     [InlineData(typeof(AutoFixture.BehaviorRoot))]

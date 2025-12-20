@@ -1,7 +1,7 @@
 ﻿namespace Tethos.Tests.Extensions.Extensions;
 
 using System;
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 using FluentAssertions;
 using Tethos.Extensions;
 using Xunit;

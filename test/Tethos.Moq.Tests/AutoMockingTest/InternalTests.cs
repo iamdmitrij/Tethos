@@ -1,7 +1,7 @@
 ﻿namespace Tethos.Moq.Tests.AutoMockingTest;
 
 using System;
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 using FluentAssertions;
 using global::Moq;
 using Tethos.Extensions;

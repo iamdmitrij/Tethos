@@ -1,6 +1,6 @@
 ﻿namespace Tethos.NSubstitute.Tests;
 
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 using FluentAssertions;
 using global::NSubstitute;
 using Tethos.NSubstitute.Tests.Attributes;

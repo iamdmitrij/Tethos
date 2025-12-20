@@ -1,6 +1,6 @@
 ﻿namespace Tethos.Tests.Attributes;
 
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 using Tethos.FakeItEasy.Tests.Attributes;
 
 internal class InlineAutoFakeItEasyDataAttribute : InlineAutoDataAttribute

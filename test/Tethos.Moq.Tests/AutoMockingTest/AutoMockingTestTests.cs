@@ -1,7 +1,7 @@
 ﻿namespace Tethos.Moq.Tests.AutoMockingTest;
 
 using System;
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;

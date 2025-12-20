@@ -1,6 +1,6 @@
 ﻿namespace Tethos.Moq.Tests.AutoMockingTest;
 
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 using Castle.MicroKernel;
 using FluentAssertions;
 using global::Moq;

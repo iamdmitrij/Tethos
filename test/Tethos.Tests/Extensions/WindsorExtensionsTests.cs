@@ -1,7 +1,7 @@
 ﻿namespace Tethos.Tests.Extensions;
 
 using System;
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 using Castle.MicroKernel.Registration;
 using FluentAssertions;
 using Tethos.Extensions;

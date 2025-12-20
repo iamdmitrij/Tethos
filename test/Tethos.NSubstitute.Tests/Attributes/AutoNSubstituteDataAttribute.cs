@@ -2,7 +2,7 @@
 
 using AutoFixture;
 using AutoFixture.AutoNSubstitute;
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 
 internal class AutoNSubstituteDataAttribute : AutoDataAttribute
 {

@@ -1,6 +1,6 @@
 ﻿namespace Tethos.Moq.Tests.AutoMockingTest.Configuration.IncludeNonPublicTypes;
 
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 using FluentAssertions;
 using global::Moq;
 using Tethos.Tests.Common;
