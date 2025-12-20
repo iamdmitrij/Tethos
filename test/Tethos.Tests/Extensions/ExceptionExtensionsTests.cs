@@ -71,23 +71,27 @@ public class ExceptionExtensionsTests
         actual.Should().BeFalse();
     }
 
+    /// <summary>
+    /// TODO: Open an issue, because I cannot use params here for type:
+    /// https://github.com/AutoFixture/AutoFixture.xUnit3/blob/48af207c92dbd79335751fbbaa667ddec9cb584b/Src/AutoFixture.xUnit3/Internal/InlineDataSource.cs#L42
+    /// </summary>
     [Theory]
-    [InlineAutoData(false, null)]
-    [InlineAutoData(false, typeof(NotImplementedException))]
+    [InlineAutoData(false, null, null)]
+    [InlineAutoData(false, typeof(NotImplementedException), null)]
     [InlineAutoData(false, typeof(ArgumentException), typeof(ArgumentException))]
-    [InlineAutoData(false, typeof(NotImplementedException), typeof(Exception), typeof(ArgumentException))]
-    [InlineAutoData(true, typeof(NullReferenceException), typeof(Exception), typeof(ArgumentException))]
-    [InlineAutoData(true, typeof(NullReferenceException))]
+    [InlineAutoData(false, typeof(NotImplementedException), typeof(ArgumentException))]
+    [InlineAutoData(true, typeof(NullReferenceException), typeof(ArgumentException))]
+    [InlineAutoData(true, typeof(NullReferenceException), null)]
     [InlineAutoData(true, typeof(NullReferenceException), typeof(NullReferenceException))]
     [InlineAutoData(true, typeof(NullReferenceException), typeof(ArgumentException))]
     [Trait("Type", "Unit")]
-    public void Throws_WhenTypesDoNotMatch_ShouldMatch(bool expected, params Type[] type)
+    public void Throws_WhenTypesDoNotMatch_ShouldMatch(bool expected, Type type, Type innerType)
     {
         // Arrange
         Func<object> sut = () => throw new NullReferenceException();
 
         // Act
-        var actual = sut.Throws(type);
+        var actual = sut.Throws(type, innerType);
 
         // Assert
         actual.Should().Be(expected);
