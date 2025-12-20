@@ -31,10 +31,10 @@ public class BaseAutoResolverTests
     public void CanResolve_ShouldMatch(
         Type type,
         bool expected,
-        CreationContext resolver,
         string key)
     {
         // Arrange
+        var resolver = Mock.Of<CreationContext>();
         var sut = new AutoResolver(Mock.Of<IKernel>());
 
         // Act
