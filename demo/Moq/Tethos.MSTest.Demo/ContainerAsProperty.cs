@@ -31,6 +31,6 @@ public class ContainerAsProperty
         var actual = sut.Exercise();
 
         // Assert
-        Assert.AreEqual(actual, expected);
+        Assert.AreEqual(expected, actual);
     }
 }
