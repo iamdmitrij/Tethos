@@ -1,17 +1,28 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
-  "ignorePresets": [":ignoreModulesAndTests"],
+  "extends": [
+    "config:recommended"
+  ],
+  "ignorePresets": [
+    ":ignoreModulesAndTests"
+  ],
   "rebaseWhen": "conflicted",
   "automergeStrategy": "merge-commit",
   "platformAutomerge": false,
   "packageRules": [
     {
-      "matchPackageNames": ["Xunit.DependencyInjection"],
+      "matchPackageNames": [
+        "Xunit.DependencyInjection"
+      ],
       "allowedVersions": "^9"
     },
     {
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
       "automerge": true
     }
   ]
