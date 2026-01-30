@@ -11,12 +11,12 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
 
-      - uses: dawidd6/action-download-artifact@v12
+      - uses: dawidd6/action-download-artifact@v13
         with:
           workflow: performance.yml
           name: performance-test-results
 
-      - uses: dawidd6/action-download-artifact@v12
+      - uses: dawidd6/action-download-artifact@v13
         with:
           workflow: ci.yml
           name: test-results
