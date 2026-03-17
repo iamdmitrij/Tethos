@@ -36,7 +36,7 @@ jobs:
         run: dotnet format --verify-no-changes --no-restore
 
       - name: 📚 Artifact NuGet
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         if: success()
         with:
           name: nuget-packages
@@ -73,7 +73,7 @@ jobs:
           verbose: true
 
       - name: 📚 Artifact Test Results
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         if: success() || failure()
         with:
           name: test-results
@@ -81,7 +81,7 @@ jobs:
             coverage/*.trx
 
       - name: 📚 Artifact Test Coverage
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         if: success() || failure()
         with:
           name: test-coverage
@@ -100,13 +100,13 @@ jobs:
           fetch-depth: 0
 
       - name: 🔖 Fetch test result artifact
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: test-results
           path: results
 
       - name: 🔖 Fetch test coverage artifact
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: test-coverage
           path: coverage
