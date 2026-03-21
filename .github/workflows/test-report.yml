@@ -21,7 +21,7 @@ jobs:
           workflow: ci.yml
           name: test-results
 
-      - uses: dorny/test-reporter@v2
+      - uses: dorny/test-reporter@v3
         with:
           name: 📜 Test Report
           path: "**/*.trx"
