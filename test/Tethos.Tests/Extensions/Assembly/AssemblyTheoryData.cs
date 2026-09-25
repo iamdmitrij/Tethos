@@ -19,6 +19,7 @@ public class AssemblyTheoryData : TheoryData<string, IEnumerable<string>>
         this.Add("Fake.Net60.dll", GetMatchingAssemblies("Fake."));
         this.Add("Fake.Net70.dll", GetMatchingAssemblies("Fake."));
         this.Add("Fake.Net80.dll", GetMatchingAssemblies("Fake."));
+        this.Add("Fake.Net100.dll", GetMatchingAssemblies("Fake."));
         this.Add("Fake.Standard20.dll", GetMatchingAssemblies("Fake."));
         this.Add("Fake.Standard21.dll", GetMatchingAssemblies("Fake."));
         this.Add("Tethos.dll", GetMatchingAssemblies("Tethos."));

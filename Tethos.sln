@@ -174,6 +174,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fake.Net70", "test\Fakes\Fa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fake.Net80", "test\Fakes\Fake.Net80\Fake.Net80.csproj", "{0D945738-DE07-4D4D-9A89-9D0DD0EB817F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fake.Net100", "test\Fakes\Fake.Net100\Fake.Net100.csproj", "{C8A1F3E2-9B47-4D16-8E2A-51C0B7D94F18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -368,6 +370,10 @@ Global
 		{0D945738-DE07-4D4D-9A89-9D0DD0EB817F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D945738-DE07-4D4D-9A89-9D0DD0EB817F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D945738-DE07-4D4D-9A89-9D0DD0EB817F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8A1F3E2-9B47-4D16-8E2A-51C0B7D94F18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8A1F3E2-9B47-4D16-8E2A-51C0B7D94F18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8A1F3E2-9B47-4D16-8E2A-51C0B7D94F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8A1F3E2-9B47-4D16-8E2A-51C0B7D94F18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -429,6 +435,7 @@ Global
 		{1F6AA843-3007-4703-A5E6-F1A2C77F15F7} = {6A2002AD-9FFA-434B-A7BE-DB1E41F4AFE0}
 		{AEC466B9-D541-4DF4-8998-A9C1D9570FFC} = {B7C534E1-2D8F-408D-9739-DE6CD4F0A731}
 		{0D945738-DE07-4D4D-9A89-9D0DD0EB817F} = {B7C534E1-2D8F-408D-9739-DE6CD4F0A731}
+		{C8A1F3E2-9B47-4D16-8E2A-51C0B7D94F18} = {B7C534E1-2D8F-408D-9739-DE6CD4F0A731}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF888DCC-71E7-4562-AA35-5B93FD8DD252}
