@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<IsTestProject>true</IsTestProject>
 		<NoWarn>1701;1702;NU1702;NU1603;SA1000</NoWarn>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -52,6 +52,7 @@
 		<ProjectReference Include="..\Fakes\Fake.Net60\Fake.Net60.csproj" />
 		<ProjectReference Include="..\Fakes\Fake.Net70\Fake.Net70.csproj" />
 		<ProjectReference Include="..\Fakes\Fake.Net80\Fake.Net80.csproj" />
+		<ProjectReference Include="..\Fakes\Fake.Net100\Fake.Net100.csproj" />
 		<ProjectReference Include="..\Fakes\Fake.Standard20\Fake.Standard20.csproj" />
 		<ProjectReference Include="..\Fakes\Fake.Standard21\Fake.Standard21.csproj" />
 		<ProjectReference Include="..\Tethos.Tests.Common\Tethos.Tests.Common.csproj" />
