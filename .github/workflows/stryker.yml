@@ -82,6 +82,7 @@ jobs:
           cd test/Tethos.Tests
 
           dotnet stryker --config-file stryker-config.json
+          --test-runner mtp
           --version "$target_branch"
           --reporter "$extra_reporter"
           --reporter "cleartext"
@@ -140,6 +141,7 @@ jobs:
           cd test/Tethos.Moq.Tests
 
           dotnet stryker --config-file stryker-config.json
+          --test-runner mtp
           --version "$target_branch"
           --reporter "$extra_reporter"
           --reporter "cleartext"
@@ -198,6 +200,7 @@ jobs:
           cd test/Tethos.FakeItEasy.Tests
 
           dotnet stryker --config-file stryker-config.json
+          --test-runner mtp
           --version "$target_branch"
           --reporter "$extra_reporter"
           --reporter "cleartext"
@@ -256,6 +259,7 @@ jobs:
           cd test/Tethos.NSubstitute.Tests
 
           dotnet stryker --config-file stryker-config.json
+          --test-runner mtp
           --version "$target_branch"
           --reporter "$extra_reporter"
           --reporter "cleartext"
