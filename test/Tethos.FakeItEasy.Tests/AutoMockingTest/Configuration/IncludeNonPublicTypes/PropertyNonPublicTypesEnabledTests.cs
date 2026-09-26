@@ -1,6 +1,6 @@
 ﻿namespace Tethos.FakeItEasy.Tests.AutoMockingTest.Configuration.IncludeNonPublicTypes;
 
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 using FluentAssertions;
 using global::FakeItEasy;
 using Tethos.Tests.Common;

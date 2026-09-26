@@ -2,7 +2,7 @@
 
 using AutoFixture;
 using AutoFixture.AutoFakeItEasy;
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 
 internal class AutoFakeItEasyDataAttribute : AutoDataAttribute
 {
