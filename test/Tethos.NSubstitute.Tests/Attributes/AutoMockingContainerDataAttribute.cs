@@ -1,7 +1,7 @@
 ﻿namespace Tethos.NSubstitute.Tests.Attributes;
 
 using AutoFixture;
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 
 internal class AutoMockingContainerDataAttribute : AutoDataAttribute
 {

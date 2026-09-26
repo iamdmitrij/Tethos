@@ -6,6 +6,7 @@ using Tethos.Benchmarks;
 using Tethos.PerformanceTests.Utils;
 using Xunit;
 
+[Collection("CreationBenchmark")]
 public class CreationBenchmarkTests
 {
     [Theory]

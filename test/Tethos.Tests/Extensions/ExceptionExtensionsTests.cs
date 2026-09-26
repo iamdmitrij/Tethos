@@ -1,13 +1,35 @@
 ﻿namespace Tethos.Tests.Extensions.Extensions;
 
 using System;
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 using FluentAssertions;
 using Tethos.Extensions;
 using Xunit;
 
 public class ExceptionExtensionsTests
 {
+    public static TheoryData<Type[]> ExceptionTypeData =>
+        new()
+        {
+            { null! },
+            { new[] { typeof(NotImplementedException) } },
+            { new[] { typeof(ArgumentException), typeof(ArgumentException) } },
+            { new[] { typeof(NotImplementedException), typeof(Exception), typeof(ArgumentException) } },
+        };
+
+    public static TheoryData<bool, Type[]> ExpectedAndExceptionTypeData =>
+        new()
+        {
+            { false, null! },
+            { false, new[] { typeof(NotImplementedException) } },
+            { false, new[] { typeof(ArgumentException), typeof(ArgumentException) } },
+            { false, new[] { typeof(NotImplementedException), typeof(Exception), typeof(ArgumentException) } },
+            { true, new[] { typeof(NullReferenceException), typeof(Exception), typeof(ArgumentException) } },
+            { true, new[] { typeof(NullReferenceException) } },
+            { true, new[] { typeof(NullReferenceException), typeof(NullReferenceException) } },
+            { true, new[] { typeof(NullReferenceException), typeof(ArgumentException) } },
+        };
+
     [Theory]
     [AutoData]
     [Trait("Type", "Unit")]
@@ -39,12 +61,9 @@ public class ExceptionExtensionsTests
     }
 
     [Theory]
-    [InlineAutoData(null)]
-    [InlineAutoData(typeof(NotImplementedException))]
-    [InlineAutoData(typeof(ArgumentException), typeof(ArgumentException))]
-    [InlineAutoData(typeof(NotImplementedException), typeof(Exception), typeof(ArgumentException))]
+    [MemberData(nameof(ExceptionTypeData))]
     [Trait("Type", "Unit")]
-    public void SwallowExceptions_WhenTypesDoNotMatch_ShouldThrowSameException(params Type[] type)
+    public void SwallowExceptions_WhenTypesDoNotMatch_ShouldThrowSameException(Type[] type)
     {
         // Arrange
         Func<object> sut = () => throw new NullReferenceException();
@@ -72,16 +91,9 @@ public class ExceptionExtensionsTests
     }
 
     [Theory]
-    [InlineAutoData(false, null)]
-    [InlineAutoData(false, typeof(NotImplementedException))]
-    [InlineAutoData(false, typeof(ArgumentException), typeof(ArgumentException))]
-    [InlineAutoData(false, typeof(NotImplementedException), typeof(Exception), typeof(ArgumentException))]
-    [InlineAutoData(true, typeof(NullReferenceException), typeof(Exception), typeof(ArgumentException))]
-    [InlineAutoData(true, typeof(NullReferenceException))]
-    [InlineAutoData(true, typeof(NullReferenceException), typeof(NullReferenceException))]
-    [InlineAutoData(true, typeof(NullReferenceException), typeof(ArgumentException))]
+    [MemberData(nameof(ExpectedAndExceptionTypeData))]
     [Trait("Type", "Unit")]
-    public void Throws_WhenTypesDoNotMatch_ShouldMatch(bool expected, params Type[] type)
+    public void Throws_WhenTypesDoNotMatch_ShouldMatch(bool expected, Type[] type)
     {
         // Arrange
         Func<object> sut = () => throw new NullReferenceException();
