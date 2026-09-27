@@ -3,14 +3,22 @@
 using System;
 using global::NSubstitute;
 using global::Xunit;
+using Microsoft.Extensions.DependencyInjection;
 using Tethos.NSubstitute;
 using Tethos.Tests.Common;
 
 public class ContainerInjected : IDisposable
 {
-    public ContainerInjected(IAutoMockingContainer container)
+    private readonly ServiceProvider provider;
+    private readonly IServiceScope scope;
+
+    public ContainerInjected()
     {
-        this.Container = container;
+        var services = new ServiceCollection();
+        new Startup().ConfigureServices(services);
+        this.provider = services.BuildServiceProvider();
+        this.scope = this.provider.CreateScope();
+        this.Container = this.scope.ServiceProvider.GetRequiredService<IAutoMockingContainer>();
     }
 
     public IAutoMockingContainer Container { get; }
@@ -35,12 +43,7 @@ public class ContainerInjected : IDisposable
 
     public void Dispose()
     {
-        this.Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        this.Container?.Dispose();
+        this.scope.Dispose();
+        this.provider.Dispose();
     }
 }
