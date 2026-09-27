@@ -77,19 +77,31 @@ jobs:
             ${{ runner.os }}-nuget-
 
       - name: 🔬 Test
-        run: >
-          dotnet test ./Tethos.sln
-          --configuration Release
-          --filter FullyQualifiedName\!~Tethos.PerformanceTests
-          /p:CollectCoverage=true
-          /p:CoverletOutputFormat=opencover
-          --logger trx
-          --results-directory ./coverage
+        run: |
+          set -euo pipefail
+
+          while IFS= read -r -d '' project; do
+            if ! grep -Eq 'PackageReference Include="(xunit\.v3|NUnit|MSTest\.TestAdapter)' "$project"; then
+              continue
+            fi
+
+            prefix="${project%.csproj}"
+            prefix="${prefix//\//_}"
+            dotnet test --project "$project" \
+              --configuration Release \
+              --results-directory ./coverage \
+              --coverlet \
+              --coverlet-output-format opencover \
+              --coverlet-file-prefix "$prefix" \
+              --report-trx \
+              --report-trx-filename "${prefix}_{asm}.trx"
+          done < <(find test demo -name '*.csproj' ! -path 'test/Tethos.PerformanceTests/*' -print0)
 
       - name: 🔍 Coverage
         uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage/*.coverage.opencover.*.xml
           verbose: true
 
       - name: 📚 Artifact Test Results
@@ -106,7 +118,7 @@ jobs:
         with:
           name: test-coverage
           path: |
-            **/coverage.opencover.xml
+            coverage/*.coverage.opencover.*.xml
 
   sonar:
     needs: test
@@ -155,7 +167,7 @@ jobs:
           /k:"${{ secrets.SONAR_PROJECT_KEY }}"
           /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
           /d:sonar.host.url="${{ secrets.SONAR_URL }}"
-          /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
+          /d:sonar.cs.opencover.reportsPaths="coverage/*.coverage.opencover.*.xml"
           /d:sonar.cs.vstest.reportsPaths="results/*.trx"
           /d:sonar.coverage.exclusions="test/**, demo/**"
 

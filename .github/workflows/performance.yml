@@ -38,12 +38,11 @@ jobs:
           timeout_minutes: 20
           max_attempts: 5
           retry_on: error
-          command: "dotnet test ./test/Tethos.PerformanceTests/\
-            Tethos.PerformanceTests.csproj
+          command: "dotnet test --project ./test/Tethos.PerformanceTests/Tethos.PerformanceTests.csproj
             --configuration Release
-            --logger trx
-            --results-directory ./coverage
-            -- xunit.parallelizeAssembly=true"
+            --report-trx
+            --report-trx-filename \"{asm}.trx\"
+            --results-directory ./coverage"
 
       - name: 📚 Artifact Test Results
         uses: actions/upload-artifact@v7
