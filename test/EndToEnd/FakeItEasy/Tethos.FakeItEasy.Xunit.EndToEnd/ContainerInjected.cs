@@ -43,6 +43,7 @@ public class ContainerInjected : IDisposable
 
     public void Dispose()
     {
+        GC.SuppressFinalize(this);
         this.scope.Dispose();
         this.provider.Dispose();
     }
