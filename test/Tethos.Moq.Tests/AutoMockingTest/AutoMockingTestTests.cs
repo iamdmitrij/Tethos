@@ -19,13 +19,11 @@ public class AutoMockingTestTests : Moq.AutoMockingTest
     public void Container_ShouldHaveMockInstalled()
     {
         // Arrange
-        var expected = typeof(Mock<object>);
-
         // Act
-        var actual = this.Container.Resolve(expected);
+        var actual = this.Container.Resolve<Mock<object>>();
 
         // Assert
-        actual.ShouldBeOfType(expected);
+        actual.ShouldBeOfType<Mock<object>>();
     }
 
     [Fact]
@@ -33,7 +31,7 @@ public class AutoMockingTestTests : Moq.AutoMockingTest
     public void Container_ShouldHaveAutoResolverInstalled()
     {
         // Assert
-        this.AutoResolver.ShouldBeOfType(typeof(AutoResolver));
+        this.AutoResolver.ShouldBeOfType<AutoResolver>();
     }
 
     [Theory]

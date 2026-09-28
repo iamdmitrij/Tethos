@@ -16,7 +16,7 @@ public class AutoMockingTestTests : FakeItEasy.AutoMockingTest
     public void Container_ShouldHaveAutoResolverInstalled()
     {
         // Assert
-        this.AutoResolver.ShouldBeOfType(typeof(AutoResolver));
+        this.AutoResolver.ShouldBeOfType<AutoResolver>();
     }
 
     [Theory]

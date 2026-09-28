@@ -3,7 +3,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
@@ -102,7 +101,7 @@ public class BaseAutoResolverTests
         // Assert
         actual.TargetType.ShouldBe(type);
         actual.TargetObject.ShouldBe(expected);
-        actual.ConstructorArguments.Count().ShouldBe(resolver.AdditionalArguments.Count());
+        actual.ConstructorArguments.Count.ShouldBe(resolver.AdditionalArguments.Count);
     }
 
     [Theory]
