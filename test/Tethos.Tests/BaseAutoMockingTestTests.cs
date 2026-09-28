@@ -1,6 +1,6 @@
 ﻿namespace Tethos.Tests;
 
-using FluentAssertions;
+using Shouldly;
 using Tethos.Tests.Common;
 using Xunit;
 
@@ -17,6 +17,6 @@ public class BaseAutoMockingTestTests : BaseAutoMockingTest<AutoMockingContainer
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().BeInRange(0, 10);
+        actual.ShouldBeInRange(0, 10);
     }
 }

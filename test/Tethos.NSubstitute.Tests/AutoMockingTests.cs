@@ -1,7 +1,7 @@
 ﻿namespace Tethos.NSubstitute.Tests;
 
 using AutoFixture.Xunit3;
-using FluentAssertions;
+using Shouldly;
 using global::NSubstitute;
 using Tethos.NSubstitute.Tests.Attributes;
 using Tethos.Tests.Common;
@@ -24,7 +24,7 @@ public class AutoMockingTests
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
         AutoMocking.Container.Resolve<IMockable>().Received().Get();
     }
 
@@ -45,6 +45,6 @@ public class AutoMockingTests
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 }

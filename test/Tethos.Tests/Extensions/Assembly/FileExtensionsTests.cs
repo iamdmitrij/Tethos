@@ -1,9 +1,10 @@
 ﻿namespace Tethos.Tests.Extensions.Assembly;
 
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using AutoFixture.Xunit3;
-using FluentAssertions;
+using Shouldly;
 using Tethos.Extensions.Assembly;
 using Xunit;
 
@@ -20,7 +21,7 @@ public class FileExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
         var actual = expected.GetFile();
 
         // Assert
-        actual.Path.Should().Be(expected);
+        actual.Path.ShouldBe(expected);
     }
 
     [Theory]
@@ -36,7 +37,7 @@ public class FileExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
         var actual = directory.GetFiles();
 
         // Assert
-        actual.Should().BeEmpty();
+        actual.ShouldBeEmpty();
 
         // Teardown
         Directory.Delete(directory);
@@ -57,7 +58,7 @@ public class FileExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
         var actual = directory.GetFiles();
 
         // Assert
-        actual.Should().HaveCount(1);
+        actual.Count().ShouldBe(1);
 
         // Teardown
         Directory.Delete(directory, true);
@@ -79,7 +80,7 @@ public class FileExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
         var actual = directory.GetFiles();
 
         // Assert
-        actual.Should().HaveCount(2);
+        actual.Count().ShouldBe(2);
 
         // Teardown
         Directory.Delete(directory, true);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Registration;
-using FluentAssertions;
+using Shouldly;
 using global::NSubstitute;
 using Tethos.NSubstitute.Tests.Attributes;
 using Tethos.Tests.Attributes;
@@ -47,7 +47,7 @@ public class AutoResolverTests
             new(key, type, false));
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -67,7 +67,7 @@ public class AutoResolverTests
 
         // Assert
         kernel.Received(1).Register(Arg.Any<IRegistration>());
-        actual.Should().BeOfType(expected);
+        actual.ShouldBeOfType(expected);
     }
 
     [Theory]
@@ -87,7 +87,7 @@ public class AutoResolverTests
 
         // Assert
         kernel.DidNotReceive().Register(Arg.Any<IRegistration>());
-        actual.Should().BeOfType(expected);
+        actual.ShouldBeOfType(expected);
     }
 
     [Theory]
@@ -110,6 +110,6 @@ public class AutoResolverTests
 
         // Assert
         kernel.DidNotReceive().Register(Arg.Any<IRegistration>());
-        actual.Should().BeOfType(expected);
+        actual.ShouldBeOfType(expected);
     }
 }

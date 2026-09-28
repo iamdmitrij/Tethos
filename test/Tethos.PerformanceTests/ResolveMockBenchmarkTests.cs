@@ -1,7 +1,7 @@
 ﻿namespace Tethos.PerformanceTests;
 
 using BenchmarkDotNet.Running;
-using FluentAssertions;
+using Shouldly;
 using Tethos.Benchmarks;
 using Tethos.PerformanceTests.Utils;
 using Xunit;
@@ -18,6 +18,6 @@ public class ResolveMockBenchmarkTests
         var means = sut.GetMeansInMicroseconds();
 
         // Assert
-        means.Should().OnlyContain(value => value < expected);
+        means.ShouldAllBe(value => value < expected);
     }
 }

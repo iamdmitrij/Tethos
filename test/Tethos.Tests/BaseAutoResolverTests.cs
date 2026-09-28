@@ -7,8 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
-using FluentAssertions;
 using Moq;
+using Shouldly;
 using Tethos.Tests.Attributes;
 using Tethos.Tests.SUT;
 using Xunit;
@@ -46,7 +46,7 @@ public class BaseAutoResolverTests
             new(key, type, false));
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -71,9 +71,9 @@ public class BaseAutoResolverTests
             new(key, type, false)) as MockMapping;
 
         // Assert
-        actual.TargetType.Should().Be(type);
-        actual.TargetObject.Should().Be(expected);
-        actual.ConstructorArguments.Should().BeEmpty();
+        actual.TargetType.ShouldBe(type);
+        actual.TargetObject.ShouldBe(expected);
+        actual.ConstructorArguments.ShouldBeEmpty();
     }
 
     [Theory]
@@ -100,9 +100,9 @@ public class BaseAutoResolverTests
             new(key, type, false)) as MockMapping;
 
         // Assert
-        actual.TargetType.Should().Be(type);
-        actual.TargetObject.Should().Be(expected);
-        actual.ConstructorArguments.Should().HaveSameCount(resolver.AdditionalArguments);
+        actual.TargetType.ShouldBe(type);
+        actual.TargetObject.ShouldBe(expected);
+        actual.ConstructorArguments.Count().ShouldBe(resolver.AdditionalArguments.Count());
     }
 
     [Theory]
@@ -130,8 +130,8 @@ public class BaseAutoResolverTests
             new(key, type, false)) as MockMapping;
 
         // Assert
-        actual.TargetType.Should().Be(type);
-        actual.TargetObject.Should().Be(expected);
-        actual.ConstructorArguments.Should().BeEmpty();
+        actual.TargetType.ShouldBe(type);
+        actual.TargetObject.ShouldBe(expected);
+        actual.ConstructorArguments.ShouldBeEmpty();
     }
 }

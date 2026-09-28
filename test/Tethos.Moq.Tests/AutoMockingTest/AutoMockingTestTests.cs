@@ -5,8 +5,8 @@ using AutoFixture.Xunit3;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using FluentAssertions;
 using global::Moq;
+using Shouldly;
 using Tethos.Extensions;
 using Tethos.Moq.Tests.Attributes;
 using Tethos.Tests.Common;
@@ -25,7 +25,7 @@ public class AutoMockingTestTests : Moq.AutoMockingTest
         var actual = this.Container.Resolve(expected);
 
         // Assert
-        actual.Should().BeOfType(expected);
+        actual.ShouldBeOfType(expected);
     }
 
     [Fact]
@@ -33,7 +33,7 @@ public class AutoMockingTestTests : Moq.AutoMockingTest
     public void Container_ShouldHaveAutoResolverInstalled()
     {
         // Assert
-        this.AutoResolver.Should().BeOfType<AutoResolver>();
+        this.AutoResolver.ShouldBeOfType(typeof(AutoResolver));
     }
 
     [Theory]
@@ -64,7 +64,7 @@ public class AutoMockingTestTests : Moq.AutoMockingTest
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -85,6 +85,6 @@ public class AutoMockingTestTests : Moq.AutoMockingTest
         sut.Exercise();
 
         // Assert
-        action.Should().Throw<NotImplementedException>();
+        Should.Throw<NotImplementedException>(() => action());
     }
 }

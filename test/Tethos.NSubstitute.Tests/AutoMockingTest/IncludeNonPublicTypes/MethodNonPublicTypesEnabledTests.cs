@@ -1,7 +1,7 @@
 ﻿namespace Tethos.NSubstitute.Tests.AutoMockingTest.Configuration;
 
 using AutoFixture.Xunit3;
-using FluentAssertions;
+using Shouldly;
 using global::NSubstitute;
 using Tethos.Tests.Common;
 using Xunit;
@@ -29,6 +29,6 @@ public class MethodNonPublicTypesEnabledTests : NSubstitute.AutoMockingTest
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 }

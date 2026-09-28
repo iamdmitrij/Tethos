@@ -1,6 +1,6 @@
 ﻿namespace Tethos.Tests;
 
-using FluentAssertions;
+using Shouldly;
 using Xunit;
 
 public class DisposableAutoMockingTestTests
@@ -17,6 +17,6 @@ public class DisposableAutoMockingTestTests
         var actual = sut.Disposing;
 
         // Assert
-        actual.Should().BeTrue();
+        actual.ShouldBeTrue();
     }
 }

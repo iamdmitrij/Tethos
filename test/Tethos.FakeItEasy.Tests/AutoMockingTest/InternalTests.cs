@@ -2,7 +2,7 @@
 
 using AutoFixture.Xunit3;
 using Castle.MicroKernel;
-using FluentAssertions;
+using Shouldly;
 using global::FakeItEasy;
 using global::FakeItEasy.Core;
 using Tethos.Extensions;
@@ -27,7 +27,7 @@ public class InternalTests : FakeItEasy.AutoMockingTest
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -44,7 +44,7 @@ public class InternalTests : FakeItEasy.AutoMockingTest
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Fact]
@@ -55,7 +55,7 @@ public class InternalTests : FakeItEasy.AutoMockingTest
         var sut = () => this.Container.Resolve<Tethos.Tests.Common.WeakNamed.SystemUnderTest>();
 
         // Act & Assert
-        sut.Should().Throw<FakeCreationException>();
+        sut.ShouldThrow<FakeCreationException>();
     }
 
     [Fact]
@@ -66,7 +66,7 @@ public class InternalTests : FakeItEasy.AutoMockingTest
         var sut = () => this.Container.ResolveFrom<Tethos.Tests.Common.WeakNamed.SystemUnderTest, Tethos.Tests.Common.WeakNamed.IMockable>();
 
         // Act & Assert
-        sut.Should().Throw<FakeCreationException>();
+        sut.ShouldThrow<FakeCreationException>();
     }
 
     [Fact]
@@ -77,6 +77,6 @@ public class InternalTests : FakeItEasy.AutoMockingTest
         var sut = () => this.Container.Resolve<Tethos.Tests.Common.WeakNamed.IMockable>();
 
         // Act & Assert
-        sut.Should().Throw<ComponentNotFoundException>();
+        sut.ShouldThrow<ComponentNotFoundException>();
     }
 }

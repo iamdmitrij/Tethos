@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using AutoFixture.Xunit3;
-using FluentAssertions;
+using Shouldly;
 using Tethos.Extensions.Assembly;
 using Tethos.Tests.Common;
 using Xunit;
@@ -18,7 +18,7 @@ public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
     [InlineData(typeof(Assert))]
     [InlineData(typeof(Xunit.FactAttribute))]
     [InlineData(typeof(Moq.IMock<>))]
-    [InlineData(typeof(FluentAssertions.Events.EventMetadata))]
+    [InlineData(typeof(Shouldly.ShouldlyConfiguration))]
     [InlineData(typeof(AutoFixture.BehaviorRoot))]
     [InlineData(typeof(Castle.Core.ParameterModel))]
     [InlineData(typeof(Castle.Windsor.IWindsorContainer))]
@@ -43,7 +43,7 @@ public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
         var actual = type.GetRelatedAssemblies();
 
         // Assert
-        actual.Should().Contain(expected);
+        actual.ShouldContain(expected);
     }
 
     [Fact]
@@ -59,7 +59,7 @@ public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
         var actual = assembly.GetDependencies();
 
         // Assert
-        actual.Should().Contain(expected);
+        actual.ShouldContain(expected[0]);
     }
 
     [Theory]
@@ -74,7 +74,7 @@ public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
         var actual = assembly.GetDependencies().Select(dependency => dependency.GetName().Name);
 
         // Assert
-        actual.Should().BeEquivalentTo(expected);
+        actual.ShouldBe(expected, ignoreOrder: true);
     }
 
     [Fact]
@@ -90,7 +90,7 @@ public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
         var actual = assemblies.ElseLoadReferencedAssemblies(assembly);
 
         // Assert
-        actual.Should().HaveCount(expected);
+        actual.Count().ShouldBe(expected);
     }
 
     [Theory]
@@ -106,6 +106,6 @@ public class AssemblyExtensionsTests : BaseAutoMockingTest<AutoMockingContainer>
         var actual = files.ElseLoadReferencedAssemblies(assembly);
 
         // Assert
-        actual.Should().HaveCount(expected);
+        actual.Count().ShouldBe(expected);
     }
 }

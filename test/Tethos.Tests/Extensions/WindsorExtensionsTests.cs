@@ -3,7 +3,7 @@
 using System;
 using AutoFixture.Xunit3;
 using Castle.MicroKernel.Registration;
-using FluentAssertions;
+using Shouldly;
 using Tethos.Extensions;
 using Tethos.Tests.Attributes;
 using Xunit;
@@ -19,7 +19,7 @@ public class WindsorExtensionsTests
         var actual = expected.IncludeNonPublicTypes(configuration) as FromAssemblyDescriptorStub;
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 
     [Theory]
@@ -35,7 +35,7 @@ public class WindsorExtensionsTests
         var actual = descriptor.IncludeNonPublicTypes(configuration) as FromAssemblyDescriptorStub;
 
         // Assert
-        actual.IncludesNonPublicTypes.Should().Be(expected);
+        actual.IncludesNonPublicTypes.ShouldBe(expected);
     }
 
     [Theory]
@@ -51,7 +51,7 @@ public class WindsorExtensionsTests
         var actual = descriptor.IncludeNonPublicTypes(configuration) as FromAssemblyDescriptorStub;
 
         // Assert
-        actual.IncludesNonPublicTypes.Should().Be(expected);
+        actual.IncludesNonPublicTypes.ShouldBe(expected);
     }
 
     [Fact]
@@ -65,7 +65,7 @@ public class WindsorExtensionsTests
         var actual = sut.OverridesExistingRegistration();
 
         // Assert
-        actual.Should().BeNull();
+        actual.ShouldBeNull();
     }
 
     [Theory]
@@ -78,6 +78,6 @@ public class WindsorExtensionsTests
         var actual = Guid.TryParseExact(registration.Name, "D", out _);
 
         // Assert
-        actual.Should().BeTrue();
+        actual.ShouldBeTrue();
     }
 }

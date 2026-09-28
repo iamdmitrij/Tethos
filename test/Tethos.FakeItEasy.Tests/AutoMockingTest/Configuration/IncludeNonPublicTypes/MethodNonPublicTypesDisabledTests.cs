@@ -1,7 +1,7 @@
 ﻿namespace Tethos.FakeItEasy.Tests.AutoMockingTest.Configuration.IncludeNonPublicTypes;
 
 using Castle.MicroKernel;
-using FluentAssertions;
+using Shouldly;
 using Tethos.Tests.Common;
 using Xunit;
 
@@ -21,6 +21,6 @@ public class MethodNonPublicTypesDisabledTests : FakeItEasy.AutoMockingTest
         var sut = () => this.Container.Resolve<InternalSystemUnderTest>();
 
         // Act & Assert
-        sut.Should().Throw<ComponentNotFoundException>();
+        sut.ShouldThrow<ComponentNotFoundException>();
     }
 }

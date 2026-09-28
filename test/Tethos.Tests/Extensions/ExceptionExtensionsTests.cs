@@ -2,7 +2,7 @@
 
 using System;
 using AutoFixture.Xunit3;
-using FluentAssertions;
+using Shouldly;
 using Tethos.Extensions;
 using Xunit;
 
@@ -42,7 +42,7 @@ public class ExceptionExtensionsTests
         var actual = sut.SwallowExceptions();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Fact]
@@ -57,7 +57,7 @@ public class ExceptionExtensionsTests
         var actual = sut.SwallowExceptions(typeof(NotImplementedException));
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -72,7 +72,7 @@ public class ExceptionExtensionsTests
         var actual = () => sut.SwallowExceptions(type);
 
         // Assert
-        actual.Should().Throw<NullReferenceException>();
+        actual.ShouldThrow<NullReferenceException>();
     }
 
     [Theory]
@@ -87,7 +87,7 @@ public class ExceptionExtensionsTests
         var actual = sut.Throws();
 
         // Assert
-        actual.Should().BeFalse();
+        actual.ShouldBeFalse();
     }
 
     [Theory]
@@ -102,6 +102,6 @@ public class ExceptionExtensionsTests
         var actual = sut.Throws(type);
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 }

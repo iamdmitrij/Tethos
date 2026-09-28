@@ -2,8 +2,8 @@
 
 using System;
 using AutoFixture.Xunit3;
-using FluentAssertions;
 using global::Moq;
+using Shouldly;
 using Tethos.Extensions;
 using Tethos.Tests.Common;
 using Xunit;
@@ -28,7 +28,7 @@ public class InternalTests : Moq.AutoMockingTest
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -47,7 +47,7 @@ public class InternalTests : Moq.AutoMockingTest
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Fact]
@@ -58,7 +58,7 @@ public class InternalTests : Moq.AutoMockingTest
         var sut = () => this.Container.Resolve<Tethos.Tests.Common.WeakNamed.SystemUnderTest>();
 
         // Act & Assert
-        sut.Should().Throw<ArgumentException>();
+        sut.ShouldThrow<ArgumentException>();
     }
 
     [Fact]
@@ -69,7 +69,7 @@ public class InternalTests : Moq.AutoMockingTest
         var sut = () => this.Container.ResolveFrom<Tethos.Tests.Common.WeakNamed.SystemUnderTest, Mock<Tethos.Tests.Common.WeakNamed.IMockable>>();
 
         // Act & Assert
-        sut.Should().Throw<ArgumentException>();
+        sut.ShouldThrow<ArgumentException>();
     }
 
     [Fact]
@@ -80,6 +80,6 @@ public class InternalTests : Moq.AutoMockingTest
         var sut = this.Container.Resolve<Mock<Tethos.Tests.Common.WeakNamed.IMockable>>();
 
         // Assert
-        sut.Should().NotBeNull();
+        sut.ShouldNotBeNull();
     }
 }
