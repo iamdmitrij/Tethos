@@ -85,7 +85,7 @@ within the scope of the test method dependencies, including mock instances will 
 
 ## Usage
 
-- Use `AutoMocking.Container` static property to retrieve container
+- Use `AutoMocking.Container` static property to retrieve container, test
 
 ```c#
 public class ContainerFromBaseClass
