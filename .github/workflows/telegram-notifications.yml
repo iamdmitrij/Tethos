@@ -1,8 +1,6 @@
 name: "📨 Telegram PR Notifications"
 
 on:
-  push:
-    branches: ["**"]
   pull_request:
     types: ["opened"]
 
@@ -14,7 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📨 Send pull request notification
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         uses: appleboy/telegram-action@v1.1.1
         with:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -26,17 +23,3 @@ jobs:
             By: ${{ github.event.pull_request.user.login }}
 
             ${{ github.event.pull_request.html_url }}
-      - name: 📨 Send commit notification
-        if: github.event_name == 'push'
-        uses: appleboy/telegram-action@v1.1.1
-        with:
-          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          message: |
-            New commit in ${{ github.repository }}
-
-            Branch: ${{ github.ref_name }}
-            Commit: ${{ github.event.head_commit.message }}
-            By: ${{ github.event.head_commit.author.name }}
-
-            ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}
