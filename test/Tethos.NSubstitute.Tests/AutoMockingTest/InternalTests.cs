@@ -3,7 +3,7 @@
 using System;
 using AutoFixture.Xunit3;
 using Castle.MicroKernel;
-using FluentAssertions;
+using Shouldly;
 using global::NSubstitute;
 using Tethos.Extensions;
 using Tethos.Tests.Common;
@@ -28,7 +28,7 @@ public class InternalTests : NSubstitute.AutoMockingTest
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -46,7 +46,7 @@ public class InternalTests : NSubstitute.AutoMockingTest
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Fact]
@@ -57,7 +57,7 @@ public class InternalTests : NSubstitute.AutoMockingTest
         var sut = () => this.Container.Resolve<Tethos.Tests.Common.WeakNamed.SystemUnderTest>();
 
         // Act & Assert
-        sut.Should().Throw<ArgumentException>();
+        sut.ShouldThrow<ArgumentException>();
     }
 
     [Fact]
@@ -68,7 +68,7 @@ public class InternalTests : NSubstitute.AutoMockingTest
         var sut = () => this.Container.ResolveFrom<Tethos.Tests.Common.WeakNamed.SystemUnderTest, Tethos.Tests.Common.WeakNamed.IMockable>();
 
         // Act & Assert
-        sut.Should().Throw<ArgumentException>();
+        sut.ShouldThrow<ArgumentException>();
     }
 
     [Fact]
@@ -79,6 +79,6 @@ public class InternalTests : NSubstitute.AutoMockingTest
         var sut = () => this.Container.Resolve<Tethos.Tests.Common.WeakNamed.IMockable>();
 
         // Act & Assert
-        sut.Should().Throw<ComponentNotFoundException>();
+        sut.ShouldThrow<ComponentNotFoundException>();
     }
 }

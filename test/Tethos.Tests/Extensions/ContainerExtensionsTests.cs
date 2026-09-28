@@ -6,8 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoFixture.Xunit3;
 using Castle.MicroKernel;
-using FluentAssertions;
 using Moq;
+using Shouldly;
 using Tethos.Extensions;
 using Tethos.Tests.Attributes;
 using Xunit;
@@ -24,7 +24,7 @@ public class ContainerExtensionsTests
         var actual = dependency[$"{typeof(string)}__{name}"];
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -40,7 +40,7 @@ public class ContainerExtensionsTests
         var actual = dependency[$"{typeof(string)}__{name}"];
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -55,7 +55,7 @@ public class ContainerExtensionsTests
         var actual = () => sut.AddDependencyTo<string, int>(expected, value);
 
         // Assert
-        actual.Should().Throw<ArgumentNullException>();
+        actual.ShouldThrow<ArgumentNullException>();
     }
 
     [Theory]
@@ -71,7 +71,7 @@ public class ContainerExtensionsTests
         var actual = dependency[$"{type}__{name}"];
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -88,7 +88,7 @@ public class ContainerExtensionsTests
         var actual = dependency[$"{type}__{name}"];
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -103,7 +103,7 @@ public class ContainerExtensionsTests
         var actual = () => sut.AddDependencyTo(typeof(string), expected, value);
 
         // Assert
-        actual.Should().Throw<ArgumentNullException>();
+        actual.ShouldThrow<ArgumentNullException>();
     }
 
     [Theory]
@@ -121,7 +121,7 @@ public class ContainerExtensionsTests
 
         // Assert
         mock.Verify(m => m.Resolve(parentType), Times.Once);
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -138,7 +138,7 @@ public class ContainerExtensionsTests
 
         // Assert
         mock.Verify(m => m.Resolve(parent), Times.Once);
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -153,7 +153,7 @@ public class ContainerExtensionsTests
         var actual = sut.Flatten();
 
         // Assert
-        actual.Should().BeEquivalentTo(expected);
+        actual.ShouldBe(expected, ignoreOrder: true);
     }
 
     [Theory]
@@ -175,7 +175,7 @@ public class ContainerExtensionsTests
         var actual = argument.GetArgumentType();
 
         // Assert
-        actual.Should().Be($"{type}");
+        actual.ShouldBe($"{type}");
     }
 
     [Theory]
@@ -194,6 +194,6 @@ public class ContainerExtensionsTests
         var actual = argument.GetArgumentType();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 }

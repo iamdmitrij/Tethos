@@ -1,7 +1,7 @@
 ﻿namespace Tethos.PerformanceTests.NonPublicTypes;
 
 using BenchmarkDotNet.Running;
-using FluentAssertions;
+using Shouldly;
 using Tethos.Benchmarks.NonPublicTypes;
 using Tethos.PerformanceTests.Utils;
 using Xunit;
@@ -18,6 +18,6 @@ public class CreationBenchmarkTests
         var means = sut.GetMeansInMilliseconds();
 
         // Assert
-        means.Should().OnlyContain(value => value < expected);
+        means.ShouldAllBe(value => value < expected);
     }
 }

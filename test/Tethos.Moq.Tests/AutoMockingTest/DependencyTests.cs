@@ -2,8 +2,8 @@
 
 using AutoFixture.Xunit3;
 using Castle.MicroKernel;
-using FluentAssertions;
 using global::Moq;
+using Shouldly;
 using Tethos.Extensions;
 using Tethos.Tests.Common;
 using Xunit;
@@ -26,7 +26,7 @@ public class DependencyTests : Moq.AutoMockingTest
         actual.Exercise();
 
         // Assert
-        mock.Should().BeOfType(expectedType);
+        mock.ShouldBeOfType(expectedType);
         mock.Verify(m => m.Get(), Times.Once);
     }
 
@@ -51,8 +51,8 @@ public class DependencyTests : Moq.AutoMockingTest
         actual.Exercise();
 
         // Assert
-        mock.Should().BeOfType(expectedType);
-        thresholdMock.Should().BeOfType(expectedThresholdType);
+        mock.ShouldBeOfType(expectedType);
+        thresholdMock.ShouldBeOfType(expectedThresholdType);
     }
 
     [Theory]
@@ -70,7 +70,7 @@ public class DependencyTests : Moq.AutoMockingTest
         actual.Exercise();
 
         // Assert
-        this.Container.Resolve<Mock<AbstractThreshold>>().Should().BeOfType(expected);
+        this.Container.Resolve<Mock<AbstractThreshold>>().ShouldBeOfType(expected);
     }
 
     [Theory]
@@ -88,7 +88,7 @@ public class DependencyTests : Moq.AutoMockingTest
         sut.Exercise();
 
         // Assert
-        this.Container.Resolve<Mock<PartialThreshold>>().Should().BeOfType(expected);
+        this.Container.Resolve<Mock<PartialThreshold>>().ShouldBeOfType(expected);
     }
 
     [Fact]
@@ -110,9 +110,9 @@ public class DependencyTests : Moq.AutoMockingTest
         sut.Exercise();
 
         // Assert
-        this.Container.Resolve<Mock<Concrete>>().Should().BeOfType(new Mock<Concrete>(MockBehavior.Strict, 100, 200).GetType()).GetType();
-        this.Container.Resolve<Mock<Threshold>>().Should().BeOfType(new Mock<Threshold>(MockBehavior.Strict, true).GetType()).GetType();
-        this.Container.Resolve<Mock<PartialThreshold>>().Should().BeOfType(new Mock<PartialThreshold>(MockBehavior.Strict, true).GetType()).GetType();
-        this.Container.Resolve<Mock<AbstractThreshold>>().Should().BeOfType(new Mock<AbstractThreshold>(MockBehavior.Strict, true).GetType()).GetType();
+        this.Container.Resolve<Mock<Concrete>>().ShouldBeOfType(new Mock<Concrete>(MockBehavior.Strict, 100, 200).GetType());
+        this.Container.Resolve<Mock<Threshold>>().ShouldBeOfType(new Mock<Threshold>(MockBehavior.Strict, true).GetType());
+        this.Container.Resolve<Mock<PartialThreshold>>().ShouldBeOfType(new Mock<PartialThreshold>(MockBehavior.Strict, true).GetType());
+        this.Container.Resolve<Mock<AbstractThreshold>>().ShouldBeOfType(new Mock<AbstractThreshold>(MockBehavior.Strict, true).GetType());
     }
 }

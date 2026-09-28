@@ -2,7 +2,7 @@
 
 using AutoFixture.Xunit3;
 using Castle.MicroKernel;
-using FluentAssertions;
+using Shouldly;
 using global::NSubstitute;
 using Tethos.Extensions;
 using Tethos.Tests.Common;
@@ -26,7 +26,7 @@ public class DependencyTests : NSubstitute.AutoMockingTest
         actual.Exercise();
 
         // Assert
-        mock.Should().BeOfType(expectedType);
+        mock.ShouldBeOfType(expectedType);
         mock.Received().Get();
     }
 
@@ -51,8 +51,8 @@ public class DependencyTests : NSubstitute.AutoMockingTest
         actual.Exercise();
 
         // Assert
-        mock.Should().BeOfType(expectedType);
-        thresholdMock.Should().BeOfType(expectedThresholdType);
+        mock.ShouldBeOfType(expectedType);
+        thresholdMock.ShouldBeOfType(expectedThresholdType);
     }
 
     [Theory]
@@ -70,7 +70,7 @@ public class DependencyTests : NSubstitute.AutoMockingTest
         actual.Exercise();
 
         // Assert
-        this.Container.Resolve<AbstractThreshold>().Should().BeOfType(expected);
+        this.Container.Resolve<AbstractThreshold>().ShouldBeOfType(expected);
     }
 
     [Theory]
@@ -88,7 +88,7 @@ public class DependencyTests : NSubstitute.AutoMockingTest
         sut.Exercise();
 
         // Assert
-        this.Container.Resolve<PartialThreshold>().Should().BeOfType(expected);
+        this.Container.Resolve<PartialThreshold>().ShouldBeOfType(expected);
     }
 
     [Fact]
@@ -110,9 +110,9 @@ public class DependencyTests : NSubstitute.AutoMockingTest
         sut.Exercise();
 
         // Assert
-        this.Container.Resolve<Concrete>().Should().BeOfType(Substitute.For<Concrete>(100, 200).GetType());
-        this.Container.Resolve<Threshold>().Should().BeOfType(Substitute.For<Threshold>(true).GetType());
-        this.Container.Resolve<PartialThreshold>().Should().BeOfType(Substitute.For<PartialThreshold>(true).GetType());
-        this.Container.Resolve<AbstractThreshold>().Should().BeOfType(Substitute.For<AbstractThreshold>(true).GetType());
+        this.Container.Resolve<Concrete>().ShouldBeOfType(Substitute.For<Concrete>(100, 200).GetType());
+        this.Container.Resolve<Threshold>().ShouldBeOfType(Substitute.For<Threshold>(true).GetType());
+        this.Container.Resolve<PartialThreshold>().ShouldBeOfType(Substitute.For<PartialThreshold>(true).GetType());
+        this.Container.Resolve<AbstractThreshold>().ShouldBeOfType(Substitute.For<AbstractThreshold>(true).GetType());
     }
 }

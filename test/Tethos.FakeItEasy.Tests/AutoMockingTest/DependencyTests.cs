@@ -2,7 +2,7 @@
 
 using AutoFixture.Xunit3;
 using Castle.MicroKernel;
-using FluentAssertions;
+using Shouldly;
 using global::FakeItEasy;
 using Tethos.Extensions;
 using Tethos.Tests.Common;
@@ -23,7 +23,7 @@ public class DependencyTests : FakeItEasy.AutoMockingTest
         sut.Exercise();
 
         // Assert
-        actual.Should().BeOfType(expected);
+        actual.ShouldBeOfType(expected);
         A.CallTo(() => actual.Get()).MustHaveHappened();
     }
 
@@ -45,9 +45,9 @@ public class DependencyTests : FakeItEasy.AutoMockingTest
 
         // Assert
         A.CallTo(() => actual.Get()).MustHaveHappened();
-        actual.MinValue.Should().Be(minValue);
-        actual.MaxValue.Should().Be(maxValue);
-        actual.Should().BeOfType(expected);
+        actual.MinValue.ShouldBe(minValue);
+        actual.MaxValue.ShouldBe(maxValue);
+        actual.ShouldBeOfType(expected);
     }
 
     [Theory]
@@ -73,11 +73,11 @@ public class DependencyTests : FakeItEasy.AutoMockingTest
         sut.Exercise();
 
         // Assert
-        mock.Should().BeOfType(expectedType);
-        mock.MinValue.Should().Be(minValue);
-        mock.MaxValue.Should().Be(maxValue);
-        thresholdMock.Should().BeOfType(expectedThresholdType);
-        thresholdMock.Enabled.Should().Be(enabled);
+        mock.ShouldBeOfType(expectedType);
+        mock.MinValue.ShouldBe(minValue);
+        mock.MaxValue.ShouldBe(maxValue);
+        thresholdMock.ShouldBeOfType(expectedThresholdType);
+        thresholdMock.Enabled.ShouldBe(enabled);
     }
 
     [Theory]
@@ -96,8 +96,8 @@ public class DependencyTests : FakeItEasy.AutoMockingTest
         sut.Exercise();
 
         // Assert
-        actual.Should().BeOfType(expected);
-        actual.Enabled.Should().Be(enabled);
+        actual.ShouldBeOfType(expected);
+        actual.Enabled.ShouldBe(enabled);
     }
 
     [Theory]
@@ -116,8 +116,8 @@ public class DependencyTests : FakeItEasy.AutoMockingTest
         sut.Exercise();
 
         // Assert
-        actual.Should().BeOfType(expected);
-        actual.Enabled.Should().Be(enabled);
+        actual.ShouldBeOfType(expected);
+        actual.Enabled.ShouldBe(enabled);
     }
 
     [Theory]
@@ -149,15 +149,15 @@ public class DependencyTests : FakeItEasy.AutoMockingTest
         sut.Exercise();
 
         // Assert
-        concrete.Should().BeOfType(sut.Mockable.GetType());
-        threshold.Should().BeOfType(sut.Threshold.GetType());
-        partialThreshold.Should().BeOfType(sut.PartialThreshold.GetType());
-        abstractThreshold.Should().BeOfType(sut.AbstractThreshold.GetType());
+        concrete.ShouldBeOfType(sut.Mockable.GetType());
+        threshold.ShouldBeOfType(sut.Threshold.GetType());
+        partialThreshold.ShouldBeOfType(sut.PartialThreshold.GetType());
+        abstractThreshold.ShouldBeOfType(sut.AbstractThreshold.GetType());
 
-        concrete.MinValue.Should().Be(minValue);
-        concrete.MaxValue.Should().Be(maxValue);
-        threshold.Enabled.Should().Be(thresholdEnabled);
-        partialThreshold.Enabled.Should().Be(partialThresholdEnabled);
-        abstractThreshold.Enabled.Should().Be(abstractThresholdEnabled);
+        concrete.MinValue.ShouldBe(minValue);
+        concrete.MaxValue.ShouldBe(maxValue);
+        threshold.Enabled.ShouldBe(thresholdEnabled);
+        partialThreshold.Enabled.ShouldBe(partialThresholdEnabled);
+        abstractThreshold.Enabled.ShouldBe(abstractThresholdEnabled);
     }
 }

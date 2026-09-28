@@ -3,7 +3,7 @@
 using System.Linq;
 using System.Reflection;
 using AutoFixture.Xunit3;
-using FluentAssertions;
+using Shouldly;
 using Tethos.Extensions.Assembly;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class AssemblyLoadingExtensionsTests : BaseAutoMockingTest<AutoMockingCon
 {
     [Theory]
     [InlineData("Tethos.dll", "Tethos.Tests.Common.dll")]
-    [InlineData("AutoFixture.dll", "FluentAssertions.dll", "Moq.dll", "xunit.v3.core.dll")]
+    [InlineData("AutoFixture.dll", "Shouldly.dll", "Moq.dll", "xunit.v3.core.dll")]
     [InlineData("Castle.Core.dll", "Castle.Windsor.dll")]
     [Trait("Type", "Unit")]
     public void LoadAssemblies_ShouldLoad(params string[] assemblies)
@@ -24,7 +24,7 @@ public class AssemblyLoadingExtensionsTests : BaseAutoMockingTest<AutoMockingCon
         var actual = files.LoadAssemblies();
 
         // Assert
-        actual.Should().HaveCount(expected);
+        actual.Count().ShouldBe(expected);
     }
 
     [Theory]
@@ -39,7 +39,7 @@ public class AssemblyLoadingExtensionsTests : BaseAutoMockingTest<AutoMockingCon
         var actual = files.LoadAssemblies();
 
         // Assert
-        actual.Should().BeEmpty();
+        actual.ShouldBeEmpty();
     }
 
     [Theory]
@@ -54,7 +54,7 @@ public class AssemblyLoadingExtensionsTests : BaseAutoMockingTest<AutoMockingCon
         var actual = assemblyName.TryToLoadAssembly();
 
         // Assert
-        actual.Should().BeNull();
+        actual.ShouldBeNull();
     }
 
     [Fact]
@@ -69,7 +69,7 @@ public class AssemblyLoadingExtensionsTests : BaseAutoMockingTest<AutoMockingCon
         var actual = assemblyName.TryToLoadAssembly();
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 
     [Fact]
@@ -83,7 +83,7 @@ public class AssemblyLoadingExtensionsTests : BaseAutoMockingTest<AutoMockingCon
         var actual = corruptAssembly.TryToLoadAssembly();
 
         // Assert
-        actual.Should().BeNull();
+        actual.ShouldBeNull();
     }
 
     [Theory]
@@ -100,6 +100,6 @@ public class AssemblyLoadingExtensionsTests : BaseAutoMockingTest<AutoMockingCon
         var actual = assemblyName.TryToLoadAssembly();
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 }

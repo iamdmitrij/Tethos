@@ -1,8 +1,8 @@
 ﻿namespace Tethos.Moq.Tests.AutoMockingTest.Configuration.IncludeNonPublicTypes;
 
 using AutoFixture.Xunit3;
-using FluentAssertions;
 using global::Moq;
+using Shouldly;
 using Tethos.Tests.Common;
 using Xunit;
 
@@ -25,6 +25,6 @@ public class PropertyNonPublicTypesEnabledTests : Moq.AutoMockingTest
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 }

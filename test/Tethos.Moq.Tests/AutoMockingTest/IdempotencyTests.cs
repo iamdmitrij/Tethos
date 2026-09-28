@@ -1,7 +1,7 @@
 ﻿namespace Tethos.Moq.Tests.AutoMockingTest;
 
-using FluentAssertions;
 using global::Moq;
+using Shouldly;
 using Tethos.Extensions;
 using Tethos.Tests.Common;
 using Xunit;
@@ -19,7 +19,7 @@ public class IdempotencyTests : Moq.AutoMockingTest
         var actual = this.Container.ResolveFrom<SystemUnderTest, Mock<IMockable>>();
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 
     [Fact]
@@ -33,7 +33,7 @@ public class IdempotencyTests : Moq.AutoMockingTest
         var actual = AutoMocking.Container.ResolveFrom<SystemUnderTest, Mock<IMockable>>();
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 
     [Fact]
@@ -48,7 +48,7 @@ public class IdempotencyTests : Moq.AutoMockingTest
         var actual = this.Container.ResolveFrom<SystemUnderTest, Mock<IMockable>>();
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 
     [Fact]
@@ -64,8 +64,8 @@ public class IdempotencyTests : Moq.AutoMockingTest
         var actualMock = this.Container.Resolve<IMockable>();
 
         // Assert
-        actual.Should().NotBeSameAs(expected);
-        expectedMock.Should().BeSameAs(actualMock);
+        actual.ShouldNotBeSameAs(expected);
+        expectedMock.ShouldBeSameAs(actualMock);
     }
 
     [Fact]
@@ -80,7 +80,7 @@ public class IdempotencyTests : Moq.AutoMockingTest
         var actual = this.Container.Resolve<Mock<IMockable>>();
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 
     [Fact]
@@ -94,7 +94,7 @@ public class IdempotencyTests : Moq.AutoMockingTest
         var actual = this.Container.ResolveFrom<SystemUnderTest, IMockable>();
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 
     [Fact]
@@ -108,7 +108,7 @@ public class IdempotencyTests : Moq.AutoMockingTest
         var actual = Mock.Get(this.Container.ResolveFrom<SystemUnderTest, IMockable>());
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 
     [Fact]
@@ -123,7 +123,7 @@ public class IdempotencyTests : Moq.AutoMockingTest
         var actual = this.Container.ResolveFrom<SystemUnderTest, IMockable>();
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 
     [Fact]
@@ -138,7 +138,7 @@ public class IdempotencyTests : Moq.AutoMockingTest
         var actual = Mock.Get(this.Container.ResolveFrom<SystemUnderTest, IMockable>());
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 
     [Fact]
@@ -153,7 +153,7 @@ public class IdempotencyTests : Moq.AutoMockingTest
         var actual = this.Container.Resolve<IMockable>();
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 
     [Fact]
@@ -168,6 +168,6 @@ public class IdempotencyTests : Moq.AutoMockingTest
         var actual = Mock.Get(this.Container.Resolve<IMockable>());
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 }

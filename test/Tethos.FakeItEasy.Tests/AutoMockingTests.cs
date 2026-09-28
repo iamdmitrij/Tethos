@@ -1,7 +1,7 @@
 ﻿namespace Tethos.FakeItEasy.Tests;
 
 using AutoFixture.Xunit3;
-using FluentAssertions;
+using Shouldly;
 using global::FakeItEasy;
 using Tethos.FakeItEasy;
 using Tethos.FakeItEasy.Tests.Attributes;
@@ -24,7 +24,7 @@ public class AutoMockingTests
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
         A.CallTo(() => AutoMocking.Container.Resolve<IMockable>().Get()).MustHaveHappened();
     }
 
@@ -44,6 +44,6 @@ public class AutoMockingTests
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 }

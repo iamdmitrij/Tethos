@@ -1,6 +1,6 @@
 ﻿namespace Tethos.NSubstitute.Tests.AutoMockingTest;
 
-using FluentAssertions;
+using Shouldly;
 using Tethos.Extensions;
 using Tethos.Tests.Common;
 using Xunit;
@@ -18,7 +18,7 @@ public class IdempotencyTests : NSubstitute.AutoMockingTest
         var actual = this.Container.ResolveFrom<SystemUnderTest, IMockable>();
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 
     [Fact]
@@ -32,7 +32,7 @@ public class IdempotencyTests : NSubstitute.AutoMockingTest
         var actual = AutoMocking.Container.ResolveFrom<SystemUnderTest, IMockable>();
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 
     [Fact]
@@ -47,7 +47,7 @@ public class IdempotencyTests : NSubstitute.AutoMockingTest
         var actual = this.Container.ResolveFrom<SystemUnderTest, IMockable>();
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 
     [Fact]
@@ -63,8 +63,8 @@ public class IdempotencyTests : NSubstitute.AutoMockingTest
         var actualMock = this.Container.Resolve<IMockable>();
 
         // Assert
-        actual.Should().NotBeSameAs(expected);
-        expectedMock.Should().BeSameAs(actualMock);
+        actual.ShouldNotBeSameAs(expected);
+        expectedMock.ShouldBeSameAs(actualMock);
     }
 
     [Fact]
@@ -79,6 +79,6 @@ public class IdempotencyTests : NSubstitute.AutoMockingTest
         var actual = this.Container.Resolve<IMockable>();
 
         // Assert
-        actual.Should().BeSameAs(expected);
+        actual.ShouldBeSameAs(expected);
     }
 }

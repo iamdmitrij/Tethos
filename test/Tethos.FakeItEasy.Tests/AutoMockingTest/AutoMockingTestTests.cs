@@ -3,7 +3,7 @@
 using System;
 using AutoFixture.Xunit3;
 using Castle.MicroKernel.Registration;
-using FluentAssertions;
+using Shouldly;
 using global::FakeItEasy;
 using Tethos.Extensions;
 using Tethos.Tests.Common;
@@ -16,7 +16,7 @@ public class AutoMockingTestTests : FakeItEasy.AutoMockingTest
     public void Container_ShouldHaveAutoResolverInstalled()
     {
         // Assert
-        this.AutoResolver.Should().BeOfType<AutoResolver>();
+        this.AutoResolver.ShouldBeOfType(typeof(AutoResolver));
     }
 
     [Theory]
@@ -33,7 +33,7 @@ public class AutoMockingTestTests : FakeItEasy.AutoMockingTest
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -54,6 +54,6 @@ public class AutoMockingTestTests : FakeItEasy.AutoMockingTest
         sut.Exercise();
 
         // Assert
-        action.Should().Throw<NotImplementedException>();
+        Should.Throw<NotImplementedException>(() => action());
     }
 }

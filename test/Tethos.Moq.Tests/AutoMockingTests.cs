@@ -1,8 +1,8 @@
 ﻿namespace Tethos.Moq.Tests;
 
 using AutoFixture.Xunit3;
-using FluentAssertions;
 using global::Moq;
+using Shouldly;
 using Tethos.Moq;
 using Tethos.Moq.Tests.Attributes;
 using Tethos.Tests.Common;
@@ -26,7 +26,7 @@ public class AutoMockingTests
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
         AutoMocking.Container.Resolve<Mock<IMockable>>().Verify();
     }
 
@@ -48,6 +48,6 @@ public class AutoMockingTests
         var actual = sut.Exercise();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 }

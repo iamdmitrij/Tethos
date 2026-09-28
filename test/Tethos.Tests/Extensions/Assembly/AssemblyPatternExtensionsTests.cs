@@ -1,7 +1,7 @@
 ﻿namespace Tethos.Tests.Extensions.Assembly;
 
 using System;
-using FluentAssertions;
+using Shouldly;
 using Tethos.Extensions.Assembly;
 using Xunit;
 
@@ -22,7 +22,7 @@ public class AssemblyPatternExtensionsTests : BaseAutoMockingTest<AutoMockingCon
         var actual = assemblyName.GetPattern();
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -40,6 +40,6 @@ public class AssemblyPatternExtensionsTests : BaseAutoMockingTest<AutoMockingCon
         var actual = () => assemblyName.GetPattern();
 
         // Act & Assert
-        actual.Should().Throw<ArgumentException>().And.Message.Should().Be(expected);
+        actual.ShouldThrow<ArgumentException>().Message.ShouldBe(expected);
     }
 }

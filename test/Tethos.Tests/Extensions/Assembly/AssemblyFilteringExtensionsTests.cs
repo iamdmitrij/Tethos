@@ -2,7 +2,7 @@
 
 using System.Linq;
 using System.Reflection;
-using FluentAssertions;
+using Shouldly;
 using Tethos.Extensions.Assembly;
 using Xunit;
 
@@ -29,7 +29,7 @@ public class AssemblyFilteringExtensionsTests : BaseAutoMockingTest<AutoMockingC
         var actual = files.FilterAssemblies(extensions);
 
         // Assert
-        actual.Should().HaveCount(expected);
+        actual.Count().ShouldBe(expected);
     }
 
     [Theory]
@@ -54,7 +54,7 @@ public class AssemblyFilteringExtensionsTests : BaseAutoMockingTest<AutoMockingC
         var actual = files.FilterAssemblies(pattern, extensions);
 
         // Assert
-        actual.Should().HaveCount(expected);
+        actual.Count().ShouldBe(expected);
     }
 
     [Theory]
@@ -74,7 +74,7 @@ public class AssemblyFilteringExtensionsTests : BaseAutoMockingTest<AutoMockingC
             .ContainsAssemblyNamed(name);
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -92,6 +92,6 @@ public class AssemblyFilteringExtensionsTests : BaseAutoMockingTest<AutoMockingC
         var actual = files.ExcludeRefDirectory();
 
         // Assert
-        actual.Should().HaveCount(expected);
+        actual.Count().ShouldBe(expected);
     }
 }

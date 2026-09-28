@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Registration;
-using FluentAssertions;
 using global::Moq;
+using Shouldly;
 using Tethos.Moq.Tests.Attributes;
 using Tethos.Tests.Common;
 using Xunit;
@@ -55,7 +55,7 @@ public class AutoResolverTests
             new(key, type, false));
 
         // Assert
-        actual.Should().Be(expected);
+        actual.ShouldBe(expected);
     }
 
     [Theory]
@@ -75,7 +75,7 @@ public class AutoResolverTests
 
         // Assert
         kernel.Verify(m => m.Register(It.IsAny<IRegistration>()), Times.AtLeastOnce);
-        actual.Should().BeOfType(expected);
+        actual.ShouldBeOfType(expected);
     }
 
     [Theory]
@@ -95,7 +95,7 @@ public class AutoResolverTests
 
         // Assert
         kernel.Verify(m => m.Register(It.IsAny<IRegistration>()), Times.Never);
-        actual.Should().BeOfType(expected);
+        actual.ShouldBeOfType(expected);
     }
 
     [Theory]
@@ -118,6 +118,6 @@ public class AutoResolverTests
 
         // Assert
         kernel.Verify(m => m.Register(It.IsAny<IRegistration>()), Times.Never);
-        actual.Should().BeOfType(expected);
+        actual.ShouldBeOfType(expected);
     }
 }

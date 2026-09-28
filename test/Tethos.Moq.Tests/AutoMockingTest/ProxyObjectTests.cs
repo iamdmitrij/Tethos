@@ -1,7 +1,7 @@
 ﻿namespace Tethos.Moq.Tests.AutoMockingTest;
 
-using FluentAssertions;
 using global::Moq;
+using Shouldly;
 using Tethos.Moq.Tests.Attributes;
 using Tethos.Tests.Common;
 using Xunit;
@@ -22,7 +22,7 @@ public class ProxyObjectTests : Moq.AutoMockingTest
         var actual = Mock.Get(sut);
 
         // Assert
-        actual.Should().BeOfType(expected);
+        actual.ShouldBeOfType(expected);
     }
 
     [Theory]
@@ -39,6 +39,6 @@ public class ProxyObjectTests : Moq.AutoMockingTest
         var actual = Mock.Get(sut).Object;
 
         // Assert
-        actual.Should().BeOfType(expected);
+        actual.ShouldBeOfType(expected);
     }
 }
