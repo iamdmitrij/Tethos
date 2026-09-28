@@ -17,7 +17,7 @@ xunit
 moq
 nsubstitute
 nunit
-shoudly
+shouldly
 
 # CSharp common terms
 linq
