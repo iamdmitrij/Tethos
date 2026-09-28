@@ -1,8 +1,8 @@
 ﻿namespace Tethos.NSubstitute.Tests;
 
 using AutoFixture.Xunit3;
-using Shouldly;
 using global::NSubstitute;
+using Shouldly;
 using Tethos.NSubstitute.Tests.Attributes;
 using Tethos.Tests.Common;
 using Xunit;

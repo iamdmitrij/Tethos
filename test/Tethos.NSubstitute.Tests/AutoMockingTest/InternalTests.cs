@@ -3,8 +3,8 @@
 using System;
 using AutoFixture.Xunit3;
 using Castle.MicroKernel;
-using Shouldly;
 using global::NSubstitute;
+using Shouldly;
 using Tethos.Extensions;
 using Tethos.Tests.Common;
 using Xunit;
