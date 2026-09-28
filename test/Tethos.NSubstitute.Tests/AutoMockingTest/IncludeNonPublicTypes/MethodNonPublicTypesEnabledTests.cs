@@ -1,8 +1,8 @@
 ﻿namespace Tethos.NSubstitute.Tests.AutoMockingTest.Configuration;
 
 using AutoFixture.Xunit3;
-using Shouldly;
 using global::NSubstitute;
+using Shouldly;
 using Tethos.Tests.Common;
 using Xunit;
 

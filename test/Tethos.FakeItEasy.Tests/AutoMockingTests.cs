@@ -1,8 +1,8 @@
 ﻿namespace Tethos.FakeItEasy.Tests;
 
 using AutoFixture.Xunit3;
-using Shouldly;
 using global::FakeItEasy;
+using Shouldly;
 using Tethos.FakeItEasy;
 using Tethos.FakeItEasy.Tests.Attributes;
 using Tethos.Tests.Common;
