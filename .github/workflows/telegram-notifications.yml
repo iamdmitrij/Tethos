@@ -1,0 +1,18 @@
+name: "📨 Renovate Telegram Notifications"
+
+on:
+  pull_request:
+    types: ["opened"]
+
+permissions: {}
+
+jobs:
+  notify:
+    name: 📨 Notify Telegram
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📨 Send pull request notification
+        uses: F2had/pr-telegram-action@v1.0.0
+        with:
+          bot_token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
