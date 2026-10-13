@@ -21,7 +21,7 @@
 		</PackageReference>
 		<PackageReference Include="xunit.v3" Version="4.0.2" />
 		<PackageReference Include="xunit.analyzers" Version="2.2.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.12" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.13" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="4.0.1">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
