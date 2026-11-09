@@ -18,7 +18,7 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - uses: dawidd6/action-download-artifact@v27
+      - uses: dawidd6/action-download-artifact@v28
         with:
           workflow: ci.yml
           name: nuget-packages
