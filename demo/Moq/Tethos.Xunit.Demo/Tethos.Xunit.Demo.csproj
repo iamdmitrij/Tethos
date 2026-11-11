@@ -15,7 +15,7 @@
 		<PackageReference Include="Tethos.Moq" Version="2.*" />
 		<PackageReference Include="xunit.v3" Version="4.0.3" />
 		<PackageReference Include="xunit.analyzers" Version="2.3.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.15" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="11.0.0" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="4.0.1">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
